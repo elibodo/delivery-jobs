@@ -5,5 +5,17 @@
 @tailwind utilities;
 
 .head_text {
-  @apply mt-5 text-4xl font-extrabold leading-10 text-black sm:text-4xl;
+  @apply mt-10 text-4xl font-extrabold leading-6 text-black;
+}
+
+.description {
+  @apply mt-10 text-lg text-gray-600;
+}
+
+.flex_center {
+  @apply flex justify-center items-center;
+}
+
+.button_viewJobs {
+  @apply mt-5 text-3xl text-black;
 }
