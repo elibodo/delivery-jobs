@@ -1,4 +1,6 @@
 import "@styles/globals.css";
+import Header from "@components/Header";
+import Footer from "@components/Footer";
 
 export const metadata = {
   title: "Delivery Jobs",
@@ -10,7 +12,11 @@ const RootLayout = ({ children }) => {
     <html lang="en">
       <body>
         <div className="main"></div>
-        <main className="app">{children}</main>
+        <main className="app">
+          <Header />
+          {children}
+          <Footer />
+        </main>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-
+import Feed from "@components/Feed";
 const Home = () => {
   return (
     <section className="w-full flex_center flex-col space-y-4">
@@ -14,6 +14,8 @@ const Home = () => {
         <br />
         <button className="button_viewJobs">View Jobs</button>
       </h1>
+
+      <Feed />
     </section>
   );
 };
