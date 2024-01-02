@@ -19,3 +19,6 @@
 .button_viewJobs {
   @apply mt-5 text-3xl text-black;
 }
+.flex_between {
+  @apply flex justify-between items-center;
+}
