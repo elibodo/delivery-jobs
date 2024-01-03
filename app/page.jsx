@@ -14,8 +14,6 @@ const Home = () => {
         <br />
         <button className="button_viewJobs">View Jobs</button>
       </h1>
-
-      <Feed />
     </section>
   );
 };
