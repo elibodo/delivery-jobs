@@ -29,13 +29,18 @@ const Header = () => {
       <div className="sm:flex hidden">
         {isUserLoggedIn ? (
           <div className="flex gap-3 md:gap-5">
+            {/* messages button */}
+            <Link href={"/"} className="outline_button">
+              Messages
+            </Link>
+
             {/* view profile button */}
             <Link href={"/"} className="outline_button">
               View Profile
             </Link>
 
             {/* sign out button */}
-            <button type="button" onClick={signOut} className="outline_button">
+            <button type="button" onClick={signOut} className="black_button">
               Sign Out
             </button>
           </div>
