@@ -6,16 +6,16 @@ import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Header = () => {
-  const isUserLoggedIn = true;
+  const isUserLoggedIn = false;
   const [providers, setProviders] = useState(null);
 
-  useEffect(() => {
-    const setProviders = async () => {
-      const responce = await getProviders();
-      setProviders(responce);
-    };
-    setProviders();
-  }, []);
+  // useEffect(() => {
+  //   const setProviders = async () => {
+  //     const responce = await getProviders();
+  //     setProviders(responce);
+  //   };
+  //   setProviders();
+  // }, []);
 
   return (
     // top left logo
@@ -46,7 +46,7 @@ const Header = () => {
           </div>
         ) : (
           <>
-            {providers &&
+            {/* {providers &&
               Object.values(providers).map((provider) => (
                 // sign in button
                 <button
@@ -57,7 +57,10 @@ const Header = () => {
                 >
                   Sign In / Sign Up
                 </button>
-              ))}
+              ))} */}
+            <Link href={"/"} className="black_button">
+              Sign In / Sign Up
+            </Link>
           </>
         )}
       </div>
