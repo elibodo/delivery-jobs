@@ -58,7 +58,7 @@ const Header = () => {
                   Sign In / Sign Up
                 </button>
               ))} */}
-            <Link href={"/"} className="black_button">
+            <Link href="/signUp" className="black_button">
               Sign In / Sign Up
             </Link>
           </>
