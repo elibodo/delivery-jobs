@@ -65,7 +65,7 @@
 }
 
 .black_button {
-  @apply rounded-full border border-black bg-black py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm font-normal flex items-center justify-center;
+  @apply rounded-full border border-orange-600 bg-orange-600 py-1.5 px-5 text-white transition-all hover:border-black hover:bg-white hover:text-black text-center text-sm font-normal flex items-center justify-center;
 }
 
 .outline_button {
