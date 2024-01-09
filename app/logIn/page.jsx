@@ -9,7 +9,7 @@ const logIn = () => {
         <div className="m-3 flex flex-col items-center border border-black rounded-xl bg-white">
           <h2 className="m-3 text-xl font-semibold">Job Seekers</h2>
           <input
-            type="text"
+            type="email"
             placeholder="Email..."
             className="p-2 m-2 border border-black rounded-lg bg-gray-100"
           />
@@ -23,7 +23,7 @@ const logIn = () => {
         <div className="m-3 flex flex-col items-center border border-black rounded-xl bg-white">
           <h2 className="m-3 text-xl font-semibold">Employers</h2>
           <input
-            type="text"
+            type="email"
             placeholder="Email..."
             className="p-2 m-2 border border-black rounded-lg bg-gray-100"
           />
