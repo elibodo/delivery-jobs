@@ -39,7 +39,7 @@ const logIn = () => {
         <Link href={"/signUp"} className="black_button">
           Create an Account
         </Link>
-        <Link href={"/"} className="black_button">
+        <Link href={"/forgotPassword"} className="black_button">
           Forgot Password?
         </Link>
       </div>

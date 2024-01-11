@@ -81,5 +81,5 @@
 }
 
 .input_style {
-  @apply ml-5 p-1 border border-black rounded-lg bg-gray-100;
+  @apply p-1 border border-black rounded-lg bg-gray-100;
 }
