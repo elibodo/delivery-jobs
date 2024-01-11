@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import "@styles/globals.css";
 
 const Header = () => {
   const isUserLoggedIn = false;
