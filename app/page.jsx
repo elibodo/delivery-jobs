@@ -1,5 +1,6 @@
 import React from "react";
-import Feed from "@components/Feed";
+import "@styles/globals.css";
+
 const Home = () => {
   return (
     <section className="w-full flex_center flex-col space-y-4">
