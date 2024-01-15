@@ -8,7 +8,7 @@ const signUp = () => {
       <h1 className="text-2xl font-bold mb-4">Create an Account</h1>
       <div className="flex flex-col justify-between border border-black m-3 p-2 rounded-xl bg-white">
         <div className="label_input_text">
-          <label className="mr-5">Are You a Job Seeker or Employer?</label>
+          <label className="mr-5">Are you a Job Seeker or Employer?</label>
           <div className="flex flex-col m-auto">
             <label>
               Job Seeker <input type="radio" name="radiobtn"></input>
