@@ -1,5 +1,6 @@
 import React from "react";
 import "@styles/globals.css";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -15,6 +16,9 @@ const Home = () => {
         <br />
         <button className="button_viewJobs">View Jobs</button>
       </h1>
+      <Link href={"/employerAccount/employerAccountHome"}>
+        Employer Account Link
+      </Link>
     </section>
   );
 };
