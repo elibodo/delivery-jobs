@@ -3,49 +3,49 @@ import React from "react";
 
 const EmployerNavLayout = ({ children }) => {
   return (
-    <div className="flex gap-8">
-      <aside className="flex-1">
+    <div className="flex gap-8 justify-center w-screen">
+      <aside className="flex-1 ml-48 mb-auto">
         <nav>
-          <ul className=" grid gap-4">
+          <ul className="grid gap-2">
             <li>
               <EmployerNavLink href={"/employerAccount/employerAccountHome"}>
-                home
+                Home
               </EmployerNavLink>
             </li>
             <li>
               <EmployerNavLink href={"/employerAccount/createJob"}>
-                create
+                Create Job
               </EmployerNavLink>
             </li>
             <li>
               <EmployerNavLink href={"/employerAccount/myJobs"}>
-                job
+                My Jobs
               </EmployerNavLink>
             </li>
             <li>
               <EmployerNavLink href={"/employerAccount/employerMessaging"}>
-                message
+                Messages
               </EmployerNavLink>
             </li>
             <li>
               <EmployerNavLink href={"/employerAccount/candidates"}>
-                candiste
+                Candidates
               </EmployerNavLink>
             </li>
             <li>
               <EmployerNavLink href={"/employerAccount/analytics"}>
-                sstats
+                Analytics
               </EmployerNavLink>
             </li>
-            <li>
+            <li className="">
               <EmployerNavLink href={"/employerAccount/employerSettings"}>
-                settingngg
+                Settings
               </EmployerNavLink>
             </li>
           </ul>
         </nav>
       </aside>
-      <div className=" bg-gray-100 p-4 rounded">{children}</div>
+      <div className="mr-48 w-3/4 bg-gray-100 rounded">{children}</div>
     </div>
   );
 };
