@@ -11,13 +11,13 @@ const MyJobs = () => {
       </div>
 
       <ul className="flex flex-row justify-between mx-3 p-2 border-b-2 border-gray-500">
-        <li>Job Title</li>
-        <li>Location</li>
-        <li>Applicants</li>
-        <li>Cost</li>
-        <li>Date</li>
-        <li>Status</li>
-        <li>Actions</li>
+        <li className="w-3/12 text-center">Job Title</li>
+        <li className="w-2/12 text-center">Location</li>
+        <li className="w-3/12 text-center">Applicants</li>
+        <li className="w-1/12 text-center">Cost</li>
+        <li className="w-1/12 text-center">Date</li>
+        <li className="w-1/12 text-center">Status</li>
+        <li className="w-1/12 text-center">Actions</li>
       </ul>
     </div>
   );
