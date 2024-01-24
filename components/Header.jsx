@@ -7,28 +7,28 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import "@styles/globals.css";
 
 const Header = () => {
-  const isUserLoggedIn = false;
+  const { data: session } = useSession;
+
   const [providers, setProviders] = useState(null);
 
-  // useEffect(() => {
-  //   const setProviders = async () => {
-  //     const responce = await getProviders();
-  //     setProviders(responce);
-  //   };
-  //   setProviders();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
 
   return (
     // top left logo
     <nav className="flex_between w-full mb-16 pt-5 pl-8">
       <Link href="/" className="flex gap-2 flex_center">
-        <p className="logo_text">Delivery Jobs</p>
+        <p className="logo_text">Delivery_Jobs</p>
       </Link>
 
       {/* logo for the header */}
 
       <div className="sm:flex hidden">
-        {isUserLoggedIn ? (
+        {session?.user ? (
           <div className="flex gap-3 md:gap-5">
             {/* messages button */}
             <Link href={"/"} className="outline_button">
@@ -36,7 +36,10 @@ const Header = () => {
             </Link>
 
             {/* view profile button */}
-            <Link href={"/"} className="outline_button">
+            <Link
+              href={"/employerAccount/EmployerAccountHome"}
+              className="outline_button"
+            >
               View Profile
             </Link>
 
@@ -47,7 +50,7 @@ const Header = () => {
           </div>
         ) : (
           <>
-            {/* {providers &&
+            {providers &&
               Object.values(providers).map((provider) => (
                 // sign in button
                 <button
@@ -58,10 +61,7 @@ const Header = () => {
                 >
                   Sign In / Sign Up
                 </button>
-              ))} */}
-            <Link href="/logIn" className="black_button">
-              Sign In / Sign Up
-            </Link>
+              ))}
           </>
         )}
       </div>
