@@ -1,25 +1,18 @@
+import { rewrites } from "@next.config";
 import { Schema, model, models } from "mongoose";
 
-const userSchema = new mongoose.Schema({
-  firstName: {
-    type: String,
-    trim: true,
-    require: true,
-  },
-  lastName: {
-    type: String,
-    require: true,
-  },
-  companyName: {
-    type: String,
-    require: false,
-  },
+const UserSchema = new Schema({
   email: {
     type: String,
-    require: true,
+    unique: [true, "Email already exists!"],
+    required: [true, "Email is required!"],
   },
-  password: {
+  username: {
     type: String,
-    require: true,
+    required: [true, "Username is required!"],
   },
 });
+
+const User = models.User || model("User", UserSchema);
+
+export default User;
