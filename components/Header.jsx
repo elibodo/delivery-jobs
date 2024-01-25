@@ -7,7 +7,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import "@styles/globals.css";
 
 const Header = () => {
-  const { data: session } = useSession;
+  const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
 
@@ -19,31 +19,25 @@ const Header = () => {
   }, []);
 
   return (
-    // top left logo
     <nav className="flex_between w-full mb-16 pt-5 pl-8">
       <Link href="/" className="flex gap-2 flex_center">
-        <p className="logo_text">Delivery_Jobs</p>
+        <p className="logo_text">Delivery Jobs</p>
       </Link>
-
-      {/* logo for the header */}
 
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
-            {/* messages button */}
             <Link href={"/"} className="outline_button">
               Messages
             </Link>
 
-            {/* view profile button */}
             <Link
-              href={"/employerAccount/EmployerAccountHome"}
+              href={"/employerAccount/employerAccountHome"}
               className="outline_button"
             >
               View Profile
             </Link>
 
-            {/* sign out button */}
             <button type="button" onClick={signOut} className="black_button">
               Sign Out
             </button>
@@ -52,7 +46,6 @@ const Header = () => {
           <>
             {providers &&
               Object.values(providers).map((provider) => (
-                // sign in button
                 <button
                   type="button"
                   key={provider.name}
@@ -62,6 +55,9 @@ const Header = () => {
                   Sign In / Sign Up
                 </button>
               ))}
+            <Link href={"/logIn"} className="black_button">
+              test
+            </Link>
           </>
         )}
       </div>
