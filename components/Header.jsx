@@ -19,7 +19,7 @@ const Header = () => {
   }, []);
 
   return (
-    <nav className="flex_between w-full mb-16 pt-5 pl-8">
+    <nav className="flex_between w-full mb-12 pt-5 pl-8">
       <Link href="/" className="flex gap-2 flex_center">
         <p className="logo_text">Delivery Jobs</p>
       </Link>
@@ -55,9 +55,6 @@ const Header = () => {
                   Sign In / Sign Up
                 </button>
               ))}
-            <Link href={"/logIn"} className="black_button">
-              test
-            </Link>
           </>
         )}
       </div>

@@ -10,14 +10,6 @@ const UserSchema = new Schema({
     type: String,
     required: [true, "Company Name is required!"],
   },
-  firstname: {
-    type: String,
-    required: [true, "First name is required!"],
-  },
-  lastname: {
-    type: String,
-    required: [true, "Last name is required!"],
-  },
 });
 
 const EmployerUser = models.EmployerUser || model("EmployerUser", UserSchema);
