@@ -4,7 +4,7 @@ import "@styles/globals.css";
 
 const LogIn = () => {
   return (
-    <section className="flex flex-col justify-center content-center items-center bg-gray-200 border-black border-2 p-4 rounded-xl">
+    <section className="flex flex-col justify-center content-center items-center bg-gray-100 border-black border-2 p-4 rounded-xl">
       <h1 className="text-2xl font-bold mb-4">Sign In or Create an Account</h1>
       <div className="flex flex-row">
         <div className="m-3 flex flex-col items-center border border-black rounded-xl bg-white">
