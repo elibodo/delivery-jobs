@@ -11,6 +11,10 @@ const UserSchema = new Schema({
     type: String,
     required: [true, "Username is required!"],
   },
+  fname: {
+    type: String,
+    required: [true, "Username is required!"],
+  },
 });
 
 const User = models.User || model("User", UserSchema);

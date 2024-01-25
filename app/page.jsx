@@ -19,6 +19,7 @@ const Home = () => {
       <Link href={"/employerAccount/employerAccountHome"}>
         Employer Account Link
       </Link>
+      <Link href={"/jobSeekerAccount"}>Job Seeker Account Link</Link>
     </section>
   );
 };
