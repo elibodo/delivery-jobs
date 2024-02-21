@@ -3,10 +3,10 @@ import React from "react";
 
 const EmployerNavLayout = ({ children }) => {
   return (
-    <div className="flex gap-8 justify-center w-screen">
-      <aside className="flex-1 ml-48 mb-auto">
+    <div className="flex justify-center w-full">
+      <aside className="flex-1 mr-5 mb-auto">
         <nav>
-          <ul className="grid gap-2">
+          <ul className="grid gap-3">
             <li>
               <EmployerNavLink href={"/employerAccount/employerAccountHome"}>
                 Home
@@ -45,7 +45,7 @@ const EmployerNavLayout = ({ children }) => {
           </ul>
         </nav>
       </aside>
-      <div className="mr-48 w-3/4 bg-gray-100 rounded">{children}</div>
+      <div className="w-11/12 bg-gray-100 rounded">{children}</div>
     </div>
   );
 };
