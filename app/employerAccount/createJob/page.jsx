@@ -1,4 +1,5 @@
 import React from "react";
+import JobForm from "@components/JobForm";
 
 const CreateJob = () => {
   const companyName = "White Sands Delivery Inc";
@@ -9,6 +10,7 @@ const CreateJob = () => {
         <h1 className="font-bold text-2xl">Create Job</h1>
         <p className="">{companyName}</p>
       </div>
+      <JobForm />
     </div>
   );
 };
