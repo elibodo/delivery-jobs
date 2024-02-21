@@ -44,6 +44,9 @@ const Header = () => {
           </div>
         ) : (
           <>
+            {/*<Link href={"/"} className="black_button">
+              Sign In / Sign Up
+            </Link>*/}
             {providers &&
               Object.values(providers).map((provider) => (
                 <button
