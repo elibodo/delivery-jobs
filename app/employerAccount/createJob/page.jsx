@@ -17,6 +17,15 @@ const CreateJob = () => {
     description: "",
     dispatchlocation: "",
     deliverylocation: "",
+    workauthorization: "",
+    relocate: "",
+    jobtype: "",
+    experiencerequired: "",
+    additionalpay: "",
+    benefits: "",
+    resume: "",
+    drugtest: "",
+    emailupdates: "",
   });
 
   const createJob = async (e) => {
@@ -32,6 +41,15 @@ const CreateJob = () => {
           description: post.description,
           dispatchlocation: post.dispatchlocation,
           deliverylocation: post.deliverylocation,
+          workauthorization: post.workauthorization,
+          relocate: post.relocate,
+          jobtype: post.jobtype,
+          experiencerequired: post.experiencerequired,
+          additionalpay: post.additionalpay,
+          benefits: post.benefits,
+          resume: post.resume,
+          drugtest: post.drugtest,
+          emailupdates: post.emailupdates,
         }),
       });
 
