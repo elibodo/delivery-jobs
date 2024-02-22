@@ -91,3 +91,19 @@
 .flex-start {
   @apply flex justify-start items-start;
 }
+
+.feed {
+  @apply mt-8 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+}
+
+.prompt_card {
+  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter w-[800px] h-fit;
+}
+
+.search_input {
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+}
+
+.prompt_layout {
+  @apply space-y-6 py-4 columns-1 sm:gap-6;
+}
