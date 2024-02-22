@@ -1,14 +1,12 @@
-"use client";
-import React from "react";
-import { useState } from "react";
+import Link from "next/link";
 
-const JobForm = () => {
+const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
   return (
     <section className="flex flex-col items-center">
       <p className="description">
         Follow the prompts to create and post a new job
       </p>
-      <form className="">
+      <form onSubmit={handlesubmit} className="">
         {/* section 1 // // // // // // // // // // // // // // // // // // // // //*/}
 
         <div className="border-b-2 border-gray-500 pb-4">
@@ -17,28 +15,34 @@ const JobForm = () => {
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             Title
             <input
-              className="mt-1 form_input"
               type="text"
+              value={post.title}
+              onChange={(e) => {
+                setPost({ ...post, title: e.target.value });
+              }}
               placeholder="Delivery Job"
               required
+              className="mt-1 form_input"
             ></input>
           </label>
           {/* Number of hires */}
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             How many hires for this role?
             <div className="mt-1 flex flex-row items-center">
-              <select className="form_input" required>
-                <option selected>Choose an option</option>
-                <option>One</option>
-                <option>Multiple</option>
-                <option>Continuously hiring</option>
+              <select className="form_input" id="hire_id">
+                {/* <option selected>Choose an option</option> */}
+                <option value={"One"}>One</option>
+                <option value={"Multipe"}>Multiple</option>
+                <option value={"Continously hiring"}>
+                  Continuously hiring
+                </option>
               </select>
               <span className="mx-2">or</span>
               <input
+                id="hire_id"
                 className="form_input"
                 type="number"
                 placeholder="Specific number"
-                required
               ></input>
             </div>
           </label>
@@ -46,10 +50,14 @@ const JobForm = () => {
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             Dispatch Location
             <input
-              className="form_input"
               type="text"
+              value={post.dispatchlocation}
+              onChange={(e) => {
+                setPost({ ...post, dispatchlocation: e.target.value });
+              }}
               placeholder="Address"
               required
+              className="form_input"
             ></input>
           </label>
           {/* Delivery Location */}
@@ -59,6 +67,10 @@ const JobForm = () => {
               className="form_input"
               type="text"
               placeholder="Address"
+              value={post.deliverylocation}
+              onChange={(e) => {
+                setPost({ ...post, deliverylocation: e.target.value });
+              }}
               required
             ></input>
           </label>
@@ -141,7 +153,6 @@ const JobForm = () => {
               className="form_input"
               type="text"
               placeholder="One year | No experience required"
-              required
             ></input>
           </label>
           {/* Shift time */}
@@ -149,7 +160,7 @@ const JobForm = () => {
             <label className="mt-4 flex flex-col text-gray-900 font-semibold">
               What time is the shift
               <div className="mt-1 flex flex-row items-center">
-                <select className="form_input" required>
+                <select className="form_input">
                   <option selected>Choose an option</option>
                   <option>Morning</option>
                   <option>Day</option>
@@ -165,7 +176,6 @@ const JobForm = () => {
                   className="form_input max-w-32"
                   type="text"
                   placeholder="8 AM"
-                  required
                 ></input>
                 <span className="mx-2">to</span>
               </div>
@@ -177,7 +187,6 @@ const JobForm = () => {
                   className="form_input max-w-32"
                   type="text"
                   placeholder="5 PM"
-                  required
                 ></input>
               </div>
             </label>
@@ -197,17 +206,15 @@ const JobForm = () => {
                   className="form_input max-w-32"
                   type="number"
                   placeholder="Minimum"
-                  required
                 ></input>
                 <span className="mx-2">to</span>
                 <input
                   className="form_input max-w-32"
                   type="number"
                   placeholder="Maximum"
-                  required
                 ></input>
                 <span className="mx-2">per</span>
-                <select className="form_input" required>
+                <select className="form_input">
                   <option>Hour</option>
                   <option>Day</option>
                   <option>Week</option>
@@ -226,7 +233,6 @@ const JobForm = () => {
                 className="form_input max-w-32"
                 type="number"
                 placeholder="Cents"
-                required
               ></input>
               <div className="flex flex-row">
                 <span className="ml-2">cents</span>
@@ -272,6 +278,11 @@ const JobForm = () => {
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Add a description to your job listing
             <textarea
+              required
+              value={post.description}
+              onChange={(e) =>
+                setPost({ ...post, description: e.target.value })
+              }
               placeholder="Write your description here..."
               className="resize-y flex rounded-lg min-h-60 w-[600px] mt-1 p-3 text-sm text-gray-700 outline-0"
             ></textarea>
@@ -341,7 +352,6 @@ const JobForm = () => {
               className="mt-1 form_input"
               type="email"
               placeholder="Email address..."
-              required
             ></input>
           </label>
           {/* questions for the applicant */}
@@ -352,9 +362,8 @@ const JobForm = () => {
                 className="form_input mr-4"
                 type="text"
                 placeholder="Question 1..."
-                required
               ></input>
-              <select className="form_input max-w-36" required>
+              <select className="form_input max-w-36">
                 <option selected>Responce type</option>
                 <option>Text</option>
                 <option>Number</option>
@@ -365,9 +374,8 @@ const JobForm = () => {
                 className="form_input mr-4"
                 type="text"
                 placeholder="Question 2..."
-                required
               ></input>
-              <select className="form_input max-w-36" required>
+              <select className="form_input max-w-36">
                 <option selected>Responce type</option>
                 <option>Text</option>
                 <option>Number</option>
@@ -378,9 +386,8 @@ const JobForm = () => {
                 className="form_input mr-4"
                 type="text"
                 placeholder="Question 3..."
-                required
               ></input>
-              <select className="form_input max-w-36" required>
+              <select className="form_input max-w-36">
                 <option selected>Responce type</option>
                 <option>Text</option>
                 <option>Number</option>
@@ -391,9 +398,8 @@ const JobForm = () => {
                 className="form_input mr-4"
                 type="text"
                 placeholder="Question 4..."
-                required
               ></input>
-              <select className="form_input max-w-36" required>
+              <select className="form_input max-w-36">
                 <option selected>Responce type</option>
                 <option>Text</option>
                 <option>Number</option>
@@ -404,9 +410,8 @@ const JobForm = () => {
                 className="form_input mr-4"
                 type="text"
                 placeholder="Question 5..."
-                required
               ></input>
-              <select className="form_input max-w-36" required>
+              <select className="form_input max-w-36">
                 <option selected>Responce type</option>
                 <option>Text</option>
                 <option>Number</option>
@@ -414,8 +419,21 @@ const JobForm = () => {
             </div>
           </label>
         </div>
-
-        <button className="black_button mb-5 mt-5">Create Job</button>
+        <div className="flex flex-row justify-between">
+          <Link
+            href={"/employerAccount/employerAccountHome"}
+            className="outline_button mb-5 mt-5 ml-32"
+          >
+            Cancel
+          </Link>
+          <button
+            type="submit"
+            disabled={submitting}
+            className="black_button mb-5 mt-5 mr-32"
+          >
+            {submitting ? `${type}ing...` : type}
+          </button>
+        </div>
       </form>
     </section>
   );
