@@ -2,8 +2,22 @@ import Job from "@models/job";
 import { connectToDB } from "@utils/database";
 
 export const POST = async (request) => {
-  const { userId, title, description, dispatchlocation, deliverylocation } =
-    await request.json();
+  const {
+    userId,
+    title,
+    description,
+    dispatchlocation,
+    deliverylocation,
+    workauthorization,
+    relocate,
+    jobtype,
+    experiencerequired,
+    additionalpay,
+    benefits,
+    resume,
+    drugtest,
+    emailupdates,
+  } = await request.json();
 
   try {
     await connectToDB();
@@ -13,6 +27,15 @@ export const POST = async (request) => {
       description,
       dispatchlocation,
       deliverylocation,
+      workauthorization,
+      relocate,
+      jobtype,
+      experiencerequired,
+      additionalpay,
+      benefits,
+      resume,
+      drugtest,
+      emailupdates,
     });
 
     await newJob.save();
