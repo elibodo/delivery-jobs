@@ -78,19 +78,28 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             Does this person require authorization to work in the US?
             <div className="font-semibold text-gray-700">
-              <input type="radio" name="authRadio" id="yes_auth" />
-              <label for="yes_auth" className="ml-1">
-                Yes
-              </label>
+              <input
+                type="radio"
+                name="authRadio"
+                id="yes_auth"
+                className="mr-1"
+                value={"yes"}
+                onClick={(e) => {
+                  setPost({ ...post, workauthorization: e.target.value });
+                }}
+              />
+              Yes
               <input
                 type="radio"
                 name="authRadio"
                 id="no_auth"
-                className="ml-10"
+                className="ml-10 mr-1"
+                value={"no"}
+                onClick={(e) => {
+                  setPost({ ...post, workauthorization: e.target.value });
+                }}
               />
-              <label for="no_auth" className="ml-1">
-                No
-              </label>
+              No
             </div>
           </label>
         </div>
@@ -103,47 +112,67 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             Does this job require the person to relocate?
             <div className="font-semibold text-gray-700">
-              <input type="radio" name="relocateRadio" id="yes_relocate" />
-              <label for="yes_relocate" className="ml-1">
-                Yes
-              </label>
+              <input
+                type="radio"
+                name="relocateRadio"
+                id="yes_relocate"
+                className="mr-1"
+                value={"yes"}
+                onClick={(e) => {
+                  setPost({ ...post, relocate: e.target.value });
+                }}
+              />
+              Yes
               <input
                 type="radio"
                 name="relocateRadio"
                 id="no_relocate"
-                className="ml-10"
+                className="ml-10 mr-1"
+                value={"no"}
+                onClick={(e) => {
+                  setPost({ ...post, relocate: e.target.value });
+                }}
               />
-              <label for="no_relocate" className="ml-1">
-                No
-              </label>
+              No
             </div>
           </label>
           {/* Job type */}
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             What type of job is this?
             <div className="font-semibold text-gray-700">
-              <input type="radio" name="job_type_radio" id="full_time" />
-              <label for="full_time" className="ml-1">
-                Full time
-              </label>
+              <input
+                type="radio"
+                name="job_type_radio"
+                id="full_time"
+                className=" mr-1"
+                value={"Full Time"}
+                onClick={(e) => {
+                  setPost({ ...post, jobtype: e.target.value });
+                }}
+              />
+              Full time
               <input
                 type="radio"
                 name="job_type_radio"
                 id="part_time"
-                className="ml-10"
+                className="ml-10 mr-1"
+                value={"Part Time"}
+                onClick={(e) => {
+                  setPost({ ...post, jobtype: e.target.value });
+                }}
               />
-              <label for="part_time" className="ml-1">
-                Part time
-              </label>
+              Part time
               <input
                 type="radio"
                 name="job_type_radio"
                 id="weekends_only"
-                className="ml-10"
+                className="ml-10 mr-1"
+                value={"Weekends"}
+                onClick={(e) => {
+                  setPost({ ...post, jobtype: e.target.value });
+                }}
               />
-              <label for="weekends_only" className="ml-1">
-                Weekends only
-              </label>
+              Weekends only
             </div>
           </label>
           {/* Experience required */}
@@ -153,6 +182,10 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
               className="form_input"
               type="text"
               placeholder="One year | No experience required"
+              value={post.experiencerequired}
+              onChange={(e) => {
+                setPost({ ...post, experiencerequired: e.target.value });
+              }}
             ></input>
           </label>
           {/* Shift time */}
@@ -233,6 +266,10 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 className="form_input max-w-32"
                 type="number"
                 placeholder="Cents"
+                value={post.additionalpay}
+                onChange={(e) => {
+                  setPost({ ...post, additionalpay: e.target.value });
+                }}
               ></input>
               <div className="flex flex-row">
                 <span className="ml-2">cents</span>
@@ -247,23 +284,63 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
             What benefits does your company offer? (Select all that apply)
             <div className="flex flex-col items-left text-gray-700">
               <label for="401k_check" className="">
-                <input type="checkbox" id="401k_check" className="mr-2" />
+                <input
+                  type="checkbox"
+                  id="401k_check"
+                  className="mr-2"
+                  value={"401K Matching"}
+                  onClick={(e) => {
+                    setPost({ ...post, benefits: e.target.value });
+                  }}
+                />
                 401K Matching
               </label>
               <label for="medical_check" className="">
-                <input type="checkbox" id="medical_check" className="mr-2" />
+                <input
+                  type="checkbox"
+                  id="medical_check"
+                  className="mr-2"
+                  value={"Medical Insurance"}
+                  onClick={(e) => {
+                    setPost({ ...post, benefits: e.target.value });
+                  }}
+                />
                 Medical Insurance
               </label>
               <label for="dental_check" className="">
-                <input type="checkbox" id="dental_check" className="mr-2" />
+                <input
+                  type="checkbox"
+                  id="dental_check"
+                  className="mr-2"
+                  value={"Dental Insurance"}
+                  onClick={(e) => {
+                    setPost({ ...post, benefits: e.target.value });
+                  }}
+                />
                 Dental Insurance
               </label>
               <label for="vision_check" className="">
-                <input type="checkbox" id="vision_check" className="mr-2" />
+                <input
+                  type="checkbox"
+                  id="vision_check"
+                  className="mr-2"
+                  value={"Vision Insurance"}
+                  onClick={(e) => {
+                    setPost({ ...post, benefits: e.target.value });
+                  }}
+                />
                 Vision Insurance
               </label>
               <label for="life_check" className="">
-                <input type="checkbox" id="life_check" className="mr-2" />
+                <input
+                  type="checkbox"
+                  id="life_check"
+                  className="mr-2"
+                  value={"Life Insurance"}
+                  onClick={(e) => {
+                    setPost({ ...post, benefits: e.target.value });
+                  }}
+                />
                 Life Insurance
               </label>
             </div>
@@ -297,28 +374,33 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Will applicants be required to include a resume?
             <div className="font-semibold text-gray-700">
-              <input type="radio" name="resume_radio" id="yes_resume" />
-              <label for="yes_resume" className="ml-1">
-                Yes
-              </label>
+              <input
+                type="radio"
+                name="resume_radio"
+                id="yes_resume"
+                className="  mr-1"
+                value={"Yes"}
+                onChange={(e) => setPost({ ...post, resume: e.target.value })}
+              />
+              Yes
               <input
                 type="radio"
                 name="resume_radio"
                 id="no_resume"
-                className="ml-10"
+                className="ml-10 mr-1"
+                value={"No"}
+                onChange={(e) => setPost({ ...post, resume: e.target.value })}
               />
-              <label for="no_resume" className="ml-1">
-                No
-              </label>
+              No
               <input
                 type="radio"
                 name="resume_radio"
                 id="optional_resume"
-                className="ml-10"
+                className="ml-10 mr-1"
+                value={"Optional"}
+                onChange={(e) => setPost({ ...post, resume: e.target.value })}
               />
-              <label for="optional_resume" className="ml-1">
-                Optional
-              </label>
+              Optional
             </div>
           </label>
           {/* drug test */}
@@ -329,20 +411,20 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 type="radio"
                 name="drugtest_radio"
                 id="yes_drugtest"
-                className=""
+                className="mr-1"
+                value={"yes"}
+                onChange={(e) => setPost({ ...post, drugtest: e.target.value })}
               />
-              <label for="yes_drugtest" className="ml-1">
-                Yes
-              </label>
+              Yes
               <input
                 type="radio"
                 name="drugtest_radio"
                 id="no_drugtest"
-                className="ml-10"
+                className="ml-10 mr-1"
+                value={"no"}
+                onChange={(e) => setPost({ ...post, drugtest: e.target.value })}
               />
-              <label for="no_drugtest" className="ml-1">
-                No
-              </label>
+              No
             </div>
           </label>
           {/* email updates */}
@@ -352,6 +434,10 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
               className="mt-1 form_input"
               type="email"
               placeholder="Email address..."
+              value={post.emailupdates}
+              onChange={(e) => {
+                setPost({ ...post, emailupdates: e.target.value });
+              }}
             ></input>
           </label>
           {/* questions for the applicant */}
