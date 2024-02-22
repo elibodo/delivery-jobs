@@ -279,6 +279,143 @@ const JobForm = () => {
         </div>
 
         {/* section 5 // // // // // // // // // // // // // // // // // // // // //*/}
+
+        <div className="border-b-2 border-gray-500 pb-4">
+          <p className="description">Additional Information</p>
+          {/* resume preference */}
+          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+            Will applicants be required to include a resume?
+            <div className="font-semibold text-gray-700">
+              <input type="radio" name="resume_radio" id="yes_resume" />
+              <label for="yes_resume" className="ml-1">
+                Yes
+              </label>
+              <input
+                type="radio"
+                name="resume_radio"
+                id="no_resume"
+                className="ml-10"
+              />
+              <label for="no_resume" className="ml-1">
+                No
+              </label>
+              <input
+                type="radio"
+                name="resume_radio"
+                id="optional_resume"
+                className="ml-10"
+              />
+              <label for="optional_resume" className="ml-1">
+                Optional
+              </label>
+            </div>
+          </label>
+          {/* drug test */}
+          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+            Will applicants be required take a drug test?
+            <div className="font-semibold text-gray-700">
+              <input
+                type="radio"
+                name="drugtest_radio"
+                id="yes_drugtest"
+                className=""
+              />
+              <label for="yes_drugtest" className="ml-1">
+                Yes
+              </label>
+              <input
+                type="radio"
+                name="drugtest_radio"
+                id="no_drugtest"
+                className="ml-10"
+              />
+              <label for="no_drugtest" className="ml-1">
+                No
+              </label>
+            </div>
+          </label>
+          {/* email updates */}
+          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+            What email would you like to recieve updates about the job
+            <input
+              className="mt-1 form_input"
+              type="email"
+              placeholder="Email address..."
+              required
+            ></input>
+          </label>
+          {/* questions for the applicant */}
+          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+            Add questions for the applicants to answer
+            <div className="mt-1 flex flex-row items-center">
+              <input
+                className="form_input mr-4"
+                type="text"
+                placeholder="Question 1..."
+                required
+              ></input>
+              <select className="form_input max-w-36" required>
+                <option selected>Responce type</option>
+                <option>Text</option>
+                <option>Number</option>
+              </select>
+            </div>
+            <div className="mt-3 flex flex-row items-center">
+              <input
+                className="form_input mr-4"
+                type="text"
+                placeholder="Question 2..."
+                required
+              ></input>
+              <select className="form_input max-w-36" required>
+                <option selected>Responce type</option>
+                <option>Text</option>
+                <option>Number</option>
+              </select>
+            </div>
+            <div className="mt-3 flex flex-row items-center">
+              <input
+                className="form_input mr-4"
+                type="text"
+                placeholder="Question 3..."
+                required
+              ></input>
+              <select className="form_input max-w-36" required>
+                <option selected>Responce type</option>
+                <option>Text</option>
+                <option>Number</option>
+              </select>
+            </div>
+            <div className="mt-3 flex flex-row items-center">
+              <input
+                className="form_input mr-4"
+                type="text"
+                placeholder="Question 4..."
+                required
+              ></input>
+              <select className="form_input max-w-36" required>
+                <option selected>Responce type</option>
+                <option>Text</option>
+                <option>Number</option>
+              </select>
+            </div>
+            <div className="mt-3 flex flex-row items-center">
+              <input
+                className="form_input mr-4"
+                type="text"
+                placeholder="Question 5..."
+                required
+              ></input>
+              <select className="form_input max-w-36" required>
+                <option selected>Responce type</option>
+                <option>Text</option>
+                <option>Number</option>
+              </select>
+            </div>
+          </label>
+        </div>
+
+        <button className="black_button mb-5 mt-5">Create Job</button>
       </form>
     </section>
   );

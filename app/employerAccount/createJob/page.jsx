@@ -1,8 +1,19 @@
+"use client";
 import React from "react";
 import JobForm from "@components/JobForm";
+import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const CreateJob = () => {
   const companyName = "White Sands Delivery Inc";
+  const [submitting, setSubmitting] = useState(false);
+  const [post, setPost] = useState({
+    title: "",
+    hires: "",
+  });
+
+  const createJob = async (e) => {};
 
   return (
     <div>
