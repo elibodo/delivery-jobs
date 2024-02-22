@@ -7,13 +7,43 @@ import { useRouter } from "next/navigation";
 
 const CreateJob = () => {
   const companyName = "White Sands Delivery Inc";
+
+  const router = useRouter();
+  const { data: session } = useSession();
+
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     title: "",
-    hires: "",
+    description: "",
+    dispatchlocation: "",
+    deliverylocation: "",
   });
 
-  const createJob = async (e) => {};
+  const createJob = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      const response = await fetch("/api/job/new", {
+        method: "POST",
+        body: JSON.stringify({
+          title: post.title,
+          userId: session?.user.id,
+          description: post.description,
+          dispatchlocation: post.dispatchlocation,
+          deliverylocation: post.deliverylocation,
+        }),
+      });
+
+      if (response.ok) {
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div>
@@ -21,7 +51,13 @@ const CreateJob = () => {
         <h1 className="font-bold text-2xl">Create Job</h1>
         <p className="">{companyName}</p>
       </div>
-      <JobForm />
+      <JobForm
+        type="Create"
+        post={post}
+        setPost={setPost}
+        submitting={submitting}
+        handlesubmit={createJob}
+      />
     </div>
   );
 };
