@@ -1,12 +1,13 @@
 import React from "react";
 import "@styles/globals.css";
 import Link from "next/link";
+import Feed from "@components/Feed";
 
 const Home = () => {
   return (
     <main className="app">
       <section className="w-full flex_center flex-col">
-        <div className="flex flex-row border border-black rounded-lg p-3 text-center">
+        {/* <div className="flex flex-row border border-black rounded-lg p-3 text-center">
           <div className="flex flex-col">
             <input
               type="text"
@@ -27,13 +28,14 @@ const Home = () => {
             />
             <button className="black_button p-2 m-2">Search</button>
           </div>
-        </div>
+        </div> */}
         {/* <h1 className="head_text text-center">Delivery Jobs</h1> */}
         <Link href={"/employerAccount/employerAccountHome"}>
           Employer Account Link
         </Link>
         <Link href={"/jobSeekerAccount"}>Job Seeker Account Link</Link>
         <Link href={"/logIn"}>Sign Up Link</Link>
+        <Feed />
       </section>
     </main>
   );
