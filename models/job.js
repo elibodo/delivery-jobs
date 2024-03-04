@@ -26,13 +26,21 @@ const JobSchema = new Schema({
     type: String,
     required: [true, "Work Authorization not selected"],
   },
-  relocate: {
-    type: String,
-    required: [true, "Relocating information not selected"],
-  },
+  //relocate: {
+  //  type: String,
+  //  required: [true, "Relocating information not selected"],
+  //},
   jobtype: {
     type: String,
     required: [true, "Job type not selected"],
+  },
+  jobformat: {
+    type: String,
+    required: [true, "Job option not selected"],
+  },
+  shifttype: {
+    type: String,
+    required: [true, "Shift type not selected"],
   },
   experiencerequired: {
     type: String,
