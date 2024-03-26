@@ -26,45 +26,41 @@ const JobSchema = new Schema({
     type: String,
     required: [true, "Work Authorization not selected"],
   },
-  //relocate: {
-  //  type: String,
-  //  required: [true, "Relocating information not selected"],
-  //},
   jobtype: {
     type: String,
-    required: [true, "Job type not selected"],
+    //required: [true, "Job type not selected"],
   },
   jobformat: {
     type: String,
-    required: [true, "Job option not selected"],
+    //required: [true, "Job option not selected"],
   },
   shifttype: {
     type: String,
-    required: [true, "Shift type not selected"],
+    //required: [true, "Shift type not selected"],
   },
   experiencerequired: {
     type: String,
-    required: [true, "Experience is required"],
+    //required: [true, "Experience is required"],
   },
   additionalpay: {
     type: Number,
-    required: [true, "Additional pay is required"],
+    //required: [true, "Additional pay is required"],
   },
   benefits: {
     type: Array,
-    required: [true, "Benfits are required"],
+    //required: [true, "Benfits are required"],
   },
   resume: {
     type: String,
-    required: [true, "Resume is required"],
+    //required: [true, "Resume is required"],
   },
   drugtest: {
     type: String,
-    required: [true, "drug test option is required"],
+    //required: [true, "drug test option is required"],
   },
   emailupdates: {
     type: String,
-    required: [true, "Email is required"],
+    //required: [true, "Email is required"],
   },
 });
 
