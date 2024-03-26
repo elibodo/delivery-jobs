@@ -83,6 +83,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 name="authRadio"
                 id="yes_auth"
                 className="mr-1"
+                required
                 value={"yes"}
                 onClick={(e) => {
                   setPost({ ...post, workauthorization: e.target.value });
@@ -93,6 +94,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 type="radio"
                 name="authRadio"
                 id="no_auth"
+                required
                 className="ml-10 mr-1"
                 value={"no"}
                 onClick={(e) => {
@@ -165,9 +167,9 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
               <input
                 type="radio"
                 name="job_type_radio"
-                id="weekends_only"
+                id="seasonal"
                 className="ml-10 mr-1"
-                value={"Weekends"}
+                value={"Seasonal"}
                 onClick={(e) => {
                   setPost({ ...post, jobtype: e.target.value });
                 }}
@@ -573,16 +575,16 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
             <div className="font-semibold text-gray-700">
               <input
                 type="radio"
-                name="resume_radio"
-                id="yes_resume"
+                name="background_radio"
+                id="yes_background"
                 className="  mr-1"
                 value={"Yes"}
               />
               Yes
               <input
                 type="radio"
-                name="resume_radio"
-                id="no_resume"
+                name="background_radio"
+                id="no_background"
                 className="ml-10 mr-1"
                 value={"No"}
               />
@@ -596,24 +598,24 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
             <div className="font-semibold text-gray-700">
               <input
                 type="radio"
-                name="resume_radio"
-                id="yes_resume"
+                name="dot_radio"
+                id="yes_dot_radio"
                 className="  mr-1"
                 value={"Yes"}
               />
               Yes
               <input
                 type="radio"
-                name="resume_radio"
-                id="yes_resume"
+                name="dot_radio"
+                id="yes_dotprior_radio"
                 className="ml-10 mr-1"
                 value={"Yes"}
               />
               Yes, but prior to applying
               <input
                 type="radio"
-                name="resume_radio"
-                id="no_resume"
+                name="dot_radio"
+                id="no_dot_radio"
                 className="ml-10 mr-1"
                 value={"No"}
               />
