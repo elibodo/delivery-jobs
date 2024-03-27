@@ -1,6 +1,79 @@
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
+  //Array for days of the week
+  const [operatingdays, setdays] = useState([]);
+  const daysoftheweek = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setdays((nameofday) => [...nameofday, value]);
+    } else {
+      setdays((nameofday) =>
+        nameofday.filter((specificday) => specificday !== value)
+      );
+    }
+  };
+
+  useEffect(() => {
+    setPost({ ...post, workdays: operatingdays });
+  }, [operatingdays]);
+
+  //Array for company benefits
+  const [employeebenefits, setbenefits] = useState([]);
+  const companybenefits = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setbenefits((benefitname) => [...benefitname, value]);
+    } else {
+      setbenefits((benefitname) =>
+        benefitname.filter((specificbenefit) => specificbenefit !== value)
+      );
+    }
+  };
+
+  useEffect(() => {
+    setPost({ ...post, benefits: employeebenefits });
+  }, [employeebenefits]);
+
+  //Clearing textbox for number of hires and setting the number of hires
+  const [hiresinput, sethiresinput] = useState("");
+  const [hireslist, sethireslist] = useState("");
+
+  const clearhireslist = (event) => {
+    const { value } = event.target;
+    sethiresinput(value);
+    sethireslist("");
+  };
+
+  const clearhirestext = (event) => {
+    const { value } = event.target;
+    sethireslist(value);
+    sethiresinput("");
+  };
+
+  useEffect(() => {
+    if (hiresinput === "") {
+      setPost({ ...post, numOfHires: hireslist });
+    } else if (hireslist === "") {
+      setPost({ ...post, numOfHires: hiresinput });
+    } else {
+      setPost({ ...post, numOfHires: "" });
+    }
+  }, [hiresinput, hireslist]);
+
+  //Array for pay range
+  const [payrange, setpayrange] = useState(["", "", ""]);
+  const rangeofpay = (index, payvalue) => {
+    const myarray = [...payrange];
+    myarray[index] = payvalue.target.value;
+    setpayrange(myarray);
+  };
+
+  useEffect(() => {
+    setPost({ ...post, payrange: payrange });
+  }, [payrange]);
+
   return (
     <section className="flex flex-col items-center">
       <p className="description">
@@ -29,8 +102,16 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             How many hires for this role?
             <div className="mt-1 flex flex-row items-center">
-              <select className="form_input" id="hire_id">
-                {/* <option selected>Choose an option</option> */}
+              <select
+                className="form_input"
+                id="numOfHiresdropdown"
+                name="numOfHires"
+                onChange={clearhirestext}
+                value={hireslist}
+              >
+                <option value={""} disabled selected hidden>
+                  Choose an Option
+                </option>
                 <option value={"One"}>One</option>
                 <option value={"Multipe"}>Multiple</option>
                 <option value={"Continously hiring"}>
@@ -39,10 +120,14 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
               </select>
               <span className="mx-2">or</span>
               <input
+                name="numOfHires"
                 id="hire_id"
                 className="form_input"
                 type="number"
+                min={1}
                 placeholder="Specific number"
+                onChange={clearhireslist}
+                value={hiresinput}
               ></input>
             </div>
           </label>
@@ -110,34 +195,6 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
 
         <div className="border-b-2 border-gray-500 pb-4">
           <p className="description">Scheduling Information</p>
-          {/* Relocate */}
-          {/* <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
-            Does this job require the person to relocate?
-            <div className="font-semibold text-gray-700">
-              <input
-                type="radio"
-                name="relocateRadio"
-                id="yes_relocate"
-                className="mr-1"
-                value={"yes"}
-                onClick={(e) => {
-                  setPost({ ...post, relocate: e.target.value });
-                }}
-              />
-              Yes
-              <input
-                type="radio"
-                name="relocateRadio"
-                id="no_relocate"
-                className="ml-10 mr-1"
-                value={"no"}
-                onClick={(e) => {
-                  setPost({ ...post, relocate: e.target.value });
-                }}
-              />
-              No
-            </div>
-          </label> */}
           {/* Job type */}
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             What type of job is this?
@@ -211,12 +268,19 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             How much experience is required?
             <div className="mt-1 flex flex-row items-center">
-              <select className="form_input">
-                <option selected>Choose an option</option>
-                <option>Less than 1 year</option>
-                <option>1 - 2 years</option>
-                <option>2 - 5 years</option>
-                <option>More than 5 years</option>
+              <select
+                className="form_input"
+                onClick={(e) => {
+                  setPost({ ...post, experiencerequired: e.target.value });
+                }}
+              >
+                <option value={""} disabled selected hidden>
+                  Choose an Option
+                </option>
+                <option value={"Less than 1 year"}>Less than 1 year</option>
+                <option value={"1 - 2 years"}>1 - 2 years</option>
+                <option value={"2 - 5 years"}>2 - 5 years</option>
+                <option value={"More than 5 years"}>More than 5 years</option>
               </select>
             </div>
           </label>
@@ -251,12 +315,14 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
           </label>
 
           {/* Shift time */}
-          <div className="flex flex-row">
+          {/* <div className="flex flex-row">
             <label className="mt-4 flex flex-col text-gray-900 font-semibold">
               What time is the shift
               <div className="mt-1 flex flex-row items-center">
                 <select className="form_input">
-                  <option selected>Choose an option</option>
+                  <option value={""} disabled selected hidden>
+                    Choose an Option
+                  </option>
                   <option>Morning</option>
                   <option>Day</option>
                   <option>Night</option>
@@ -285,7 +351,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 ></input>
               </div>
             </label>
-          </div>
+          </div> */}
 
           {/* Days the job operates */}
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
@@ -293,64 +359,78 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
             <div className="flex flex-col items-left text-gray-700">
               <label for="sunday">
                 <input
+                  name="daysofoperation"
                   type="checkbox"
                   id="sunday"
                   className="mr-2"
                   value={"Sunday"}
+                  onChange={daysoftheweek}
                 />
                 Sunday
               </label>
               <label for="monday">
                 <input
+                  name="daysofoperation"
                   type="checkbox"
                   id="monday"
                   className="mr-2"
                   value={"Monday"}
+                  onChange={daysoftheweek}
                 />
                 Monday
               </label>
               <label for="tuesday">
                 <input
+                  name="daysofoperation"
                   type="checkbox"
                   id="tuesday"
                   className="mr-2"
                   value={"Tuesday"}
+                  onChange={daysoftheweek}
                 />
                 Tuesday
               </label>
               <label for="wednesday">
                 <input
+                  name="daysofoperation"
                   type="checkbox"
                   id="wednesday"
                   className="mr-2"
                   value={"Wednesday"}
+                  onChange={daysoftheweek}
                 />
                 Wednesday
               </label>
               <label for="thursday">
                 <input
+                  name="daysofoperation"
                   type="checkbox"
                   id="thursday"
                   className="mr-2"
                   value={"Thursday"}
+                  onChange={daysoftheweek}
                 />
                 Thursday
               </label>
               <label for="friday">
                 <input
+                  name="daysofoperation"
                   type="checkbox"
                   id="friday"
                   className="mr-2"
                   value={"Friday"}
+                  onChange={daysoftheweek}
                 />
                 Friday
               </label>
               <label for="saturday">
                 <input
+                  name="daysofoperation"
                   type="checkbox"
                   id="saturday"
                   className="mr-2"
                   value={"Saturday"}
+                  onChange={daysoftheweek}
                 />
                 Saturday
               </label>
@@ -371,15 +451,28 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                   className="form_input max-w-32"
                   type="number"
                   placeholder="Minimum"
+                  min={0}
+                  value={payrange[0]}
+                  onChange={(e) => rangeofpay(0, e)}
                 ></input>
                 <span className="mx-2">to</span>
                 <input
                   className="form_input max-w-32"
                   type="number"
                   placeholder="Maximum"
+                  min={0}
+                  value={payrange[1]}
+                  onChange={(e) => rangeofpay(1, e)}
                 ></input>
                 <span className="mx-2">per</span>
-                <select className="form_input">
+                <select
+                  className="form_input"
+                  value={payrange[2]}
+                  onChange={(e) => rangeofpay(2, e)}
+                >
+                  <option value={""} disabled selected hidden>
+                    Choose an Option
+                  </option>
                   <option>Hour</option>
                   <option>Day</option>
                   <option>Week</option>
@@ -397,6 +490,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
               <input
                 className="form_input max-w-32"
                 type="number"
+                min={0}
                 placeholder="Cents"
                 value={post.additionalpay}
                 onChange={(e) => {
@@ -421,9 +515,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                   id="401k_check"
                   className="mr-2"
                   value={"401K Matching"}
-                  onClick={(e) => {
-                    setPost({ ...post, benefits: e.target.value });
-                  }}
+                  onChange={companybenefits}
                 />
                 401K Matching
               </label>
@@ -433,9 +525,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                   id="medical_check"
                   className="mr-2"
                   value={"Medical Insurance"}
-                  onClick={(e) => {
-                    setPost({ ...post, benefits: e.target.value });
-                  }}
+                  onChange={companybenefits}
                 />
                 Medical Insurance
               </label>
@@ -445,9 +535,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                   id="dental_check"
                   className="mr-2"
                   value={"Dental Insurance"}
-                  onClick={(e) => {
-                    setPost({ ...post, benefits: e.target.value });
-                  }}
+                  onChange={companybenefits}
                 />
                 Dental Insurance
               </label>
@@ -457,9 +545,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                   id="vision_check"
                   className="mr-2"
                   value={"Vision Insurance"}
-                  onClick={(e) => {
-                    setPost({ ...post, benefits: e.target.value });
-                  }}
+                  onChange={companybenefits}
                 />
                 Vision Insurance
               </label>
@@ -469,9 +555,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                   id="life_check"
                   className="mr-2"
                   value={"Life Insurance"}
-                  onClick={(e) => {
-                    setPost({ ...post, benefits: e.target.value });
-                  }}
+                  onChange={companybenefits}
                 />
                 Life Insurance
               </label>
@@ -579,6 +663,9 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 id="yes_background"
                 className="  mr-1"
                 value={"Yes"}
+                onChange={(e) =>
+                  setPost({ ...post, backgroundcheck: e.target.value })
+                }
               />
               Yes
               <input
@@ -587,6 +674,9 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 id="no_background"
                 className="ml-10 mr-1"
                 value={"No"}
+                onChange={(e) =>
+                  setPost({ ...post, backgroundcheck: e.target.value })
+                }
               />
               No
             </div>
@@ -602,6 +692,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 id="yes_dot_radio"
                 className="  mr-1"
                 value={"Yes"}
+                onChange={(e) => setPost({ ...post, dotcard: e.target.value })}
               />
               Yes
               <input
@@ -609,7 +700,8 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 name="dot_radio"
                 id="yes_dotprior_radio"
                 className="ml-10 mr-1"
-                value={"Yes"}
+                value={"Yes, but prior to applying"}
+                onChange={(e) => setPost({ ...post, dotcard: e.target.value })}
               />
               Yes, but prior to applying
               <input
@@ -618,6 +710,7 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 id="no_dot_radio"
                 className="ml-10 mr-1"
                 value={"No"}
+                onChange={(e) => setPost({ ...post, dotcard: e.target.value })}
               />
               No
             </div>
@@ -646,7 +739,9 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 placeholder="Question 1..."
               ></input>
               <select className="form_input max-w-36">
-                <option selected>Responce type</option>
+                <option value={""} disabled selected hidden>
+                  Responce type
+                </option>
                 <option>Text</option>
                 <option>Number</option>
                 <option>Yes / No</option>
@@ -659,7 +754,9 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 placeholder="Question 2..."
               ></input>
               <select className="form_input max-w-36">
-                <option selected>Responce type</option>
+                <option value={""} disabled selected hidden>
+                  Responce type
+                </option>
                 <option>Text</option>
                 <option>Number</option>
                 <option>Yes / No</option>
@@ -672,7 +769,9 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 placeholder="Question 3..."
               ></input>
               <select className="form_input max-w-36">
-                <option selected>Responce type</option>
+                <option value={""} disabled selected hidden>
+                  Responce type
+                </option>
                 <option>Text</option>
                 <option>Number</option>
                 <option>Yes / No</option>
@@ -685,7 +784,9 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 placeholder="Question 4..."
               ></input>
               <select className="form_input max-w-36">
-                <option selected>Responce type</option>
+                <option value={""} disabled selected hidden>
+                  Responce type
+                </option>
                 <option>Text</option>
                 <option>Number</option>
                 <option>Yes / No</option>
@@ -698,7 +799,9 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
                 placeholder="Question 5..."
               ></input>
               <select className="form_input max-w-36">
-                <option selected>Responce type</option>
+                <option value={""} disabled selected hidden>
+                  Responce type
+                </option>
                 <option>Text</option>
                 <option>Number</option>
                 <option>Yes / No</option>

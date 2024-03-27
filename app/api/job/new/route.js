@@ -5,6 +5,7 @@ export const POST = async (request) => {
   const {
     userId,
     title,
+    numOfHires,
     description,
     dispatchlocation,
     deliverylocation,
@@ -13,10 +14,15 @@ export const POST = async (request) => {
     jobformat,
     shifttype,
     experiencerequired,
+    shifttime,
+    workdays,
+    payrange,
     additionalpay,
     benefits,
     resume,
+    backgroundcheck,
     drugtest,
+    dotcard,
     emailupdates,
   } = await request.json();
 
@@ -25,6 +31,7 @@ export const POST = async (request) => {
     const newJob = new Job({
       creator: userId,
       title,
+      numOfHires,
       description,
       dispatchlocation,
       deliverylocation,
@@ -33,10 +40,15 @@ export const POST = async (request) => {
       jobformat,
       shifttype,
       experiencerequired,
+      shifttime,
+      workdays,
+      payrange,
       additionalpay,
       benefits,
       resume,
+      backgroundcheck,
       drugtest,
+      dotcard,
       emailupdates,
     });
 

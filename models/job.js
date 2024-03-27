@@ -10,6 +10,10 @@ const JobSchema = new Schema({
     type: String,
     required: [true, "Title is required."],
   },
+  numOfHires: {
+    type: String,
+    //required: [true, "Number of hires is required."],
+  },
   description: {
     type: String,
     required: [true, "Description is required."],
@@ -42,6 +46,15 @@ const JobSchema = new Schema({
     type: String,
     //required: [true, "Experience is required"],
   },
+  shifttime: {
+    type: String,
+  },
+  workdays: {
+    type: Array,
+  },
+  payrange: {
+    type: Array,
+  },
   additionalpay: {
     type: Number,
     //required: [true, "Additional pay is required"],
@@ -57,6 +70,12 @@ const JobSchema = new Schema({
   drugtest: {
     type: String,
     //required: [true, "drug test option is required"],
+  },
+  backgroundcheck: {
+    type: String,
+  },
+  dotcard: {
+    type: String,
   },
   emailupdates: {
     type: String,
