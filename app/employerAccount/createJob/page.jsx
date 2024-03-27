@@ -14,6 +14,7 @@ const CreateJob = () => {
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     title: "",
+    numOfHires: "",
     description: "",
     dispatchlocation: "",
     deliverylocation: "",
@@ -21,11 +22,16 @@ const CreateJob = () => {
     jobtype: "",
     jobformat: "",
     experiencerequired: "",
+    shifttime: "",
     shifttype: "",
+    workdays: "",
+    payrange: "",
     additionalpay: "",
     benefits: "",
     resume: "",
     drugtest: "",
+    backgroundcheck: "",
+    dotcard: "",
     emailupdates: "",
   });
 
@@ -38,6 +44,7 @@ const CreateJob = () => {
         method: "POST",
         body: JSON.stringify({
           title: post.title,
+          numOfHires: post.numOfHires,
           userId: session?.user.id,
           description: post.description,
           dispatchlocation: post.dispatchlocation,
@@ -46,11 +53,16 @@ const CreateJob = () => {
           jobtype: post.jobtype,
           jobformat: post.jobformat,
           experiencerequired: post.experiencerequired,
+          shifttime: post.shifttime,
           shifttype: post.shifttype,
+          workdays: post.workdays,
+          payrange: post.payrange,
           additionalpay: post.additionalpay,
           benefits: post.benefits,
           resume: post.resume,
+          backgroundcheck: post.backgroundcheck,
           drugtest: post.drugtest,
+          dotcard: post.dotcard,
           emailupdates: post.emailupdates,
         }),
       });
