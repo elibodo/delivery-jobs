@@ -70,7 +70,7 @@ const JobCard = ({ post, handleTagClick }) => {
             : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <div className="space-y-3 text-sm text-gray-900 overflow-hidden whitespace-pre-wrap mt-2 border-t-2 border-slate-300">
+        <div className="space-y-2 text-sm text-gray-900 overflow-hidden whitespace-pre-wrap mt-2 border-t-2 border-slate-300">
           <button className="black_button w-32 mt-3">Apply</button>
           <p className="mt-3 mb-5">{post.description}</p>
           <p className="font-bold">Additional Information</p>
@@ -79,18 +79,36 @@ const JobCard = ({ post, handleTagClick }) => {
           <p>
             Authorization to work in the United States: {post.workauthorization}
           </p>
-          <p>This Job is a {post.jobformat} position</p>
-          <p>Experience Required: {post.experiencerequired}</p>
-          <p>This shift is {post.shifttype}</p>
-          <p>Days of the week this job operates: {operationdays}</p>
+          <p>
+            This Job is a{"  "} {post.jobformat} position
+          </p>
+          <p>
+            Experience Required: {"  "}
+            {post.experiencerequired}
+          </p>
+          <p>
+            This shift is{"  "} {post.shifttype}
+          </p>
+          <p>
+            Days of the week this job operates:{"  "} {operationdays}
+          </p>
           <div className="flex flex-row">
-            <p>Benefits this company offers: </p>
+            <p>Benefits this company offers:{"  "} </p>
             <span>{jobbenefits}</span>
           </div>
-          <p>Is a resume required? {post.resume}</p>
-          <p>Is a drug test required? {post.drugtest}</p>
-          <p>Is a background check required? {post.backgroundcheck}</p>
-          <p>Is a DOT medical card required? {post.dotcard}</p>
+          <p>
+            Is a resume required? {"  "}
+            {post.resume}
+          </p>
+          <p>
+            Is a drug test required?{"  "} {post.drugtest}
+          </p>
+          <p>
+            Is a background check required?{"  "} {post.backgroundcheck}
+          </p>
+          <p>
+            Is a DOT medical card required?{"  "} {post.dotcard}
+          </p>
         </div>
       </div>
     </div>
