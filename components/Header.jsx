@@ -10,7 +10,6 @@ const Header = () => {
   const { data: session } = useSession();
 
   const [providers, setProviders] = useState(null);
-
   useEffect(() => {
     (async () => {
       const res = await getProviders();
@@ -44,9 +43,18 @@ const Header = () => {
           </div>
         ) : (
           <>
-            {/*<Link href={"/"} className="black_button">
-              Sign In / Sign Up
-            </Link>*/}
+            {providers &&
+              Object.values(providers).map((provider) => (
+                <button
+                  type="button"
+                  key={provider.name}
+                  onClick={() => signIn(provider.id)}
+                  className="black_button mr-5"
+                  value={"hel"}
+                >
+                  Job Seeker Sign In
+                </button>
+              ))}
             {providers &&
               Object.values(providers).map((provider) => (
                 <button
@@ -54,8 +62,9 @@ const Header = () => {
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
                   className="black_button"
+                  value={"hello"}
                 >
-                  Sign In / Sign Up
+                  Employer Sign In
                 </button>
               ))}
           </>
