@@ -9,16 +9,34 @@ import { stringify } from "postcss";
 const JobCard = ({ post, handleTagClick }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
 
+  // Creates a string of days that the job operates
+  const days = post.workdays;
+  let operationdays = days.join(" ,  ");
+
+  const companybenefits = post.benefits;
+  let jobbenefits = companybenefits.join(" ,  ");
+
   return (
     <div className="prompt_card overflow-hidden relative">
       <button
         onClick={() => setAccordionOpen(!accordionOpen)}
         className="flex justify-between w-full text-left gap-5 items-center"
       >
-        <h1 className="font-bold text-lg">{post.title}</h1>
-        <p>{post.jobtype}</p>
+        <div>
+          <h1 className="font-bold text-lg">{post.title}</h1>
+          <p className="text-sm text-gray-900">(Company Name)</p>
+        </div>
+        <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
+          {post.jobtype}
+        </p>
+        <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
+          From ${post.payrange[0]} - ${post.payrange[1]} a {post.payrange[2]}
+        </p>
+        <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
+          {post.dispatchlocation}
+        </p>
         {/* pay from database template */}
-        <p>$750 to $1000 a week</p>
+        <p></p>
         <svg
           className=" fill-gray-700 shrink-0 ml-8"
           width="16"
@@ -52,8 +70,27 @@ const JobCard = ({ post, handleTagClick }) => {
             : "grid-rows-[0fr] opacity-0"
         }`}
       >
-        <div className="overflow-hidden whitespace-pre-wrap">
-          {post.description}
+        <div className="space-y-3 text-sm text-gray-900 overflow-hidden whitespace-pre-wrap mt-2 border-t-2 border-slate-300">
+          <button className="black_button w-32 mt-3">Apply</button>
+          <p className="mt-3 mb-5">{post.description}</p>
+          <p className="font-bold">Additional Information</p>
+          <p>Number of hires: {post.numOfHires}</p>
+          <p>Delivery Location: {post.deliverylocation}</p>
+          <p>
+            Authorization to work in the United States: {post.workauthorization}
+          </p>
+          <p>This Job is a {post.jobformat} position</p>
+          <p>Experience Required: {post.experiencerequired}</p>
+          <p>This shift is {post.shifttype}</p>
+          <p>Days of the week this job operates: {operationdays}</p>
+          <div className="flex flex-row">
+            <p>Benefits this company offers: </p>
+            <span>{jobbenefits}</span>
+          </div>
+          <p>Is a resume required? {post.resume}</p>
+          <p>Is a drug test required? {post.drugtest}</p>
+          <p>Is a background check required? {post.backgroundcheck}</p>
+          <p>Is a DOT medical card required? {post.dotcard}</p>
         </div>
       </div>
     </div>
