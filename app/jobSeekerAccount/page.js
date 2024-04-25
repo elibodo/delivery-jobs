@@ -21,7 +21,7 @@ const JobSeekerAccount = () => {
           <h1 className="font-bold text-3xl">{name}</h1>
         </div>
         <div className="flex flex-row justify-between mt-10">
-          <h2>{email}</h2>
+          <h2>("email")</h2>
           <label for="resume" className="outline_button w-44 h-9">
             Upload your resume{" "}
             <input
@@ -35,7 +35,7 @@ const JobSeekerAccount = () => {
           </label>
         </div>
         <div className="flex flex-row justify-between mt-4">
-          <h2>{phoneNumber}</h2>
+          <h2>("phoneNumber")</h2>
           <button
             className="outline_button w-32 h-9"
             onClick={() => setSettings(true)}
@@ -278,7 +278,7 @@ const JobSeekerAccount = () => {
               ></input>
             </label>
             <label className="text-gray-900 font-semibold mt-5">
-              Date Completed
+              Expiration Date
               <input type="date" className="form_input2 mt-2"></input>
             </label>
           </div>

@@ -50,7 +50,6 @@ const Header = () => {
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
                   className="black_button mr-5"
-                  value={"hel"}
                 >
                   Job Seeker Sign In
                 </button>
@@ -62,7 +61,6 @@ const Header = () => {
                   key={provider.name}
                   onClick={() => signIn(provider.id)}
                   className="black_button"
-                  value={"hello"}
                 >
                   Employer Sign In
                 </button>
