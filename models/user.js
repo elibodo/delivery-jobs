@@ -11,6 +11,9 @@ const UserSchema = new Schema({
     type: String,
     required: [true, "Username is required!"],
   },
+  accountType: {
+    type: String,
+  },
 });
 
 const User = models.User || model("User", UserSchema);
