@@ -17,6 +17,18 @@ const Header = () => {
     })();
   }, []);
 
+  const handleJobSeekerSignIn = () => {
+    signIn("google", {
+      callbackUrl: "/jobSeekerAccount?type=seeker",
+    });
+  };
+  const handleEmployerSignIn = () => {
+    //localStorage.setItem("type", "Employer");
+    signIn("google", {
+      callbackUrl: "/api/auth/callback?accountType=Employer",
+    });
+  };
+
   return (
     <nav className="flex_between w-full mb-12 pt-5 pl-8">
       <Link href="/" className="flex gap-2 flex_center">
