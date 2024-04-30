@@ -19,7 +19,6 @@ const handler = NextAuth({
     async session({ session }) {
       const sessionUser = await User.findOne({ email: session.user.email });
       session.user.id = sessionUser._id.toString();
-
       return session;
     },
     async signIn({ account, profile, use, credentials }) {
@@ -32,7 +31,6 @@ const handler = NextAuth({
             username: profile.name.replace(" ", "").toLowerCase(),
           });
         }
-
         return true;
       } catch (error) {
         console.log("Error checking if user exists: ", error.message);
