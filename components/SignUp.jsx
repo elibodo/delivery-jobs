@@ -4,13 +4,17 @@ import React from "react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import "@styles/globals.css";
+import { useRouter } from "next/navigation";
 
 const signUp = () => {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  //const [type, setType] = useState("");
   const [error, setError] = useState("");
+
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +22,6 @@ const signUp = () => {
       setError("All fields are necessary");
       return;
     }
-
     try {
       const res = await fetch("api/register", {
         method: "POST",
@@ -35,9 +38,10 @@ const signUp = () => {
       if (res.ok) {
         const form = e.target;
         form.reset();
-        router.push("/");
+        router.push("/logIn");
       } else {
-        console.log("User registration failed.");
+        setError("User already exists.");
+        console.log("User already exists.");
       }
     } catch (error) {
       console.log("Error during registration: ", error);
