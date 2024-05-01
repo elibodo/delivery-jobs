@@ -66,7 +66,7 @@ const Header = () => {
                   Job Seeker Sign In
                 </button>
               ))}
-            {providers &&
+            {/* {providers &&
               Object.values(providers).map((provider) => (
                 <button
                   type="button"
@@ -76,7 +76,10 @@ const Header = () => {
                 >
                   Employer Sign In
                 </button>
-              ))}
+              ))} */}
+            <Link href={"/logIn"} className="black_button">
+              Employer Sign In
+            </Link>
           </>
         )}
       </div>
