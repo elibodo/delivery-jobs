@@ -1,7 +1,7 @@
 import { rewrites } from "@next.config";
 import { Schema, model, models } from "mongoose";
 
-const UserSchema = new Schema(
+const EmployerSchema = new Schema(
   {
     email: {
       type: String,
@@ -12,13 +12,18 @@ const UserSchema = new Schema(
       type: String,
       required: [true, "Username is required!"],
     },
-    accountType: {
+    company: {
       type: String,
+      required: [true, "Username is required!"],
+    },
+    password: {
+      type: String,
+      required: [true, "Username is required!"],
     },
   },
   { timestamps: true }
 );
 
-const User = models.User || model("User", UserSchema);
+const Employer = models.Employer || model("Employer", EmployerSchema);
 
-export default User;
+export default Employer;

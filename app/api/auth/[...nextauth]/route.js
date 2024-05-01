@@ -2,6 +2,7 @@ import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import User from "@models/user";
 import { connectToDB } from "@utils/database";
+import Credentials from "next-auth/providers/credentials";
 
 console.log({
   clientId: process.env.GOOGLE_ID,
@@ -28,7 +29,7 @@ const handler = NextAuth({
         if (!userExists) {
           await User.create({
             email: profile.email,
-            username: profile.name.replace(" ", "").toLowerCase(),
+            name: profile.name.replace(" ", "").toLowerCase(),
           });
         }
         return true;
