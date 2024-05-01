@@ -1,13 +1,10 @@
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import User from "@models/user";
+import Employer from "@models/employers";
 import { connectToDB } from "@utils/database";
-import Credentials from "next-auth/providers/credentials";
-
-console.log({
-  clientId: process.env.GOOGLE_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-});
+import CredentialProvider from "next-auth/providers/credentials";
+import * as bcrypt from "bcrypt";
 
 const handler = NextAuth({
   providers: [
@@ -15,29 +12,39 @@ const handler = NextAuth({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-  ],
-  callbacks: {
-    async session({ session }) {
-      const sessionUser = await User.findOne({ email: session.user.email });
-      session.user.id = sessionUser._id.toString();
-      return session;
-    },
-    async signIn({ account, profile, use, credentials }) {
-      try {
-        await connectToDB();
-        const userExists = await User.findOne({ email: profile.email });
-        if (!userExists) {
-          await User.create({
-            email: profile.email,
-            name: profile.name.replace(" ", "").toLowerCase(),
-          });
+    CredentialProvider({
+      name: "credentials",
+      credentials: {
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+      },
+
+      async authorize(credentials) {
+        const { email, password } = credentials;
+        try {
+          await connectToDB();
+          const employer = await Employer.findOne({ email });
+          if (!employer) {
+            return null;
+          }
+          const passwordsMatch = await bcrypt.compare(
+            password,
+            employer.password
+          );
+          if (!passwordsMatch) {
+            return null;
+          }
+          return true;
+        } catch (error) {
+          console.log("Error: ", error);
         }
-        return true;
-      } catch (error) {
-        console.log("Error checking if user exists: ", error.message);
-        return false;
-      }
-    },
+      },
+    }),
+  ],
+
+  secret: process.env.SECRET,
+  session: {
+    strategy: "jwt",
   },
 });
 
