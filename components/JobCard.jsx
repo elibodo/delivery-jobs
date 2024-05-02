@@ -94,26 +94,23 @@ const JobCard = ({ post }) => {
       >
         <div className="space-y-2 text-sm text-gray-900 overflow-hidden whitespace-pre-wrap mt-2 border-t-2 border-slate-300">
           {/* apply button */}
-          <button onClick={handleApply} className="black_button w-32 mt-3">
-            Apply
-          </button>
+          {session?.user ? (
+            <button onClick={handleApply} className="black_button w-32 mt-3">
+              Apply
+            </button>
+          ) : (
+            <></>
+          )}
           <p className="mt-3 mb-5">{post.description}</p>
           <p className="font-bold">Additional Information</p>
-          <p>Number of hires: {post.numOfHires}</p>
+          {/* <p>Number of hires: {post.numOfHires}</p> */}
           <p>Delivery Location: {post.deliverylocation}</p>
-          <p>
-            Authorization to work in the United States: {post.workauthorization}
-          </p>
-          <p>
-            This Job is a{"  "} {post.jobformat} position
-          </p>
+
           <p>
             Experience Required: {"  "}
             {post.experiencerequired}
           </p>
-          <p>
-            This shift is{"  "} {post.shifttype}
-          </p>
+          <p>{/* This shift is{"  "} {post.shifttype} */}</p>
           <p>
             Days of the week this job operates:{"  "} {operationdays}
           </p>
@@ -121,9 +118,15 @@ const JobCard = ({ post }) => {
             <p>Benefits this company offers:{"  "} </p>
             <span>{jobbenefits}</span>
           </div>
-          <p>
+          {/* <p>
             Is a resume required? {"  "}
             {post.resume}
+          </p> */}
+          <p>
+            Contract or W2?{"  "} {post.jobformat}
+          </p>
+          <p>
+            Authorization to work in the United States: {post.workauthorization}
           </p>
           <p>
             Is a drug test required?{"  "} {post.drugtest}
