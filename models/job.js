@@ -81,6 +81,10 @@ const JobSchema = new Schema({
     type: String,
     //required: [true, "Email is required"],
   },
+  applicants: {
+    type: Array,
+    ref: "User",
+  },
 });
 
 const Job = models.Job || model("Job", JobSchema);
