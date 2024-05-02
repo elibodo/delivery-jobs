@@ -11,8 +11,6 @@ const Home = () => {
   return (
     <main className="app">
       <section className="w-full flex_center flex-col">
-        <p>{session?.user?.email}</p>
-        <p>{session?.user?.name}</p>
         {/* <div className="flex flex-row border border-black rounded-lg p-3 text-center">
           <div className="flex flex-col">
             <input
@@ -40,7 +38,6 @@ const Home = () => {
           Employer Account Link
         </Link>
         <Link href={"/jobSeekerAccount"}>Job Seeker Account Link</Link>
-        <Link href={"/logIn"}>Sign Up Link</Link>
         <Feed />
       </section>
     </main>
