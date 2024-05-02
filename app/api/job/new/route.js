@@ -24,6 +24,7 @@ export const POST = async (request) => {
     drugtest,
     dotcard,
     emailupdates,
+    applicants,
   } = await request.json();
 
   try {
@@ -50,6 +51,7 @@ export const POST = async (request) => {
       drugtest,
       dotcard,
       emailupdates,
+      applicants,
     });
 
     await newJob.save();

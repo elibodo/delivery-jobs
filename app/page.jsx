@@ -1,12 +1,18 @@
+"use client";
 import React from "react";
 import "@styles/globals.css";
 import Link from "next/link";
 import Feed from "@components/Feed";
+import { useSession } from "next-auth/react";
 
 const Home = () => {
+  const { data: session } = useSession();
+
   return (
     <main className="app">
       <section className="w-full flex_center flex-col">
+        <p>{session?.user?.email}</p>
+        <p>{session?.user?.name}</p>
         {/* <div className="flex flex-row border border-black rounded-lg p-3 text-center">
           <div className="flex flex-col">
             <input
