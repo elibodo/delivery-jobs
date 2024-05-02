@@ -3,11 +3,13 @@
 import React from "react";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { usePathname, useRouter } from "next/navigation";
-import { stringify } from "postcss";
 
-const JobCard = ({ post, handleTagClick }) => {
+const JobCard = ({ post }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
+  const [applicant, setApplicant] = useState("");
+  const [postId, setPostId] = useState("");
+
+  const { data: session } = useSession();
 
   // Creates a string of days that the job operates
   const days = post.workdays;
@@ -15,6 +17,26 @@ const JobCard = ({ post, handleTagClick }) => {
 
   const companybenefits = post.benefits;
   let jobbenefits = companybenefits.join(" ,  ");
+
+  const handleApply = async (e) => {
+    e.preventDefault();
+    if (session?.user) {
+      setApplicant(session?.user?.email);
+      setPostId(post._id);
+    }
+    try {
+      const res = await fetch("/api/job/apply", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          postId,
+          applicant: session?.user?.email,
+        }),
+      });
+    } catch (error) {}
+  };
 
   return (
     <div className="prompt_card overflow-hidden relative">
@@ -71,7 +93,10 @@ const JobCard = ({ post, handleTagClick }) => {
         }`}
       >
         <div className="space-y-2 text-sm text-gray-900 overflow-hidden whitespace-pre-wrap mt-2 border-t-2 border-slate-300">
-          <button className="black_button w-32 mt-3">Apply</button>
+          {/* apply button */}
+          <button onClick={handleApply} className="black_button w-32 mt-3">
+            Apply
+          </button>
           <p className="mt-3 mb-5">{post.description}</p>
           <p className="font-bold">Additional Information</p>
           <p>Number of hires: {post.numOfHires}</p>
