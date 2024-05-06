@@ -6,7 +6,7 @@ const JobSeekerModal = ({ isVisible, onClose, children }) => {
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-25 
-                    backdrop-blur-sm flex justify-center items-center"
+backdrop-blur-sm flex justify-center items-center"
     >
       <div className=" w-[600px]">
         <div className="bg-gray-100 p-2 rounded">
