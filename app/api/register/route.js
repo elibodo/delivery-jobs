@@ -9,11 +9,9 @@ export async function POST(req) {
     const { name, company, email, password } = await req.json();
     const hashedPassword = await bcrypt.hash(password, 10);
     await connectToDB;
-    const userExists = await Employer.findOne({ email });
-    const otherUser = await User.findOne({ email });
-    console.log(userExists);
-    if (!userExists && !otherUser) {
-      await Employer.create({
+    const userExists = await User.findOne({ email });
+    if (!userExists) {
+      await User.create({
         name,
         company,
         email,

@@ -3,17 +3,23 @@ import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema(
   {
+    accountType: {
+      type: String,
+    },
     email: {
       type: String,
       unique: [true, "Email already exists!"],
-      required: [true, "Email is required!"],
     },
     name: {
       type: String,
-      required: [true, "Username is required!"],
     },
-    accountType: {
+
+    company: {
       type: String,
+    },
+    password: {
+      type: String,
+      required: [true, "Username is required!"],
     },
   },
   { timestamps: true }
