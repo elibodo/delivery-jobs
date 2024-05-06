@@ -1,7 +1,6 @@
 "use client";
 
 import React, { Fragment, useState } from "react";
-import Link from "next/link";
 import JobSeekerModal from "@components/JobSeekerModal";
 
 const JobSeekerAccount = () => {

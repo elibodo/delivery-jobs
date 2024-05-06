@@ -23,29 +23,25 @@ const handler = NextAuth({
         const { email, password } = credentials;
         try {
           await connectToDB();
-          const employer = await Employer.findOne({ email });
-          if (!employer) {
+          const user = await User.findOne({ email });
+          if (!user) {
             return null;
           }
-          const passwordsMatch = await bcrypt.compare(
-            password,
-            employer.password
-          );
+          const passwordsMatch = await bcrypt.compare(password, user.password);
           if (!passwordsMatch) {
             return null;
           }
-          return true;
+          return user;
         } catch (error) {
           console.log("Error: ", error);
         }
       },
     }),
   ],
+  secret: process.env.SECRET,
   session: {
     strategy: "jwt",
   },
-
-  secret: process.env.SECRET,
 });
 
 export { handler as GET, handler as POST };

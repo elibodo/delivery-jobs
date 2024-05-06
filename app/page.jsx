@@ -11,6 +11,7 @@ const Home = () => {
   return (
     <main className="app">
       <section className="w-full flex_center flex-col">
+        <p>{JSON.stringify(session)}</p>
         {/* <div className="flex flex-row border border-black rounded-lg p-3 text-center">
           <div className="flex flex-col">
             <input
