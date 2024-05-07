@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import "@styles/globals.css";
 import { useRouter } from "next/navigation";
 
-const signUp = () => {
+const signUp = (info) => {
   const [accountType, setAccountType] = useState("");
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -18,10 +18,6 @@ const signUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!accountType || !name || !phoneNumber || !email || !password) {
-      setError("All fields are necessary");
-      return;
-    }
     try {
       const res = await fetch("api/register", {
         method: "POST",
@@ -34,6 +30,33 @@ const signUp = () => {
           phoneNumber,
           email,
           password,
+
+          licenseClass: jobSeekerData.licenseClass,
+          licenseState: jobSeekerData.licenseState,
+          licenseExpire: jobSeekerData.licenseExpire,
+          DOT: jobSeekerData.DOT,
+          DOTExpire: jobSeekerData.DOTExpire,
+          endorsements: jobSeekerData.endorsements,
+          CDL: jobSeekerData.CDL,
+          twikCard: jobSeekerData.twikCard,
+          CDLOptions: jobSeekerData.CDLOptions,
+          workExperience: jobSeekerData.workExperience,
+          experienceArray: jobSeekerData.experienceArray,
+          educationLevel: jobSeekerData.educationLevel,
+          educationDate: jobSeekerData.educationDate,
+          certificates: jobSeekerData.certificates,
+          carAccident: jobSeekerData.carAccident,
+          DUI: jobSeekerData.DUI,
+          ageRange: jobSeekerData.ageRange,
+          city: jobSeekerData.city,
+          state: jobSeekerData.state,
+          zipCode: jobSeekerData.zipCode,
+
+          companyName: employerData.companyName,
+          streetAddress: employerData.streetAddress,
+          City: employerData.City,
+          State: employerData.State,
+          ZipCode: employerData.ZipCode,
         }),
       });
       if (res.ok) {
@@ -48,6 +71,37 @@ const signUp = () => {
       console.log("Error during registration: ", error);
     }
   };
+
+  const [jobSeekerData, setJobSeekerData] = useState({
+    licenseClass: "",
+    licenseState: "",
+    licenseExpire: "",
+    DOT: "",
+    DOTExpire: "",
+    endorsements: "",
+    CDL: "",
+    twikCard: "",
+    CDLOptions: "",
+    workExperience: "",
+    experienceArray: "",
+    educationLevel: "",
+    educationDate: "",
+    certificates: "",
+    carAccident: "",
+    DUI: "",
+    ageRange: "",
+    city: "",
+    state: "",
+    zipCode: "",
+  });
+
+  const [employerData, setEmployerData] = useState({
+    companyName: "",
+    streetAddress: "",
+    City: "",
+    State: "",
+    ZipCode: "",
+  });
 
   //Show and hide the additional information for each account type
   const [jobSeekerInfo, setJobSeekerInfo] = useState(false);
@@ -67,18 +121,22 @@ const signUp = () => {
   //Show and hide CDL options
   const [yesCDL, setYesCDL] = useState(false);
   const showCDL = () => {
+    setJobSeekerData({ ...jobSeekerData, CDL: "Yes" });
     setYesCDL(true);
   };
   const hideCDL = () => {
+    setJobSeekerData({ ...jobSeekerData, CDL: "No" });
     setYesCDL(false);
   };
 
   //Show and hide DOT options
   const [yesDOT, setYesDOT] = useState(false);
   const showDOT = () => {
+    setJobSeekerData({ ...jobSeekerData, DOT: "Yes" });
     setYesDOT(true);
   };
   const hideDOT = () => {
+    setJobSeekerData({ ...jobSeekerData, DOT: "No" });
     setYesDOT(false);
   };
 
@@ -93,21 +151,25 @@ const signUp = () => {
     const list = [...certificationList];
     list.splice(index, 1);
     setCertificationList(list);
+    setJobSeekerData({ ...jobSeekerData, certificates: list });
   };
   const handleCertificateChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...certificationList];
     list[index][name] = value;
     setCertificationList(list);
+    setJobSeekerData({ ...jobSeekerData, certificates: list });
   };
 
   //Show and hide work experience
   const [yesWorkExperience, setyesWorkExperience] = useState(false);
   const showWorkExperience = () => {
     setyesWorkExperience(true);
+    setJobSeekerData({ ...jobSeekerData, workExperience: "Yes" });
   };
   const hideWorkExperience = () => {
     setyesWorkExperience(false);
+    setJobSeekerData({ ...jobSeekerData, workExperience: "No" });
   };
 
   //Add and remove work experience
@@ -120,16 +182,18 @@ const signUp = () => {
       { title: "", company: "", length: "", duties: "" },
     ]);
   };
-  const handleWorkRemove = (e, index) => {
+  const handleWorkRemove = (index) => {
     const list = [...workExperience];
     list.splice(index, 1);
     setWorkExperience(list);
+    setJobSeekerData({ ...jobSeekerData, experienceArray: list });
   };
   const handleWorkChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...workExperience];
     list[index][name] = value;
     setWorkExperience(list);
+    setJobSeekerData({ ...jobSeekerData, experienceArray: list });
   };
 
   return (
@@ -147,6 +211,7 @@ const signUp = () => {
           <div>
             <label htmlFor="JobSeeker" className="font-semibold text-gray-700">
               <input
+                required
                 type="radio"
                 id="JobSeeker"
                 name="SeekerOrEmployer"
@@ -162,6 +227,7 @@ const signUp = () => {
               className="font-semibold text-gray-700 ml-5"
             >
               <input
+                required
                 type="radio"
                 id="Employer"
                 name="SeekerOrEmployer"
@@ -177,7 +243,7 @@ const signUp = () => {
         <div className="label_input_text mt-2 mx-5">
           <label className="mr-5 text-gray-900 font-semibold">Full name:</label>
           <input
-            //value={newUser.name}
+            required
             onChange={(e) => setName(e.target.value)}
             type="text"
             className="input_style"
@@ -189,7 +255,7 @@ const signUp = () => {
             Phone Number:
           </label>
           <input
-            //value={newUser.phoneNumber}
+            required
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
             className="input_style"
@@ -201,7 +267,7 @@ const signUp = () => {
             Email address:
           </label>
           <input
-            //value={newUser.email}
+            required
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             className="input_style"
@@ -211,7 +277,7 @@ const signUp = () => {
         <div className="label_input_text mt-1 mb-2 mx-5">
           <label className="mr-5 text-gray-900 font-semibold">Password:</label>
           <input
-            //value={newUser.password}
+            required
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             className="input_style"
@@ -235,7 +301,12 @@ const signUp = () => {
                 type="text"
                 className="input_style"
                 placeholder="A, B, C, D, or E"
-                max={1}
+                onChange={(e) =>
+                  setJobSeekerData({
+                    ...jobSeekerData,
+                    licenseClass: e.target.value,
+                  })
+                }
               />
             </div>
             {/* Issuing state */}
@@ -243,7 +314,15 @@ const signUp = () => {
               <label className="mr-5 text-gray-900 font-semibold">
                 Issuing State:
               </label>
-              <select className="p-1 border border-black rounded-lg bg-gray-50">
+              <select
+                onChange={(e) =>
+                  setJobSeekerData({
+                    ...jobSeekerData,
+                    licenseState: e.target.value,
+                  })
+                }
+                className="p-1 border border-black rounded-lg bg-gray-50"
+              >
                 <option value={""} disabled selected hidden></option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -303,7 +382,16 @@ const signUp = () => {
               <label className="mr-5 text-gray-900 font-semibold">
                 Drivers License expiration date:
               </label>
-              <input type="date" className="input_style" />
+              <input
+                onChange={(e) =>
+                  setJobSeekerData({
+                    ...jobSeekerData,
+                    licenseExpire: e.target.value,
+                  })
+                }
+                type="date"
+                className="input_style"
+              />
             </div>
             {/* DOT Option */}
             <div className="label_input_text mt-1 mx-5">
@@ -349,7 +437,16 @@ const signUp = () => {
                 <label className="mr-5 text-gray-900 font-semibold">
                   DOT expiration date:
                 </label>
-                <input type="date" className="input_style" />
+                <input
+                  onChange={(e) =>
+                    setJobSeekerData({
+                      ...jobSeekerData,
+                      DOTExpire: e.target.value,
+                    })
+                  }
+                  type="date"
+                  className="input_style"
+                />
               </div>
             )}
             {/* Endorsements */}
@@ -504,10 +601,15 @@ const signUp = () => {
                         className="font-semibold text-gray-700"
                       >
                         <input
+                          onChange={(e) =>
+                            setJobSeekerData({
+                              ...jobSeekerData,
+                              twikCard: "Yes",
+                            })
+                          }
                           type="radio"
                           id="TWIKYes"
                           name="TWIKCard"
-                          className=""
                         />
                         Yes
                       </label>
@@ -518,6 +620,12 @@ const signUp = () => {
                         className="font-semibold text-gray-700"
                       >
                         <input
+                          onChange={(e) =>
+                            setJobSeekerData({
+                              ...jobSeekerData,
+                              twikCard: "No",
+                            })
+                          }
                           type="radio"
                           id="TWIKNo"
                           name="TWIKCard"
@@ -659,7 +767,7 @@ const signUp = () => {
                         )}
                       {workExperience.length - 1 === index && index != 0 && (
                         <button
-                          onClick={handleWorkRemove}
+                          onClick={(e) => handleWorkRemove(index)}
                           className="black_button"
                         >
                           Remove Previous
@@ -682,7 +790,15 @@ const signUp = () => {
               <label className="mr-5 text-gray-900 font-semibold">
                 What is your highest level of education?
               </label>
-              <select className="p-1 border border-black rounded-lg bg-gray-50">
+              <select
+                onChange={(e) =>
+                  setJobSeekerData({
+                    ...jobSeekerData,
+                    educationLevel: e.target.value,
+                  })
+                }
+                className="p-1 border border-black rounded-lg bg-gray-50"
+              >
                 <option value={""} disabled selected hidden></option>
                 <option value="High School">High School</option>
                 <option value="Associates">Associates</option>
@@ -697,7 +813,16 @@ const signUp = () => {
               <label className="mr-5 text-gray-900 font-semibold">
                 When was this completed?
               </label>
-              <input type="date" className="input_style" />
+              <input
+                onChange={(e) =>
+                  setJobSeekerData({
+                    ...jobSeekerData,
+                    educationDate: e.target.value,
+                  })
+                }
+                type="date"
+                className="input_style"
+              />
             </div>
             {/* Certifications */}
             <div className="label_input_text mt-1 mx-5">
@@ -763,6 +888,12 @@ const signUp = () => {
                     className="font-semibold text-gray-700"
                   >
                     <input
+                      onChange={(e) =>
+                        setJobSeekerData({
+                          ...jobSeekerData,
+                          carAccident: "Yes",
+                        })
+                      }
                       type="radio"
                       id="AccidentYes"
                       name="AccidentQuestion"
@@ -777,6 +908,12 @@ const signUp = () => {
                     className="font-semibold text-gray-700"
                   >
                     <input
+                      onChange={(e) =>
+                        setJobSeekerData({
+                          ...jobSeekerData,
+                          educationDate: "No",
+                        })
+                      }
                       type="radio"
                       id="AccidentNo"
                       name="AccidentQuestion"
@@ -799,6 +936,12 @@ const signUp = () => {
                     className="font-semibold text-gray-700"
                   >
                     <input
+                      onChange={(e) =>
+                        setJobSeekerData({
+                          ...jobSeekerData,
+                          DUI: "Yes",
+                        })
+                      }
                       type="radio"
                       id="DUIYes"
                       name="DUIQuestion"
@@ -813,6 +956,12 @@ const signUp = () => {
                     className="font-semibold text-gray-700"
                   >
                     <input
+                      onChange={(e) =>
+                        setJobSeekerData({
+                          ...jobSeekerData,
+                          DUI: "No",
+                        })
+                      }
                       type="radio"
                       id="DUINo"
                       name="DUIQuestion"
@@ -835,6 +984,12 @@ const signUp = () => {
                     className="font-semibold text-gray-700"
                   >
                     <input
+                      onChange={(e) =>
+                        setJobSeekerData({
+                          ...jobSeekerData,
+                          ageRange: "Under 18",
+                        })
+                      }
                       type="radio"
                       id="Under18"
                       name="AgeRange"
@@ -849,6 +1004,12 @@ const signUp = () => {
                     className="font-semibold text-gray-700"
                   >
                     <input
+                      onChange={(e) =>
+                        setJobSeekerData({
+                          ...jobSeekerData,
+                          ageRange: "18-21",
+                        })
+                      }
                       type="radio"
                       id="18-21"
                       name="AgeRange"
@@ -863,6 +1024,12 @@ const signUp = () => {
                     className="font-semibold text-gray-700"
                   >
                     <input
+                      onChange={(e) =>
+                        setJobSeekerData({
+                          ...jobSeekerData,
+                          ageRange: "Over 21",
+                        })
+                      }
                       type="radio"
                       id="Over21"
                       name="AgeRange"
@@ -878,6 +1045,12 @@ const signUp = () => {
               <div className="flex flex-col label_input_text">
                 <label className="text-gray-900 font-semibold">City:</label>
                 <input
+                  onChange={(e) =>
+                    setJobSeekerData({
+                      ...jobSeekerData,
+                      city: e.target.value,
+                    })
+                  }
                   type="text"
                   className="p-1 border border-black rounded-lg bg-gray-50 w-32"
                 />
@@ -885,7 +1058,15 @@ const signUp = () => {
               {/* State */}
               <div className="flex flex-col label_input_text">
                 <label className="text-gray-900 font-semibold">State:</label>
-                <select className="p-1 border border-black rounded-lg bg-gray-50 w-36">
+                <select
+                  onChange={(e) =>
+                    setJobSeekerData({
+                      ...jobSeekerData,
+                      state: e.target.value,
+                    })
+                  }
+                  className="p-1 border border-black rounded-lg bg-gray-50 w-36"
+                >
                   <option value={""} disabled selected hidden></option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -944,6 +1125,12 @@ const signUp = () => {
               <div className="flex flex-col label_input_text">
                 <label className="text-gray-900 font-semibold">Zip Code:</label>
                 <input
+                  onChange={(e) =>
+                    setJobSeekerData({
+                      ...jobSeekerData,
+                      zipCode: e.target.value,
+                    })
+                  }
                   type="text"
                   className="p-1 border border-black rounded-lg bg-gray-50 w-32"
                 />
@@ -964,14 +1151,32 @@ const signUp = () => {
               <label className="mr-5 text-gray-900 font-semibold">
                 Company Name:
               </label>
-              <input type="text" className="input_style w-64" />
+              <input
+                onChange={(e) =>
+                  setEmployerData({
+                    ...employerData,
+                    companyName: e.target.value,
+                  })
+                }
+                type="text"
+                className="input_style w-64"
+              />
             </div>
             {/* Full Address */}
             <div className="label_input_text mt-1 mb-2 mx-5">
               <label className="mr-5 text-gray-900 font-semibold">
                 Street Address:
               </label>
-              <input type="text" className="input_style w-64" />
+              <input
+                onChange={(e) =>
+                  setEmployerData({
+                    ...employerData,
+                    streetAddress: e.target.value,
+                  })
+                }
+                type="text"
+                className="input_style w-64"
+              />
             </div>
             {/*City, State, and Zip code */}
             <div className="label_input_text mt-1 mb-2 mx-5">
@@ -979,6 +1184,12 @@ const signUp = () => {
               <div className="flex flex-col label_input_text">
                 <label className="text-gray-900 font-semibold">City:</label>
                 <input
+                  onChange={(e) =>
+                    setEmployerData({
+                      ...employerData,
+                      City: e.target.value,
+                    })
+                  }
                   type="text"
                   className="p-1 border border-black rounded-lg bg-gray-50 w-32"
                 />
@@ -986,7 +1197,15 @@ const signUp = () => {
               {/* State */}
               <div className="flex flex-col label_input_text">
                 <label className="text-gray-900 font-semibold">State:</label>
-                <select className="p-1 border border-black rounded-lg bg-gray-50 w-36">
+                <select
+                  onChange={(e) =>
+                    setEmployerData({
+                      ...employerData,
+                      State: e.target.value,
+                    })
+                  }
+                  className="p-1 border border-black rounded-lg bg-gray-50 w-36"
+                >
                   <option value={""} disabled selected hidden></option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -1045,6 +1264,12 @@ const signUp = () => {
               <div className="flex flex-col label_input_text">
                 <label className="text-gray-900 font-semibold">Zip Code:</label>
                 <input
+                  onChange={(e) =>
+                    setEmployerData({
+                      ...employerData,
+                      ZipCode: e.target.value,
+                    })
+                  }
                   type="text"
                   className="p-1 border border-black rounded-lg bg-gray-50 w-32"
                 />

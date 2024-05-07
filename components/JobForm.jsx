@@ -31,7 +31,6 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
       );
     }
   };
-
   useEffect(() => {
     setPost({ ...post, benefits: employeebenefits });
   }, [employeebenefits]);

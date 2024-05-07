@@ -3,9 +3,8 @@ import { Schema, model, models } from "mongoose";
 
 const JobSeekerAccount = new Schema(
   {
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+    email: {
+      type: String,
     },
     licenseClass: {
       type: String,
