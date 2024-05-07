@@ -1,0 +1,76 @@
+import { data } from "autoprefixer";
+import { Schema, model, models } from "mongoose";
+
+const JobSeekerAccount = new Schema(
+  {
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+    licenseClass: {
+      type: String,
+    },
+    licenseState: {
+      type: String,
+    },
+    licenseExpire: {
+      type: Date,
+    },
+    DOT: {
+      type: String,
+    },
+    DOTExpire: {
+      type: Date,
+    },
+    endorsements: {
+      type: Array,
+    },
+    CDL: {
+      type: String,
+    },
+    twikCard: {
+      type: String,
+    },
+    CDLOptions: {
+      type: Array,
+    },
+    workExperience: {
+      type: String,
+    },
+    experienceArray: {
+      type: Array,
+    },
+    educationLevel: {
+      type: String,
+    },
+    educationDate: {
+      type: Date,
+    },
+    certificates: {
+      type: Array,
+    },
+    carAccident: {
+      type: String,
+    },
+    DUI: {
+      type: String,
+    },
+    ageRange: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    zipCode: {
+      type: Number,
+    },
+  },
+  { timestamps: true }
+);
+
+const JobSeeker = models.JobSeeker || model("JobSeeker", JobSeekerAccount);
+
+export default JobSeeker;
