@@ -340,45 +340,6 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
             </div>
           </label>
 
-          {/* Shift time */}
-          {/* <div className="flex flex-row">
-            <label className="mt-4 flex flex-col text-gray-900 font-semibold">
-              What time is the shift
-              <div className="mt-1 flex flex-row items-center">
-                <select className="form_input">
-                  <option value={""} disabled selected hidden>
-                    Choose an Option
-                  </option>
-                  <option>Morning</option>
-                  <option>Day</option>
-                  <option>Night</option>
-                </select>
-                <span className="mx-2">or</span>
-              </div>
-            </label>
-            <label className="mt-4 flex flex-col text-gray-900 font-semibold">
-              Start time
-              <div className="mt-1 flex flex-row items-center">
-                <input
-                  className="form_input max-w-32"
-                  type="text"
-                  placeholder="8 AM"
-                ></input>
-                <span className="mx-2">to</span>
-              </div>
-            </label>
-            <label className="mt-4 flex flex-col text-gray-900 font-semibold">
-              End time
-              <div className="mt-1 flex flex-row items-center">
-                <input
-                  className="form_input max-w-32"
-                  type="text"
-                  placeholder="5 PM"
-                ></input>
-              </div>
-            </label>
-          </div> */}
-
           {/* Days the job operates */}
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             What days does this job operate? (Select all that apply)

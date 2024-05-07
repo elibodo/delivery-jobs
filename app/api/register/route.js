@@ -5,14 +5,16 @@ import * as bcrypt from "bcrypt";
 
 export async function POST(req) {
   try {
-    const { name, company, email, password } = await req.json();
+    const { accountType, name, phoneNumber, email, password } =
+      await req.json();
     const hashedPassword = await bcrypt.hash(password, 10);
     await connectToDB;
     const userExists = await User.findOne({ email });
     if (!userExists) {
       await User.create({
+        accountType,
         name,
-        company,
+        phoneNumber,
         email,
         password: hashedPassword,
       });
