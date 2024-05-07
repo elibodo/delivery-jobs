@@ -7,8 +7,9 @@ import "@styles/globals.css";
 import { useRouter } from "next/navigation";
 
 const signUp = () => {
+  const [accountType, setAccountType] = useState("");
   const [name, setName] = useState("");
-  const [company, setCompany] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -17,7 +18,7 @@ const signUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!name || !email || !password) {
+    if (!accountType || !name || !phoneNumber || !email || !password) {
       setError("All fields are necessary");
       return;
     }
@@ -28,8 +29,9 @@ const signUp = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          accountType,
           name,
-          company,
+          phoneNumber,
           email,
           password,
         }),
@@ -52,10 +54,12 @@ const signUp = () => {
   const [employerInfo, setEmployerInfo] = useState(false);
 
   const showJobSeekerInfo = () => {
+    setAccountType("Job Seeker");
     setJobSeekerInfo(true);
     setEmployerInfo(false);
   };
   const showEmployerInfo = () => {
+    setAccountType("Employer");
     setJobSeekerInfo(false);
     setEmployerInfo(true);
   };
@@ -129,7 +133,10 @@ const signUp = () => {
   };
 
   return (
-    <form className="flex flex-col justify-center content-center items-center bg-gray-50 border-black border-2 p-5 rounded-xl">
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col justify-center content-center items-center bg-gray-50 border-black border-2 p-5 rounded-xl"
+    >
       <h1 className="text-2xl font-bold">Create an Account</h1>
       <div className="flex flex-col justify-between border border-black m-3 p-4 rounded-xl bg-white">
         {/* Job Seeker or Employer */}
@@ -143,7 +150,6 @@ const signUp = () => {
                 type="radio"
                 id="JobSeeker"
                 name="SeekerOrEmployer"
-                required
                 className="mb-3"
                 onChange={showJobSeekerInfo}
               />
@@ -159,7 +165,6 @@ const signUp = () => {
                 type="radio"
                 id="Employer"
                 name="SeekerOrEmployer"
-                required
                 className="mb-3"
                 onChange={showEmployerInfo}
               />
@@ -171,26 +176,46 @@ const signUp = () => {
         {/* Name */}
         <div className="label_input_text mt-2 mx-5">
           <label className="mr-5 text-gray-900 font-semibold">Full name:</label>
-          <input type="text" className="input_style" />
+          <input
+            //value={newUser.name}
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            className="input_style"
+          />
         </div>
         {/* Phone Number */}
         <div className="label_input_text mt-1 mx-5">
           <label className="mr-5 text-gray-900 font-semibold">
             Phone Number:
           </label>
-          <input type="text" className="input_style" />
+          <input
+            //value={newUser.phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            type="text"
+            className="input_style"
+          />
         </div>
         {/* Email */}
         <div className="label_input_text mt-1 mx-5">
           <label className="mr-5 text-gray-900 font-semibold">
             Email address:
           </label>
-          <input type="email" className="input_style" />
+          <input
+            //value={newUser.email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            className="input_style"
+          />
         </div>
         {/* Password */}
         <div className="label_input_text mt-1 mb-2 mx-5">
           <label className="mr-5 text-gray-900 font-semibold">Password:</label>
-          <input type="password" className="input_style" />
+          <input
+            //value={newUser.password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            className="input_style"
+          />
         </div>
 
         {/* Job Seeker additional information */}
@@ -295,7 +320,6 @@ const signUp = () => {
                       type="radio"
                       id="DOTYes"
                       name="DOTOption"
-                      required
                       className="ml-7"
                       onClick={showDOT}
                     />
@@ -311,7 +335,6 @@ const signUp = () => {
                       type="radio"
                       id="DOTNo"
                       name="DOTOption"
-                      required
                       className="ml-5"
                       onClick={hideDOT}
                     />
@@ -443,7 +466,6 @@ const signUp = () => {
                       type="radio"
                       id="CDLYes"
                       name="CDLOption"
-                      required
                       className=""
                       onClick={showCDL}
                     />
@@ -459,7 +481,6 @@ const signUp = () => {
                       type="radio"
                       id="CDLNo"
                       name="CDLOption"
-                      required
                       className="ml-5"
                       onClick={hideCDL}
                     />
@@ -547,7 +568,6 @@ const signUp = () => {
                       type="radio"
                       id="YesExperience"
                       name="ExperienceOption"
-                      required
                       className=""
                       onClick={showWorkExperience}
                     />
@@ -563,7 +583,6 @@ const signUp = () => {
                       type="radio"
                       id="NoExperience"
                       name="ExperienceOption"
-                      required
                       className="ml-5"
                       onClick={hideWorkExperience}
                     />
