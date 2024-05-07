@@ -78,6 +78,56 @@ const signUp = () => {
     setYesDOT(false);
   };
 
+  //Add and remove certifications
+  const [certificationList, setCertificationList] = useState([
+    { certification: "" },
+  ]);
+  const handleCertificateAdd = () => {
+    setCertificationList([...certificationList, { certification: "" }]);
+  };
+  const handleCertificateRemove = (index) => {
+    const list = [...certificationList];
+    list.splice(index, 1);
+    setCertificationList(list);
+  };
+  const handleCertificateChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...certificationList];
+    list[index][name] = value;
+    setCertificationList(list);
+  };
+
+  //Show and hide work experience
+  const [yesWorkExperience, setyesWorkExperience] = useState(false);
+  const showWorkExperience = () => {
+    setyesWorkExperience(true);
+  };
+  const hideWorkExperience = () => {
+    setyesWorkExperience(false);
+  };
+
+  //Add and remove work experience
+  const [workExperience, setWorkExperience] = useState([
+    { title: "", company: "", length: "", duties: "" },
+  ]);
+  const handleWorkAdd = () => {
+    setWorkExperience([
+      ...workExperience,
+      { title: "", company: "", length: "", duties: "" },
+    ]);
+  };
+  const handleWorkRemove = (e, index) => {
+    const list = [...workExperience];
+    list.splice(index, 1);
+    setWorkExperience(list);
+  };
+  const handleWorkChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...workExperience];
+    list[index][name] = value;
+    setWorkExperience(list);
+  };
+
   return (
     <form className="flex flex-col justify-center content-center items-center bg-gray-50 border-black border-2 p-5 rounded-xl">
       <h1 className="text-2xl font-bold">Create an Account</h1>
@@ -123,7 +173,6 @@ const signUp = () => {
           <label className="mr-5 text-gray-900 font-semibold">Full name:</label>
           <input type="text" className="input_style" />
         </div>
-
         {/* Phone Number */}
         <div className="label_input_text mt-1 mx-5">
           <label className="mr-5 text-gray-900 font-semibold">
@@ -131,7 +180,6 @@ const signUp = () => {
           </label>
           <input type="text" className="input_style" />
         </div>
-
         {/* Email */}
         <div className="label_input_text mt-1 mx-5">
           <label className="mr-5 text-gray-900 font-semibold">
@@ -139,13 +187,14 @@ const signUp = () => {
           </label>
           <input type="email" className="input_style" />
         </div>
-
         {/* Password */}
         <div className="label_input_text mt-1 mb-2 mx-5">
           <label className="mr-5 text-gray-900 font-semibold">Password:</label>
           <input type="password" className="input_style" />
         </div>
 
+        {/* Job Seeker additional information */}
+        {/* Job Seeker additional information */}
         {/* Job Seeker additional information */}
         {jobSeekerInfo && (
           <div>
@@ -163,6 +212,66 @@ const signUp = () => {
                 placeholder="A, B, C, D, or E"
                 max={1}
               />
+            </div>
+            {/* Issuing state */}
+            <div className="label_input_text mt-1 mx-5">
+              <label className="mr-5 text-gray-900 font-semibold">
+                Issuing State:
+              </label>
+              <select className="p-1 border border-black rounded-lg bg-gray-50">
+                <option value={""} disabled selected hidden></option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
             </div>
             {/* License expiration */}
             <div className="label_input_text mt-1 mx-5">
@@ -423,6 +532,125 @@ const signUp = () => {
             <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
               <h1 className="mt-3 font-bold">Work Experience</h1>
             </div>
+            {/* Work experience question */}
+            <div className="label_input_text mt-1 mx-5">
+              <label className="mr-10 text-gray-900 font-semibold">
+                Do you have any relevant work experience?
+              </label>
+              <div className="flex flex-row">
+                <div>
+                  <label
+                    htmlFor="YesExperience"
+                    className="font-semibold text-gray-700"
+                  >
+                    <input
+                      type="radio"
+                      id="YesExperience"
+                      name="ExperienceOption"
+                      required
+                      className=""
+                      onClick={showWorkExperience}
+                    />
+                    Yes
+                  </label>
+                </div>
+                <div>
+                  <label
+                    htmlFor="NoExperience"
+                    className="font-semibold text-gray-700"
+                  >
+                    <input
+                      type="radio"
+                      id="NoExperience"
+                      name="ExperienceOption"
+                      required
+                      className="ml-5"
+                      onClick={hideWorkExperience}
+                    />
+                    No
+                  </label>
+                </div>
+              </div>
+            </div>
+            {yesWorkExperience && (
+              <div>
+                {workExperience.map((workdata, index) => (
+                  //Add work experience
+                  <div key={index}>
+                    <div className="label_input_text mt-1 mx-5">
+                      <label className="mr-5 text-gray-900 font-semibold">
+                        Title:
+                      </label>
+                      <input
+                        value={workdata.title}
+                        id="title"
+                        name="title"
+                        type="text"
+                        className="input_style"
+                        onChange={(e) => handleWorkChange(e, index)}
+                      />
+                    </div>
+                    <div className="label_input_text mt-1 mx-5">
+                      <label className="mr-5 text-gray-900 font-semibold">
+                        Company Name:
+                      </label>
+                      <input
+                        value={workdata.company}
+                        id="company"
+                        name="company"
+                        type="text"
+                        className="input_style"
+                        onChange={(e) => handleWorkChange(e, index)}
+                      />
+                    </div>
+                    <div className="label_input_text mt-1 mx-5">
+                      <label className="mr-5 text-gray-900 font-semibold">
+                        Length (years)
+                      </label>
+                      <input
+                        value={workdata.length}
+                        id="length"
+                        name="length"
+                        type="Number"
+                        className="input_style"
+                        onChange={(e) => handleWorkChange(e, index)}
+                      />
+                    </div>
+                    <div className="label_input_text mt-1 mx-5">
+                      <label className=" text-gray-900 font-semibold">
+                        Job Duties
+                      </label>
+                      <textarea
+                        value={workdata.duties}
+                        name="duties"
+                        placeholder="Write your job duties here..."
+                        className="resize-none flex rounded-lg w-[275px] h-[150px] mt-1 p-3 text-sm text-gray-900 border-2"
+                        onChange={(e) => handleWorkChange(e, index)}
+                      />
+                    </div>
+                    <div className="label_input_text mt-1 mx-5">
+                      {workExperience.length - 1 === index &&
+                        workExperience.length < 5 && (
+                          <button
+                            onClick={handleWorkAdd}
+                            className="black_button"
+                          >
+                            Add More
+                          </button>
+                        )}
+                      {workExperience.length - 1 === index && index != 0 && (
+                        <button
+                          onClick={handleWorkRemove}
+                          className="black_button"
+                        >
+                          Remove Previous
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {/* Education Information */}
             {/* Education Information */}
@@ -430,6 +658,67 @@ const signUp = () => {
             <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
               <h1 className="mt-3 font-bold">Education</h1>
             </div>
+            {/* Education */}
+            <div className="label_input_text mt-1 mx-5">
+              <label className="mr-5 text-gray-900 font-semibold">
+                What is your highest level of education?
+              </label>
+              <select className="p-1 border border-black rounded-lg bg-gray-50">
+                <option value={""} disabled selected hidden></option>
+                <option value="High School">High School</option>
+                <option value="Associates">Associates</option>
+                <option value="Bachelors">Bachelors</option>
+                <option value="Masters">Masters</option>
+                <option value="Doctorate">Doctorate</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            {/* Completion date */}
+            <div className="label_input_text mt-1 mx-5">
+              <label className="mr-5 text-gray-900 font-semibold">
+                When was this completed?
+              </label>
+              <input type="date" className="input_style" />
+            </div>
+            {/* Certifications */}
+            <div className="label_input_text mt-1 mx-5">
+              <label className="mr-5 text-gray-900 font-semibold">
+                Add any certifications that you hold
+              </label>
+            </div>
+            {certificationList.map((singleCertification, index) => (
+              <div key={index}>
+                <div className="label_input_text mt-1 mx-5">
+                  <input
+                    name="certification"
+                    id="certification"
+                    value={singleCertification.certification}
+                    onChange={(e) => handleCertificateChange(e, index)}
+                    type="text"
+                    className="input_style w-4/6"
+                  />
+                  {certificationList.length - 1 === index && index != 0 && (
+                    <button
+                      onClick={() => handleCertificateRemove(index)}
+                      className="black_button"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+                {certificationList.length - 1 === index &&
+                  certificationList.length < 5 && (
+                    <div className="label_input_text mt-1 mx-5">
+                      <button
+                        onClick={handleCertificateAdd}
+                        className="black_button"
+                      >
+                        Add More
+                      </button>
+                    </div>
+                  )}
+              </div>
+            ))}
 
             {/* Additional Information */}
             {/* Additional Information */}
@@ -446,7 +735,7 @@ const signUp = () => {
             {/* Accident information */}
             <div className="label_input_text mt-1 mx-5 items-start">
               <label className=" text-gray-900 font-semibold">
-                ..in an accident the past 3 years?
+                ..in a car accident the past 3 years?
               </label>
               <div className="flex flex-row">
                 <div>
@@ -515,32 +804,58 @@ const signUp = () => {
                 </div>
               </div>
             </div>
-          </div>
-        )}
-
-        {/* Employer additional information */}
-        {employerInfo && (
-          <div>
-            {/* Title */}
-            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
-              <h1 className="mt-3">Additional Information for Employers</h1>
-            </div>
-            {/* Company Name */}
-            <div className="label_input_text mt-1 mb-2 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
-                Company Name:
+            {/* Age information */}
+            <div className="label_input_text mt-1 mx-5 items-start">
+              <label className=" text-gray-900 font-semibold">
+                Your age range:
               </label>
-              <input type="text" className="input_style w-64" />
+              <div className="flex flex-row">
+                <div>
+                  <label
+                    htmlFor="Under18"
+                    className="font-semibold text-gray-700"
+                  >
+                    <input
+                      type="radio"
+                      id="Under18"
+                      name="AgeRange"
+                      className=""
+                    />
+                    Under 18
+                  </label>
+                </div>
+                <div>
+                  <label
+                    htmlFor="18-21"
+                    className="font-semibold text-gray-700"
+                  >
+                    <input
+                      type="radio"
+                      id="18-21"
+                      name="AgeRange"
+                      className="ml-5"
+                    />
+                    18 - 21
+                  </label>
+                </div>
+                <div>
+                  <label
+                    htmlFor="Over21"
+                    className="font-semibold text-gray-700"
+                  >
+                    <input
+                      type="radio"
+                      id="Over21"
+                      name="AgeRange"
+                      className="ml-5"
+                    />
+                    Over 21
+                  </label>
+                </div>
+              </div>
             </div>
-            {/* Full Address */}
-            <div className="label_input_text mt-1 mb-2 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
-                Street Address:
-              </label>
-              <input type="text" className="input_style w-64" />
-            </div>
-            {/*City, State, and Zip code */}
-            <div className="label_input_text mt-1 mb-2 mx-5">
+            <div className="label_input_text mt-1 mx-5">
+              {/* City */}
               <div className="flex flex-col label_input_text">
                 <label className="text-gray-900 font-semibold">City:</label>
                 <input
@@ -548,6 +863,7 @@ const signUp = () => {
                   className="p-1 border border-black rounded-lg bg-gray-50 w-32"
                 />
               </div>
+              {/* State */}
               <div className="flex flex-col label_input_text">
                 <label className="text-gray-900 font-semibold">State:</label>
                 <select className="p-1 border border-black rounded-lg bg-gray-50 w-36">
@@ -605,6 +921,108 @@ const signUp = () => {
                   <option value="WY">Wyoming</option>
                 </select>
               </div>
+              {/* Zip code */}
+              <div className="flex flex-col label_input_text">
+                <label className="text-gray-900 font-semibold">Zip Code:</label>
+                <input
+                  type="text"
+                  className="p-1 border border-black rounded-lg bg-gray-50 w-32"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Employer additional information */}
+        {employerInfo && (
+          <div>
+            {/* Title */}
+            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
+              <h1 className="mt-3">Additional Information for Employers</h1>
+            </div>
+            {/* Company Name */}
+            <div className="label_input_text mt-1 mb-2 mx-5">
+              <label className="mr-5 text-gray-900 font-semibold">
+                Company Name:
+              </label>
+              <input type="text" className="input_style w-64" />
+            </div>
+            {/* Full Address */}
+            <div className="label_input_text mt-1 mb-2 mx-5">
+              <label className="mr-5 text-gray-900 font-semibold">
+                Street Address:
+              </label>
+              <input type="text" className="input_style w-64" />
+            </div>
+            {/*City, State, and Zip code */}
+            <div className="label_input_text mt-1 mb-2 mx-5">
+              {/* City */}
+              <div className="flex flex-col label_input_text">
+                <label className="text-gray-900 font-semibold">City:</label>
+                <input
+                  type="text"
+                  className="p-1 border border-black rounded-lg bg-gray-50 w-32"
+                />
+              </div>
+              {/* State */}
+              <div className="flex flex-col label_input_text">
+                <label className="text-gray-900 font-semibold">State:</label>
+                <select className="p-1 border border-black rounded-lg bg-gray-50 w-36">
+                  <option value={""} disabled selected hidden></option>
+                  <option value="AL">Alabama</option>
+                  <option value="AK">Alaska</option>
+                  <option value="AZ">Arizona</option>
+                  <option value="AR">Arkansas</option>
+                  <option value="CA">California</option>
+                  <option value="CO">Colorado</option>
+                  <option value="CT">Connecticut</option>
+                  <option value="DE">Delaware</option>
+                  <option value="DC">District Of Columbia</option>
+                  <option value="FL">Florida</option>
+                  <option value="GA">Georgia</option>
+                  <option value="HI">Hawaii</option>
+                  <option value="ID">Idaho</option>
+                  <option value="IL">Illinois</option>
+                  <option value="IN">Indiana</option>
+                  <option value="IA">Iowa</option>
+                  <option value="KS">Kansas</option>
+                  <option value="KY">Kentucky</option>
+                  <option value="LA">Louisiana</option>
+                  <option value="ME">Maine</option>
+                  <option value="MD">Maryland</option>
+                  <option value="MA">Massachusetts</option>
+                  <option value="MI">Michigan</option>
+                  <option value="MN">Minnesota</option>
+                  <option value="MS">Mississippi</option>
+                  <option value="MO">Missouri</option>
+                  <option value="MT">Montana</option>
+                  <option value="NE">Nebraska</option>
+                  <option value="NV">Nevada</option>
+                  <option value="NH">New Hampshire</option>
+                  <option value="NJ">New Jersey</option>
+                  <option value="NM">New Mexico</option>
+                  <option value="NY">New York</option>
+                  <option value="NC">North Carolina</option>
+                  <option value="ND">North Dakota</option>
+                  <option value="OH">Ohio</option>
+                  <option value="OK">Oklahoma</option>
+                  <option value="OR">Oregon</option>
+                  <option value="PA">Pennsylvania</option>
+                  <option value="RI">Rhode Island</option>
+                  <option value="SC">South Carolina</option>
+                  <option value="SD">South Dakota</option>
+                  <option value="TN">Tennessee</option>
+                  <option value="TX">Texas</option>
+                  <option value="UT">Utah</option>
+                  <option value="VT">Vermont</option>
+                  <option value="VA">Virginia</option>
+                  <option value="WA">Washington</option>
+                  <option value="WV">West Virginia</option>
+                  <option value="WI">Wisconsin</option>
+                  <option value="WY">Wyoming</option>
+                </select>
+              </div>
+              {/* Zip code */}
               <div className="flex flex-col label_input_text">
                 <label className="text-gray-900 font-semibold">Zip Code:</label>
                 <input
