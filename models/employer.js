@@ -2,9 +2,8 @@ import { Schema, model, models } from "mongoose";
 
 const EmployerAccount = new Schema(
   {
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
+    email: {
+      type: String,
     },
     companyName: {
       type: String,
@@ -18,7 +17,7 @@ const EmployerAccount = new Schema(
     State: {
       type: String,
     },
-    zipCode: {
+    ZipCode: {
       type: Number,
     },
   },
