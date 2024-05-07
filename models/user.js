@@ -1,4 +1,3 @@
-import { rewrites } from "@next.config";
 import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema(
@@ -6,16 +5,15 @@ const UserSchema = new Schema(
     accountType: {
       type: String,
     },
-    email: {
-      type: String,
-      unique: [true, "Email already exists!"],
-    },
     name: {
       type: String,
     },
-
-    company: {
+    phoneNumber: {
+      type: Number,
+    },
+    email: {
       type: String,
+      unique: [true, "Email already exists!"],
     },
     password: {
       type: String,

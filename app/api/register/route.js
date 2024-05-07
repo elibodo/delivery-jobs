@@ -1,5 +1,4 @@
 import { connectToDB } from "@utils/database";
-import Employer from "@models/employers";
 import User from "@models/user";
 import { NextResponse } from "next/server";
 import * as bcrypt from "bcrypt";
