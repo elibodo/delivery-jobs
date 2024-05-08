@@ -67,7 +67,7 @@ const JobSeekerAccount = new Schema(
       type: String,
     },
     zipCode: {
-      type: Number,
+      type: String,
     },
   },
   { timestamps: true }
