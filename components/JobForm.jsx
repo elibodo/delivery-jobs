@@ -14,7 +14,6 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
       );
     }
   };
-
   useEffect(() => {
     setPost({ ...post, workdays: operatingdays });
   }, [operatingdays]);
@@ -68,7 +67,6 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
     myarray[index] = payvalue.target.value;
     setpayrange(myarray);
   };
-
   useEffect(() => {
     setPost({ ...post, payrange: payrange });
   }, [payrange]);
