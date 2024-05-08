@@ -209,7 +209,6 @@ const signUp = (info) => {
       setEndorse((nameOfEndorse) =>
         nameOfEndorse.filter((specificEndorse) => specificEndorse !== value)
       );
-      console.log(endorse);
     }
   };
   useEffect(() => {
@@ -955,7 +954,7 @@ const signUp = (info) => {
                       onChange={(e) =>
                         setJobSeekerData({
                           ...jobSeekerData,
-                          educationDate: "No",
+                          carAccident: "No",
                         })
                       }
                       type="radio"

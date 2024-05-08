@@ -43,26 +43,8 @@ const Header = () => {
           </div>
         ) : (
           <>
-            <button
-              type="button"
-              onClick={() => signIn("google")}
-              className="black_button mr-5"
-            >
-              Job Seeker Sign In
-            </button>
-            {/* {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type="button"
-                  key={provider.name}
-                  onClick={() => signIn(provider.id)}
-                  className="black_button"
-                >
-                  Employer Sign In
-                </button>
-              ))} */}
             <Link href={"/logIn"} className="black_button">
-              Employer Sign In
+              Sign In / Sign Up
             </Link>
           </>
         )}

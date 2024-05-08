@@ -4,11 +4,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import JobCard from "./JobCard";
 
-const JobCardList = ({ data, handleTagClick }) => {
+const JobCardList = ({ data }) => {
   return (
     <div className="mt-16 prompt_layout">
       {data.map((post) => (
-        <JobCard key={post._id} post={post} handleTagClick={handleTagClick} />
+        <JobCard key={post._id} post={post} />
       ))}
     </div>
   );
@@ -57,22 +57,7 @@ const Feed = () => {
   const handleSearchChange = (e) => {
     clearTimeout(searchTimeout);
     setSearchText(e.target.value);
-
-    // debounce method
-    // setSearchTimeout(
-    //   setTimeout(() => {
-    //     const searchResult = filterJobs(e.target.value);
-    //     setSearchedResults(searchResult);
-    //   }, 500)
-    // );
   };
-
-  //   const handleTagClick = (tagName) => {
-  //     setSearchText(tagName);
-
-  //     const searchResult = filterJobs(tagName);
-  //     setSearchedResults(searchResult);
-  //   };
 
   return (
     <section className="feed">
@@ -87,7 +72,7 @@ const Feed = () => {
         />
       </form>
 
-      <JobCardList data={posts} handleTagClick={() => {}} />
+      <JobCardList data={posts} />
     </section>
   );
 };
