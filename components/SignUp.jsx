@@ -39,7 +39,8 @@ const signUp = (info) => {
           endorsements: jobSeekerData.endorsements,
           CDL: jobSeekerData.CDL,
           twikCard: jobSeekerData.twikCard,
-          CDLOptions: jobSeekerData.CDLOptions,
+          CDLOption1: jobSeekerData.CDLOption1,
+          CDLOption2: jobSeekerData.CDLOption2,
           workExperience: jobSeekerData.workExperience,
           experienceArray: jobSeekerData.experienceArray,
           educationLevel: jobSeekerData.educationLevel,
@@ -81,7 +82,8 @@ const signUp = (info) => {
     endorsements: "",
     CDL: "",
     twikCard: "",
-    CDLOptions: "",
+    CDLOption1: "",
+    CDLOption2: "",
     workExperience: "",
     experienceArray: "",
     educationLevel: "",
@@ -195,6 +197,24 @@ const signUp = (info) => {
     setWorkExperience(list);
     setJobSeekerData({ ...jobSeekerData, experienceArray: list });
   };
+
+  //Array for all certifications
+  const [endorse, setEndorse] = useState([]);
+  const allEndorsements = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setEndorse((nameOfEndorse) => [...nameOfEndorse, value]);
+      console.log(endorse);
+    } else {
+      setEndorse((nameOfEndorse) =>
+        nameOfEndorse.filter((specificEndorse) => specificEndorse !== value)
+      );
+      console.log(endorse);
+    }
+  };
+  useEffect(() => {
+    setJobSeekerData({ ...jobSeekerData, endorsements: endorse });
+  }, [endorse]);
 
   return (
     <form
@@ -464,6 +484,7 @@ const signUp = (info) => {
                     id="A-MTRCL Also"
                     className="mr-1"
                     value={"A-MTRCL Also"}
+                    onChange={allEndorsements}
                   />
                   A-MTRCL Also
                 </label>
@@ -474,6 +495,7 @@ const signUp = (info) => {
                     id="H-HazMat"
                     className="mr-1"
                     value={"H-HazMat"}
+                    onChange={allEndorsements}
                   />
                   H-HazMat
                 </label>
@@ -484,6 +506,7 @@ const signUp = (info) => {
                     id="N-Tanker"
                     className="mr-1"
                     value={"N-Tanker"}
+                    onChange={allEndorsements}
                   />
                   N-Tanker
                 </label>
@@ -494,6 +517,7 @@ const signUp = (info) => {
                     id="O-MTRCL Only"
                     className="mr-1"
                     value={"O-MTRCL Only"}
+                    onChange={allEndorsements}
                   />
                   O-MTRCL Only
                 </label>
@@ -506,6 +530,7 @@ const signUp = (info) => {
                     id="P->15 Passengers"
                     className="mr-1"
                     value={"P->15 Passengers"}
+                    onChange={allEndorsements}
                   />
                   {"P->15 Passengers"}
                 </label>
@@ -516,6 +541,7 @@ const signUp = (info) => {
                     id="S-School Bus"
                     className="mr-1"
                     value={"S-School Bus"}
+                    onChange={allEndorsements}
                   />
                   S-School Bus
                 </label>
@@ -526,6 +552,7 @@ const signUp = (info) => {
                     id="T-Dbl/Trpl Trailers"
                     className="mr-1"
                     value={"T-Dbl/Trpl Trailers"}
+                    onChange={allEndorsements}
                   />
                   T-Dbl/Trpl Trailers
                 </label>
@@ -536,6 +563,7 @@ const signUp = (info) => {
                     id="X-HM+Tanker"
                     className="mr-1"
                     value={"X-HM+Tanker"}
+                    onChange={allEndorsements}
                   />
                   X-HM+Tanker
                 </label>
@@ -641,15 +669,31 @@ const signUp = (info) => {
                   <label className="mr-5 text-gray-900 font-semibold">
                     Make a selection:
                   </label>
-                  <select className="p-1 border border-black rounded-lg bg-gray-50 w-28">
+                  <select
+                    onChange={(e) =>
+                      setJobSeekerData({
+                        ...jobSeekerData,
+                        CDLOption1: e.target.value,
+                      })
+                    }
+                    className="p-1 border border-black rounded-lg bg-gray-50 w-28"
+                  >
                     <option value={""} disabled selected hidden></option>
-                    <option value="Interstate">Interstate</option>
-                    <option value="Intrastate">Intrastate</option>
+                    <option value={"Interstate"}>Interstate</option>
+                    <option value={"Intrastate"}>Intrastate</option>
                   </select>
-                  <select className="p-1 border border-black rounded-lg bg-gray-50 w-36">
+                  <select
+                    onChange={(e) =>
+                      setJobSeekerData({
+                        ...jobSeekerData,
+                        CDLOption2: e.target.value,
+                      })
+                    }
+                    className="p-1 border border-black rounded-lg bg-gray-50 w-36"
+                  >
                     <option value={""} disabled selected hidden></option>
-                    <option value="Excepted">Excepted</option>
-                    <option value="Non-excepted">Non-excepted</option>
+                    <option value={"Excepted"}>Excepted</option>
+                    <option value={"Non-excepted"}>Non-excepted</option>
                   </select>
                 </div>
               </div>

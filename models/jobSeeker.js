@@ -30,8 +30,11 @@ const JobSeekerAccount = new Schema(
     twikCard: {
       type: String,
     },
-    CDLOptions: {
-      type: Array,
+    CDLOption1: {
+      type: String,
+    },
+    CDLOption2: {
+      type: String,
     },
     workExperience: {
       type: String,
