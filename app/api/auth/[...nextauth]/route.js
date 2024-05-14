@@ -1,5 +1,4 @@
 import NextAuth from "next-auth/next";
-import GoogleProvider from "next-auth/providers/google";
 import User from "@models/user";
 import { connectToDB } from "@utils/database";
 import CredentialProvider from "next-auth/providers/credentials";
@@ -33,6 +32,22 @@ const handler = NextAuth({
       },
     }),
   ],
+  callbacks: {
+    session: async ({ session, token }) => {
+      if (session?.user) {
+        session.user.id = token.uid;
+        session.user.accountType = token.type;
+      }
+      return session;
+    },
+    jwt: async ({ user, token }) => {
+      if (user) {
+        token.uid = user.id;
+        token.type = user.accountType;
+      }
+      return token;
+    },
+  },
   secret: process.env.SECRET,
   session: {
     strategy: "jwt",
