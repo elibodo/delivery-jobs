@@ -26,20 +26,57 @@ const Header = () => {
       <div className="sm:flex hidden">
         {session?.user ? (
           <div className="flex gap-3 md:gap-5">
-            <Link href={"/"} className="outline_button">
-              Messages
-            </Link>
-
-            <Link
-              href={"/employerAccount/employerAccountHome"}
-              className="outline_button"
-            >
-              View Profile
-            </Link>
-
-            <button type="button" onClick={signOut} className="black_button">
-              Sign Out
-            </button>
+            {/* employer account links */}
+            {session?.user?.accountType === "Employer" ? (
+              <div className="flex gap-3 md:gap-5">
+                <Link href={"/"} className="outline_button">
+                  Messages
+                </Link>
+                <Link
+                  href={"/employerAccount/employerAccountHome"}
+                  className="outline_button"
+                >
+                  View Profile
+                </Link>
+                <button
+                  type="button"
+                  onClick={signOut}
+                  className="black_button"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : session?.user?.accountType === "Job Seeker" ? (
+              //job seeker acccount links
+              <div className="flex gap-3 md:gap-5">
+                <Link href={"/"} className="outline_button">
+                  Messages
+                </Link>
+                <Link href={"/jobSeekerAccount"} className="outline_button">
+                  View Profile
+                </Link>
+                <button
+                  type="button"
+                  onClick={signOut}
+                  className="black_button"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <>
+                {/* only a signout link for an error */}
+                <div className="flex gap-3 md:gap-5">
+                  <button
+                    type="button"
+                    onClick={signOut}
+                    className="black_button"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         ) : (
           <>
