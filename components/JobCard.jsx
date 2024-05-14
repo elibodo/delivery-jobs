@@ -94,7 +94,7 @@ const JobCard = ({ post }) => {
       >
         <div className="space-y-2 text-sm text-gray-900 overflow-hidden whitespace-pre-wrap mt-2 border-t-2 border-slate-300">
           {/* apply button */}
-          {session?.user ? (
+          {session?.user?.accountType === "Job Seeker" ? (
             <button onClick={handleApply} className="black_button w-32 mt-3">
               Apply
             </button>
