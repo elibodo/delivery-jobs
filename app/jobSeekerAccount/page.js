@@ -19,9 +19,9 @@ const JobSeekerAccount = () => {
 
   const [accountInfo, setAccountInfo] = useState([]);
   const fetchAccount = async () => {
-    const response = await fetch(`/api/users/${session?.user.email}/jsAccount`);
-    const data = await response.json();
-    setAccountInfo(data);
+    const response = await fetch("/api/jsAccount");
+    const info = await response.json();
+    setAccountInfo(info);
   };
   useEffect(() => {
     fetchAccount();

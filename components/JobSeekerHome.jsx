@@ -3,10 +3,11 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 
-const JobSeekerHome = (accountDetials) => {
+const JobSeekerHome = (accountDetails) => {
   const { data: session } = useSession();
+  console.log("asdf" + JSON.stringify(accountDetails));
 
-  return <div>{accountDetials.DOT}aaaaa</div>;
+  return <div>{accountDetails.twikCard}</div>;
 };
 
 export default JobSeekerHome;
