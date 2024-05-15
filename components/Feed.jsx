@@ -25,10 +25,8 @@ const Feed = () => {
   const fetchPosts = async () => {
     const response = await fetch("/api/job");
     const data = await response.json();
-
     setPosts(data);
   };
-
   useEffect(() => {
     fetchPosts();
   }, []);
