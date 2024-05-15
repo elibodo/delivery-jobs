@@ -1,7 +1,9 @@
 "use client";
 
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import JobSeekerModal from "@components/JobSeekerModal";
+import JobSeekerHome from "@components/JobSeekerHome";
+import { useSession } from "next-auth/react";
 
 const JobSeekerAccount = () => {
   const name = "Eli Bodovinitz";
@@ -13,8 +15,21 @@ const JobSeekerAccount = () => {
   const [experience, setExperience] = useState(false);
   const [education, setEducation] = useState(false);
 
+  const { data: session } = useSession();
+
+  const [accountInfo, setAccountInfo] = useState([]);
+  const fetchAccount = async () => {
+    const response = await fetch(`/api/users/${session?.user.email}/jsAccount`);
+    const data = await response.json();
+    setAccountInfo(data);
+  };
+  useEffect(() => {
+    fetchAccount();
+  }, []);
+
   return (
     <Fragment>
+      <JobSeekerHome accountDetails={accountInfo} />
       <div className="w-3/5 p-10 bg-gray-100 border-2 border-black rounded-2xl">
         <div className="flex flex-row justify-between items-center">
           <h1 className="font-bold text-3xl">{name}</h1>

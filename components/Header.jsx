@@ -40,7 +40,7 @@ const Header = () => {
                 </Link>
                 <button
                   type="button"
-                  onClick={signOut}
+                  onClick={() => signOut({ callbackUrl: "/", redirect: true })}
                   className="black_button"
                 >
                   Sign Out
@@ -57,7 +57,7 @@ const Header = () => {
                 </Link>
                 <button
                   type="button"
-                  onClick={signOut}
+                  onClick={() => signOut({ callbackUrl: "/", redirect: true })}
                   className="black_button"
                 >
                   Sign Out
@@ -69,7 +69,9 @@ const Header = () => {
                 <div className="flex gap-3 md:gap-5">
                   <button
                     type="button"
-                    onClick={signOut}
+                    onClick={() =>
+                      signOut({ callbackUrl: "/", redirect: true })
+                    }
                     className="black_button"
                   >
                     Sign Out
