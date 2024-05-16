@@ -81,7 +81,6 @@ export async function POST(req) {
           zipCode,
         });
       } else {
-        console.log("eaccount");
         await Employer.create({
           email,
           companyName,

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import JobSeekerHome from "@components/JobSeekerHome";
 import { useSession } from "next-auth/react";
 
