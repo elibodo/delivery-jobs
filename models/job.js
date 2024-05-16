@@ -83,7 +83,6 @@ const JobSchema = new Schema({
   },
   applicants: {
     type: Array,
-    ref: "User",
   },
 });
 

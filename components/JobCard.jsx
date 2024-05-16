@@ -20,22 +20,28 @@ const JobCard = ({ post }) => {
 
   const handleApply = async (e) => {
     e.preventDefault();
-    if (session?.user) {
-      setApplicant(session?.user?.email);
-      setPostId(post._id);
-    }
-    try {
-      const res = await fetch("/api/job/apply", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          postId,
-          applicant: session?.user?.email,
-        }),
-      });
-    } catch (error) {}
+    const a = post.applicants;
+    const b = session?.user?.email;
+    if (!a.includes(b)) {
+      try {
+        const res = await fetch("/api/job/apply", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            postId: post._id,
+            applicants: session?.user?.email,
+          }),
+        });
+        if (res.ok) {
+          alert("Successfully applied to " + post.title);
+          window.location.reload();
+        } else {
+          alert("Could not apply to " + post.title);
+        }
+      } catch (error) {}
+    } else alert("You have already applied to " + post.title);
   };
 
   return (
