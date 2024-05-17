@@ -20,7 +20,7 @@ const MyJobs = () => {
 
   return (
     <MyJobCard
-      name="Eli"
+      name=""
       desc="asdfasdf"
       data={[myPosts]}
       handleEdit={handleEdit}
