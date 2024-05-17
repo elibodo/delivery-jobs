@@ -18,17 +18,17 @@ const ECandidates = ({ data }) => {
 const Candidates = () => {
   const { data: session } = useSession();
 
-  console.log(session?.user.id);
-  const [jobData, setJobData] = useState([]);
-  useEffect(() => {
-    const fetchJobData = async () => {
-      const response = await fetch(`/api/user/${session?.user.id}/jobs`);
-      const data = await response.json();
-      setJobData(data);
-    };
-    if (session?.user.id) fetchJobData();
-  }, [session?.user.id]);
-  return <EmployerCandidates data={jobData} />;
+  //console.log(session?.user.id);
+  //const [jobData, setJobData] = useState([]);
+  //useEffect(() => {
+  //  const fetchJobData = async () => {
+  //    const response = await fetch(`/api/user/${session?.user.id}/jobs`);
+  //    const data = await response.json();
+  //    setJobData(data);
+  //  };
+  //  if (session?.user.id) fetchJobData();
+  //}, [session?.user.id]);
+  return <EmployerCandidates data={"jobData"} />;
 };
 
 export default Candidates;
