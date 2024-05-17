@@ -1,24 +1,34 @@
-import React from "react";
+"use client";
 
-const Candidates = () => {
-  const companyName = "White Sands Delivery Inc";
+import EmployerCandidates from "@components/EmployerCandidates";
+import { useSession } from "next-auth/react";
+import React, { useEffect, useState } from "react";
 
+const ECandidates = ({ data }) => {
+  console.log(data);
   return (
     <div>
-      <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
-        <h1 className="font-bold text-2xl">Candidates</h1>
-        <p className="">{companyName}</p>
-      </div>
-
-      <ul className="flex flex-row justify-between mx-3 p-2 border-b-2 border-gray-500">
-        <li className="w-2/12 text-center">Candidate</li>
-        <li className="w-4/12 text-center">Job Applied To</li>
-        <li className="w-2/12 text-center">Message</li>
-        <li className="w-3/12 text-center">Email</li>
-        <li className="w-1/12 text-center">Options</li>
-      </ul>
+      {data.map((users) => (
+        <EmployerCandidates key={users._id} jobs={jobs} />
+      ))}
     </div>
   );
+};
+
+const Candidates = () => {
+  const { data: session } = useSession();
+
+  console.log(session?.user.id);
+  const [jobData, setJobData] = useState([]);
+  useEffect(() => {
+    const fetchJobData = async () => {
+      const response = await fetch(`/api/user/${session?.user.id}/jobs`);
+      const data = await response.json();
+      setJobData(data);
+    };
+    if (session?.user.id) fetchJobData();
+  }, [session?.user.id]);
+  return <EmployerCandidates data={jobData} />;
 };
 
 export default Candidates;
