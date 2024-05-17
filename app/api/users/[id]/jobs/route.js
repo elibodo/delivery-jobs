@@ -4,7 +4,6 @@ import { connectToDB } from "@utils/database";
 export const GET = async (request, { params }) => {
   try {
     await connectToDB();
-
     const jobs = await Job.find({
       creator: params.id,
     }).populate("creator");
