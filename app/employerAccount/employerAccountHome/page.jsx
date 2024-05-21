@@ -4,12 +4,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import EmployerHome from "@components/EmployerHome";
+import Footer from "@components/Footer";
 
-const EAccountData = ({ data }) => {
+const EAccountData = ({ accountData, jobData }) => {
   return (
     <div>
-      {data.map((account) => (
-        <EmployerHome key={account._id} account={account} />
+      {accountData.map((account) => (
+        <EmployerHome key={account._id} account={account} jobs={jobData} />
       ))}
     </div>
   );
@@ -30,19 +31,18 @@ const EmployerAccountHome = () => {
     if (session?.user.email) fetchAccount();
   }, []);
 
-  //getting jobs from user
-  //const [jobs, setJobs] = useState([]);
-  //const fetchPosts = async () => {
-  //  const response = await fetch(`/api/users/${session?.user.id}/job`);
-  //  const data = await response.json();
-  //
-  //  if (session?.user.id) setJobs(data);
-  //};
-  //useEffect(() => {
-  //  fetchPosts();
-  //}, []);
+  const [accountJobs, setAccountJobs] = useState([]);
+  useEffect(() => {
+    const fetchJobs = async () => {
+      const response = await fetch(`/api/users/${session?.user.id}/jobs`);
+      const data = await response.json();
+      setAccountJobs(data);
+      console.log(JSON.stringify(accountJobs));
+    };
+    if (session?.user.id) fetchJobs();
+  }, []);
 
-  return <EAccountData data={accountInfo} />;
+  return <EAccountData accountData={accountInfo} jobData={accountJobs} />;
 };
 
 export default EmployerAccountHome;
