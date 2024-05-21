@@ -39,7 +39,7 @@ const LogIn = () => {
       onSubmit={handleSubmit}
       className="flex flex-col justify-center content-center items-center bg-gray-50 border-black border-2 p-4 rounded-xl"
     >
-      <h1 className="text-2xl font-bold p-5">Employer Sign In</h1>
+      <h1 className="text-2xl font-bold p-5">Sign In</h1>
       <div className="flex flex-row">
         <div className=" flex flex-col items-center ">
           <input
