@@ -9,6 +9,19 @@ const CreateJob = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
+  //Getting user information
+  const [accountInfo, setAccountInfo] = useState([]);
+  useEffect(() => {
+    const fetchAccount = async () => {
+      const response = await fetch(
+        `/api/account/${session?.user?.email}/employer`
+      );
+      const data = await response.json();
+      setAccountInfo(data);
+    };
+    if (session?.user.email) fetchAccount();
+  }, []);
+
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     title: "",
@@ -31,6 +44,7 @@ const CreateJob = () => {
     backgroundcheck: "",
     dotcard: "",
     emailupdates: "",
+    companyName: "",
   });
 
   const createJob = async (e) => {
@@ -62,6 +76,7 @@ const CreateJob = () => {
           drugtest: post.drugtest,
           dotcard: post.dotcard,
           emailupdates: post.emailupdates,
+          companyName: post.companyName,
         }),
       });
 
@@ -81,13 +96,17 @@ const CreateJob = () => {
         <h1 className="font-bold text-2xl">Create Job</h1>
         <p className=""></p>
       </div>
-      <JobForm
-        type="Create"
-        post={post}
-        setPost={setPost}
-        submitting={submitting}
-        handlesubmit={createJob}
-      />
+      {accountInfo.map((accountInfo) => (
+        <JobForm
+          key={accountInfo._id}
+          account={accountInfo}
+          type="Create"
+          post={post}
+          setPost={setPost}
+          submitting={submitting}
+          handlesubmit={createJob}
+        />
+      ))}
     </div>
   );
 };

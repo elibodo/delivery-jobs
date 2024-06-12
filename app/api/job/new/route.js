@@ -25,6 +25,7 @@ export const POST = async (request) => {
     dotcard,
     emailupdates,
     applicants,
+    companyName,
   } = await request.json();
 
   try {
@@ -52,6 +53,7 @@ export const POST = async (request) => {
       dotcard,
       emailupdates,
       applicants,
+      companyName,
     });
 
     await newJob.save();

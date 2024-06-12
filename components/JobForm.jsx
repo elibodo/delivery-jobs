@@ -1,7 +1,14 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
+const JobForm = ({
+  account,
+  type,
+  post,
+  setPost,
+  submitting,
+  handlesubmit,
+}) => {
   //Array for days of the week
   const [operatingdays, setdays] = useState([]);
   const daysoftheweek = (e) => {
@@ -863,6 +870,9 @@ const JobForm = ({ type, post, setPost, submitting, handlesubmit }) => {
             type="submit"
             disabled={submitting}
             className="black_button mb-5 mt-5 mr-32"
+            onClick={(e) => {
+              setPost({ ...post, companyName: account.companyName });
+            }}
           >
             {submitting ? `${type}ing...` : type}
           </button>
