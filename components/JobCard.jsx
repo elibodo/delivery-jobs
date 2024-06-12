@@ -52,7 +52,7 @@ const JobCard = ({ post }) => {
       >
         <div>
           <h1 className="font-bold text-lg">{post.title}</h1>
-          <p className="text-sm text-gray-900">(Company Name)</p>
+          <p className="text-sm text-gray-900">{post.companyName}</p>
         </div>
         <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
           {post.jobtype}
