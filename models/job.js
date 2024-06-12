@@ -84,6 +84,9 @@ const JobSchema = new Schema({
   applicants: {
     type: Array,
   },
+  companyName: {
+    type: String,
+  },
 });
 
 const Job = models.Job || model("Job", JobSchema);
