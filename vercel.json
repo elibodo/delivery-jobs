@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/feed"
+      "source": "/page",
+      "destination": "/api/job"
     }
   ]
 }
