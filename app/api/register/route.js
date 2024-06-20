@@ -55,53 +55,49 @@ export async function POST(req) {
         email,
         password: hashedPassword,
       });
-      const newAccountType = accountType;
-      if (newAccountType === "Job Seeker") {
-        console.log("jsaccount");
-        await JobSeeker.create({
-          email,
-          licenseClass,
-          licenseState,
-          licenseExpire,
-          DOT,
-          DOTExpire,
-          endorsements,
-          CDL,
-          twikCard,
-          CDLOption1,
-          CDLOption2,
-          workExperience,
-          experienceArray,
-          educationLevel,
-          educationDate,
-          certificates,
-          carAccident,
-          DUI,
-          ageRange,
-          city,
-          state,
-          zipCode,
-        });
-      } else {
-        await Employer.create({
-          email,
-          companyName,
-          streetAddress,
-          City,
-          State,
-          ZipCode,
-        });
-      }
-      return NextResponse.json(
-        { message: "User registered." },
-        { status: 201 }
-      );
     } else {
       return NextResponse.json(
         { message: "User already exists." },
         { status: 500 }
       );
     }
+    const newAccountType = accountType;
+    if (newAccountType === "Job Seeker") {
+      await JobSeeker.create({
+        email,
+        licenseClass,
+        licenseState,
+        licenseExpire,
+        DOT,
+        DOTExpire,
+        endorsements,
+        CDL,
+        twikCard,
+        CDLOption1,
+        CDLOption2,
+        workExperience,
+        experienceArray,
+        educationLevel,
+        educationDate,
+        certificates,
+        carAccident,
+        DUI,
+        ageRange,
+        city,
+        state,
+        zipCode,
+      });
+    } else {
+      await Employer.create({
+        email,
+        companyName,
+        streetAddress,
+        City,
+        State,
+        ZipCode,
+      });
+    }
+    return NextResponse.json({ message: "User registered." }, { status: 201 });
   } catch (error) {
     return NextResponse.json(
       { message: "An error occurred while registering the user." },
