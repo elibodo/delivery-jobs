@@ -1,8 +1,7 @@
-"use client";
-
 import React from "react";
 import { useState, useEffect } from "react";
 import JobCard from "./JobCard";
+import Pagination from "./Pagination";
 
 const JobCardList = ({ data }) => {
   return (
@@ -15,62 +14,36 @@ const JobCardList = ({ data }) => {
 };
 
 const Feed = () => {
+  //Get posts
   const [posts, setPosts] = useState([]);
-
-  // Search states
-  const [searchText, setSearchText] = useState("");
-  //const [searchTimeout, setSearchTimeout] = useState(null);
-  //const [searchedResults, setSearchedResults] = useState([]);
-
-  const fetchPosts = async () => {
-    const response = await fetch("/api/job");
-    const data = await response.json();
-    setPosts(data);
-  };
   useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await fetch("/api/job");
+      const data = await response.json();
+      setPosts(data);
+    };
     fetchPosts();
   }, []);
 
-  //   const filterJobs = (searchtext) => {
-  //     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
-  //     return allPosts.filter(
-  //       (item) =>
-  //         regex.test(item.creator.username) ||
-  //         regex.test(item.title) ||
-  //         regex.test(item.description) ||
-  //         regex.test(item.dispatchlocation) ||
-  //         regex.test(item.deliverylocation) ||
-  //         regex.test(item.workauthorization) ||
-  //         regex.test(item.relocate) ||
-  //         regex.test(item.jobtype) ||
-  //         regex.test(item.experiencerequired) ||
-  //         regex.test(item.additionalpay) ||
-  //         regex.test(item.benefits) ||
-  //         regex.test(item.resume) ||
-  //         regex.test(item.drugtest) ||
-  //         regex.test(item.emailupdates)
-  //     );
-  //   };
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(10);
 
-  const handleSearchChange = (e) => {
-    clearTimeout(searchTimeout);
-    setSearchText(e.target.value);
-  };
+  const indexOfLastPost = currentPage * postPerPage;
+  const indexOfFirstPost = indexOfLastPost - postPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <section className="feed">
-      <form className="relative w-full flex-center">
-        <input
-          type="text"
-          placeholder="Search for a job"
-          value={searchText}
-          onChange={handleSearchChange}
-          required
-          className="search_input peer"
-        />
-      </form>
-
-      <JobCardList data={posts} />
+      <div className="relative w-full flex-center">
+        <input className="search_input peer" placeholder="Search for a job" />
+      </div>
+      <JobCardList data={currentPosts} />
+      <Pagination
+        postPerPage={postPerPage}
+        totalPosts={posts.length}
+        paginate={paginate}
+      />
     </section>
   );
 };

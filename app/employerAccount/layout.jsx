@@ -37,7 +37,7 @@ const EmployerNavLayout = ({ children }) => {
                 Analytics
               </EmployerNavLink>
             </li>
-            <li className="">
+            <li>
               <EmployerNavLink href={"/employerAccount/employerSettings"}>
                 Settings
               </EmployerNavLink>

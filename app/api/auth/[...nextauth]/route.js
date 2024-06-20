@@ -4,6 +4,8 @@ import { connectToDB } from "@utils/database";
 import CredentialProvider from "next-auth/providers/credentials";
 import * as bcrypt from "bcrypt";
 
+export const dynamic = "force-dynamic";
+
 const handler = NextAuth({
   providers: [
     CredentialProvider({
@@ -37,6 +39,7 @@ const handler = NextAuth({
       if (session?.user) {
         session.user.id = token.uid;
         session.user.accountType = token.type;
+        session.user.name = token.name;
       }
       return session;
     },
@@ -44,6 +47,7 @@ const handler = NextAuth({
       if (user) {
         token.uid = user.id;
         token.type = user.accountType;
+        token.name = user.name;
       }
       return token;
     },
