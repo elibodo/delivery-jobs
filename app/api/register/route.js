@@ -5,6 +5,8 @@ import * as bcrypt from "bcrypt";
 import JobSeeker from "@models/jobSeeker";
 import Employer from "@models/employer";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req) {
   try {
     const {
