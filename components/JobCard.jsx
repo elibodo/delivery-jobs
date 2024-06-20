@@ -6,9 +6,6 @@ import { useSession } from "next-auth/react";
 
 const JobCard = ({ post }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
-  const [applicant, setApplicant] = useState("");
-  const [postId, setPostId] = useState("");
-
   const { data: session } = useSession();
 
   // Creates a string of days that the job operates
@@ -20,9 +17,9 @@ const JobCard = ({ post }) => {
 
   const handleApply = async (e) => {
     e.preventDefault();
-    const a = post.applicants;
-    const b = session?.user?.email;
-    if (!a.includes(b)) {
+    const applicantArray = post.applicants;
+    const currentUserEmail = session?.user?.email;
+    if (!applicantArray.includes(currentUserEmail)) {
       try {
         const res = await fetch("/api/job/apply", {
           method: "POST",
@@ -31,7 +28,7 @@ const JobCard = ({ post }) => {
           },
           body: JSON.stringify({
             postId: post._id,
-            applicants: session?.user?.email,
+            applicantEmail: session?.user?.email,
           }),
         });
         if (res.ok) {

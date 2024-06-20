@@ -4,7 +4,6 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import EmployerHome from "@components/EmployerHome";
-import Footer from "@components/Footer";
 
 const EAccountData = ({ accountData, jobData }) => {
   return (
@@ -37,7 +36,6 @@ const EmployerAccountHome = () => {
       const response = await fetch(`/api/users/${session?.user.id}/jobs`);
       const data = await response.json();
       setAccountJobs(data);
-      console.log(JSON.stringify(accountJobs));
     };
     if (session?.user.id) fetchJobs();
   }, []);

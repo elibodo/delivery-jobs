@@ -15,7 +15,7 @@ const EmployerHome = ({ account, jobs }) => {
       </div>
       <div className="flex flex-col justify-center items-center space-y-5 my-5">
         {jobs.map((jobs) => (
-          <JobCard key={jobs.id} post={jobs} />
+          <JobCard key={jobs._id} post={jobs} />
         ))}
       </div>
     </section>
