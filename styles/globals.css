@@ -97,7 +97,7 @@
 }
 
 .feed {
-  @apply mt-8 mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+  @apply mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
 }
 
 .prompt_card {
