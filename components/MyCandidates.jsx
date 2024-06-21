@@ -30,9 +30,13 @@ const ApplicantInformation = ({ data, jobTitle }) => {
   return (
     <div className="flex flex-row justify-between items-center mx-3 my-1 p-1 border-b-2 border-gray-200">
       <p className="text-left w-3/12">{data}</p>
-      <p className="text-left w-3/12">{data}</p>
       <p className="text-left w-3/12">{jobTitle}</p>
-      <select className="text-center w-1/12">
+      <select className="text-left w-1/12">
+        <option value={""} selected></option>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+      <select className="text-left w-1/12">
         <option value={""} selected></option>
         <option>Keep</option>
         <option>Maybe</option>
