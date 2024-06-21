@@ -11,10 +11,10 @@ const EmployerCandidates = ({ account, jobs }) => {
         </div>
         <ul className="flex flex-row justify-between mx-3 p-2 border-b-2 border-gray-500">
           <li className="w-3/12 text-left font-semibold">Candidate</li>
-          <li className="w-3/12 text-left font-semibold">Email</li>
           <li className="w-3/12 text-left font-semibold">Job Applied To</li>
+          <li className="w-1/12 text-left font-semibold">Communication</li>
           <li className="w-1/12 text-center font-semibold">Status</li>
-          <li className="w-2/12 text-center font-semibold"></li>
+          <li className="w-2/12 text-left font-semibold"></li>
         </ul>
         <div>
           {jobs.map((jobs) => (
