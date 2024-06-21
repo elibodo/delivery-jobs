@@ -6,11 +6,9 @@ import Feed from "@components/Feed";
 
 const Home = () => {
   return (
-    <main className="app">
-      <section className="w-full flex_center flex-col">
-        <Feed />
-      </section>
-    </main>
+    <section className="app w-full flex_center flex-col">
+      <Feed />
+    </section>
   );
 };
 
