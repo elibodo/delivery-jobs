@@ -2,6 +2,7 @@ import "@styles/globals.css";
 import Header from "@components/Header";
 import Footer from "@components/Footer";
 import Provider from "@components/Provider";
+import React from "react";
 
 export const metadata = {
   title: "Delivery Jobs",
@@ -11,18 +12,15 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body>
-        <Provider>
-          <div className="main"></div>
+      <Provider>
+        <body>
           <main className="app">
             <Header />
             {children}
-            <footer className="footer_text">
-              <Footer />
-            </footer>
+            <Footer />
           </main>
-        </Provider>
-      </body>
+        </body>
+      </Provider>
     </html>
   );
 };
