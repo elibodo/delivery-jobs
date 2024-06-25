@@ -1,5 +1,5 @@
 import { connectToDB } from "@utils/database";
-import Job from "@models/job";
+import Job from "@models/Job";
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
