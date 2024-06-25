@@ -1,5 +1,5 @@
 import NextAuth from "next-auth/next";
-import User from "@models/User";
+import User from "@models/user";
 import { connectToDB } from "@utils/database";
 import CredentialProvider from "next-auth/providers/credentials";
 import * as bcrypt from "bcrypt";

@@ -1,4 +1,4 @@
-import Job from "@models/Job";
+import Job from "@models/job";
 import { connectToDB } from "@utils/database";
 
 export const dynamic = "force-dynamic";

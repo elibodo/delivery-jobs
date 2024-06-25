@@ -1,5 +1,5 @@
 import { connectToDB } from "@utils/database";
-import JobSeeker from "@models/JobSeeker";
+import JobSeeker from "@models/jobSeeker";
 
 export const dynamic = "force-dynamic";
 
