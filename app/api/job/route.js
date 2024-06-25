@@ -4,8 +4,9 @@ import { connectToDB } from "@utils/database";
 export const dynamic = "force-dynamic";
 
 export const GET = async (request) => {
+  await connectToDB();
+
   try {
-    await connectToDB();
     const jobs = await Job.find({}).populate("creator");
     return new Response(JSON.stringify(jobs), { status: 200 });
   } catch (error) {
