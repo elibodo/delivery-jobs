@@ -3,13 +3,13 @@ import { connectToDB } from "@utils/database";
 
 export const dynamic = "force-dynamic";
 
-export const GET = async (request) => {
+export const GET = async () => {
   await connectToDB();
-
   try {
     const jobs = await Job.find({}).populate("creator");
     return new Response(JSON.stringify(jobs), { status: 200 });
   } catch (error) {
+    console.log(error);
     return new Response("Failed to fetch all jobs", { status: 500 });
   }
 };
