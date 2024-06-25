@@ -1,9 +1,9 @@
 import { connectToDB } from "@utils/database";
-import User from "@models/user";
+import User from "@models/User";
 import { NextResponse } from "next/server";
 import * as bcrypt from "bcrypt";
-import JobSeeker from "@models/jobSeeker";
-import Employer from "@models/employer";
+import JobSeeker from "@models/JobSeeker";
+import Employer from "@models/Employer";
 
 export const dynamic = "force-dynamic";
 
