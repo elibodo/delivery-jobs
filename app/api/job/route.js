@@ -1,10 +1,12 @@
 import Job from "@models/job";
 import { connectToDB } from "@utils/database";
+import User from "@models/user";
 
 export const dynamic = "force-dynamic";
 
 export const GET = async () => {
   await connectToDB();
+
   try {
     const jobs = await Job.find({}).populate("creator");
     return new Response(JSON.stringify(jobs), { status: 200 });
