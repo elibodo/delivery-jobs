@@ -41,7 +41,7 @@ const LogIn = () => {
     >
       <h1 className="text-2xl font-bold p-5">Sign In</h1>
       <div className="flex flex-row">
-        <div className=" flex flex-col items-center ">
+        <div className="flex flex-col items-center ">
           <input
             onChange={(e) => setEmail(e.target.value)}
             type="email"
@@ -57,10 +57,14 @@ const LogIn = () => {
           <button className="black_button m-2">Sign In</button>
         </div>
       </div>
-      <div className="flex flex-col m-3 space-x-20">
-        <Link href={"/signUp"} className="">
+      <div className="flex flex-col items-center m-3">
+        <Link href={"/signUp"}>
           Dont have an account?{" "}
           <span className="font-semibold underline">Register</span>
+        </Link>
+        <Link href={"/passwordRequest"} className="m-3">
+          Forgot your password?{" "}
+          <span className="font-semibold underline">Click Here</span>
         </Link>
         {error && (
           <div className="bg-red-500 text-white w-fit py-1 px-3 rounded-md text-sm mt-2">
