@@ -26,6 +26,19 @@ export async function POST(req, res) {
       user: "deliveryjobsllc@gmail.com",
       pass: "ncqo tkgu ofsw tnip",
     },
+    secure: true,
+  });
+
+  await new Promise((resolve, reject) => {
+    transporter.verify(function (error, success) {
+      if (error) {
+        console.log(error);
+        reject(error);
+      } else {
+        console.log("server ready");
+        resolve(success);
+      }
+    });
   });
 
   let mailOptions = {
@@ -34,14 +47,16 @@ export async function POST(req, res) {
     subject: "Password Reset",
     text: `You requested a password reset. Click the link to reset your password: ${process.env.BASE_URL}/passwordReset/${token}`,
   };
-  await new Promise(() => {
+  await new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        reject(error);
         return NextResponse.json(
           { message: "Failed to send email" },
           { status: 500 }
         );
       } else {
+        resolve(info);
         return NextResponse.json({ message: "Password reset email sent" });
       }
     });
