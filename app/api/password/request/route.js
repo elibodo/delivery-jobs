@@ -34,7 +34,7 @@ export async function POST(req, res) {
     subject: "Password Reset",
     text: `You requested a password reset. Click the link to reset your password: ${process.env.BASE_URL}/passwordReset/${token}`,
   };
-  transporter.sendMail(mailOptions, (error, info) => {
+  await transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       return NextResponse.json(
         { message: "Failed to send email" },
