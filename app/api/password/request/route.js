@@ -34,15 +34,17 @@ export async function POST(req, res) {
     subject: "Password Reset",
     text: `You requested a password reset. Click the link to reset your password: ${process.env.BASE_URL}/passwordReset/${token}`,
   };
-  await transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return NextResponse.json(
-        { message: "Failed to send email" },
-        { status: 500 }
-      );
-    } else {
-      return NextResponse.json({ message: "Password reset email sent" });
-    }
+  await new Promise(() => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return NextResponse.json(
+          { message: "Failed to send email" },
+          { status: 500 }
+        );
+      } else {
+        return NextResponse.json({ message: "Password reset email sent" });
+      }
+    });
   });
   return NextResponse.json({ message: "Password reset email sent" });
 }
