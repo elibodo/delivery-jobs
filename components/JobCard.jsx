@@ -54,19 +54,21 @@ const JobCard = ({ post, handleDelete }) => {
             <h1 className="font-bold text-lg">{post.title}</h1>
             <p className="text-sm text-gray-900">{post.companyName}</p>
           </div>
-          <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
-            {post.jobtype}
-          </p>
-          <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
-            From ${post.payrange[0]} - ${post.payrange[1]} a {post.payrange[2]}
-          </p>
-          <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
-            {post.dispatchlocation}
-          </p>
+          <div className="flex flex-row gap-2 text-right">
+            <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
+              {post.jobtype}
+            </p>
+            <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
+              From ${post.payrange[0]} - ${post.payrange[1]} a{" "}
+              {post.payrange[2]}
+            </p>
+            <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
+              {post.dispatchlocation}
+            </p>
+          </div>
           {/* pay from database template */}
-          <p></p>
           <svg
-            className=" fill-gray-700 shrink-0 ml-8"
+            className=" fill-gray-700 shrink-0 ml-5"
             width="16"
             height="16"
             xmlns="http://www.w3.org/2000/svg"
