@@ -5,11 +5,16 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import EmployerHome from "@components/EmployerHome";
 
-const EAccountData = ({ accountData, jobData }) => {
+const EAccountData = ({ accountData, jobData, handleDelete }) => {
   return (
     <div>
       {accountData.map((account) => (
-        <EmployerHome key={account._id} account={account} jobs={jobData} />
+        <EmployerHome
+          key={account._id}
+          account={account}
+          jobs={jobData}
+          handleDelete={handleDelete}
+        />
       ))}
     </div>
   );
@@ -40,7 +45,31 @@ const EmployerAccountHome = () => {
     if (session?.user.id) fetchJobs();
   }, []);
 
-  return <EAccountData accountData={accountInfo} jobData={accountJobs} />;
+  const handleDelete = async (job) => {
+    const jobID = job._id;
+    const hasConfirmed = confirm(
+      "Are you sure you want to permanently delete this job?"
+    );
+    if (hasConfirmed) {
+      try {
+        await fetch(`/api/job/${jobID}`, {
+          method: "DELETE",
+        });
+        const filteredJobs = accountJobs.filter((item) => item._id !== jobID);
+        setAccountJobs(filteredJobs);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  return (
+    <EAccountData
+      accountData={accountInfo}
+      jobData={accountJobs}
+      handleDelete={handleDelete}
+    />
+  );
 };
 
 export default EmployerAccountHome;
