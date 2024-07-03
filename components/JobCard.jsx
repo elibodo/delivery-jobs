@@ -39,6 +39,21 @@ const JobCard = ({ post, handleDelete }) => {
         });
         if (res.ok) {
           alert("Successfully applied to " + post.title);
+          try {
+            await fetch("/api/job/email", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                appEmail: session?.user?.email,
+                postId: post._id,
+              }),
+            });
+          } catch (error) {
+            console.log(error);
+            console.log("Unable to send email.");
+          }
           window.location.reload();
         } else {
           alert("Could not apply to " + post.title);
