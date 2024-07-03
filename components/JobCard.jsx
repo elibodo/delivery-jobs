@@ -37,6 +37,16 @@ const JobCard = ({ post, handleDelete }) => {
             applicantEmail: session?.user?.email,
           }),
         });
+        await fetch("/api/job/email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            appEmail: session?.user?.email,
+            postId: post._id,
+          }),
+        });
         if (res.ok) {
           alert("Successfully applied to " + post.title);
           window.location.reload();
