@@ -6,6 +6,36 @@ import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
 const ECandidates = ({ accountData, jobData }) => {
+  const [data, setData] = useState([]);
+  const handleDelete = async (app, id) => {
+    const jobID = id;
+    const candidate = app;
+    const hasConfirmed = confirm(
+      "Are you sure you want to permanently delete this candidate"
+    );
+    if (hasConfirmed) {
+      try {
+        const res = await fetch(`/api/candidate/${jobID}`, {
+          method: "POST",
+          body: JSON.stringify({
+            candidate: candidate,
+          }),
+        });
+        if (res.ok) {
+          jobData.forEach((element) => {
+            if (element._id === id) {
+              const a = element.applicants.filter((item) => item !== app);
+              element.applicants = a;
+            }
+            setData([jobData]);
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div>
       {accountData.map((account) => (
@@ -13,6 +43,7 @@ const ECandidates = ({ accountData, jobData }) => {
           key={account._id}
           account={account}
           jobs={jobData}
+          handleDelete={handleDelete}
         />
       ))}
     </div>

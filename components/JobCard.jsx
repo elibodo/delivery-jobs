@@ -20,8 +20,12 @@ const JobCard = ({ post, handleDelete }) => {
   const handleApply = async (e) => {
     e.preventDefault();
     const applicantArray = post.applicants;
+    const deniedApplicantArray = post.deniedApplicants;
     const currentUserEmail = session?.user?.email;
-    if (!applicantArray.includes(currentUserEmail)) {
+    if (
+      !applicantArray.includes(currentUserEmail) &&
+      !deniedApplicantArray.includes(currentUserEmail)
+    ) {
       try {
         const res = await fetch("/api/job/apply", {
           method: "POST",

@@ -84,6 +84,9 @@ const JobSchema = new Schema({
   applicants: {
     type: Array,
   },
+  deniedApplicants: {
+    type: Array,
+  },
   companyName: {
     type: String,
   },

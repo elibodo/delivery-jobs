@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import CandidateProfile from "./CandidateProfile";
 import Pagination from "./Pagination";
 
-const ApplicantInformation = ({ data, jobTitle }) => {
+const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
   const name = data;
   const email = data;
   const job = jobTitle;
@@ -98,7 +98,7 @@ const ApplicantInformation = ({ data, jobTitle }) => {
           </svg>
         </button>
         {/* Delete candidate */}
-        <button className="has-tooltip">
+        <button onClick={handleDelete} className="has-tooltip">
           <span className="tooltip rounded shadow-lg p-1 bg-gray-500 text-black -mt-8">
             Delete Candidate
           </span>
@@ -131,14 +131,17 @@ const ApplicantInformation = ({ data, jobTitle }) => {
   );
 };
 
-const MyCandidates = ({ post }) => {
+const MyCandidates = ({ post, handleDelete }) => {
   const jobApplicants = post.applicants;
-
   return (
     <div>
       <div>
         {jobApplicants.map((element) => (
-          <ApplicantInformation data={element} jobTitle={post.title} />
+          <ApplicantInformation
+            data={element}
+            jobTitle={post.title}
+            handleDelete={() => handleDelete && handleDelete(element, post._id)}
+          />
         ))}
       </div>
     </div>

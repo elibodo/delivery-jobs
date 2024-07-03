@@ -1,7 +1,7 @@
 import React from "react";
 import MyCandidates from "./MyCandidates";
 
-const EmployerCandidates = ({ account, jobs }) => {
+const EmployerCandidates = ({ account, jobs, handleDelete }) => {
   return (
     <section>
       <div>
@@ -18,7 +18,11 @@ const EmployerCandidates = ({ account, jobs }) => {
         </ul>
         <div>
           {jobs.map((jobs) => (
-            <MyCandidates key={jobs._id} post={jobs} />
+            <MyCandidates
+              key={jobs._id}
+              post={jobs}
+              handleDelete={handleDelete}
+            />
           ))}
         </div>
       </div>
