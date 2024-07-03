@@ -1,23 +1,20 @@
-import nodemailer from "nodemailer";
-import jwt from "jsonwebtoken";
-import User from "@models/user";
 import { connectToDB } from "@utils/database";
+import Job from "@models/job";
 import { NextResponse } from "next/server";
-
-const JWT_SECRET =
-  "4fe684832365892858e378e161fb7918c42103457f24e549c183a8ac5e8f1ff7";
+import nodemailer from "nodemailer";
 
 export async function POST(req, res) {
   await connectToDB();
   if (req.method !== "POST") {
     return NextResponse.json("Only POST requests allowed", { status: 405 });
   }
-  const { email } = await req.json();
-  const user = await User.findOne({ email });
-  if (!user) {
-    return NextResponse.json({ message: "User not found" }, { status: 404 });
+  const { appEmail, postId } = await req.json();
+
+  const job = await Job.findById(postId);
+  if (!job) {
+    return NextResponse.json("Job not found.", { status: 404 });
   }
-  const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "1h" });
+
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     service: "Gmail",
@@ -43,9 +40,9 @@ export async function POST(req, res) {
 
   let mailOptions = {
     from: "Delivery Jobs <deliveryjobsllc@gmail.com>",
-    to: email,
-    subject: "Password Reset",
-    html: ` <html>
+    to: job.emailupdates,
+    subject: `You have a new candidate for ${job.title}`,
+    html: `<html>
     <head>
         <style>
             .email-container {
@@ -60,7 +57,6 @@ export async function POST(req, res) {
                 padding: 10px;
                 text-align: center;
                 border-bottom: 2px solid #EA580C;
-                font-weight: bold;
             }
             .content {
                 padding: 20px;
@@ -76,16 +72,6 @@ export async function POST(req, res) {
             .accent {
                 color: #EA580C;
             }
-            .button {
-                display: inline-block;
-                padding: 10px 20px;
-                font-size: 16px;
-                color: #ffffff;
-                background-color: #EA580C;
-                text-decoration: none;
-                border-radius: 25px;
-                margin-top: 20px;
-            }
         </style>
     </head>
     <body>
@@ -94,10 +80,9 @@ export async function POST(req, res) {
                 <h1 class="accent">Delivery Jobs</h1>
             </div>
             <div class="content">
-                <p>Hi there,</p>
-                <p>You requested to reset your password. Click the button below to reset it:</p>
-                <a href="${process.env.BASE_URL}/passwordReset/${token}" class="button">Reset Password</a>
-                <p>If you did not request a password reset, please ignore this email.</p>
+            <h3>You have a new candidate for ${job.title}</h3>
+                <p>New Candidate: ${appEmail}</p>
+                <p>Total Candidates: ${job.applicants.length}</p>
             </div>
             <div class="footer">
                 <p>&copy; 2024 Delivery Jobs</p>
@@ -106,6 +91,7 @@ export async function POST(req, res) {
     </body>
     </html>`,
   };
+
   await new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -116,9 +102,10 @@ export async function POST(req, res) {
         );
       } else {
         resolve(info);
-        return NextResponse.json({ message: "Password reset email sent" });
+        return NextResponse.json({ message: "Sent email update to company" });
       }
     });
   });
-  return NextResponse.json({ message: "Password reset email sent" });
+
+  return NextResponse.json({ message: "Sent email update to company" });
 }
