@@ -13,6 +13,7 @@ export async function POST(req, res) {
       if (!job) {
         return res.status(404).json({ message: "Job not found." });
       }
+
       const newApplicant = applicantEmail;
       await job.applicants.push(newApplicant);
       await job.save();
