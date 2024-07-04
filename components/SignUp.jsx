@@ -1321,6 +1321,15 @@ const signUp = (info) => {
           </div>
         )}
       </div>
+      <div className="flex flex-row gap-2 mb-3">
+        <input type="checkbox" required />
+        <label className="text-gray-900 font-semibold">
+          I have read and agree to the{" "}
+          <a href={"/termsAndConditions"} className="underline">
+            Terms and Conditions
+          </a>
+        </label>
+      </div>
 
       <div className="flex flex-col">
         <button className="black_button mb-3">Create Account</button>
