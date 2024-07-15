@@ -90,6 +90,9 @@ const JobSchema = new Schema({
   companyName: {
     type: String,
   },
+  clicks: {
+    type: Number,
+  },
 });
 
 const Job = models.Job || model("Job", JobSchema);
