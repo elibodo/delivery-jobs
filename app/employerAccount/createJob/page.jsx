@@ -94,7 +94,7 @@ const CreateJob = () => {
     <div>
       <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
         <h1 className="font-bold text-2xl">Create Job</h1>
-        <p className=""></p>
+        <h1 className="font-bold text-2xl"></h1>
       </div>
       {accountInfo.map((accountInfo) => (
         <JobForm
