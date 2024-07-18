@@ -14,15 +14,23 @@ const EmployerHome = ({ account, jobs, handleDelete }) => {
         </div>
       </div>
       <div className="flex flex-col justify-center items-center space-y-5 my-5">
-        {jobs.map((jobs) => (
-          <div className="flex flex-row gap-5">
-            <JobCard
-              key={jobs._id}
-              post={jobs}
-              handleDelete={() => handleDelete && handleDelete(jobs)}
-            />
-          </div>
-        ))}
+        {jobs.length !== 0 ? (
+          <>
+            {jobs.map((jobs) => (
+              <div className="flex flex-row gap-5">
+                <JobCard
+                  key={jobs._id}
+                  post={jobs}
+                  handleDelete={() => handleDelete && handleDelete(jobs)}
+                />
+              </div>
+            ))}
+          </>
+        ) : (
+          <p className="description">
+            Navigate to the Create Job page to create a Job.
+          </p>
+        )}
       </div>
     </section>
   );
