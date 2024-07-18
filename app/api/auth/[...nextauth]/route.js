@@ -40,6 +40,8 @@ const handler = NextAuth({
         session.user.id = token.uid;
         session.user.accountType = token.type;
         session.user.name = token.name;
+        session.user.phoneNumber = token.phoneNumber;
+        session.user.email = token.email;
       }
       return session;
     },
@@ -48,6 +50,8 @@ const handler = NextAuth({
         token.uid = user.id;
         token.type = user.accountType;
         token.name = user.name;
+        token.phoneNumber = user.phoneNumber;
+        token.email = user.email;
       }
       return token;
     },
