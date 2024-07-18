@@ -54,6 +54,7 @@ const signUp = (info) => {
           zipCode: jobSeekerData.zipCode,
 
           companyName: employerData.companyName,
+          companyWebsite: employerData.companyWebsite,
           streetAddress: employerData.streetAddress,
           City: employerData.City,
           State: employerData.State,
@@ -99,6 +100,7 @@ const signUp = (info) => {
 
   const [employerData, setEmployerData] = useState({
     companyName: "",
+    companyWebsite: "",
     streetAddress: "",
     City: "",
     State: "",
@@ -1199,6 +1201,22 @@ const signUp = (info) => {
                   setEmployerData({
                     ...employerData,
                     companyName: e.target.value,
+                  })
+                }
+                type="text"
+                className="input_style w-64"
+              />
+            </div>
+            {/* Company Website */}
+            <div className="label_input_text mt-1 mb-2 mx-5">
+              <label className="mr-5 text-gray-900 font-semibold">
+                Company Website:
+              </label>
+              <input
+                onChange={(e) =>
+                  setEmployerData({
+                    ...employerData,
+                    companyWebsite: e.target.value,
                   })
                 }
                 type="text"

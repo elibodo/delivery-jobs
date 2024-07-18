@@ -8,6 +8,9 @@ const EmployerAccount = new Schema(
     companyName: {
       type: String,
     },
+    companyWebsite: {
+      type: String,
+    },
     streetAddress: {
       type: String,
     },

@@ -39,6 +39,7 @@ export async function POST(req) {
       zipCode,
 
       companyName,
+      companyWebsite,
       streetAddress,
       City,
       State,
@@ -91,6 +92,7 @@ export async function POST(req) {
       await Employer.create({
         email,
         companyName,
+        companyWebsite,
         streetAddress,
         City,
         State,
