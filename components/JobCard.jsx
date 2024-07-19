@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 
 const JobCard = ({ post, handleDelete }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
@@ -122,6 +123,10 @@ const JobCard = ({ post, handleDelete }) => {
               <button onClick={handleApply} className="black_button w-32 mt-3">
                 Apply
               </button>
+            ) : session === null ? (
+              <Link href={"/logIn"} className="black_button w-40 mt-3">
+                Sign In To Apply!
+              </Link>
             ) : (
               <></>
             )}

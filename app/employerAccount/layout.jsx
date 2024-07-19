@@ -1,4 +1,4 @@
-import EmployerNavLink from "@components/EmployerNavLink";
+import ProfileNavLink from "@components/ProfileNavLink";
 import React from "react";
 
 const EmployerNavLayout = ({ children }) => {
@@ -8,29 +8,29 @@ const EmployerNavLayout = ({ children }) => {
         <nav>
           <ul className="grid gap-3">
             <li>
-              <EmployerNavLink href={"/employerAccount/employerAccountHome"}>
+              <ProfileNavLink href={"/employerAccount/employerAccountHome"}>
                 Home
-              </EmployerNavLink>
+              </ProfileNavLink>
             </li>
             <li>
-              <EmployerNavLink href={"/employerAccount/createJob"}>
+              <ProfileNavLink href={"/employerAccount/createJob"}>
                 Create Job
-              </EmployerNavLink>
+              </ProfileNavLink>
             </li>
             <li>
-              <EmployerNavLink href={"/employerAccount/employerMessaging"}>
+              <ProfileNavLink href={"/employerAccount/employerMessaging"}>
                 Messages
-              </EmployerNavLink>
+              </ProfileNavLink>
             </li>
             <li>
-              <EmployerNavLink href={"/employerAccount/candidates"}>
+              <ProfileNavLink href={"/employerAccount/candidates"}>
                 Candidates
-              </EmployerNavLink>
+              </ProfileNavLink>
             </li>
             <li>
-              <EmployerNavLink href={"/employerAccount/employerSettings"}>
+              <ProfileNavLink href={"/employerAccount/employerSettings"}>
                 Settings
-              </EmployerNavLink>
+              </ProfileNavLink>
             </li>
           </ul>
         </nav>
