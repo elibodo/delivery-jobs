@@ -9,134 +9,208 @@ const CandidateProfile = ({
   account,
 }) => {
   if (!isVisible) return null;
+  const myEndorsements = account.endorsements;
+  let theEndorsements = myEndorsements.join(", ");
+
+  const lisenseDate = new Date(account.licenseExpire).toLocaleDateString(
+    "en-US",
+    { timeZone: "UTC" }
+  );
+  const dotDate = new Date(account.DOTExpire).toLocaleDateString("en-US", {
+    timeZone: "UTC",
+  });
+  const eduDate = new Date(account.educationDate).toLocaleDateString("en-US", {
+    timeZone: "UTC",
+  });
+
+  const certs = account.certificates;
+  const work = account.experienceArray;
   return (
     <div className="absolute overscroll-none overflow-auto inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-      <div className="w-[750px]] h-svh">
+      <div className="w-[750px] h-svh">
         <div className="bg-gray-100 p-2 rounded">
           {/* test */}
-          <div className="flex flex-col w-full p-5 rounded-lg">
-            <div className="flex flex-row items-center content-between justify-between">
-              <h1 className="text-3xl font-bold">{name}</h1>
-              <div className="flex flex-col items-end">
-                <h2 className="text-base font-semibold">{email}</h2>
-                <h2 className="text-base font-semibold">
-                  {account.city}, {account.state}
-                </h2>
-                <h2 className="text-base font-semibold">{account.zipCode}</h2>
-              </div>
+          <div className="flex flex-col w-full p-5">
+            {/* Top of resume */}
+
+            <div className="flex flex-row justify-between mt-3 pb-3 border-b-2 border-gray-500 items-center">
+              <h1 className="text-2xl font-semibold ml-5">{account.email}</h1>
+              <h2 className="text-base font-medium">
+                {account.city}, {account.state}
+              </h2>
+              <h2 className="text-base font-medium">{account.zipCode}</h2>
             </div>
-            <div className="flex flex-row gap-10 mt-5 mb-2">
-              <div className="flex flex-col mx-5">
-                <h3 className="font-bold">License Information</h3>
-                <p>
-                  License Class:{" "}
-                  <span className="font-bold capitalize">
-                    {account.licenseClass}
-                  </span>
-                </p>
-                <p>
-                  Issuing State:{" "}
-                  <span className="font-bold">{account.licenseState}</span>
-                </p>
-                <p>
-                  Expires:{" "}
-                  <span className="font-bold">{account.licenseExpire}</span>
-                </p>
+
+            {/* liscense and dot section */}
+            <div className="flex flex-col">
+              <div className="flex flex-row">
+                <div className="w-1/3 mx-8">
+                  <p className="mt-5 text-xl text-gray-600">License</p>
+                  <div className="ml-2">
+                    <p className="text-gray-800 mt-3">
+                      Class:{" "}
+                      <span className=" font-semibold">
+                        {account.licenseClass}
+                      </span>
+                    </p>
+                    <p className="text-gray-800 mt-1">
+                      Expires:{" "}
+                      <span className=" font-semibold">{lisenseDate}</span>
+                    </p>
+                    <p className="text-gray-800 mt-1">
+                      State:{" "}
+                      <span className=" font-semibold">
+                        {account.licenseState}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                {account.DOT === "Yes" ? (
+                  <div className="w-1/3 mx-8">
+                    <p className="mt-5 text-xl text-gray-600">
+                      DOT Information
+                    </p>
+                    <div className="ml-2">
+                      <p className="text-gray-800 mt-3">
+                        DOT Medical Card:{" "}
+                        <span className=" font-semibold">{account.DOT}</span>
+                      </p>
+                      <p className="text-gray-800 mt-1">
+                        Expires:{" "}
+                        <span className=" font-semibold">{dotDate}</span>
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mx-8 w-1/3"></div>
+                )}
+                {/* cdl */}
+                {account.CDL === "Yes" ? (
+                  <div className="w-1/3 mx-8">
+                    <p className="mt-5 text-xl text-gray-600">
+                      CDL Information
+                    </p>
+                    <div className="ml-2">
+                      <p className="text-gray-800 mt-3">
+                        CDL:{" "}
+                        <span className=" font-semibold">{account.CDL}</span>
+                      </p>
+                      <p className="text-gray-800 mt-1">
+                        Twik Card:{" "}
+                        <span className=" font-semibold">
+                          {account.twikCard}
+                        </span>
+                      </p>
+                      <p className="text-gray-800 mt-1">
+                        Options:{" "}
+                        <span className=" font-semibold">
+                          {account.CDLOption1} {account.CDLOption2}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mx-8 w-1/3"></div>
+                )}
               </div>
-              <div className="flex flex-col mx-5">
-                <h3 className="font-bold">CDL Information</h3>
-                <p>
-                  CDL: <span className="font-bold">{account.CDL}</span>
-                </p>
-                <p>
-                  Twik Card:{" "}
-                  <span className="font-bold">{account.twikCard}</span>
-                </p>
-                <p>
-                  Options:{" "}
-                  <span className="font-bold">
-                    {account.CDLOption1} {account.CDLOption2}
-                  </span>
-                </p>
+              <div className="flex flex-row">
+                <div className="mx-8 w-1/3">
+                  <p className="mt-5 text-xl text-gray-600">Education</p>
+                  <div className="ml-2 mt-1">
+                    <p className="text-gray-800 mt-3">
+                      Highest Level:{" "}
+                      <span className="font-semibold">
+                        {account.educationLevel}
+                      </span>
+                    </p>
+                    <p className="text-gray-800 mt-1">
+                      Date Completed:{" "}
+                      <span className="font-semibold">{eduDate}</span>
+                    </p>
+                  </div>
+                </div>
+                {theEndorsements === "" ? (
+                  <div className="mx-8 w-1/3"></div>
+                ) : (
+                  <div className="mx-8 w-1/3">
+                    <p className="mt-5 text-xl text-gray-600">Endorsements</p>
+                    <div className="ml-2">
+                      <p className="font-semibold mt-3">{theEndorsements}</p>
+                    </div>
+                  </div>
+                )}
+                {certs != "" ? (
+                  <div className="mx-8 w-1/3">
+                    <p className="mt-5 text-xl text-gray-600 mb-3">
+                      Certifications:{" "}
+                    </p>
+                    <div className="ml-2 mt-1">
+                      {certs.map((cert) => (
+                        <p key={cert._id} className="font-semibold">
+                          {cert.certification}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mx-8 w-1/3"></div>
+                )}
               </div>
-            </div>
-            <div className="flex flex-row gap-10 mt-8 mb-2">
-              <div className="flex flex-col mx-5">
-                <h3 className="font-bold">DOT Information</h3>
-                <p>
-                  DOT Medical Card:{" "}
-                  <span className="font-bold">{account.DOT}</span>
-                </p>
-                <p>
-                  Expires:{" "}
-                  <span className="font-bold">{account.DOTExpire}</span>
-                </p>
-              </div>
-              <div className="flex flex-col mx-5">
-                <h3 className="font-bold">Endorsements</h3>
-                <p>
-                  <span className="font-bold text-balance">{}</span>
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row gap-10 mt-8 mb-2">
-              <div className="flex flex-col mx-5">
-                <h3 className="font-bold">Education</h3>
-                <p>
-                  Highest Level of Education:{" "}
-                  <span className="font-bold">{account.educationLevel}</span>
-                </p>
-                <p>
-                  Date Completed:{" "}
-                  <span className="font-bold">{account.educationDate}</span>
-                </p>
-                <p>Certificates: </p>
-              </div>
-            </div>
-            <div className="flex flex-row gap-10 mt-8 mb-2">
-              <div className="flex flex-col mx-5">
-                <h3 className="font-bold">Work History</h3>
-                <p>
-                  Title:{" "}
-                  <span className="font-bold">
-                    {account.experienceArray[0].title}
-                  </span>
-                </p>
-                <p>
-                  Company:{" "}
-                  <span className="font-bold">
-                    {account.experienceArray[0].company}
-                  </span>
-                </p>
-                <p>
-                  Lenth:{" "}
-                  <span className="font-bold">
-                    {account.experienceArray[0].length}
-                  </span>
-                  {" year(s)"}
-                </p>
-              </div>
-              <div className="flex flex-col mx-5 max-w-72">
-                <p>Job Duties: </p>
-                <p className="font-bold text-wrap">
-                  {account.experienceArray[0].duties}
-                </p>
-              </div>
-            </div>
-            <div className="flex flex-row gap-10 mt-8 mb-2">
-              <div className="flex flex-col mx-5">
-                <h3 className="font-bold">Additional Information</h3>
-                <p>
-                  Recent car accident:{" "}
-                  <span className="font-bold">{account.carAccident}</span>
-                </p>
-                <p>
-                  Recent DUI: <span className="font-bold">{account.DUI}</span>
-                </p>
-                <p>
-                  Age Range:{" "}
-                  <span className="font-bold">{account.ageRange}</span>
-                </p>
+              {work != "" ? (
+                <div className="flex flex-row">
+                  <div className="mx-8">
+                    <p className="mt-5 text-xl text-gray-600 mb-3">
+                      Work History
+                    </p>
+                    <div className="ml-2 mt-3">
+                      {work.map((work) => (
+                        <div className="mt-3 pb-3 border-b-2 border-gray-300">
+                          <p key={work._id} className="font-semibold text-lg">
+                            {work.title}
+                          </p>
+                          <p key={work._id} className="mx-2 mt-1 text-gray-800">
+                            <span className="font-semibold">
+                              {work.company}
+                              {" : "}
+                            </span>
+
+                            {work.length}
+                            {" year(s)"}
+                          </p>
+                          <p key={work._id} className="mx-2 mt-1 text-gray-800">
+                            {work.duties}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <></>
+              )}
+
+              <div className="flex flex-row">
+                <div className="mx-8 w-1/3">
+                  <p className="mt-5 text-xl text-gray-600">
+                    Additional Information
+                  </p>
+                  <div className="ml-2 mt-1">
+                    <p className="text-gray-800 mt-3">
+                      Recent Car Accident:{" "}
+                      <span className="font-semibold">
+                        {account.carAccident}
+                      </span>
+                    </p>
+                    <p className="text-gray-800 mt-1">
+                      Recent DUI:{" "}
+                      <span className="font-semibold">{account.DUI}</span>
+                    </p>
+                    <p className="text-gray-800 mt-1">
+                      Age Range:{" "}
+                      <span className="font-semibold">{account.ageRange}</span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

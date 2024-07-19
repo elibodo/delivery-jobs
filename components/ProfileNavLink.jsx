@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const EmployerNavLink = ({ href, children }) => {
+const ProfileNavLink = ({ href, children }) => {
   const pathname = usePathname();
   const active = href === pathname;
   return (
@@ -19,4 +19,4 @@ const EmployerNavLink = ({ href, children }) => {
   );
 };
 
-export default EmployerNavLink;
+export default ProfileNavLink;

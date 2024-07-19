@@ -1,6 +1,6 @@
 import React from "react";
 
-const EmployerMessaging = () => {
+const jobSeekerMessaging = () => {
   return (
     <div>
       <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
@@ -11,4 +11,4 @@ const EmployerMessaging = () => {
   );
 };
 
-export default EmployerMessaging;
+export default jobSeekerMessaging;

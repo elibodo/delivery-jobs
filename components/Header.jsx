@@ -52,7 +52,10 @@ const Header = () => {
                 <Link href={"/"} className="outline_button">
                   Messages
                 </Link>
-                <Link href={"/jobSeekerAccount"} className="outline_button">
+                <Link
+                  href={"/jobSeekerAccount/jobSeekerResume"}
+                  className="outline_button"
+                >
                   View Profile
                 </Link>
                 <button
