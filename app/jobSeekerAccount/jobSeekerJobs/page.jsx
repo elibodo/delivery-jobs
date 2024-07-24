@@ -12,7 +12,6 @@ const JobsAppliedTo = ({ JobID }) => {
       const response = await fetch(`/api/job/${JobID}/`, { method: "GET" });
       const data = await response.json();
       setJobData(data);
-      console.log(jobData);
     };
     fetchJob();
   }, []);
@@ -24,9 +23,19 @@ const JobSeekerApplications = ({ accountData }) => {
     <div>
       {accountData.map((account) => (
         <div key={account._id}>
-          {account.applications.map((apps) => (
-            <JobsAppliedTo JobID={apps} />
-          ))}
+          {account.applications != "" ? (
+            <div>
+              {account.applications.map((apps) => (
+                <div>
+                  <JobsAppliedTo JobID={apps} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="description flex justify-center">
+              Please apply to jobs to view them on this page.
+            </p>
+          )}
         </div>
       ))}
     </div>
