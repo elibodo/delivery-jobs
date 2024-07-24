@@ -1,5 +1,5 @@
 import { connectToDB } from "@utils/database";
-import Employer from "@models/employer";
+import JobSeeker from "@models/jobSeeker";
 import User from "@models/user";
 
 export const PATCH = async (req, { params }) => {
@@ -7,12 +7,11 @@ export const PATCH = async (req, { params }) => {
     await connectToDB();
     const { name, email, phoneNumber } = await req.json();
     const user = await User.findOne({ email: params.id });
-    const account = await Employer.findOne({ email: params.id });
+    const account = await JobSeeker.findOne({ email: params.id });
     if (!user && !account) {
       return new Response("Failed to fetch account", { status: 500 });
     }
-
-    //need to check if email is already in use
+    //need to check if new email is in use
 
     // Update information
     user.name = name;

@@ -1,6 +1,5 @@
 "use client";
 
-import JobSeekerModal from "./JobSeekerModal";
 import { useSession } from "next-auth/react";
 import React, { Fragment, useEffect, useState } from "react";
 
