@@ -69,6 +69,9 @@ const JobSeekerAccount = new Schema(
     zipCode: {
       type: String,
     },
+    applications: {
+      type: Array,
+    },
   },
   { timestamps: true }
 );

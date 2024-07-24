@@ -141,7 +141,8 @@ const JobCard = ({ post, handleDelete }) => {
             </p>
             <p>{/* This shift is{"  "} {post.shifttype} */}</p>
             <p>
-              Days of the week this job operates:{"  "} {operationdays}
+              Days of the week this job operates:{"  "}
+              {operationdays}
             </p>
             <div className="flex flex-row">
               <p>Benefits this company offers:{"  "} </p>
