@@ -13,6 +13,11 @@ const JobSeekerNavLayout = ({ children }) => {
               </ProfileNavLink>
             </li>
             <li>
+              <ProfileNavLink href={"/jobSeekerAccount/jobSeekerJobs"}>
+                Jobs
+              </ProfileNavLink>
+            </li>
+            <li>
               <ProfileNavLink href={"/jobSeekerAccount/jobSeekerMessaging"}>
                 Messaging
               </ProfileNavLink>

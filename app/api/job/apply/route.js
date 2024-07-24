@@ -1,6 +1,7 @@
 import { connectToDB } from "@utils/database";
 import Job from "@models/job";
 import { NextResponse } from "next/server";
+import JobSeeker from "@models/jobSeeker";
 
 export const dynamic = "force-dynamic";
 
@@ -13,10 +14,19 @@ export async function POST(req, res) {
       if (!job) {
         return res.status(404).json({ message: "Job not found." });
       }
+      const applicant = await JobSeeker.findOne({ email: applicantEmail });
+      if (!applicant) {
+        return res.status(404).json({ message: "Applicant not found." });
+      }
 
       const newApplicant = applicantEmail;
+      const newJob = postId;
       await job.applicants.push(newApplicant);
       await job.save();
+
+      await applicant.applications.push(newJob);
+      await applicant.save();
+
       return NextResponse.json({ message: "Added user to applicants" });
     } catch (error) {
       return NextResponse.json({ message: "failed" }, { status: 500 });
