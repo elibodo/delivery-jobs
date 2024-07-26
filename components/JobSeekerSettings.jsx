@@ -123,6 +123,88 @@ const JobSeekerSettings = ({ account }) => {
       </div>
       <div className="w-1/3 mx-8">
         <p className="description text-center">Profile Options</p>
+        <div className="mt-4 flex flex-row items-start justify-between gap-3">
+          <div className="1/3">
+            <label className=" text-gray-900 font-semibold">City</label>
+            <input
+              defaultValue={account.city}
+              type="text"
+              className="form_input mt-1"
+              required
+            />
+          </div>
+          <div className="1/3">
+            <label className="text-gray-900 font-semibold">State:</label>
+            <select defaultValue={account.state} className="form_input mt-1">
+              <option value="AL">Alabama</option>
+              <option value="AK">Alaska</option>
+              <option value="AZ">Arizona</option>
+              <option value="AR">Arkansas</option>
+              <option value="CA">California</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="DE">Delaware</option>
+              <option value="DC">District Of Columbia</option>
+              <option value="FL">Florida</option>
+              <option value="GA">Georgia</option>
+              <option value="HI">Hawaii</option>
+              <option value="ID">Idaho</option>
+              <option value="IL">Illinois</option>
+              <option value="IN">Indiana</option>
+              <option value="IA">Iowa</option>
+              <option value="KS">Kansas</option>
+              <option value="KY">Kentucky</option>
+              <option value="LA">Louisiana</option>
+              <option value="ME">Maine</option>
+              <option value="MD">Maryland</option>
+              <option value="MA">Massachusetts</option>
+              <option value="MI">Michigan</option>
+              <option value="MN">Minnesota</option>
+              <option value="MS">Mississippi</option>
+              <option value="MO">Missouri</option>
+              <option value="MT">Montana</option>
+              <option value="NE">Nebraska</option>
+              <option value="NV">Nevada</option>
+              <option value="NH">New Hampshire</option>
+              <option value="NJ">New Jersey</option>
+              <option value="NM">New Mexico</option>
+              <option value="NY">New York</option>
+              <option value="NC">North Carolina</option>
+              <option value="ND">North Dakota</option>
+              <option value="OH">Ohio</option>
+              <option value="OK">Oklahoma</option>
+              <option value="OR">Oregon</option>
+              <option value="PA">Pennsylvania</option>
+              <option value="RI">Rhode Island</option>
+              <option value="SC">South Carolina</option>
+              <option value="SD">South Dakota</option>
+              <option value="TN">Tennessee</option>
+              <option value="TX">Texas</option>
+              <option value="UT">Utah</option>
+              <option value="VT">Vermont</option>
+              <option value="VA">Virginia</option>
+              <option value="WA">Washington</option>
+              <option value="WV">West Virginia</option>
+              <option value="WI">Wisconsin</option>
+              <option value="WY">Wyoming</option>
+            </select>
+          </div>
+          <div className="1/3">
+            <label className=" text-gray-900 font-semibold">Zip Code</label>
+            <input
+              defaultValue={account.zipCode}
+              type="text"
+              className="form_input mt-1"
+              required
+            />
+          </div>
+        </div>
+        <p className="text-gray-600 text-base mt-4">
+          Select Update Information to update your city, state, and zip code.
+        </p>
+        <div className="mt-4 flex flex-col items-center border-b-2 border-gray-200">
+          <button className="outline_button mb-4">Update Information</button>
+        </div>
         <p className="text-gray-600 text-base mt-4">
           To change password please sign out and navigate to the "Sign In / Sign
           Up" page. From there you can select "Forgot Password".
