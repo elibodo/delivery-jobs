@@ -1,6 +1,5 @@
 "use client";
 
-import JobSeekerModal from "./JobSeekerModal";
 import { useSession } from "next-auth/react";
 import React, { Fragment, useEffect, useState } from "react";
 
@@ -101,9 +100,10 @@ const JobSeekerHome = ({ account }) => {
             <div className="mx-8 w-1/3"></div>
           )}
         </div>
+        {/* Education, endorsements, and certificates */}
         <div className="flex flex-row">
           <div className="mx-8 w-1/3">
-            <p className="mt-5 text-xl text-gray-600">Education</p>
+            <p className="mt-10 text-xl text-gray-600">Education</p>
             <div className="ml-2 mt-1">
               <p className="text-gray-800 mt-3">
                 Highest Level:{" "}
@@ -114,19 +114,9 @@ const JobSeekerHome = ({ account }) => {
               </p>
             </div>
           </div>
-          {theEndorsements === "" ? (
-            <div className="mx-8 w-1/3"></div>
-          ) : (
-            <div className="mx-8 w-1/3">
-              <p className="mt-5 text-xl text-gray-600">Endorsements</p>
-              <div className="ml-2">
-                <p className="font-semibold mt-3">{theEndorsements}</p>
-              </div>
-            </div>
-          )}
           {certs != "" ? (
             <div className="mx-8 w-1/3">
-              <p className="mt-5 text-xl text-gray-600 mb-3">
+              <p className="mt-10 text-xl text-gray-600 mb-3">
                 Certifications:{" "}
               </p>
               <div className="ml-2 mt-1">
@@ -140,11 +130,22 @@ const JobSeekerHome = ({ account }) => {
           ) : (
             <div className="mx-8 w-1/3"></div>
           )}
+          {theEndorsements === "" ? (
+            <div className="mx-8 w-1/3"></div>
+          ) : (
+            <div className="mx-8 w-1/3">
+              <p className="mt-10 text-xl text-gray-600">Endorsements</p>
+              <div className="ml-2">
+                <p className="font-semibold mt-3">{theEndorsements}</p>
+              </div>
+            </div>
+          )}
         </div>
+        {/* Work experience */}
         {work != "" ? (
           <div className="flex flex-row">
             <div className="mx-8">
-              <p className="mt-5 text-xl text-gray-600 mb-3">Work History</p>
+              <p className="mt-10 text-xl text-gray-600 mb-3">Work History</p>
               <div className="ml-2 mt-3">
                 {work.map((work) => (
                   <div className="mt-3 pb-3 border-b-2 border-gray-300">
@@ -172,9 +173,12 @@ const JobSeekerHome = ({ account }) => {
           <></>
         )}
 
+        {/* additional information */}
         <div className="flex flex-row">
           <div className="mx-8 w-1/3">
-            <p className="mt-5 text-xl text-gray-600">Additional Information</p>
+            <p className="mt-10 text-xl text-gray-600">
+              Additional Information
+            </p>
             <div className="ml-2 mt-1">
               <p className="text-gray-800 mt-3">
                 Recent Car Accident:{" "}

@@ -21,7 +21,7 @@ const EmployerSettings = ({ account }) => {
           userID: session?.user?.id,
         }),
       });
-      signOut({ callbackUrl: "/", redirect: true });
+      signOut({ callbackUrl: "/logIn", redirect: true });
     }
   };
 
@@ -103,7 +103,7 @@ const EmployerSettings = ({ account }) => {
         <p className="description text-center">Profile Options</p>
         <form onSubmit={handleProfileInfo} className="flex flex-col mb-5">
           <div className="mt-4 flex flex-col items-start">
-            <label className=" text-gray-900 font-semibold">Name</label>
+            <label className="text-gray-900 font-semibold">Name</label>
             <input
               type="text"
               defaultValue={session.user.name}
@@ -199,7 +199,7 @@ const EmployerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-start">
-            <label className=" text-gray-900 font-semibold">
+            <label className="text-gray-900 font-semibold">
               Company Website
             </label>
             <input
