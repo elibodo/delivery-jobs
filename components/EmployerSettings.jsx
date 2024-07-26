@@ -199,7 +199,7 @@ const EmployerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-start">
-            <label className=" text-gray-900 font-semibold">
+            <label className="text-gray-900 font-semibold">
               Company Website
             </label>
             <input
