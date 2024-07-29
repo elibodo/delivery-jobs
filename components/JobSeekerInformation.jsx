@@ -621,6 +621,9 @@ const JobSeekerInformation = ({ account }) => {
       </div>
       <div className="flex flex-col items-center border-b-2 border-gray-300 mx-8">
         <button className="outline_button mb-4">Save Information</button>
+        {secondMessage && (
+          <p className="mb-4 font-bold text-orange-600">{secondMessage}</p>
+        )}
       </div>
       <div className="flex flex-col items-center mx-8">
         <p className="description text-center">Work History</p>
@@ -692,6 +695,9 @@ const JobSeekerInformation = ({ account }) => {
       ))}
       <div className="flex flex-col items-center mx-8">
         <button className="outline_button mb-4">Save Information</button>
+        {thirdMessage && (
+          <p className="mb-4 font-bold text-orange-600">{thirdMessage}</p>
+        )}
       </div>
     </div>
   );
