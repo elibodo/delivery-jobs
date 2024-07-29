@@ -16,6 +16,26 @@ export const GET = async (request, { params }) => {
   }
 };
 
+export const PATCH = async (req, { params }) => {
+  try {
+    await connectToDB();
+    const { city, state, zipCode } = await req.json();
+    const account = await JobSeeker.findOne({ email: params.id });
+    if (!account) {
+      return new Response("Failed to fetch account", { status: 500 });
+    }
+    //Updating information
+    account.city = city;
+    account.state = state;
+    account.zipCode = zipCode;
+    await account.save();
+
+    return new Response("Updated information", { status: 200 });
+  } catch (error) {
+    return new Response("Failed to update information", { status: 500 });
+  }
+};
+
 export const DELETE = async (req, { params }) => {
   try {
     await connectToDB();
