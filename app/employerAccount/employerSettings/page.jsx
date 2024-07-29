@@ -30,7 +30,6 @@ const EmployerAccountSettings = () => {
     };
     if (session?.user.email) fetchAccount();
   }, []);
-
   return (
     <div>
       <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
