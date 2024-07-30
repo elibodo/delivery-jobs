@@ -120,12 +120,56 @@ const JobSeekerInformation = ({ account }) => {
     e.preventDefault();
     if (!session.user.email) return "User Invalid";
     try {
+      await fetch(
+        `/api/account/${session?.user?.email}/jobseeker/updatedata2`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            educationLevel: eduCertData.educationLevel,
+            educationDate: eduCertData.educationDate,
+            certificates: eduCertData.certificates,
+          }),
+        }
+      );
       setSecondMessage("Information Updated");
     } catch (error) {
       setSecondMessage("Error Updating Information");
       console.log(error);
     }
   };
+  const [eduCertData, setEduCertData] = useState({
+    educationLevel: "",
+    educationDate: "",
+    certificates: "",
+  });
+
+  // Adding, removing, and changing certificates
+  const [certs, setCerts] = useState(account.certificates);
+  const handleCertificateAdd = () => {
+    setCerts([...certs, { certification: "" }]);
+  };
+  const handleCertificateRemove = (index) => {
+    const list = [...certs];
+    list.splice(index, 1);
+    setCerts(list);
+    setEduCertData({ ...eduCertData, certificates: list });
+  };
+  const handleCertificateChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...certs];
+    list[index][name] = value;
+    setCerts(list);
+    setEduCertData({ ...eduCertData, certificates: list });
+  };
+
+  useEffect(() => {
+    setEduCertData({
+      educationLevel: account.educationLevel,
+      educationDate: account.educationDate,
+      certificates: account.certificates,
+    });
+    //setCerts(account.certificates);
+  }, [setEduCertData]);
 
   // Updating work history
   const handleThirdSection = async (e) => {
@@ -557,6 +601,12 @@ const JobSeekerInformation = ({ account }) => {
                 defaultValue={account.educationLevel}
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setEduCertData({
+                    ...eduCertData,
+                    educationLevel: e.target.value,
+                  })
+                }
               >
                 <option value="High School">High School</option>
                 <option value="Associates">Associates</option>
@@ -571,6 +621,12 @@ const JobSeekerInformation = ({ account }) => {
                 Date of Completion
               </label>
               <input
+                onChange={(e) =>
+                  setEduCertData({
+                    ...eduCertData,
+                    educationDate: e.target.value,
+                  })
+                }
                 defaultValue={eduDate}
                 type="date"
                 className="form_input mt-1"
@@ -594,25 +650,43 @@ const JobSeekerInformation = ({ account }) => {
               <label className="text-gray-900 font-semibold">
                 Certificate Name
               </label>
-              {account.certificates.map((cert, index) => (
+              {certs.map((cert, index) => (
                 <div className="w-full">
                   <div
                     key={index}
                     className="flex flex-row items-center w-full gap-5"
                   >
                     <input
+                      name="certification"
+                      id="certification"
                       className="form_input mt-1"
                       type="text"
                       defaultValue={cert.certification}
+                      onChange={(e) => handleCertificateChange(e, index)}
                     />
-                    <button className="black_button">Remove</button>
                   </div>
-                  {account.certificates.length - 1 === index &&
-                    account.certificates.length < 5 && (
-                      <div className="flex mt-3 justify-center">
-                        <button className="black_button">Add More</button>
+                  <div className="flex flex-row justify-center gap-3">
+                    {certs.length - 1 === index && certs.length < 5 && (
+                      <div className="mt-3">
+                        <button
+                          onClick={handleCertificateAdd}
+                          className="black_button"
+                        >
+                          Add More
+                        </button>
                       </div>
                     )}
+                    {certs.length - 1 === index && index !== 0 && (
+                      <div className="mt-3">
+                        <button
+                          onClick={() => handleCertificateRemove(index)}
+                          className="black_button"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -620,7 +694,9 @@ const JobSeekerInformation = ({ account }) => {
         </div>
       </div>
       <div className="flex flex-col items-center border-b-2 border-gray-300 mx-8">
-        <button className="outline_button mb-4">Save Information</button>
+        <button onClick={handleSecondSection} className="outline_button mb-4">
+          Save Information
+        </button>
         {secondMessage && (
           <p className="mb-4 font-bold text-orange-600">{secondMessage}</p>
         )}
