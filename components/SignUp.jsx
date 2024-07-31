@@ -200,7 +200,7 @@ const signUp = (info) => {
     setJobSeekerData({ ...jobSeekerData, experienceArray: list });
   };
 
-  //Array for all certifications
+  //Array for all endorsements
   const [endorse, setEndorse] = useState([]);
   const allEndorsements = (e) => {
     const { value, checked } = e.target;

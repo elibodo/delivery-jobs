@@ -4,9 +4,12 @@ import React, { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
+import SeekerSettings from "@app/jobSeekerAccount/jobSeekerSettings/page";
 
 const JobSeekerSettings = ({ account }) => {
   const { data: session } = useSession();
+  const [profileMessage, setProfileMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleDelete = async () => {
     const hasConfirmed = confirm(
@@ -22,8 +25,6 @@ const JobSeekerSettings = ({ account }) => {
       signOut({ callbackUrl: "/logIn", redirect: true });
     }
   };
-
-  const [profileMessage, setProfileMessage] = useState("");
 
   const handleProfileInfo = async (e) => {
     e.preventDefault();
@@ -55,6 +56,37 @@ const JobSeekerSettings = ({ account }) => {
       phoneNumber: session?.user?.phoneNumber,
     });
   }, [setProfileData]);
+
+  const handleAccountInfo = async (e) => {
+    e.preventDefault();
+    if (!session.user.email) return "User Invalid";
+    try {
+      await fetch(`/api/account/${session?.user?.email}/jobseeker`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          city: data.city,
+          state: data.state,
+          zipCode: data.zipCode,
+        }),
+      });
+      setMessage("Profile Options Updated");
+    } catch (error) {
+      setMessage("Error Updating Information");
+      console.log(error);
+    }
+  };
+  const [data, setData] = useState({
+    city: "",
+    state: "",
+    zipCode: "",
+  });
+  useEffect(() => {
+    setData({
+      city: account.city,
+      state: account.state,
+      zipCode: account.zipCode,
+    });
+  }, [setData]);
 
   return (
     <div className="flex flex-row justify-center mb-5">
@@ -131,11 +163,16 @@ const JobSeekerSettings = ({ account }) => {
               type="text"
               className="form_input mt-1"
               required
+              onChange={(e) => setData({ ...data, city: e.target.value })}
             />
           </div>
           <div className="1/3">
             <label className="text-gray-900 font-semibold">State:</label>
-            <select defaultValue={account.state} className="form_input mt-1">
+            <select
+              onChange={(e) => setData({ ...data, state: e.target.value })}
+              defaultValue={account.state}
+              className="form_input mt-1"
+            >
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
               <option value="AZ">Arizona</option>
@@ -192,6 +229,7 @@ const JobSeekerSettings = ({ account }) => {
           <div className="1/3">
             <label className=" text-gray-900 font-semibold">Zip Code</label>
             <input
+              onChange={(e) => setData({ ...data, zipCode: e.target.value })}
               defaultValue={account.zipCode}
               type="text"
               className="form_input mt-1"
@@ -202,8 +240,13 @@ const JobSeekerSettings = ({ account }) => {
         <p className="text-gray-600 text-base mt-4">
           Select Update Information to update your city, state, and zip code.
         </p>
-        <div className="mt-4 flex flex-col items-center border-b-2 border-gray-200">
-          <button className="outline_button mb-4">Update Information</button>
+        <div className="my-4 flex flex-col items-center border-b-2 border-gray-200">
+          <button onClick={handleAccountInfo} className="mb-4 outline_button">
+            Update Information
+          </button>
+          {message && (
+            <p className="mb-4 font-bold text-orange-600">{message}</p>
+          )}
         </div>
         <p className="text-gray-600 text-base mt-4">
           To change password please sign out and navigate to the "Sign In / Sign

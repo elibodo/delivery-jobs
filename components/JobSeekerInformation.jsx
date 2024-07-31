@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 const JobSeekerInformation = ({ account }) => {
+  const { data: session } = useSession();
+
+  // Getting the dates in the correct format
   const licenseDate = new Date(account.licenseExpire).toLocaleDateString(
     "en-CA",
     {
@@ -15,6 +19,11 @@ const JobSeekerInformation = ({ account }) => {
     timeZone: "UTC",
   });
 
+  // Messages
+  const [firstMessage, setFirstMessage] = useState("");
+  const [secondMessage, setSecondMessage] = useState("");
+  const [thirdMessage, setThirdMessage] = useState("");
+
   // Endorsements
   const endorsementCheck = (value) => {
     if (account.endorsements.includes(value)) {
@@ -23,10 +32,193 @@ const JobSeekerInformation = ({ account }) => {
       return false;
     }
   };
+  const [endorse, setEndorse] = useState([]);
+  const handleEndorsementChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      setEndorse((nameOfEndorsement) => [...nameOfEndorsement, value]);
+    } else {
+      setEndorse((nameOfEndorsement) =>
+        nameOfEndorsement.filter(
+          (specificEndorsement) => specificEndorsement !== value
+        )
+      );
+    }
+  };
+  useEffect(() => {
+    setLicenseData({ ...licenseData, endorsements: endorse });
+  }, [endorse]);
 
-  // Certifications
-  const handleCertificateAdd = () => {};
-  const handleCertificateRemove = (index) => {};
+  //Updating information, first section. License, additional, cdl, dot, endorsements
+  const handleFirstSection = async (e) => {
+    e.preventDefault();
+    if (!session.user.email) return "User Invalid";
+    try {
+      await fetch(
+        `/api/account/${session?.user?.email}/jobseeker/updatedata1`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            licenseClass: licenseData.licenseClass,
+            licenseState: licenseData.licenseState,
+            licenseExpire: licenseData.licenseExpire,
+            carAccident: licenseData.carAccident,
+            DUI: licenseData.DUI,
+            ageRange: licenseData.ageRange,
+            DOT: licenseData.DOT,
+            DOTDate: licenseData.DOTDate,
+            CDL: licenseData.CDL,
+            twikCard: licenseData.twikCard,
+            CDLOption1: licenseData.CDLOption1,
+            CDLOption2: licenseData.CDLOption2,
+            endorsements: licenseData.endorsements,
+          }),
+        }
+      );
+      setFirstMessage("Information Updated");
+    } catch (error) {
+      setFirstMessage("Error Updating Information");
+      console.log(error);
+    }
+  };
+  const [licenseData, setLicenseData] = useState({
+    licenseClass: "",
+    licenseState: "",
+    licenseExpire: "",
+    carAccident: "",
+    DUI: "",
+    ageRange: "",
+    DOT: "",
+    DOTDate: "",
+    CDL: "",
+    twikCard: "",
+    CDLOption1: "",
+    CDLOption2: "",
+    endorsements: "",
+  });
+  useEffect(() => {
+    setLicenseData({
+      licenseClass: account.licenseClass,
+      licenseState: account.licenseState,
+      licenseExpire: account.licenseExpire,
+      carAccident: account.carAccident,
+      DUI: account.DUI,
+      ageRange: account.ageRange,
+      DOT: account.DOT,
+      DOTDate: account.DOTExpire,
+      CDL: account.CDL,
+      twikCard: account.twikCard,
+      CDLOption1: account.CDLOption1,
+      CDLOption2: account.CDLOption2,
+      endorsements: account.endorsements,
+    });
+    setEndorse(account.endorsements);
+  }, [setLicenseData]);
+
+  // Updating education and certificates
+  const handleSecondSection = async (e) => {
+    e.preventDefault();
+    if (!session.user.email) return "User Invalid";
+    try {
+      await fetch(
+        `/api/account/${session?.user?.email}/jobseeker/updatedata2`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            educationLevel: eduCertData.educationLevel,
+            educationDate: eduCertData.educationDate,
+            certificates: eduCertData.certificates,
+          }),
+        }
+      );
+      setSecondMessage("Information Updated");
+    } catch (error) {
+      setSecondMessage("Error Updating Information");
+      console.log(error);
+    }
+  };
+  const [eduCertData, setEduCertData] = useState({
+    educationLevel: "",
+    educationDate: "",
+    certificates: "",
+  });
+
+  // Adding, removing, and changing certificates
+  const [certs, setCerts] = useState(account.certificates);
+  const handleCertificateAdd = () => {
+    setCerts([...certs, { certification: "" }]);
+  };
+  const handleCertificateRemove = (index) => {
+    const list = [...certs];
+    list.splice(index, 1);
+    setCerts(list);
+    setEduCertData({ ...eduCertData, certificates: list });
+  };
+  const handleCertificateChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...certs];
+    list[index][name] = value;
+    setCerts(list);
+    setEduCertData({ ...eduCertData, certificates: list });
+  };
+
+  useEffect(() => {
+    setEduCertData({
+      educationLevel: account.educationLevel,
+      educationDate: account.educationDate,
+      certificates: account.certificates,
+    });
+  }, [setEduCertData]);
+
+  // Updating work history
+  const handleThirdSection = async (e) => {
+    e.preventDefault();
+    if (!session.user.email) return "User Invalid";
+    try {
+      await fetch(
+        `/api/account/${session?.user?.email}/jobseeker/updatedata3`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            workHistory: workHistoryData.experienceArray,
+          }),
+        }
+      );
+      setThirdMessage("Information Updated");
+    } catch (error) {
+      setThirdMessage("Error Updating Information");
+      console.log(error);
+    }
+  };
+  const [workHistory, setWorkHistory] = useState(account.experienceArray);
+  const handleWorkHistoryAdd = () => {
+    setWorkHistory([
+      ...workHistory,
+      { title: "", company: "", length: "", duties: "" },
+    ]);
+  };
+  const handleWorkHistoryRemove = (index) => {
+    const list = [...workHistory];
+    list.splice(index, 1);
+    setWorkHistory(list);
+    setWorkHistoryData({ ...workHistoryData, experienceArray: list });
+  };
+  const handleWorkHistoryChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...workHistory];
+    list[index][name] = value;
+    setWorkHistory(list);
+    setWorkHistoryData({ ...workHistoryData, experienceArray: list });
+  };
+
+  const [workHistoryData, setWorkHistoryData] = useState({
+    experienceArray: "",
+  });
+  useEffect(() => {
+    setWorkHistoryData({
+      experienceArray: account.experienceArray,
+    });
+  }, [setWorkHistory]);
 
   return (
     <div>
@@ -45,6 +237,12 @@ const JobSeekerInformation = ({ account }) => {
                 type="text"
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    licenseClass: e.target.value,
+                  })
+                }
               />
             </div>
             <div className="mt-4 flex flex-col items-start">
@@ -56,6 +254,12 @@ const JobSeekerInformation = ({ account }) => {
                 type="text"
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    licenseState: e.target.value,
+                  })
+                }
               >
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -119,6 +323,12 @@ const JobSeekerInformation = ({ account }) => {
                 type="date"
                 className="form_input mt-1 mb-3"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    licenseExpire: e.target.value,
+                  })
+                }
               />
             </div>
             {/* additional info */}
@@ -131,6 +341,12 @@ const JobSeekerInformation = ({ account }) => {
                 defaultValue={account.carAccident}
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    carAccident: e.target.value,
+                  })
+                }
               >
                 <option>Yes</option>
                 <option>No</option>
@@ -144,6 +360,12 @@ const JobSeekerInformation = ({ account }) => {
                 defaultValue={account.DUI}
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    DUI: e.target.value,
+                  })
+                }
               >
                 <option>Yes</option>
                 <option>No</option>
@@ -155,6 +377,12 @@ const JobSeekerInformation = ({ account }) => {
                 defaultValue={account.ageRange}
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    ageRange: e.target.value,
+                  })
+                }
               >
                 <option>Under 18</option>
                 <option>18-21</option>
@@ -184,6 +412,12 @@ const JobSeekerInformation = ({ account }) => {
                 type="text"
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    DOT: e.target.value,
+                  })
+                }
               >
                 <option>Yes</option>
                 <option>No</option>
@@ -198,6 +432,12 @@ const JobSeekerInformation = ({ account }) => {
                 type="date"
                 className="form_input mt-1 mb-3"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    DOTDate: e.target.value,
+                  })
+                }
               />
             </div>
             {/* cdl information */}
@@ -211,6 +451,12 @@ const JobSeekerInformation = ({ account }) => {
                 type="text"
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    CDL: e.target.value,
+                  })
+                }
               >
                 <option>Yes</option>
                 <option>No</option>
@@ -223,6 +469,12 @@ const JobSeekerInformation = ({ account }) => {
                 type="text"
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setLicenseData({
+                    ...licenseData,
+                    twikCard: e.target.value,
+                  })
+                }
               >
                 <option>Yes</option>
                 <option>No</option>
@@ -236,6 +488,12 @@ const JobSeekerInformation = ({ account }) => {
                   type="text"
                   className="form_input mt-1 mb-3"
                   required
+                  onChange={(e) =>
+                    setLicenseData({
+                      ...licenseData,
+                      CDLOption1: e.target.value,
+                    })
+                  }
                 >
                   <option>Interstate</option>
                   <option>Intrastate</option>
@@ -245,6 +503,12 @@ const JobSeekerInformation = ({ account }) => {
                   type="text"
                   className="form_input mt-1 mb-3"
                   required
+                  onChange={(e) =>
+                    setLicenseData({
+                      ...licenseData,
+                      CDLOption2: e.target.value,
+                    })
+                  }
                 >
                   <option>Excepted</option>
                   <option>Non-Excepted</option>
@@ -261,6 +525,7 @@ const JobSeekerInformation = ({ account }) => {
                   className="mr-1"
                   value={"A-MTRCL Also"}
                   defaultChecked={endorsementCheck("A-MTRCL Also")}
+                  onChange={handleEndorsementChange}
                 />
                 A-MTRCL Also
               </label>
@@ -272,6 +537,7 @@ const JobSeekerInformation = ({ account }) => {
                   className="mr-1"
                   value={"H-HazMat"}
                   defaultChecked={endorsementCheck("H-HazMat")}
+                  onChange={handleEndorsementChange}
                 />
                 H-HazMat
               </label>
@@ -283,6 +549,7 @@ const JobSeekerInformation = ({ account }) => {
                   className="mr-1"
                   value={"N-Tanker"}
                   defaultChecked={endorsementCheck("N-Tanker")}
+                  onChange={handleEndorsementChange}
                 />
                 N-Tanker
               </label>
@@ -294,6 +561,7 @@ const JobSeekerInformation = ({ account }) => {
                   className="mr-1"
                   value={"O-MTRCL Only"}
                   defaultChecked={endorsementCheck("O-MTRCL Only")}
+                  onChange={handleEndorsementChange}
                 />
                 O-MTRCL Only
               </label>
@@ -305,6 +573,7 @@ const JobSeekerInformation = ({ account }) => {
                   className="mr-1"
                   value={"P->15 Passengers"}
                   defaultChecked={endorsementCheck("P->15 Passengers")}
+                  onChange={handleEndorsementChange}
                 />
                 {"P->15 Passengers"}
               </label>
@@ -316,6 +585,7 @@ const JobSeekerInformation = ({ account }) => {
                   className="mr-1"
                   value={"S-School Bus"}
                   defaultChecked={endorsementCheck("S-School Bus")}
+                  onChange={handleEndorsementChange}
                 />
                 S-School Bus
               </label>
@@ -327,6 +597,7 @@ const JobSeekerInformation = ({ account }) => {
                   className="mr-1"
                   value={"T-Dbl/Trpl Trailers"}
                   defaultChecked={endorsementCheck("T-Dbl/Trpl Trailers")}
+                  onChange={handleEndorsementChange}
                 />
                 T-Dbl/Trpl Trailers
               </label>
@@ -338,6 +609,7 @@ const JobSeekerInformation = ({ account }) => {
                   className="mr-1"
                   value={"X-HM+Tanker"}
                   defaultChecked={endorsementCheck("X-HM+Tanker")}
+                  onChange={handleEndorsementChange}
                 />
                 X-HM+Tanker
               </label>
@@ -346,7 +618,12 @@ const JobSeekerInformation = ({ account }) => {
         </div>
       </form>
       <div className="flex flex-col items-center border-b-2 border-gray-300 mx-8">
-        <button className="outline_button mb-4">Save Information</button>
+        <button onClick={handleFirstSection} className="outline_button mb-4">
+          Save Information
+        </button>
+        {firstMessage && (
+          <p className="mb-4 font-bold text-orange-600">{firstMessage}</p>
+        )}
       </div>
       <div className="flex flex-row justify-center">
         <div className="w-1/3 mx-8">
@@ -361,6 +638,12 @@ const JobSeekerInformation = ({ account }) => {
                 defaultValue={account.educationLevel}
                 className="form_input mt-1"
                 required
+                onChange={(e) =>
+                  setEduCertData({
+                    ...eduCertData,
+                    educationLevel: e.target.value,
+                  })
+                }
               >
                 <option value="High School">High School</option>
                 <option value="Associates">Associates</option>
@@ -375,6 +658,12 @@ const JobSeekerInformation = ({ account }) => {
                 Date of Completion
               </label>
               <input
+                onChange={(e) =>
+                  setEduCertData({
+                    ...eduCertData,
+                    educationDate: e.target.value,
+                  })
+                }
                 defaultValue={eduDate}
                 type="date"
                 className="form_input mt-1"
@@ -398,25 +687,43 @@ const JobSeekerInformation = ({ account }) => {
               <label className="text-gray-900 font-semibold">
                 Certificate Name
               </label>
-              {account.certificates.map((cert, index) => (
+              {certs.map((cert, index) => (
                 <div className="w-full">
                   <div
                     key={index}
                     className="flex flex-row items-center w-full gap-5"
                   >
                     <input
+                      name="certification"
+                      id="certification"
                       className="form_input mt-1"
                       type="text"
                       defaultValue={cert.certification}
+                      onChange={(e) => handleCertificateChange(e, index)}
                     />
-                    <button className="black_button">Remove</button>
                   </div>
-                  {account.certificates.length - 1 === index &&
-                    account.certificates.length < 5 && (
-                      <div className="flex mt-3 justify-center">
-                        <button className="black_button">Add More</button>
+                  <div className="flex flex-row justify-center gap-3">
+                    {certs.length - 1 === index && certs.length < 5 && (
+                      <div className="mt-3">
+                        <button
+                          onClick={handleCertificateAdd}
+                          className="black_button"
+                        >
+                          Add Another
+                        </button>
                       </div>
                     )}
+                    {certs.length - 1 === index && index !== 0 && (
+                      <div className="mt-3">
+                        <button
+                          onClick={() => handleCertificateRemove(index)}
+                          className="black_button"
+                        >
+                          Remove Last
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -424,13 +731,18 @@ const JobSeekerInformation = ({ account }) => {
         </div>
       </div>
       <div className="flex flex-col items-center border-b-2 border-gray-300 mx-8">
-        <button className="outline_button mb-4">Save Information</button>
+        <button onClick={handleSecondSection} className="outline_button mb-4">
+          Save Information
+        </button>
+        {secondMessage && (
+          <p className="mb-4 font-bold text-orange-600">{secondMessage}</p>
+        )}
       </div>
       <div className="flex flex-col items-center mx-8">
         <p className="description text-center">Work History</p>
       </div>
 
-      {account.experienceArray.map((workdata, index) => (
+      {workHistory.map((workdata, index) => (
         <div>
           <div key={index} className="flex flex-row justify-center">
             <div className="w-1/3 mx-8">
@@ -439,6 +751,9 @@ const JobSeekerInformation = ({ account }) => {
                 <div className="mt-2 flex flex-col items-start">
                   <label className="text-gray-900 font-semibold">Title</label>
                   <input
+                    onChange={(e) => handleWorkHistoryChange(e, index)}
+                    name="title"
+                    id="title"
                     defaultValue={workdata.title}
                     className="form_input mt-1"
                     required
@@ -449,6 +764,9 @@ const JobSeekerInformation = ({ account }) => {
                     Company Name
                   </label>
                   <input
+                    onChange={(e) => handleWorkHistoryChange(e, index)}
+                    name="company"
+                    id="company"
                     defaultValue={workdata.company}
                     type="text"
                     className="form_input mt-1"
@@ -460,6 +778,9 @@ const JobSeekerInformation = ({ account }) => {
                     Length (Years)
                   </label>
                   <input
+                    onChange={(e) => handleWorkHistoryChange(e, index)}
+                    name="length"
+                    id="length"
                     defaultValue={workdata.length}
                     type="text"
                     className="form_input mt-1"
@@ -476,17 +797,32 @@ const JobSeekerInformation = ({ account }) => {
                     Job Duties
                   </label>
                   <textarea
+                    onChange={(e) => handleWorkHistoryChange(e, index)}
+                    name="duties"
+                    id="duties"
                     defaultValue={workdata.duties}
                     className="resize-y min-h-[150px] form_input mt-1 h-[150px]"
                     required
                   />
                 </div>
-                <div className="flex flex-row mt-3 justify-center gap-4">
-                  <button className="black_button">Remove Job</button>
-                  {account.experienceArray.length - 1 === index &&
-                    account.experienceArray.length < 5 && (
-                      <button className="black_button">Add More</button>
+                <div className="flex flex-row mt-3 justify-center gap-3">
+                  {workHistory.length - 1 === index &&
+                    workHistory.length < 5 && (
+                      <button
+                        onClick={handleWorkHistoryAdd}
+                        className="black_button"
+                      >
+                        Add Another
+                      </button>
                     )}
+                  {workHistory.length - 1 === index && index !== 0 && (
+                    <button
+                      onClick={() => handleWorkHistoryRemove(index)}
+                      className="black_button"
+                    >
+                      Remove Job
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -495,7 +831,12 @@ const JobSeekerInformation = ({ account }) => {
         </div>
       ))}
       <div className="flex flex-col items-center mx-8">
-        <button className="outline_button mb-4">Save Information</button>
+        <button onClick={handleThirdSection} className="outline_button mb-4">
+          Save Information
+        </button>
+        {thirdMessage && (
+          <p className="mb-4 font-bold text-orange-600">{thirdMessage}</p>
+        )}
       </div>
     </div>
   );

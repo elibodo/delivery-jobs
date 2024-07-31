@@ -35,7 +35,7 @@ export const PATCH = async (req, { params }) => {
 
     return new Response("Updated information", { status: 200 });
   } catch (error) {
-    return new Response("Failed to fetch account", { status: 500 });
+    return new Response("Failed to update information", { status: 500 });
   }
 };
 
