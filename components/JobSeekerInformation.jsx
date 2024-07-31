@@ -168,7 +168,6 @@ const JobSeekerInformation = ({ account }) => {
       educationDate: account.educationDate,
       certificates: account.certificates,
     });
-    //setCerts(account.certificates);
   }, [setEduCertData]);
 
   // Updating work history
@@ -176,12 +175,50 @@ const JobSeekerInformation = ({ account }) => {
     e.preventDefault();
     if (!session.user.email) return "User Invalid";
     try {
+      await fetch(
+        `/api/account/${session?.user?.email}/jobseeker/updatedata3`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            workHistory: workHistoryData.experienceArray,
+          }),
+        }
+      );
       setThirdMessage("Information Updated");
     } catch (error) {
       setThirdMessage("Error Updating Information");
       console.log(error);
     }
   };
+  const [workHistory, setWorkHistory] = useState(account.experienceArray);
+  const handleWorkHistoryAdd = () => {
+    setWorkHistory([
+      ...workHistory,
+      { title: "", company: "", length: "", duties: "" },
+    ]);
+  };
+  const handleWorkHistoryRemove = (index) => {
+    const list = [...workHistory];
+    list.splice(index, 1);
+    setWorkHistory(list);
+    setWorkHistoryData({ ...workHistoryData, experienceArray: list });
+  };
+  const handleWorkHistoryChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...workHistory];
+    list[index][name] = value;
+    setWorkHistory(list);
+    setWorkHistoryData({ ...workHistoryData, experienceArray: list });
+  };
+
+  const [workHistoryData, setWorkHistoryData] = useState({
+    experienceArray: "",
+  });
+  useEffect(() => {
+    setWorkHistoryData({
+      experienceArray: account.experienceArray,
+    });
+  }, [setWorkHistory]);
 
   return (
     <div>
@@ -672,7 +709,7 @@ const JobSeekerInformation = ({ account }) => {
                           onClick={handleCertificateAdd}
                           className="black_button"
                         >
-                          Add More
+                          Add Another
                         </button>
                       </div>
                     )}
@@ -682,7 +719,7 @@ const JobSeekerInformation = ({ account }) => {
                           onClick={() => handleCertificateRemove(index)}
                           className="black_button"
                         >
-                          Remove
+                          Remove Last
                         </button>
                       </div>
                     )}
@@ -705,7 +742,7 @@ const JobSeekerInformation = ({ account }) => {
         <p className="description text-center">Work History</p>
       </div>
 
-      {account.experienceArray.map((workdata, index) => (
+      {workHistory.map((workdata, index) => (
         <div>
           <div key={index} className="flex flex-row justify-center">
             <div className="w-1/3 mx-8">
@@ -714,6 +751,9 @@ const JobSeekerInformation = ({ account }) => {
                 <div className="mt-2 flex flex-col items-start">
                   <label className="text-gray-900 font-semibold">Title</label>
                   <input
+                    onChange={(e) => handleWorkHistoryChange(e, index)}
+                    name="title"
+                    id="title"
                     defaultValue={workdata.title}
                     className="form_input mt-1"
                     required
@@ -724,6 +764,9 @@ const JobSeekerInformation = ({ account }) => {
                     Company Name
                   </label>
                   <input
+                    onChange={(e) => handleWorkHistoryChange(e, index)}
+                    name="company"
+                    id="company"
                     defaultValue={workdata.company}
                     type="text"
                     className="form_input mt-1"
@@ -735,6 +778,9 @@ const JobSeekerInformation = ({ account }) => {
                     Length (Years)
                   </label>
                   <input
+                    onChange={(e) => handleWorkHistoryChange(e, index)}
+                    name="length"
+                    id="length"
                     defaultValue={workdata.length}
                     type="text"
                     className="form_input mt-1"
@@ -751,17 +797,32 @@ const JobSeekerInformation = ({ account }) => {
                     Job Duties
                   </label>
                   <textarea
+                    onChange={(e) => handleWorkHistoryChange(e, index)}
+                    name="duties"
+                    id="duties"
                     defaultValue={workdata.duties}
                     className="resize-y min-h-[150px] form_input mt-1 h-[150px]"
                     required
                   />
                 </div>
-                <div className="flex flex-row mt-3 justify-center gap-4">
-                  <button className="black_button">Remove Job</button>
-                  {account.experienceArray.length - 1 === index &&
-                    account.experienceArray.length < 5 && (
-                      <button className="black_button">Add More</button>
+                <div className="flex flex-row mt-3 justify-center gap-3">
+                  {workHistory.length - 1 === index &&
+                    workHistory.length < 5 && (
+                      <button
+                        onClick={handleWorkHistoryAdd}
+                        className="black_button"
+                      >
+                        Add Another
+                      </button>
                     )}
+                  {workHistory.length - 1 === index && index !== 0 && (
+                    <button
+                      onClick={() => handleWorkHistoryRemove(index)}
+                      className="black_button"
+                    >
+                      Remove Job
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -770,7 +831,9 @@ const JobSeekerInformation = ({ account }) => {
         </div>
       ))}
       <div className="flex flex-col items-center mx-8">
-        <button className="outline_button mb-4">Save Information</button>
+        <button onClick={handleThirdSection} className="outline_button mb-4">
+          Save Information
+        </button>
         {thirdMessage && (
           <p className="mb-4 font-bold text-orange-600">{thirdMessage}</p>
         )}
