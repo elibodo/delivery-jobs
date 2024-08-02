@@ -59,19 +59,20 @@ const JobCard = ({ post, handleDelete }) => {
   };
 
   return (
-    <div className="flex flex-row gap-4">
+    <div className="flex flex-col md:flex-row gap-4">
       <div className="prompt_card overflow-hidden relative">
         <button
           onClick={() => {
             setAccordionOpen(!accordionOpen);
           }}
-          className="flex justify-between w-full text-left gap-5 items-center"
+          className="flex justify-between w-full text-left md:gap-5 items-center"
         >
-          <div>
+          {/* Desktop layout */}
+          <div className="hidden md:flex md:flex-col">
             <h1 className="font-bold text-lg">{post.title}</h1>
             <p className="text-sm text-gray-900">{post.companyName}</p>
           </div>
-          <div className="flex flex-row gap-2 text-right">
+          <div className="hidden md:flex md:flex-row md:gap-2 md:text-center">
             <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
               {post.jobtype}
             </p>
@@ -83,9 +84,32 @@ const JobCard = ({ post, handleDelete }) => {
               {post.dispatchlocation}
             </p>
           </div>
+          {/* Mobile layout */}
+          <div className="md:hidden">
+            <div>
+              <h1 className="text-lg font-bold">{post.title}</h1>
+              <p className="text-sm text-gray-900">{post.companyName}</p>
+            </div>
+            <div className="mt-2 text-sm">
+              <div className="flex gap-5">
+                <p className="text-gray-900 bg-slate-200 p-1 rounded">
+                  {post.jobtype}
+                </p>
+                <p className="text-gray-900 bg-slate-200 p-1 rounded">
+                  {post.dispatchlocation}
+                </p>
+              </div>
+              <div className="flex mt-2">
+                <p className="font-semibold text-gray-900 bg-slate-200 p-1 rounded">
+                  From ${post.payrange[0]} - ${post.payrange[1]} a{" "}
+                  {post.payrange[2]}
+                </p>
+              </div>
+            </div>
+          </div>
           {/* pay from database template */}
           <svg
-            className=" fill-gray-700 shrink-0 ml-5"
+            className=" fill-gray-700 shrink-0 md:ml-5"
             width="16"
             height="16"
             xmlns="http://www.w3.org/2000/svg"
@@ -119,17 +143,22 @@ const JobCard = ({ post, handleDelete }) => {
         >
           <div className="space-y-2 text-sm text-gray-900 overflow-hidden whitespace-pre-wrap mt-2 border-t-2 border-slate-300">
             {/* apply button */}
-            {session?.user?.accountType === "Job Seeker" ? (
-              <button onClick={handleApply} className="black_button w-32 mt-3">
-                Apply
-              </button>
-            ) : session === null ? (
-              <Link href={"/logIn"} className="black_button w-40 mt-3">
-                Sign In To Apply!
-              </Link>
-            ) : (
-              <></>
-            )}
+            <div className="flex justify-center md:justify-start">
+              {session?.user?.accountType === "Job Seeker" ? (
+                <button
+                  onClick={handleApply}
+                  className="black_button w-32 mt-2"
+                >
+                  Apply
+                </button>
+              ) : session === null ? (
+                <Link href={"/logIn"} className="black_button w-40 mt-3">
+                  Sign In To Apply!
+                </Link>
+              ) : (
+                <></>
+              )}
+            </div>
             <p className="mt-3 mb-5">{post.description}</p>
             <p className="font-bold">Additional Information</p>
             {/* <p>Number of hires: {post.numOfHires}</p> */}
