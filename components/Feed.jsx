@@ -5,7 +5,7 @@ import Pagination from "./Pagination";
 
 const JobCardList = ({ data }) => {
   return (
-    <div className="mt-16 prompt_layout">
+    <div className="mt-6 space-y-6 py-4 columns-1">
       {data.map((post) => (
         <JobCard key={post._id} post={post} />
       ))}
@@ -67,13 +67,13 @@ const Feed = () => {
 
   return (
     <section className="feed">
-      <div className="relative w-full flex-center">
+      <div className="flex justify-items-start w-full">
         <input
           type="text"
           value={searchText}
           onChange={handleSearchChange}
           required
-          className="search_input peer"
+          className="search_input px-10"
           placeholder="Search for a job"
         />
       </div>
