@@ -220,33 +220,30 @@ const signUp = (info) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center content-center items-center bg-gray-50 border-black border-2 p-5 rounded-xl"
+      className="flex flex-col p-5 justify-center content-center items-center bg-gray-100 border-1 rounded-xl mt-4"
     >
-      <h1 className="text-2xl font-bold">Create an Account</h1>
-      <div className="flex flex-col justify-between border border-black m-3 p-4 rounded-xl bg-white">
+      <h1 className="text-2xl mb-3 pb-3 font-bold border-b-2 border-gray-300">
+        Create an Account
+      </h1>
+      <div className="flex flex-col w-full">
         {/* Job Seeker or Employer */}
-        <div className="label_input_text mt-1 border-b-2 pb-5 border-gray-500">
-          <label className="mr-10 text-gray-900 font-semibold mb-3">
+        <div className="flex flex-col items-center border-b-2 border-gray-300">
+          <label className="text-gray-900 font-semibold mb-2">
             Are you a Job Seeker or an Employer?
           </label>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="JobSeeker" className="font-semibold text-gray-700">
               <input
                 required
                 type="radio"
                 id="JobSeeker"
                 name="SeekerOrEmployer"
-                className="mb-3"
+                className="mb-1"
                 onChange={showJobSeekerInfo}
-              />
+              />{" "}
               Job Seeker
             </label>
-          </div>
-          <div>
-            <label
-              htmlFor="Employer"
-              className="font-semibold text-gray-700 ml-5"
-            >
+            <label htmlFor="Employer" className="font-semibold text-gray-700">
               <input
                 required
                 type="radio"
@@ -254,24 +251,24 @@ const signUp = (info) => {
                 name="SeekerOrEmployer"
                 className="mb-3"
                 onChange={showEmployerInfo}
-              />
+              />{" "}
               Employer
             </label>
           </div>
         </div>
 
         {/* Name */}
-        <div className="label_input_text mt-2 mx-5">
+        <div className="mt-2 flex flex-col mx-5">
           <label className="mr-5 text-gray-900 font-semibold">Full name:</label>
           <input
             required
             onChange={(e) => setName(e.target.value)}
             type="text"
-            className="input_style"
+            className="rounded-lg p-3 text-sm text-gray-700 outline-0"
           />
         </div>
         {/* Phone Number */}
-        <div className="label_input_text mt-1 mx-5">
+        <div className="mt-2 flex flex-col mx-5">
           <label className="mr-5 text-gray-900 font-semibold">
             Phone Number:
           </label>
@@ -279,11 +276,11 @@ const signUp = (info) => {
             required
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
-            className="input_style"
+            className="rounded-lg p-3 text-sm text-gray-700 outline-0"
           />
         </div>
         {/* Email */}
-        <div className="label_input_text mt-1 mx-5">
+        <div className="mt-2 flex flex-col mx-5">
           <label className="mr-5 text-gray-900 font-semibold">
             Email address:
           </label>
@@ -291,17 +288,17 @@ const signUp = (info) => {
             required
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-            className="input_style"
+            className="rounded-lg p-3 text-sm text-gray-700 outline-0"
           />
         </div>
         {/* Password */}
-        <div className="label_input_text mt-1 mb-2 mx-5">
+        <div className="mt-2 flex flex-col mx-5">
           <label className="mr-5 text-gray-900 font-semibold">Password:</label>
           <input
             required
             onChange={(e) => setPassword(e.target.value)}
             type="password"
-            className="input_style"
+            className="rounded-lg p-3 text-sm text-gray-700 outline-0"
           />
         </div>
 

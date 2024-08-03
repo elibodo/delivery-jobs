@@ -37,22 +37,22 @@ const LogIn = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center content-center items-center bg-gray-50 border-black border-2 p-4 rounded-xl"
+      className="flex flex-col justify-center content-center items-center bg-gray-100  border-1 p-4 rounded-xl mt-4"
     >
-      <h1 className="text-2xl font-bold p-5">Sign In</h1>
+      <h1 className="text-2xl font-semibold p-5">Sign In</h1>
       <div className="flex flex-row">
         <div className="flex flex-col items-center ">
           <input
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Email"
-            className="p-2 m-2 border border-black rounded-lg bg-gray-100"
+            className="form_input p-2 m-2"
           />
           <input
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
-            className="p-2 m-2 border border-black rounded-lg bg-gray-100"
+            className="form_input p-2 m-2"
           />
           <button className="black_button m-2">Sign In</button>
         </div>
@@ -62,7 +62,7 @@ const LogIn = () => {
           Dont have an account?{" "}
           <span className="font-semibold underline">Register</span>
         </Link>
-        <Link href={"/passwordRequest"} className="m-3">
+        <Link href={"/passwordRequest"} className="mt-3">
           Forgot your password?{" "}
           <span className="font-semibold underline">Click Here</span>
         </Link>
