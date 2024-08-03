@@ -38,11 +38,7 @@
   }
 }
 .app {
-  @apply min-h-screen flex items-center flex-col max-w-7xl mx-auto sm:px-16 p-6;
-}
-
-.head_text {
-  @apply mt-10 text-4xl font-extrabold leading-6 text-black;
+  @apply min-h-screen flex items-center flex-col max-w-7xl mx-auto md:px-16 p-2 pt-6;
 }
 
 .description {
@@ -53,15 +49,8 @@
   @apply flex justify-center items-center;
 }
 
-.button_viewJobs {
-  @apply mt-5 text-3xl text-black;
-}
-.flex_between {
-  @apply flex justify-between items-center;
-}
-
 .logo_text {
-  @apply font-extrabold text-3xl text-black tracking-wide;
+  @apply font-extrabold text-2xl sm:text-3xl md:text-4xl text-black tracking-wide;
 }
 
 .black_button {
@@ -70,10 +59,6 @@
 
 .outline_button {
   @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-orange-600 hover:border-orange-600 hover:text-white text-center text-sm font-normal flex items-center justify-center;
-}
-
-.footer_text {
-  @apply mt-auto text-left p-5 w-full;
 }
 
 .label_input_text {
@@ -88,32 +73,16 @@
   @apply w-full flex rounded-lg p-3 text-sm text-gray-700 outline-0;
 }
 
-.form_input2 {
-  @apply flex rounded-lg p-3 text-sm text-gray-700 outline-0;
-}
-
-.flex-start {
-  @apply flex justify-start items-start;
-}
-
 .feed {
-  @apply mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-2;
+  @apply mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-1;
 }
 
 .prompt_card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter w-[800px] h-fit;
+  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-4 md:p-6 pb-2 md:pb-4 backdrop-blur-lg backdrop-filter md:w-[750px] h-fit;
 }
 
 .search_input {
-  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
-}
-
-.prompt_layout {
-  @apply space-y-6 py-4 columns-1 sm:gap-6;
-}
-
-.dropdown {
-  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end;
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-5 pr-5 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
 }
 
 .tooltip {
