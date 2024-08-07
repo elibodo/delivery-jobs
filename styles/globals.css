@@ -92,3 +92,10 @@
 .has-tooltip:hover .tooltip {
   @apply visible z-50;
 }
+
+/* mt-2 flex flex-col mx-5 // div */
+/* text-gray-900 font-semibold // label */
+/* rounded-lg p-2 text-sm text-gray-700 outline-0 // input */
+/* mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5 // div also */
+/* mt-5 text-lg text-gray-900 // header */
+/* resize-y min-h-[150px] form_input mt-1 h-[150px] */
