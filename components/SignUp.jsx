@@ -220,9 +220,9 @@ const signUp = (info) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col p-5 justify-center content-center items-center bg-gray-100 border-1 rounded-xl mt-4"
+      className="md:w-[525px] flex flex-col p-5 justify-center content-center items-center bg-gray-100 border-1 rounded-xl mt-4"
     >
-      <h1 className="text-2xl mb-3 pb-3 font-bold border-b-2 border-gray-300">
+      <h1 className="text-xl mb-3 pb-3 font-bold border-b-2 border-gray-300">
         Create an Account
       </h1>
       <div className="flex flex-col w-full">
@@ -258,47 +258,43 @@ const signUp = (info) => {
         </div>
 
         {/* Name */}
-        <div className="mt-2 flex flex-col mx-5">
-          <label className="mr-5 text-gray-900 font-semibold">Full name:</label>
+        <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+          <label className="text-gray-900 font-semibold">Full name:</label>
           <input
             required
             onChange={(e) => setName(e.target.value)}
             type="text"
-            className="rounded-lg p-3 text-sm text-gray-700 outline-0"
+            className="md:w-64 rounded-lg p-2 text-sm text-gray-700 outline-0"
           />
         </div>
         {/* Phone Number */}
-        <div className="mt-2 flex flex-col mx-5">
-          <label className="mr-5 text-gray-900 font-semibold">
-            Phone Number:
-          </label>
+        <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+          <label className="text-gray-900 font-semibold">Phone Number:</label>
           <input
             required
             onChange={(e) => setPhoneNumber(e.target.value)}
             type="text"
-            className="rounded-lg p-3 text-sm text-gray-700 outline-0"
+            className="md:w-64 rounded-lg p-2 text-sm text-gray-700 outline-0"
           />
         </div>
         {/* Email */}
-        <div className="mt-2 flex flex-col mx-5">
-          <label className="mr-5 text-gray-900 font-semibold">
-            Email address:
-          </label>
+        <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+          <label className="text-gray-900 font-semibold">Email address:</label>
           <input
             required
             onChange={(e) => setEmail(e.target.value)}
             type="email"
-            className="rounded-lg p-3 text-sm text-gray-700 outline-0"
+            className="md:w-64 rounded-lg p-2 text-sm text-gray-700 outline-0"
           />
         </div>
         {/* Password */}
-        <div className="mt-2 flex flex-col mx-5">
-          <label className="mr-5 text-gray-900 font-semibold">Password:</label>
+        <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5 mb-3">
+          <label className="text-gray-900 font-semibold">Password:</label>
           <input
             required
             onChange={(e) => setPassword(e.target.value)}
             type="password"
-            className="rounded-lg p-3 text-sm text-gray-700 outline-0"
+            className="md:w-64 rounded-lg p-2 text-sm text-gray-700 outline-0"
           />
         </div>
 
@@ -307,17 +303,19 @@ const signUp = (info) => {
         {/* Job Seeker additional information */}
         {jobSeekerInfo && (
           <div>
-            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
-              <h1 className="mt-3 font-bold">License Information</h1>
+            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-300 font-semibold">
+              <h1 className="mt-5 text-lg text-gray-900">
+                License Information
+              </h1>
             </div>
             {/* Drivers License */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 Class of Drivers License:
               </label>
               <input
                 type="text"
-                className="input_style"
+                className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                 placeholder="A, B, C, D, or E"
                 onChange={(e) =>
                   setJobSeekerData({
@@ -328,8 +326,8 @@ const signUp = (info) => {
               />
             </div>
             {/* Issuing state */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 Issuing State:
               </label>
               <select
@@ -339,7 +337,7 @@ const signUp = (info) => {
                     licenseState: e.target.value,
                   })
                 }
-                className="p-1 border border-black rounded-lg bg-gray-50"
+                className="rounded-lg p-2 text-sm text-gray-700 outline-0"
               >
                 <option value={""} disabled selected hidden></option>
                 <option value="AL">Alabama</option>
@@ -396,8 +394,8 @@ const signUp = (info) => {
               </select>
             </div>
             {/* License expiration */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 Drivers License expiration date:
               </label>
               <input
@@ -408,42 +406,42 @@ const signUp = (info) => {
                   })
                 }
                 type="date"
-                className="input_style"
+                className="rounded-lg p-2 text-sm text-gray-700 outline-0"
               />
             </div>
             {/* DOT Option */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-10 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 Do you have a DOT Medical card?
               </label>
-              <div className="flex flex-row">
+              <div className="flex flex-row gap-8">
                 <div>
                   <label
                     htmlFor="DOTYes"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       type="radio"
                       id="DOTYes"
                       name="DOTOption"
-                      className="ml-7"
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                       onClick={showDOT}
-                    />
+                    />{" "}
                     Yes
                   </label>
                 </div>
                 <div>
                   <label
                     htmlFor="DOTNo"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       type="radio"
                       id="DOTNo"
                       name="DOTOption"
-                      className="ml-5"
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                       onClick={hideDOT}
-                    />
+                    />{" "}
                     No
                   </label>
                 </div>
@@ -451,8 +449,8 @@ const signUp = (info) => {
             </div>
             {/* DOT additional information */}
             {yesDOT && (
-              <div className="label_input_text mt-1 mx-5">
-                <label className="mr-5 text-gray-900 font-semibold">
+              <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+                <label className="text-gray-900 font-semibold">
                   DOT expiration date:
                 </label>
                 <input
@@ -463,18 +461,18 @@ const signUp = (info) => {
                     })
                   }
                   type="date"
-                  className="input_style"
+                  className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                 />
               </div>
             )}
             {/* Endorsements */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col mx-5">
+              <label className="text-gray-900 font-semibold">
                 Select any Endorsements that you hold:
               </label>
             </div>
-            <div className="flex flex-row label_input_text mx-24">
-              <div className="flex flex-col">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mx-16 mb-3">
+              <div className="flex flex-col mx-5">
                 <label for="A-MTRCL Also">
                   <input
                     name="endorsements"
@@ -520,7 +518,7 @@ const signUp = (info) => {
                   O-MTRCL Only
                 </label>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col mx-5">
                 <label for="P->15 Passengers">
                   <input
                     name="endorsements"
@@ -571,42 +569,42 @@ const signUp = (info) => {
             {/* CDL Page */}
             {/* CDL Page */}
             {/* CDL Page */}
-            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
-              <h1 className="mt-3 font-bold">CDL Information</h1>
+            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-300 font-semibold">
+              <h1 className="mt-5 text-lg text-gray-900">CDL Information</h1>
             </div>
             {/* CDL option */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-10 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5 mb-2">
+              <label className="text-gray-900 font-semibold">
                 Do you have a CDL?
               </label>
-              <div className="flex flex-row">
+              <div className="flex flex-row gap-8">
                 <div>
                   <label
                     htmlFor="CDLYes"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       type="radio"
                       id="CDLYes"
                       name="CDLOption"
-                      className=""
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                       onClick={showCDL}
-                    />
+                    />{" "}
                     Yes
                   </label>
                 </div>
                 <div>
                   <label
                     htmlFor="CDLNo"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       type="radio"
                       id="CDLNo"
                       name="CDLOption"
-                      className="ml-5"
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                       onClick={hideCDL}
-                    />
+                    />{" "}
                     No
                   </label>
                 </div>
@@ -616,15 +614,15 @@ const signUp = (info) => {
             {yesCDL && (
               <div>
                 {/* TWIK Card */}
-                <div className="label_input_text mx-5 mt-1">
-                  <label className="mr-10 text-gray-900 font-semibold">
+                <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+                  <label className="text-gray-900 font-semibold">
                     Do you have a TWIK card?
                   </label>
-                  <div className="flex flex-row">
+                  <div className="flex flex-row gap-8">
                     <div>
                       <label
                         htmlFor="TWIKYes"
-                        className="font-semibold text-gray-700"
+                        className="text-gray-900 font-semibold"
                       >
                         <input
                           onChange={(e) =>
@@ -636,14 +634,15 @@ const signUp = (info) => {
                           type="radio"
                           id="TWIKYes"
                           name="TWIKCard"
-                        />
+                          className="rounded-lg p-2 text-sm text-gray-700 outline-0"
+                        />{" "}
                         Yes
                       </label>
                     </div>
                     <div>
                       <label
                         htmlFor="TWIKNo"
-                        className="font-semibold text-gray-700"
+                        className="text-gray-900 font-semibold"
                       >
                         <input
                           onChange={(e) =>
@@ -655,44 +654,46 @@ const signUp = (info) => {
                           type="radio"
                           id="TWIKNo"
                           name="TWIKCard"
-                          className="ml-5"
-                        />
+                          className="rounded-lg p-2 text-sm text-gray-700 outline-0"
+                        />{" "}
                         No
                       </label>
                     </div>
                   </div>
                 </div>
                 {/* Intra and excepted */}
-                <div className="label_input_text mt-1 mx-5">
-                  <label className="mr-5 text-gray-900 font-semibold">
+                <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5 mb-3">
+                  <label className="text-gray-900 font-semibold">
                     Make a selection:
                   </label>
-                  <select
-                    onChange={(e) =>
-                      setJobSeekerData({
-                        ...jobSeekerData,
-                        CDLOption1: e.target.value,
-                      })
-                    }
-                    className="p-1 border border-black rounded-lg bg-gray-50 w-28"
-                  >
-                    <option value={""} disabled selected hidden></option>
-                    <option value={"Interstate"}>Interstate</option>
-                    <option value={"Intrastate"}>Intrastate</option>
-                  </select>
-                  <select
-                    onChange={(e) =>
-                      setJobSeekerData({
-                        ...jobSeekerData,
-                        CDLOption2: e.target.value,
-                      })
-                    }
-                    className="p-1 border border-black rounded-lg bg-gray-50 w-36"
-                  >
-                    <option value={""} disabled selected hidden></option>
-                    <option value={"Excepted"}>Excepted</option>
-                    <option value={"Non-excepted"}>Non-excepted</option>
-                  </select>
+                  <div className="flex flex-row gap-5">
+                    <select
+                      onChange={(e) =>
+                        setJobSeekerData({
+                          ...jobSeekerData,
+                          CDLOption1: e.target.value,
+                        })
+                      }
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
+                    >
+                      <option value={""} disabled selected hidden></option>
+                      <option value={"Interstate"}>Interstate</option>
+                      <option value={"Intrastate"}>Intrastate</option>
+                    </select>
+                    <select
+                      onChange={(e) =>
+                        setJobSeekerData({
+                          ...jobSeekerData,
+                          CDLOption2: e.target.value,
+                        })
+                      }
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
+                    >
+                      <option value={""} disabled selected hidden></option>
+                      <option value={"Excepted"}>Excepted</option>
+                      <option value={"Non-excepted"}>Non-excepted</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             )}
@@ -700,42 +701,42 @@ const signUp = (info) => {
             {/* Work Experience */}
             {/* Work Experience */}
             {/* Work Experience */}
-            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
-              <h1 className="mt-3 font-bold">Work Experience</h1>
+            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-300 font-semibold">
+              <h1 className="mt-5 text-lg text-gray-900">Work Experience</h1>
             </div>
             {/* Work experience question */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-10 text-gray-900 font-semibold">
-                Do you have any relevant work experience?
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5 mb-2">
+              <label className="text-gray-900 font-semibold">
+                Do you have relevant work experience?
               </label>
-              <div className="flex flex-row">
+              <div className="flex flex-row gap-8">
                 <div>
                   <label
                     htmlFor="YesExperience"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       type="radio"
                       id="YesExperience"
                       name="ExperienceOption"
-                      className=""
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                       onClick={showWorkExperience}
-                    />
+                    />{" "}
                     Yes
                   </label>
                 </div>
                 <div>
                   <label
                     htmlFor="NoExperience"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       type="radio"
                       id="NoExperience"
                       name="ExperienceOption"
-                      className="ml-5"
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                       onClick={hideWorkExperience}
-                    />
+                    />{" "}
                     No
                   </label>
                 </div>
@@ -746,8 +747,8 @@ const signUp = (info) => {
                 {workExperience.map((workdata, index) => (
                   //Add work experience
                   <div key={index}>
-                    <div className="label_input_text mt-1 mx-5">
-                      <label className="mr-5 text-gray-900 font-semibold">
+                    <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+                      <label className="text-gray-900 font-semibold">
                         Title:
                       </label>
                       <input
@@ -755,12 +756,12 @@ const signUp = (info) => {
                         id="title"
                         name="title"
                         type="text"
-                        className="input_style"
+                        className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                         onChange={(e) => handleWorkChange(e, index)}
                       />
                     </div>
-                    <div className="label_input_text mt-1 mx-5">
-                      <label className="mr-5 text-gray-900 font-semibold">
+                    <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+                      <label className="text-gray-900 font-semibold">
                         Company Name:
                       </label>
                       <input
@@ -768,36 +769,36 @@ const signUp = (info) => {
                         id="company"
                         name="company"
                         type="text"
-                        className="input_style"
+                        className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                         onChange={(e) => handleWorkChange(e, index)}
                       />
                     </div>
-                    <div className="label_input_text mt-1 mx-5">
-                      <label className="mr-5 text-gray-900 font-semibold">
-                        Length (years)
+                    <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+                      <label className="text-gray-900 font-semibold">
+                        Length (years):
                       </label>
                       <input
                         value={workdata.length}
                         id="length"
                         name="length"
                         type="Number"
-                        className="input_style"
+                        className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                         onChange={(e) => handleWorkChange(e, index)}
                       />
                     </div>
-                    <div className="label_input_text mt-1 mx-5">
-                      <label className=" text-gray-900 font-semibold">
-                        Job Duties
+                    <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+                      <label className="text-gray-900 font-semibold">
+                        Job Duties:
                       </label>
                       <textarea
                         value={workdata.duties}
                         name="duties"
                         placeholder="Write your job duties here..."
-                        className="resize-none flex rounded-lg w-[275px] h-[150px] mt-1 p-3 text-sm text-gray-900 border-2"
+                        className="resize-y min-h-[150px] max-h-[250px] min-w-[250px] rounded-lg p-2 text-sm text-gray-700 outline-0"
                         onChange={(e) => handleWorkChange(e, index)}
                       />
                     </div>
-                    <div className="label_input_text mt-1 mx-5">
+                    <div className="label_input_text mt-2 mx-5">
                       {workExperience.length - 1 === index &&
                         workExperience.length < 5 && (
                           <button
@@ -824,12 +825,12 @@ const signUp = (info) => {
             {/* Education Information */}
             {/* Education Information */}
             {/* Education Information */}
-            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
-              <h1 className="mt-3 font-bold">Education</h1>
+            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-300 font-semibold">
+              <h1 className="mt-5 text-lg text-gray-900">Education</h1>
             </div>
             {/* Education */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 What is your highest level of education?
               </label>
               <select
@@ -839,7 +840,7 @@ const signUp = (info) => {
                     educationLevel: e.target.value,
                   })
                 }
-                className="p-1 border border-black rounded-lg bg-gray-50"
+                className="rounded-lg p-2 text-sm text-gray-700 outline-0"
               >
                 <option value={""} disabled selected hidden></option>
                 <option value="High School">High School</option>
@@ -851,8 +852,8 @@ const signUp = (info) => {
               </select>
             </div>
             {/* Completion date */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 When was this completed?
               </label>
               <input
@@ -863,71 +864,73 @@ const signUp = (info) => {
                   })
                 }
                 type="date"
-                className="input_style"
+                className="rounded-lg p-2 text-sm text-gray-700 outline-0"
               />
             </div>
             {/* Certifications */}
-            <div className="label_input_text mt-1 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="my-2 flex flex-col mx-5">
+              <label className="text-gray-900 font-semibold">
                 Add any certifications that you hold
               </label>
             </div>
             {certificationList.map((singleCertification, index) => (
               <div key={index}>
-                <div className="label_input_text mt-1 mx-5">
+                <div className="flex flex-col mx-5">
                   <input
                     name="certification"
                     id="certification"
                     value={singleCertification.certification}
                     onChange={(e) => handleCertificateChange(e, index)}
                     type="text"
-                    className="input_style w-4/6"
+                    className="rounded-lg p-2 text-sm text-gray-700 outline-0"
                   />
+                </div>
+                <div className="label_input_text mx-5">
                   {certificationList.length - 1 === index && index != 0 && (
                     <button
                       onClick={() => handleCertificateRemove(index)}
-                      className="black_button"
+                      className="black_button mt-2"
                     >
                       Remove
                     </button>
                   )}
-                </div>
-                {certificationList.length - 1 === index &&
-                  certificationList.length < 5 && (
-                    <div className="label_input_text mt-1 mx-5">
+                  {certificationList.length - 1 === index &&
+                    certificationList.length < 5 && (
                       <button
                         onClick={handleCertificateAdd}
-                        className="black_button"
+                        className="black_button mt-2"
                       >
                         Add More
                       </button>
-                    </div>
-                  )}
+                    )}
+                </div>
               </div>
             ))}
 
             {/* Additional Information */}
             {/* Additional Information */}
             {/* Additional Information */}
-            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
-              <h1 className="mt-3 font-bold">Additional Information</h1>
+            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-300 font-semibold">
+              <h1 className="mt-5 text-lg text-gray-900">
+                Additional Information
+              </h1>
             </div>
             {/* Prompt */}
-            <div className="label_input_text mt-1 mx-5 items-start">
-              <label className=" text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col mx-5">
+              <label className="text-gray-900 font-semibold">
                 Have you been...
               </label>
             </div>
             {/* Accident information */}
-            <div className="label_input_text mt-1 mx-5 items-start">
-              <label className=" text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 ..in a car accident the past 3 years?
               </label>
-              <div className="flex flex-row">
+              <div className="flex flex-row gap-8">
                 <div>
                   <label
                     htmlFor="AccidentYes"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       onChange={(e) =>
@@ -939,15 +942,15 @@ const signUp = (info) => {
                       type="radio"
                       id="AccidentYes"
                       name="AccidentQuestion"
-                      className=""
-                    />
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
+                    />{" "}
                     Yes
                   </label>
                 </div>
                 <div>
                   <label
                     htmlFor="AccidentNo"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       onChange={(e) =>
@@ -959,23 +962,23 @@ const signUp = (info) => {
                       type="radio"
                       id="AccidentNo"
                       name="AccidentQuestion"
-                      className="ml-5"
-                    />
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
+                    />{" "}
                     No
                   </label>
                 </div>
               </div>
             </div>
             {/* DUI information */}
-            <div className="label_input_text mt-1 mx-5 items-start">
-              <label className=" text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 ..convicted of a DUI in the past 10 years?
               </label>
-              <div className="flex flex-row">
+              <div className="flex flex-row gap-8">
                 <div>
                   <label
                     htmlFor="DUIYes"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       onChange={(e) =>
@@ -987,15 +990,15 @@ const signUp = (info) => {
                       type="radio"
                       id="DUIYes"
                       name="DUIQuestion"
-                      className=""
-                    />
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
+                    />{" "}
                     Yes
                   </label>
                 </div>
                 <div>
                   <label
                     htmlFor="DUINo"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
                     <input
                       onChange={(e) =>
@@ -1007,84 +1010,87 @@ const signUp = (info) => {
                       type="radio"
                       id="DUINo"
                       name="DUIQuestion"
-                      className="ml-5"
-                    />
+                      className="rounded-lg p-2 text-sm text-gray-700 outline-0"
+                    />{" "}
                     No
                   </label>
                 </div>
               </div>
             </div>
             {/* Age information */}
-            <div className="label_input_text mt-1 mx-5 items-start">
-              <label className=" text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 Your age range:
               </label>
-              <div className="flex flex-row">
-                <div>
+              <div className="flex flex-row gap-8">
+                <div className="flex flex-col md:flex-row">
+                  <input
+                    onChange={(e) =>
+                      setJobSeekerData({
+                        ...jobSeekerData,
+                        ageRange: "Under 18",
+                      })
+                    }
+                    type="radio"
+                    id="Under18"
+                    name="AgeRange"
+                    className="rounded-lg p-2 text-sm text-gray-700 outline-0 mt-2 md:mt-0 md:mr-1"
+                  />
                   <label
                     htmlFor="Under18"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
-                    <input
-                      onChange={(e) =>
-                        setJobSeekerData({
-                          ...jobSeekerData,
-                          ageRange: "Under 18",
-                        })
-                      }
-                      type="radio"
-                      id="Under18"
-                      name="AgeRange"
-                      className=""
-                    />
+                    {" "}
                     Under 18
                   </label>
                 </div>
-                <div>
+                <div className="flex flex-col md:flex-row">
+                  <input
+                    onChange={(e) =>
+                      setJobSeekerData({
+                        ...jobSeekerData,
+                        ageRange: "18-21",
+                      })
+                    }
+                    type="radio"
+                    id="18-21"
+                    name="AgeRange"
+                    className="rounded-lg p-2 text-sm text-gray-700 outline-0 mt-2 md:mt-0 md:mr-1"
+                  />
                   <label
                     htmlFor="18-21"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
-                    <input
-                      onChange={(e) =>
-                        setJobSeekerData({
-                          ...jobSeekerData,
-                          ageRange: "18-21",
-                        })
-                      }
-                      type="radio"
-                      id="18-21"
-                      name="AgeRange"
-                      className="ml-5"
-                    />
+                    {" "}
                     18 - 21
                   </label>
                 </div>
-                <div>
+                <div className="flex flex-col md:flex-row">
+                  <input
+                    onChange={(e) =>
+                      setJobSeekerData({
+                        ...jobSeekerData,
+                        ageRange: "Over 21",
+                      })
+                    }
+                    type="radio"
+                    id="Over21"
+                    name="AgeRange"
+                    className="rounded-lg p-2 text-sm text-gray-700 outline-0 mt-2 md:mt-0 md:mr-1"
+                  />
                   <label
                     htmlFor="Over21"
-                    className="font-semibold text-gray-700"
+                    className="text-gray-900 font-semibold"
                   >
-                    <input
-                      onChange={(e) =>
-                        setJobSeekerData({
-                          ...jobSeekerData,
-                          ageRange: "Over 21",
-                        })
-                      }
-                      type="radio"
-                      id="Over21"
-                      name="AgeRange"
-                      className="ml-5"
-                    />
+                    {" "}
                     Over 21
                   </label>
                 </div>
               </div>
             </div>
-            <div className="label_input_text mt-1 mx-5">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
               {/* City */}
-              <div className="flex flex-col label_input_text">
+              <div className="mt-2 flex flex-col">
                 <label className="text-gray-900 font-semibold">City:</label>
                 <input
                   onChange={(e) =>
@@ -1094,11 +1100,11 @@ const signUp = (info) => {
                     })
                   }
                   type="text"
-                  className="p-1 border border-black rounded-lg bg-gray-50 w-32"
+                  className="md:w-28 rounded-lg p-2 text-sm text-gray-700 outline-0"
                 />
               </div>
               {/* State */}
-              <div className="flex flex-col label_input_text">
+              <div className="mt-2 flex flex-col">
                 <label className="text-gray-900 font-semibold">State:</label>
                 <select
                   onChange={(e) =>
@@ -1107,7 +1113,7 @@ const signUp = (info) => {
                       state: e.target.value,
                     })
                   }
-                  className="p-1 border border-black rounded-lg bg-gray-50 w-36"
+                  className="md:w-36 rounded-lg p-2 text-sm text-gray-700 outline-0"
                 >
                   <option value={""} disabled selected hidden></option>
                   <option value="AL">Alabama</option>
@@ -1164,7 +1170,7 @@ const signUp = (info) => {
                 </select>
               </div>
               {/* Zip code */}
-              <div className="flex flex-col label_input_text">
+              <div className="mt-2 flex flex-col">
                 <label className="text-gray-900 font-semibold">Zip Code:</label>
                 <input
                   onChange={(e) =>
@@ -1174,7 +1180,7 @@ const signUp = (info) => {
                     })
                   }
                   type="text"
-                  className="p-1 border border-black rounded-lg bg-gray-50 w-32"
+                  className="md:w-28 rounded-lg p-2 text-sm text-gray-700 outline-0"
                 />
               </div>
             </div>
@@ -1185,12 +1191,14 @@ const signUp = (info) => {
         {employerInfo && (
           <div>
             {/* Title */}
-            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-500 font-semibold">
-              <h1 className="mt-3">Additional Information for Employers</h1>
+            <div className="label_input_text mt-1 border-t-2 pb-5 border-gray-300 font-semibold">
+              <h1 className="mt-5 text-lg text-gray-900">
+                Additional Information for Employers
+              </h1>
             </div>
             {/* Company Name */}
-            <div className="label_input_text mt-1 mb-2 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 Company Name:
               </label>
               <input
@@ -1201,12 +1209,12 @@ const signUp = (info) => {
                   })
                 }
                 type="text"
-                className="input_style w-64"
+                className="rounded-lg p-2 text-sm text-gray-700 outline-0 md:w-64"
               />
             </div>
             {/* Company Website */}
-            <div className="label_input_text mt-1 mb-2 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 Company Website:
               </label>
               <input
@@ -1217,12 +1225,12 @@ const signUp = (info) => {
                   })
                 }
                 type="text"
-                className="input_style w-64"
+                className="rounded-lg p-2 text-sm text-gray-700 outline-0 md:w-64"
               />
             </div>
             {/* Full Address */}
-            <div className="label_input_text mt-1 mb-2 mx-5">
-              <label className="mr-5 text-gray-900 font-semibold">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
+              <label className="text-gray-900 font-semibold">
                 Street Address:
               </label>
               <input
@@ -1233,13 +1241,13 @@ const signUp = (info) => {
                   })
                 }
                 type="text"
-                className="input_style w-64"
+                className="rounded-lg p-2 text-sm text-gray-700 outline-0 md:w-64"
               />
             </div>
             {/*City, State, and Zip code */}
-            <div className="label_input_text mt-1 mb-2 mx-5">
+            <div className="mt-2 flex flex-col md:flex-row md:justify-between md:items-center mx-5">
               {/* City */}
-              <div className="flex flex-col label_input_text">
+              <div className="flex flex-col">
                 <label className="text-gray-900 font-semibold">City:</label>
                 <input
                   onChange={(e) =>
@@ -1249,11 +1257,11 @@ const signUp = (info) => {
                     })
                   }
                   type="text"
-                  className="p-1 border border-black rounded-lg bg-gray-50 w-32"
+                  className="md:w-28 rounded-lg p-2 text-sm text-gray-700 outline-0"
                 />
               </div>
               {/* State */}
-              <div className="flex flex-col label_input_text">
+              <div className="flex flex-col">
                 <label className="text-gray-900 font-semibold">State:</label>
                 <select
                   onChange={(e) =>
@@ -1262,7 +1270,7 @@ const signUp = (info) => {
                       State: e.target.value,
                     })
                   }
-                  className="p-1 border border-black rounded-lg bg-gray-50 w-36"
+                  className="md:w-36 rounded-lg p-2 text-sm text-gray-700 outline-0"
                 >
                   <option value={""} disabled selected hidden></option>
                   <option value="AL">Alabama</option>
@@ -1319,7 +1327,7 @@ const signUp = (info) => {
                 </select>
               </div>
               {/* Zip code */}
-              <div className="flex flex-col label_input_text">
+              <div className="flex flex-col">
                 <label className="text-gray-900 font-semibold">Zip Code:</label>
                 <input
                   onChange={(e) =>
@@ -1329,14 +1337,14 @@ const signUp = (info) => {
                     })
                   }
                   type="text"
-                  className="p-1 border border-black rounded-lg bg-gray-50 w-32"
+                  className="md:w-28 rounded-lg p-2 text-sm text-gray-700 outline-0"
                 />
               </div>
             </div>
           </div>
         )}
       </div>
-      <div className="flex flex-row gap-2 mb-3">
+      <div className="flex flex-row gap-2 mb-3 mt-5">
         <input type="checkbox" required />
         <label className="text-gray-900 font-semibold">
           I have read and agree to the{" "}
