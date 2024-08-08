@@ -32,12 +32,6 @@ const Header = () => {
             {session?.user?.accountType === "Employer" ? (
               <div className="flex gap-3">
                 <Link
-                  href={"/employerAccount/employerMessaging"}
-                  className="outline_button"
-                >
-                  Messages
-                </Link>
-                <Link
                   href={"/employerAccount/employerAccountHome"}
                   className="outline_button"
                 >
@@ -54,9 +48,6 @@ const Header = () => {
             ) : session?.user?.accountType === "Job Seeker" ? (
               //job seeker acccount links
               <div className="flex gap-3">
-                <Link href={"/"} className="outline_button">
-                  Messages
-                </Link>
                 <Link
                   href={"/jobSeekerAccount/jobSeekerResume"}
                   className="outline_button"
@@ -126,13 +117,6 @@ const Header = () => {
                       View Profile
                     </Link>
                     <Link
-                      href={"/employerAccount/employerMessaging"}
-                      className="text-base text-gray-700 hover:text-gray-500 font-medium"
-                      onClick={() => setToggleDropdown(false)}
-                    >
-                      Messages
-                    </Link>
-                    <Link
                       href={"/"}
                       className="text-base text-gray-700 hover:text-gray-500 font-medium"
                       onClick={() => {
@@ -169,13 +153,6 @@ const Header = () => {
                       onClick={() => setToggleDropdown(false)}
                     >
                       View Profile
-                    </Link>
-                    <Link
-                      href={"/jobSeekerAccount/jobSeekerMessaging"}
-                      className="text-base text-gray-700 hover:text-gray-500 font-medium"
-                      onClick={() => setToggleDropdown(false)}
-                    >
-                      Messages
                     </Link>
                     <Link
                       href={"/"}
