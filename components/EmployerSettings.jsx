@@ -160,6 +160,7 @@ const EmployerSettings = ({ account }) => {
               <p className="mt-4 font-bold text-orange-600">{profileMessage}</p>
             )}
           </div>
+          <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
         </form>
         <p className="text-gray-600 text-base">
           To change password please sign out and navigate to the "Sign In / Sign
@@ -179,6 +180,7 @@ const EmployerSettings = ({ account }) => {
             Delete Account
           </button>
         </div>
+        <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
       </div>
       <div className="md:w-1/3 mx-8">
         <p className="description text-center">Company Information</p>
