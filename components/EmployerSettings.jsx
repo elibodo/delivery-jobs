@@ -98,8 +98,8 @@ const EmployerSettings = ({ account }) => {
   }, [setData]);
 
   return (
-    <div className="flex flex-row justify-center mb-5">
-      <div className="w-1/3 mx-8">
+    <div className="flex flex-col md:flex-row justify-center mb-5">
+      <div className="md:w-1/3 mx-8">
         <p className="description text-center">Profile Options</p>
         <form onSubmit={handleProfileInfo} className="flex flex-col mb-5">
           <div className="mt-4 flex flex-col items-start">
@@ -160,6 +160,7 @@ const EmployerSettings = ({ account }) => {
               <p className="mt-4 font-bold text-orange-600">{profileMessage}</p>
             )}
           </div>
+          <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
         </form>
         <p className="text-gray-600 text-base">
           To change password please sign out and navigate to the "Sign In / Sign
@@ -179,8 +180,9 @@ const EmployerSettings = ({ account }) => {
             Delete Account
           </button>
         </div>
+        <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
       </div>
-      <div className="w-1/3 mx-8">
+      <div className="md:w-1/3 mx-8">
         <p className="description text-center">Company Information</p>
         <form onSubmit={handleAccountInfo} className="flex flex-col mb-5">
           <div className="mt-4 flex flex-col items-start">
