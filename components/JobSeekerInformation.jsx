@@ -223,8 +223,8 @@ const JobSeekerInformation = ({ account }) => {
   return (
     <div>
       {/* License, dot, cdl, additional, endorsements */}
-      <form className="flex flex-row justify-center">
-        <div className="w-1/3 mx-8">
+      <form className="flex flex-col md:flex-row justify-center">
+        <div className="md:w-1/3 mx-8">
           <div className="flex flex-col mb-4">
             {/* drivers license */}
             <p className="description text-center">Drivers License</p>
@@ -314,7 +314,7 @@ const JobSeekerInformation = ({ account }) => {
                 <option value="WY">Wyoming</option>
               </select>
             </div>
-            <div className="mt-4 flex flex-col items-start border-b-2 border-gray-200">
+            <div className="mt-4 flex flex-col items-start border-b-2 border-gray-300">
               <label className="text-gray-900 font-semibold">
                 License Expiration Date
               </label>
@@ -389,17 +389,18 @@ const JobSeekerInformation = ({ account }) => {
                 <option>Over 21</option>
               </select>
             </div>
-            <p className="text-gray-600 text-base mt-4">
+            <p className="text-gray-600 text-base mt-4 hidden md:flex">
               Updating all of these settings can be done with the button below.
               Please Ensure that all information from each section is correct.{" "}
               {
                 "(Drivers License, DOT Information, Additional Information, CDL Information, Endorsements)"
               }
             </p>
+            <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
           </div>
         </div>
 
-        <div className="w-1/3 mx-8">
+        <div className="md:w-1/3 mx-8">
           <div className="flex flex-col mb-4">
             {/* dot information */}
             <p className="description text-center">DOT Information</p>
@@ -423,7 +424,7 @@ const JobSeekerInformation = ({ account }) => {
                 <option>No</option>
               </select>
             </div>
-            <div className="mt-4 flex flex-col items-start  border-b-2 border-gray-200">
+            <div className="mt-4 flex flex-col items-start  border-b-2 border-gray-300">
               <label className="text-gray-900 font-semibold">
                 DOT Expiration Date
               </label>
@@ -482,7 +483,7 @@ const JobSeekerInformation = ({ account }) => {
             </div>
             <div className="mt-4 flex flex-col items-start">
               <label className="text-gray-900 font-semibold">CDL Options</label>
-              <div className="flex flex-row w-full gap-2 border-b-2 border-gray-200">
+              <div className="flex flex-row w-full gap-2 border-b-2 border-gray-300">
                 <select
                   defaultValue={account.CDLOption1}
                   type="text"
@@ -614,6 +615,13 @@ const JobSeekerInformation = ({ account }) => {
                 X-HM+Tanker
               </label>
             </div>
+            <p className="text-gray-600 text-base mt-4 md:hidden">
+              Updating all of these settings can be done with the button below.
+              Please Ensure that all information from each section is correct.{" "}
+              {
+                "(Drivers License, DOT Information, Additional Information, CDL Information, Endorsements)"
+              }
+            </p>
           </div>
         </div>
       </form>
@@ -625,8 +633,8 @@ const JobSeekerInformation = ({ account }) => {
           <p className="mb-4 font-bold text-orange-600">{firstMessage}</p>
         )}
       </div>
-      <div className="flex flex-row justify-center">
-        <div className="w-1/3 mx-8">
+      <div className="flex flex-col md:flex-row justify-center">
+        <div className="md:w-1/3 mx-8">
           <div className="flex flex-col mb-4">
             {/* Education */}
             <p className="description text-center">Education</p>
@@ -670,16 +678,17 @@ const JobSeekerInformation = ({ account }) => {
                 required
               />
             </div>
-            <p className="text-gray-600 text-base mt-4">
+            <p className="text-gray-600 text-base mt-4 hidden md:flex">
               Please click the button below to update the education and
               certifications portion of the resume. Please ensure that all
               information from each section is correct. (Education,
               Certifications)
             </p>
+            <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
           </div>
         </div>
 
-        <div className="w-1/3 mx-8">
+        <div className="md:w-1/3 mx-8">
           <div className="flex flex-col mb-4">
             {/* Certificates */}
             <p className="description text-center">Certifications</p>
@@ -709,7 +718,7 @@ const JobSeekerInformation = ({ account }) => {
                           onClick={handleCertificateAdd}
                           className="black_button"
                         >
-                          Add Another
+                          Add
                         </button>
                       </div>
                     )}
@@ -719,7 +728,7 @@ const JobSeekerInformation = ({ account }) => {
                           onClick={() => handleCertificateRemove(index)}
                           className="black_button"
                         >
-                          Remove Last
+                          Remove
                         </button>
                       </div>
                     )}
@@ -728,6 +737,12 @@ const JobSeekerInformation = ({ account }) => {
               ))}
             </div>
           </div>
+          <p className="text-gray-600 text-base mt-4 md:hidden mb-3">
+            Please click the button below to update the education and
+            certifications portion of the resume. Please ensure that all
+            information from each section is correct. (Education,
+            Certifications)
+          </p>
         </div>
       </div>
       <div className="flex flex-col items-center border-b-2 border-gray-300 mx-8">
@@ -744,8 +759,8 @@ const JobSeekerInformation = ({ account }) => {
 
       {workHistory.map((workdata, index) => (
         <div>
-          <div key={index} className="flex flex-row justify-center">
-            <div className="w-1/3 mx-8">
+          <div key={index} className="flex flex-col md:flex-row justify-center">
+            <div className="md:w-1/3 mx-8">
               <div className="flex flex-col mb-4">
                 {/* Work Experience */}
                 <div className="mt-2 flex flex-col items-start">
@@ -789,7 +804,7 @@ const JobSeekerInformation = ({ account }) => {
                 </div>
               </div>
             </div>
-            <div className="w-1/3 mx-8">
+            <div className="md:w-1/3 mx-8">
               <div className="flex flex-col mb-4">
                 {/* Work Experience */}
                 <div className="mt-2 flex flex-col items-start">
@@ -812,7 +827,7 @@ const JobSeekerInformation = ({ account }) => {
                         onClick={handleWorkHistoryAdd}
                         className="black_button"
                       >
-                        Add Another
+                        Add
                       </button>
                     )}
                   {workHistory.length - 1 === index && index !== 0 && (
@@ -820,14 +835,14 @@ const JobSeekerInformation = ({ account }) => {
                       onClick={() => handleWorkHistoryRemove(index)}
                       className="black_button"
                     >
-                      Remove Job
+                      Remove
                     </button>
                   )}
                 </div>
               </div>
             </div>
           </div>
-          <div className="border-b-2 border-gray-200 mx-28 mb-4"></div>
+          <div className="border-b-2 border-gray-300 mx-16 mb-4"></div>
         </div>
       ))}
       <div className="flex flex-col items-center mx-8">

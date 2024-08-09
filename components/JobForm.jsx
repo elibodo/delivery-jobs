@@ -80,16 +80,16 @@ const JobForm = ({
 
   return (
     <section className="flex flex-col items-center">
-      <p className="description">
+      <p className="description mx-2">
         Follow the prompts to create and post a new job
       </p>
-      <form onSubmit={handlesubmit} className="">
+      <form onSubmit={handlesubmit} className="mx-2">
         {/* section 1 // // // // // // // // // // // // // // // // // // // // //*/}
 
-        <div className="border-b-2 border-gray-500 pb-4">
+        <div className="border-b-2 border-gray-300 pb-4">
           <p className="description">Basic information</p>
           {/* Title */}
-          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Title
             <input
               type="text"
@@ -99,15 +99,15 @@ const JobForm = ({
               }}
               placeholder="Delivery Job"
               required
-              className="mt-1 form_input"
+              className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
             ></input>
           </label>
           {/* Number of hires */}
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             How many hires for this role?
-            <div className="mt-1 flex flex-row items-center">
+            <div className="mt-1 flex flex-col md:flex-row md:items-center mx-5">
               <select
-                className="form_input"
+                className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
                 id="numOfHiresdropdown"
                 name="numOfHires"
                 onChange={clearhirestext}
@@ -126,7 +126,7 @@ const JobForm = ({
               <input
                 name="numOfHires"
                 id="hire_id"
-                className="form_input"
+                className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
                 type="number"
                 min={1}
                 placeholder="Specific number"
@@ -144,18 +144,18 @@ const JobForm = ({
               onChange={(e) => {
                 setPost({ ...post, dispatchlocation: e.target.value });
               }}
-              placeholder="Address"
+              placeholder="City, State"
               required
-              className="form_input"
+              className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
             ></input>
           </label>
           {/* Delivery Location */}
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             Delivery Location(s)
             <input
-              className="form_input"
+              className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
               type="text"
-              placeholder="Address"
+              placeholder="City, State"
               value={post.deliverylocation}
               onChange={(e) => {
                 setPost({ ...post, deliverylocation: e.target.value });
@@ -164,7 +164,7 @@ const JobForm = ({
             ></input>
           </label>
           {/* Work authorization */}
-          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Does this person require authorization to work in the US?
             <div className="font-semibold text-gray-700">
               <label for="yes_auth">
@@ -187,7 +187,7 @@ const JobForm = ({
                   name="authRadio"
                   id="no_auth"
                   required
-                  className="ml-10 mr-1"
+                  className="ml-8 mr-1"
                   value={"No"}
                   onClick={(e) => {
                     setPost({ ...post, workauthorization: e.target.value });
@@ -201,7 +201,7 @@ const JobForm = ({
 
         {/* section 2 // // // // // // // // // // // // // // // // // // // // //*/}
 
-        <div className="border-b-2 border-gray-500 pb-4">
+        <div className="border-b-2 border-gray-300 pb-4">
           <p className="description">Scheduling Information</p>
           {/* Job type */}
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
@@ -213,7 +213,7 @@ const JobForm = ({
                   type="radio"
                   name="job_type_radio"
                   id="full_time"
-                  className=" mr-1"
+                  className="mr-1"
                   value={"Full Time"}
                   onClick={(e) => {
                     setPost({ ...post, jobtype: e.target.value });
@@ -227,7 +227,7 @@ const JobForm = ({
                   type="radio"
                   name="job_type_radio"
                   id="part_time"
-                  className="ml-10 mr-1"
+                  className="ml-5 mr-1"
                   value={"Part Time"}
                   onClick={(e) => {
                     setPost({ ...post, jobtype: e.target.value });
@@ -241,7 +241,7 @@ const JobForm = ({
                   type="radio"
                   name="job_type_radio"
                   id="seasonal"
-                  className="ml-10 mr-1"
+                  className="ml-5 mr-1"
                   value={"Seasonal"}
                   onClick={(e) => {
                     setPost({ ...post, jobtype: e.target.value });
@@ -276,7 +276,7 @@ const JobForm = ({
                   type="radio"
                   name="w2_contract_radio"
                   id="contract"
-                  className="ml-10 mr-1"
+                  className="ml-8 mr-1"
                   value={"Contract"}
                   onClick={(e) => {
                     setPost({ ...post, jobformat: e.target.value });
@@ -293,7 +293,7 @@ const JobForm = ({
             <div className="mt-1 flex flex-row items-center">
               <select
                 required
-                className="form_input"
+                className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
                 onClick={(e) => {
                   setPost({ ...post, experiencerequired: e.target.value });
                 }}
@@ -333,7 +333,7 @@ const JobForm = ({
                   type="radio"
                   name="type_of_shift_radio"
                   id="over_the_road"
-                  className="ml-10 mr-1"
+                  className="ml-8 mr-1"
                   value={"Over the road"}
                   onClick={(e) => {
                     setPost({ ...post, shifttype: e.target.value });
@@ -431,16 +431,16 @@ const JobForm = ({
 
         {/* section 3 // // // // // // // // // // // // // // // // // // // // //*/}
 
-        <div className="border-b-2 border-gray-500 pb-4">
+        <div className="border-b-2 border-gray-300 pb-4">
           <p className="description">Compensation and Benefits</p>
           {/* Pay range */}
           <div className="flex flex-row">
             <label className="mt-4 flex flex-col text-gray-900 font-semibold">
               What is the pay range?
-              <div className="mt-1 flex flex-row items-center">
+              <div className="mt-1 flex flex-col md:flex-row md:items-center mx-5">
                 <input
                   required
-                  className="form_input max-w-32"
+                  className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
                   type="number"
                   placeholder="Minimum"
                   min={0}
@@ -450,7 +450,7 @@ const JobForm = ({
                 <span className="mx-2">to</span>
                 <input
                   required
-                  className="form_input max-w-32"
+                  className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
                   type="number"
                   placeholder="Maximum"
                   min={0}
@@ -460,7 +460,7 @@ const JobForm = ({
                 <span className="mx-2">per</span>
                 <select
                   required
-                  className="form_input"
+                  className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
                   value={payrange[2]}
                   onChange={(e) => rangeofpay(2, e)}
                 >
@@ -482,20 +482,15 @@ const JobForm = ({
             Is there additional pay for miles driven?
             <div className="mt-1 flex flex-row items-center">
               <input
-                className="form_input max-w-32"
+                className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0"
                 type="number"
                 min={0}
-                placeholder="Cents"
                 value={post.additionalpay}
                 onChange={(e) => {
                   setPost({ ...post, additionalpay: e.target.value });
                 }}
               ></input>
-              <div className="flex flex-row">
-                <span className="ml-2">cents</span>
-                <span className="mr-2 ml-1">per</span>
-              </div>
-              <div className="form_input bg-white">Mile</div>
+              <p className="text-gray-900 font-semibold ml-2">Cents Per Mile</p>
             </div>
           </label>
 
@@ -569,7 +564,7 @@ const JobForm = ({
 
         {/* section 4 // // // // // // // // // // // // // // // // // // // // //*/}
 
-        <div className="border-b-2 border-gray-500 pb-4">
+        <div className="border-b-2 border-gray-300 pb-4">
           <p className="description">Description</p>
           {/* description */}
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
@@ -581,17 +576,17 @@ const JobForm = ({
                 setPost({ ...post, description: e.target.value })
               }
               placeholder="Write your description here..."
-              className="resize-y flex rounded-lg min-h-60 w-[600px] mt-1 p-3 text-sm text-gray-700 outline-0"
+              className="resize-y rounded-lg min-h-[150px] max-h-[350px] min-w-[250px] mt-1 p-2 md:p-3 text-sm text-gray-700 outline-0"
             ></textarea>
           </label>
         </div>
 
         {/* section 5 // // // // // // // // // // // // // // // // // // // // //*/}
 
-        <div className="border-b-2 border-gray-500 pb-4">
+        <div className="border-b-2 border-gray-300 pb-4">
           <p className="description">Additional Information</p>
           {/* resume preference */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          {/* <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Will applicants be required to include a resume?
             <div className="font-semibold text-gray-700">
               <label for="yes_resume">
@@ -631,11 +626,11 @@ const JobForm = ({
                 Optional
               </label>
             </div>
-          </label>
+          </label> */}
           {/* drug test */}
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Will applicants be required take a drug test?
-            <div className="font-semibold text-gray-700">
+            <div className="font-semibold text-gray-700 mt-1 flex flex-col md:flex-row md:gap-5 md:items-center">
               <label for="yes_marijuana_drugtest">
                 <input
                   required
@@ -648,7 +643,7 @@ const JobForm = ({
                     setPost({ ...post, drugtest: e.target.value })
                   }
                 />
-                Yes, including marijuana
+                Yes, Including Marijuana
               </label>
               <label for="yes_drugtest">
                 <input
@@ -656,13 +651,13 @@ const JobForm = ({
                   type="radio"
                   name="drugtest_radio"
                   id="yes_drugtest"
-                  className="ml-10 mr-1"
+                  className="mr-1"
                   value={"Yes, excluding marijuana"}
                   onChange={(e) =>
                     setPost({ ...post, drugtest: e.target.value })
                   }
                 />
-                Yes, excluding marijuana
+                Yes, Excluding Marijuana
               </label>
               <label for="no_drugtest">
                 <input
@@ -670,7 +665,7 @@ const JobForm = ({
                   type="radio"
                   name="drugtest_radio"
                   id="no_drugtest"
-                  className="ml-10 mr-1"
+                  className="mr-1"
                   value={"No"}
                   onChange={(e) =>
                     setPost({ ...post, drugtest: e.target.value })
@@ -691,7 +686,7 @@ const JobForm = ({
                   type="radio"
                   name="background_radio"
                   id="yes_background"
-                  className="  mr-1"
+                  className="mr-1"
                   value={"Yes"}
                   onChange={(e) =>
                     setPost({ ...post, backgroundcheck: e.target.value })
@@ -705,7 +700,7 @@ const JobForm = ({
                   type="radio"
                   name="background_radio"
                   id="no_background"
-                  className="ml-10 mr-1"
+                  className="ml-8 mr-1"
                   value={"No"}
                   onChange={(e) =>
                     setPost({ ...post, backgroundcheck: e.target.value })
@@ -719,14 +714,14 @@ const JobForm = ({
           {/* dot/med card question */}
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Will applicants be required to have a DOT medical card?
-            <div className="font-semibold text-gray-700">
+            <div className="font-semibold text-gray-700 mt-1 flex flex-col md:flex-row md:gap-5">
               <label for="yes_dot_radio">
                 <input
                   required
                   type="radio"
                   name="dot_radio"
                   id="yes_dot_radio"
-                  className="  mr-1"
+                  className="mr-1"
                   value={"Yes"}
                   onChange={(e) =>
                     setPost({ ...post, dotcard: e.target.value })
@@ -740,7 +735,7 @@ const JobForm = ({
                   type="radio"
                   name="dot_radio"
                   id="yes_dotprior_radio"
-                  className="ml-10 mr-1"
+                  className="mr-1"
                   value={"Yes, but prior to applying"}
                   onChange={(e) =>
                     setPost({ ...post, dotcard: e.target.value })
@@ -754,7 +749,7 @@ const JobForm = ({
                   type="radio"
                   name="dot_radio"
                   id="no_dot_radio"
-                  className="ml-10 mr-1"
+                  className="mr-1"
                   value={"No"}
                   onChange={(e) =>
                     setPost({ ...post, dotcard: e.target.value })
@@ -780,7 +775,7 @@ const JobForm = ({
             ></input>
           </label>
           {/* questions for the applicant */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          {/* <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Add questions for the applicants to answer
             <div className="mt-1 flex flex-row items-center">
               <input
@@ -857,19 +852,19 @@ const JobForm = ({
                 <option>Yes / No</option>
               </select>
             </div>
-          </label>
+          </label> */}
         </div>
         <div className="flex flex-row justify-between">
           <Link
             href={"/employerAccount/employerAccountHome"}
-            className="outline_button mb-5 mt-5 ml-32"
+            className="outline_button mb-5 mt-5"
           >
             Cancel
           </Link>
           <button
             type="submit"
             disabled={submitting}
-            className="black_button mb-5 mt-5 mr-32"
+            className="black_button mb-5 mt-5"
             onClick={(e) => {
               setPost({ ...post, companyName: account.companyName });
             }}

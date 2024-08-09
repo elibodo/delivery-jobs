@@ -89,8 +89,8 @@ const JobSeekerSettings = ({ account }) => {
   }, [setData]);
 
   return (
-    <div className="flex flex-row justify-center mb-5">
-      <div className="w-1/3 mx-8">
+    <div className="flex flex-col md:flex-row justify-center mb-5">
+      <div className="md:w-1/3 mx-8">
         <p className="description text-center">Edit Profile</p>
         <form onSubmit={handleProfileInfo} className="flex flex-col mb-5">
           <div className="mt-4 flex flex-col items-start">
@@ -151,9 +151,10 @@ const JobSeekerSettings = ({ account }) => {
               <p className="mt-4 font-bold text-orange-600">{profileMessage}</p>
             )}
           </div>
+          <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
         </form>
       </div>
-      <div className="w-1/3 mx-8">
+      <div className="md:w-1/3 mx-8">
         <p className="description text-center">Profile Options</p>
         <div className="mt-4 flex flex-row items-start justify-between gap-3">
           <div className="1/3">
@@ -240,7 +241,7 @@ const JobSeekerSettings = ({ account }) => {
         <p className="text-gray-600 text-base mt-4">
           Select Update Information to update your city, state, and zip code.
         </p>
-        <div className="my-4 flex flex-col items-center border-b-2 border-gray-200">
+        <div className="my-4 flex flex-col items-center border-b-2 border-gray-300">
           <button onClick={handleAccountInfo} className="mb-4 outline_button">
             Update Information
           </button>
@@ -261,7 +262,7 @@ const JobSeekerSettings = ({ account }) => {
           including all Jobs and Candidates will be removed and can not be
           recovered.
         </p>
-        <div className="mt-4 flex flex-col items-center">
+        <div className="mt-4 flex flex-col items-center mb-5">
           <button onClick={handleDelete} className="outline_button">
             Delete Account
           </button>
