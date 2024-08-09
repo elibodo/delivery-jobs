@@ -42,8 +42,8 @@ const JobSeekerHome = ({ account }) => {
 
       {/* liscense and dot section */}
       <div className="flex flex-col">
-        <div className="flex flex-row">
-          <div className="w-1/3 mx-8">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/3 mx-4">
             <p className="mt-5 text-xl text-gray-600">License Information</p>
             <div className="ml-2">
               <p className="text-gray-800 mt-3">
@@ -61,7 +61,7 @@ const JobSeekerHome = ({ account }) => {
             </div>
           </div>
           {account.DOT === "Yes" ? (
-            <div className="w-1/3 mx-8">
+            <div className="md:w-1/3 mx-4">
               <p className="mt-5 text-xl text-gray-600">DOT Information</p>
               <div className="ml-2">
                 <p className="text-gray-800 mt-3">
@@ -74,11 +74,11 @@ const JobSeekerHome = ({ account }) => {
               </div>
             </div>
           ) : (
-            <div className="mx-8 w-1/3"></div>
+            <div className="mx-4 md:w-1/3"></div>
           )}
           {/* cdl */}
           {account.CDL === "Yes" ? (
-            <div className="w-1/3 mx-8">
+            <div className="md:w-1/3 mx-4">
               <p className="mt-5 text-xl text-gray-600">CDL Information</p>
               <div className="ml-2">
                 <p className="text-gray-800 mt-3">
@@ -97,12 +97,12 @@ const JobSeekerHome = ({ account }) => {
               </div>
             </div>
           ) : (
-            <div className="mx-8 w-1/3"></div>
+            <div className="mx-4 md:w-1/3"></div>
           )}
         </div>
         {/* Education, endorsements, and certificates */}
-        <div className="flex flex-row">
-          <div className="mx-8 w-1/3">
+        <div className="flex flex-col md:flex-row">
+          <div className="mx-4 md:w-1/3">
             <p className="mt-10 text-xl text-gray-600">Education</p>
             <div className="ml-2 mt-1">
               <p className="text-gray-800 mt-3">
@@ -115,7 +115,7 @@ const JobSeekerHome = ({ account }) => {
             </div>
           </div>
           {certs != "" ? (
-            <div className="mx-8 w-1/3">
+            <div className="mx-4 md:w-1/3">
               <p className="mt-10 text-xl text-gray-600 mb-3">
                 Certifications:{" "}
               </p>
@@ -128,12 +128,12 @@ const JobSeekerHome = ({ account }) => {
               </div>
             </div>
           ) : (
-            <div className="mx-8 w-1/3"></div>
+            <div className="mx-4 md:w-1/3"></div>
           )}
           {theEndorsements === "" ? (
-            <div className="mx-8 w-1/3"></div>
+            <div className="mx-4 md:w-1/3"></div>
           ) : (
-            <div className="mx-8 w-1/3">
+            <div className="mx-4 md:w-1/3">
               <p className="mt-10 text-xl text-gray-600">Endorsements</p>
               <div className="ml-2">
                 <p className="font-semibold mt-3">{theEndorsements}</p>
@@ -144,7 +144,7 @@ const JobSeekerHome = ({ account }) => {
         {/* Work experience */}
         {work != "" ? (
           <div className="flex flex-row">
-            <div className="mx-8">
+            <div className="mx-4">
               <p className="mt-10 text-xl text-gray-600 mb-3">Work History</p>
               <div className="ml-2 mt-3">
                 {work.map((work) => (
@@ -175,7 +175,7 @@ const JobSeekerHome = ({ account }) => {
 
         {/* additional information */}
         <div className="flex flex-row">
-          <div className="mx-8 w-1/3">
+          <div className="mx-4 md:w-1/3">
             <p className="mt-10 text-xl text-gray-600">
               Additional Information
             </p>
