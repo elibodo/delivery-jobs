@@ -98,8 +98,8 @@ const EmployerSettings = ({ account }) => {
   }, [setData]);
 
   return (
-    <div className="flex flex-row justify-center mb-5">
-      <div className="w-1/3 mx-8">
+    <div className="flex flex-col md:flex-row justify-center mb-5">
+      <div className="md:w-1/3 mx-8">
         <p className="description text-center">Profile Options</p>
         <form onSubmit={handleProfileInfo} className="flex flex-col mb-5">
           <div className="mt-4 flex flex-col items-start">
@@ -180,7 +180,7 @@ const EmployerSettings = ({ account }) => {
           </button>
         </div>
       </div>
-      <div className="w-1/3 mx-8">
+      <div className="md:w-1/3 mx-8">
         <p className="description text-center">Company Information</p>
         <form onSubmit={handleAccountInfo} className="flex flex-col mb-5">
           <div className="mt-4 flex flex-col items-start">
