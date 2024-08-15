@@ -33,7 +33,7 @@ const EmployerAccount = new Schema(
       type: String,
     },
     JobLimit: {
-      type: Number,
+      type: String,
     },
   },
   { timestamps: true }
