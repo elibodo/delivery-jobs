@@ -81,6 +81,16 @@ const CreateJob = () => {
       });
 
       if (response.ok) {
+        try {
+          await fetch("/api/job/new", {
+            method: "PATCH",
+            body: JSON.stringify({
+              employerEmail: session?.user?.email,
+            }),
+          });
+        } catch (error) {
+          console.log(error);
+        }
         router.push("/");
       }
     } catch (error) {

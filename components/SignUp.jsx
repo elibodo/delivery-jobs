@@ -59,6 +59,11 @@ const signUp = (info) => {
           City: employerData.City,
           State: employerData.State,
           ZipCode: employerData.ZipCode,
+          Subscription: employerData.Subscription,
+          CustomerId: employerData.CustomerId,
+          Access: employerData.Access,
+          JobLimit: employerData.JobLimit,
+          MyJobs: employerData.MyJobs,
         }),
       });
       if (res.ok) {
@@ -105,6 +110,11 @@ const signUp = (info) => {
     City: "",
     State: "",
     ZipCode: "",
+    Subscription: "",
+    CustomerId: "",
+    Access: false,
+    JobLimit: 0,
+    MyJobs: 0,
   });
 
   //Show and hide the additional information for each account type
