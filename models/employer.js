@@ -23,6 +23,21 @@ const EmployerAccount = new Schema(
     ZipCode: {
       type: Number,
     },
+    Subscription: {
+      type: String,
+    },
+    CustomerId: {
+      type: String,
+    },
+    Access: {
+      type: Boolean,
+    },
+    JobLimit: {
+      type: Number,
+    },
+    MyJobs: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

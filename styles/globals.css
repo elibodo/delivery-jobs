@@ -54,11 +54,15 @@
 }
 
 .black_button {
-  @apply rounded-full border border-orange-600 bg-orange-600 py-1.5 px-5 text-white transition-all hover:border-black hover:bg-white hover:text-black text-center text-sm font-normal flex items-center justify-center;
+  @apply rounded-full border-2 border-orange-600 bg-orange-600 py-1.5 px-5 text-white transition-all hover:border-black hover:bg-white hover:text-black text-center text-sm font-medium flex items-center justify-center;
+}
+
+.black_button_disabled {
+  @apply rounded-full border-2 border-orange-600 bg-orange-600 py-1.5 px-5 text-white  text-center text-sm font-medium flex items-center justify-center opacity-50;
 }
 
 .outline_button {
-  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-orange-600 hover:border-orange-600 hover:text-white text-center text-sm font-normal flex items-center justify-center;
+  @apply rounded-full border-2 border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-orange-600 hover:border-orange-600 hover:text-white text-center text-sm font-medium flex items-center justify-center;
 }
 
 .label_input_text {

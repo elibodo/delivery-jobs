@@ -54,6 +54,9 @@ const EmployerAccountHome = () => {
       try {
         await fetch(`/api/job/${jobID}`, {
           method: "DELETE",
+          body: JSON.stringify({
+            employerEmail: session?.user?.email,
+          }),
         });
         const filteredJobs = accountJobs.filter((item) => item._id !== jobID);
         setAccountJobs(filteredJobs);
