@@ -44,6 +44,11 @@ export async function POST(req) {
       City,
       State,
       ZipCode,
+      Subscription,
+      CustomerId,
+      Access,
+      JobLimit,
+      MyJobs,
     } = await req.json();
     const hashedPassword = await bcrypt.hash(password, 10);
     await connectToDB;
@@ -97,6 +102,11 @@ export async function POST(req) {
         City,
         State,
         ZipCode,
+        Subscription,
+        CustomerId,
+        Access,
+        JobLimit,
+        MyJobs,
       });
     }
     return NextResponse.json({ message: "User registered." }, { status: 201 });

@@ -29,11 +29,14 @@ const EmployerAccount = new Schema(
     CustomerId: {
       type: String,
     },
-    SubId: {
-      type: String,
+    Access: {
+      type: Boolean,
     },
     JobLimit: {
-      type: String,
+      type: Number,
+    },
+    MyJobs: {
+      type: Number,
     },
   },
   { timestamps: true }
