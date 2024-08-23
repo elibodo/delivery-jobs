@@ -78,11 +78,79 @@ const JobForm = ({
     setPost({ ...post, payrange: payrange });
   }, [payrange]);
 
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    let totalJobs = account.MyJobs + 1;
+    if (totalJobs <= account.JobLimit && account.JobLimit !== 0) {
+      setMessage("");
+    } else if (account.JobLimit === 0) {
+      setMessage(
+        "You do not currently have a subscription to be able to post a job. Navigate to the billing page and purchase a subscription."
+      );
+    } else {
+      setMessage(
+        "You do not currently have a subscription that can handle the amount of jobs that you want to post. Navigate to the billing page to purchase a higher tier subscription."
+      );
+    }
+  }, []);
+
+  const dynamicSubmitButton = () => {
+    if (message === "") {
+      return (
+        <button
+          type="submit"
+          disabled={submitting}
+          className="black_button mb-5 mt-5"
+          onClick={(e) => {
+            setPost({ ...post, companyName: account.companyName });
+          }}
+        >
+          {submitting ? `${type}ing...` : type}
+        </button>
+      );
+    } else if (
+      message ===
+      "You do not currently have a subscription to be able to post a job. Navigate to the billing page and purchase a subscription."
+    ) {
+      return (
+        <button
+          type="submit"
+          disabled
+          className="black_button_disabled mb-5 mt-5"
+          onClick={(e) => {
+            setPost({ ...post, companyName: account.companyName });
+          }}
+        >
+          {submitting ? `${type}ing...` : type}
+        </button>
+      );
+    } else {
+      return (
+        <button
+          type="submit"
+          disabled
+          className="black_button_disabled mb-5 mt-5"
+          onClick={(e) => {
+            setPost({ ...post, companyName: account.companyName });
+          }}
+        >
+          {submitting ? `${type}ing...` : type}
+        </button>
+      );
+    }
+  };
+
   return (
     <section className="flex flex-col items-center">
       <p className="description mx-2">
         Follow the prompts to create and post a new job
       </p>
+      {message && (
+        <p className="bg-red-500 text-white py-2 px-3 rounded-md text-sm mt-2 mx-2 md:mx-16">
+          {message}
+        </p>
+      )}
       <form onSubmit={handlesubmit} className="mx-2">
         {/* section 1 // // // // // // // // // // // // // // // // // // // // //*/}
 
@@ -861,16 +929,7 @@ const JobForm = ({
           >
             Cancel
           </Link>
-          <button
-            type="submit"
-            disabled={submitting}
-            className="black_button mb-5 mt-5"
-            onClick={(e) => {
-              setPost({ ...post, companyName: account.companyName });
-            }}
-          >
-            {submitting ? `${type}ing...` : type}
-          </button>
+          {dynamicSubmitButton()}
         </div>
       </form>
     </section>
