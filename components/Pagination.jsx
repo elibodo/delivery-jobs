@@ -26,8 +26,8 @@ const Pagination = ({ postPerPage, totalPosts, paginate }) => {
               <a
                 className={
                   activePage === number
-                    ? "active: rounded-lg border border-orange-600 bg-orange-600 p-2 text-white transition-all hover:border-black hover:bg-white hover:text-black text-center text-sm font-normal flex items-center justify-center"
-                    : "rounded-lg border border-black bg-transparent p-2 text-black transition-all hover:bg-orange-600 hover:border-orange-600 hover:text-white text-center text-sm font-normal flex items-center justify-center"
+                    ? "active: cursor-pointer rounded-lg border-2 border-orange-600 bg-orange-600 p-2 text-white transition-all text-center text-md font-normal flex items-center justify-center"
+                    : "cursor-pointer rounded-lg border-2 border-black bg-transparent p-2 text-black transition-all hover:bg-orange-600 hover:border-orange-600 hover:text-white text-center text-md font-normal flex items-center justify-center"
                 }
                 onClick={() => {
                   router.push(`/?page=${number}&per_page=${postPerPage}`);
