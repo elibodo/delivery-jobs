@@ -2,11 +2,11 @@ import React from "react";
 
 const SubscriptionActive = ({ user }) => {
   const dynamicJobSubTitle = (user) => {
-    if (user.Subscription === "prod_QfPX69eZFheIvk") {
+    if (user.Subscription === "prod_QhkhnlumnEXxmK") {
       return <>Up To Two Jobs</>;
-    } else if (user.Subscription === "prod_QfPX5JAEOPbEmT") {
+    } else if (user.Subscription === "prod_QhkhCfbfaSCQnT") {
       return <>Up To Five Jobs</>;
-    } else if (user.Subscription === "prod_QfPYlxmROOBMQq") {
+    } else if (user.Subscription === "prod_QhkhzAomag0BYl") {
       return <>Unlimited Jobs</>;
     } else {
       return <>0</>;
@@ -14,11 +14,11 @@ const SubscriptionActive = ({ user }) => {
   };
 
   const dynamicJobDescription = (user) => {
-    if (user.Subscription === "prod_QfPX69eZFheIvk") {
+    if (user.Subscription === "prod_QhkhnlumnEXxmK") {
       return <>Have access to two job posts.</>;
-    } else if (user.Subscription === "prod_QfPX5JAEOPbEmT") {
+    } else if (user.Subscription === "prod_QhkhCfbfaSCQnT") {
       return <>Have access to five job posts.</>;
-    } else if (user.Subscription === "prod_QfPYlxmROOBMQq") {
+    } else if (user.Subscription === "prod_QhkhzAomag0BYl") {
       return <>Have access to unlimited job posts.</>;
     } else {
       return <></>;
@@ -26,11 +26,11 @@ const SubscriptionActive = ({ user }) => {
   };
 
   const dynamicJobSubCost = (user) => {
-    if (user.Subscription === "prod_QfPX69eZFheIvk") {
+    if (user.Subscription === "prod_QhkhnlumnEXxmK") {
       return <>$2.00</>;
-    } else if (user.Subscription === "prod_QfPX5JAEOPbEmT") {
+    } else if (user.Subscription === "prod_QhkhCfbfaSCQnT") {
       return <>$4.00</>;
-    } else if (user.Subscription === "prod_QfPYlxmROOBMQq") {
+    } else if (user.Subscription === "prod_QhkhzAomag0BYl") {
       return <>$10.00</>;
     } else {
       return <></>;
