@@ -8,7 +8,7 @@ export async function POST(req) {
 
   const session = await stripe.billingPortal.sessions.create({
     customer: customerId,
-    return_url: "http://localhost:3000",
+    return_url: "https://deliveryjobs.com/",
   });
 
   return NextResponse.json(session.url);
