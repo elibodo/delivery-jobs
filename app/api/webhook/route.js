@@ -36,11 +36,11 @@ export async function POST(req) {
 
           let totalJobs;
 
-          if (subscription.plan.product === "prod_QfPX69eZFheIvk") {
+          if (subscription.plan.product === "prod_QhkhnlumnEXxmK") {
             totalJobs = 2;
-          } else if (subscription.plan.product === "prod_QfPX5JAEOPbEmT") {
+          } else if (subscription.plan.product === "prod_QhkhCfbfaSCQnT") {
             totalJobs = 5;
-          } else if (subscription.plan.product === "prod_QfPYlxmROOBMQq") {
+          } else if (subscription.plan.product === "prod_QhkhzAomag0BYl") {
             totalJobs = 99999;
           } else {
             totalJobs = 0;
@@ -63,11 +63,11 @@ export async function POST(req) {
 
           let totalJobs;
 
-          if (session.plan.product === "prod_QfPX69eZFheIvk") {
+          if (session.plan.product === "prod_QhkhnlumnEXxmK") {
             totalJobs = 2;
-          } else if (session.plan.product === "prod_QfPX5JAEOPbEmT") {
+          } else if (session.plan.product === "prod_QhkhCfbfaSCQnT") {
             totalJobs = 5;
-          } else if (session.plan.product === "prod_QfPYlxmROOBMQq") {
+          } else if (session.plan.product === "prod_QhkhzAomag0BYl") {
             totalJobs = 99999;
           } else {
             totalJobs = 0;
