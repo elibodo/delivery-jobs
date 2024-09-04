@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import JobForm from "@components/JobForm";
 import { useState, useEffect } from "react";
@@ -50,7 +51,6 @@ const CreateJob = () => {
   const createJob = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-
     try {
       const response = await fetch("/api/job/new", {
         method: "POST",
