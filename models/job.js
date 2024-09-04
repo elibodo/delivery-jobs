@@ -93,6 +93,12 @@ const JobSchema = new Schema({
   clicks: {
     type: Number,
   },
+  latitude: {
+    type: Number,
+  },
+  longitude: {
+    type: Number,
+  },
 });
 
 const Job = models.Job || model("Job", JobSchema);

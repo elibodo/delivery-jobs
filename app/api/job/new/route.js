@@ -31,6 +31,29 @@ export const POST = async (request) => {
     companyName,
   } = await request.json();
 
+  const apiKey = process.env.GOOGLE_GEOCODE_KEY;
+  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+    dispatchlocation
+  )}&key=${apiKey}`;
+
+  let latitude;
+  let longitude;
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new error("Failed to fetch data");
+    }
+    const data = await response.json();
+    latitude = data.results[0].geometry.location.lat;
+    longitude = data.results[0].geometry.location.lng;
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to fetch data" },
+      { status: 500 }
+    );
+  }
+
   try {
     await connectToDB();
     const newJob = new Job({
@@ -57,6 +80,8 @@ export const POST = async (request) => {
       emailupdates,
       applicants,
       companyName,
+      latitude,
+      longitude,
     });
 
     await newJob.save();
