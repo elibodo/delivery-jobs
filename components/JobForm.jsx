@@ -204,8 +204,13 @@ const JobForm = ({
             </div>
           </label>
           {/* Dispatch location */}
-          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="has-tooltip mt-4 flex flex-col items-start text-gray-900 font-semibold">
             Dispatch Location
+            <span className="tooltip opacity-90 rounded shadow-lg p-1 bg-gray-400 text-black -mt-28 md:-mt-14 mx-3">
+              The dispatch location will be used to determine distance for the
+              candidates. Please enter a full address, a city and state, or a
+              zip code.
+            </span>
             <input
               type="text"
               value={post.dispatchlocation}

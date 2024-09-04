@@ -11,14 +11,6 @@ const Header = () => {
 
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
-  const [providers, setProviders] = useState(null);
-  useEffect(() => {
-    (async () => {
-      const res = await getProviders();
-      setProviders(res);
-    })();
-  }, []);
-
   return (
     <nav className="flex justify-between items-center w-full mb-4 md:mb-12 pt-5 px-6">
       <Link href="/" className="flex gap-2 flex_center">
