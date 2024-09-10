@@ -19,7 +19,7 @@ const Feed = () => {
 
   //Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(10);
+  const [postPerPage] = useState(5);
 
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;

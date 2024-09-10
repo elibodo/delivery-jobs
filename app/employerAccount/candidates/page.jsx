@@ -54,6 +54,8 @@ const Candidates = () => {
   const { data: session } = useSession();
 
   const [accountInfo, setAccountInfo] = useState([]);
+  const [accountJobs, setAccountJobs] = useState([]);
+
   useEffect(() => {
     const fetchAccount = async () => {
       const response = await fetch(
@@ -62,17 +64,15 @@ const Candidates = () => {
       const data = await response.json();
       setAccountInfo(data);
     };
-    if (session?.user.email) fetchAccount();
-  }, []);
-
-  const [accountJobs, setAccountJobs] = useState([]);
-  useEffect(() => {
     const fetchJobs = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/jobs`);
       const data = await response.json();
       setAccountJobs(data);
     };
-    if (session?.user.id) fetchJobs();
+    if (session?.user.email) {
+      fetchAccount();
+      fetchJobs();
+    }
   }, []);
 
   return <ECandidates accountData={accountInfo} jobData={accountJobs} />;
