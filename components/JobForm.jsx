@@ -240,7 +240,7 @@ const JobForm = ({
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Does this person require authorization to work in the US?
             <div className="font-semibold text-gray-700">
-              <label for="yes_auth">
+              <label htmlFor="yes_auth">
                 <input
                   type="radio"
                   name="authRadio"
@@ -254,7 +254,7 @@ const JobForm = ({
                 />
                 Yes
               </label>
-              <label for="no_auth">
+              <label htmlFor="no_auth">
                 <input
                   type="radio"
                   name="authRadio"
@@ -280,7 +280,7 @@ const JobForm = ({
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             What type of job is this?
             <div className="font-semibold text-gray-700">
-              <label for="full_time">
+              <label htmlFor="full_time">
                 <input
                   required
                   type="radio"
@@ -294,7 +294,7 @@ const JobForm = ({
                 />
                 Full time
               </label>
-              <label for="part_time">
+              <label htmlFor="part_time">
                 <input
                   required
                   type="radio"
@@ -308,7 +308,7 @@ const JobForm = ({
                 />
                 Part time
               </label>
-              <label for="seasonal">
+              <label htmlFor="seasonal">
                 <input
                   required
                   type="radio"
@@ -329,7 +329,7 @@ const JobForm = ({
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             Is this job contract or W2?
             <div className="font-semibold text-gray-700">
-              <label for="w2">
+              <label htmlFor="w2">
                 <input
                   required
                   type="radio"
@@ -343,7 +343,7 @@ const JobForm = ({
                 />
                 W2
               </label>
-              <label for="contract">
+              <label htmlFor="contract">
                 <input
                   required
                   type="radio"
@@ -386,7 +386,7 @@ const JobForm = ({
           <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
             What type of shift is this?
             <div className="font-semibold text-gray-700">
-              <label for="local">
+              <label htmlFor="local">
                 <input
                   required
                   type="radio"
@@ -400,7 +400,7 @@ const JobForm = ({
                 />
                 Local
               </label>
-              <label for="over_the_road">
+              <label htmlFor="over_the_road">
                 <input
                   required
                   type="radio"
@@ -421,7 +421,7 @@ const JobForm = ({
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             What days does this job operate? (Select all that apply)
             <div className="flex flex-col items-left text-gray-700">
-              <label for="sunday">
+              <label htmlFor="sunday">
                 <input
                   name="daysofoperation"
                   type="checkbox"
@@ -432,7 +432,7 @@ const JobForm = ({
                 />
                 Sunday
               </label>
-              <label for="monday">
+              <label htmlFor="monday">
                 <input
                   name="daysofoperation"
                   type="checkbox"
@@ -443,7 +443,7 @@ const JobForm = ({
                 />
                 Monday
               </label>
-              <label for="tuesday">
+              <label htmlFor="tuesday">
                 <input
                   name="daysofoperation"
                   type="checkbox"
@@ -454,7 +454,7 @@ const JobForm = ({
                 />
                 Tuesday
               </label>
-              <label for="wednesday">
+              <label htmlFor="wednesday">
                 <input
                   name="daysofoperation"
                   type="checkbox"
@@ -465,7 +465,7 @@ const JobForm = ({
                 />
                 Wednesday
               </label>
-              <label for="thursday">
+              <label htmlFor="thursday">
                 <input
                   name="daysofoperation"
                   type="checkbox"
@@ -476,7 +476,7 @@ const JobForm = ({
                 />
                 Thursday
               </label>
-              <label for="friday">
+              <label htmlFor="friday">
                 <input
                   name="daysofoperation"
                   type="checkbox"
@@ -487,7 +487,7 @@ const JobForm = ({
                 />
                 Friday
               </label>
-              <label for="saturday">
+              <label htmlFor="saturday">
                 <input
                   name="daysofoperation"
                   type="checkbox"
@@ -571,7 +571,7 @@ const JobForm = ({
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             What benefits does your company offer? (Select all that apply)
             <div className="flex flex-col items-left text-gray-700">
-              <label for="401k_check" className="">
+              <label htmlFor="401k_check" className="">
                 <input
                   type="checkbox"
                   id="401k_check"
@@ -581,7 +581,7 @@ const JobForm = ({
                 />
                 401K Matching
               </label>
-              <label for="medical_check" className="">
+              <label htmlFor="medical_check" className="">
                 <input
                   type="checkbox"
                   id="medical_check"
@@ -591,7 +591,7 @@ const JobForm = ({
                 />
                 Medical Insurance
               </label>
-              <label for="dental_check" className="">
+              <label htmlFor="dental_check" className="">
                 <input
                   type="checkbox"
                   id="dental_check"
@@ -601,7 +601,7 @@ const JobForm = ({
                 />
                 Dental Insurance
               </label>
-              <label for="vision_check" className="">
+              <label htmlFor="vision_check" className="">
                 <input
                   type="checkbox"
                   id="vision_check"
@@ -611,7 +611,7 @@ const JobForm = ({
                 />
                 Vision Insurance
               </label>
-              <label for="life_check" className="">
+              <label htmlFor="life_check" className="">
                 <input
                   type="checkbox"
                   id="life_check"
@@ -621,7 +621,7 @@ const JobForm = ({
                 />
                 Life Insurance
               </label>
-              <label for="none_check" className="">
+              <label htmlFor="none_check" className="">
                 <input
                   type="checkbox"
                   id="none_check"
@@ -662,7 +662,7 @@ const JobForm = ({
           {/* <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Will applicants be required to include a resume?
             <div className="font-semibold text-gray-700">
-              <label for="yes_resume">
+              <label htmlFor="yes_resume">
                 <input
                   required
                   type="radio"
@@ -674,7 +674,7 @@ const JobForm = ({
                 />
                 Yes
               </label>
-              <label for="no_resume">
+              <label htmlFor="no_resume">
                 <input
                   required
                   type="radio"
@@ -686,7 +686,7 @@ const JobForm = ({
                 />
                 No
               </label>
-              <label for="optional_resume">
+              <label htmlFor="optional_resume">
                 <input
                   required
                   type="radio"
@@ -704,7 +704,7 @@ const JobForm = ({
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Will applicants be required take a drug test?
             <div className="font-semibold text-gray-700 mt-1 flex flex-col md:flex-row md:gap-5 md:items-center">
-              <label for="yes_marijuana_drugtest">
+              <label htmlFor="yes_marijuana_drugtest">
                 <input
                   required
                   type="radio"
@@ -718,7 +718,7 @@ const JobForm = ({
                 />
                 Yes, Including Marijuana
               </label>
-              <label for="yes_drugtest">
+              <label htmlFor="yes_drugtest">
                 <input
                   required
                   type="radio"
@@ -732,7 +732,7 @@ const JobForm = ({
                 />
                 Yes, Excluding Marijuana
               </label>
-              <label for="no_drugtest">
+              <label htmlFor="no_drugtest">
                 <input
                   required
                   type="radio"
@@ -753,7 +753,7 @@ const JobForm = ({
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Will applicants be required to do a background check?
             <div className="font-semibold text-gray-700">
-              <label for="yes_background">
+              <label htmlFor="yes_background">
                 <input
                   required
                   type="radio"
@@ -767,7 +767,7 @@ const JobForm = ({
                 />
                 Yes
               </label>
-              <label for="no_background">
+              <label htmlFor="no_background">
                 <input
                   required
                   type="radio"
@@ -788,7 +788,7 @@ const JobForm = ({
           <label className="mt-4 flex flex-col text-gray-900 font-semibold">
             Will applicants be required to have a DOT medical card?
             <div className="font-semibold text-gray-700 mt-1 flex flex-col md:flex-row md:gap-5">
-              <label for="yes_dot_radio">
+              <label htmlFor="yes_dot_radio">
                 <input
                   required
                   type="radio"
@@ -802,7 +802,7 @@ const JobForm = ({
                 />
                 Yes
               </label>
-              <label for="yes_dotprior_radio">
+              <label htmlFor="yes_dotprior_radio">
                 <input
                   required
                   type="radio"
@@ -816,7 +816,7 @@ const JobForm = ({
                 />
                 Yes, but prior to applying
               </label>
-              <label for="no_dot_radio">
+              <label htmlFor="no_dot_radio">
                 <input
                   required
                   type="radio"

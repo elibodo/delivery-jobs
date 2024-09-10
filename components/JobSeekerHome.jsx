@@ -148,11 +148,12 @@ const JobSeekerHome = ({ account }) => {
               <p className="mt-10 text-xl text-gray-600 mb-3">Work History</p>
               <div className="ml-2 mt-3">
                 {work.map((work) => (
-                  <div className="mt-3 pb-3 border-b-2 border-gray-300">
-                    <p key={work._id} className="font-semibold text-lg">
-                      {work.title}
-                    </p>
-                    <p key={work._id} className="mx-2 mt-1 text-gray-800">
+                  <div
+                    key={work._id}
+                    className="mt-3 pb-3 border-b-2 border-gray-300"
+                  >
+                    <p className="font-semibold text-lg">{work.title}</p>
+                    <p className="mx-2 mt-1 text-gray-800">
                       <span className="font-semibold">
                         {work.company}
                         {" : "}
@@ -161,9 +162,7 @@ const JobSeekerHome = ({ account }) => {
                       {work.length}
                       {" year(s)"}
                     </p>
-                    <p key={work._id} className="mx-2 mt-1 text-gray-800">
-                      {work.duties}
-                    </p>
+                    <p className="mx-2 mt-1 text-gray-800">{work.duties}</p>
                   </div>
                 ))}
               </div>

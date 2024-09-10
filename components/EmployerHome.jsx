@@ -17,7 +17,7 @@ const EmployerHome = ({ account, jobs, handleDelete }) => {
         {jobs.length !== 0 ? (
           <>
             {jobs.map((jobs) => (
-              <div className="flex flex-row gap-5">
+              <div key={jobs._id} className="flex flex-row gap-5">
                 <JobCard
                   key={jobs._id}
                   post={jobs}
