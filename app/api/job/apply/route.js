@@ -8,7 +8,8 @@ export const dynamic = "force-dynamic";
 export async function POST(req, res) {
   await connectToDB();
   if (req.method === "POST") {
-    const { postId, applicantEmail } = await req.json();
+    const { postId, applicantEmail, applicantName, applicantPhoneNumber } =
+      await req.json();
     try {
       const job = await Job.findById(postId);
       if (!job) {
@@ -19,7 +20,17 @@ export async function POST(req, res) {
         return res.status(404).json({ message: "Applicant not found." });
       }
 
-      const newApplicant = applicantEmail;
+      const currentDate = new Date();
+      const formattedDate = currentDate.toLocaleDateString();
+
+      const newApplicant = {
+        email: applicantEmail,
+        name: applicantName,
+        phoneNumber: applicantPhoneNumber,
+        dateOfApply: formattedDate,
+        contacted: "",
+        status: "",
+      };
       const newJob = postId;
       await job.applicants.push(newApplicant);
       await job.save();

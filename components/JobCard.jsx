@@ -23,10 +23,11 @@ const JobCard = ({ post, handleDelete }) => {
     const applicantArray = post.applicants;
     const deniedApplicantArray = post.deniedApplicants;
     const currentUserEmail = session?.user?.email;
-    if (
-      !applicantArray.includes(currentUserEmail) &&
-      !deniedApplicantArray.includes(currentUserEmail)
-    ) {
+
+    let index = applicantArray.findIndex(
+      (obj) => obj.email === currentUserEmail
+    );
+    if (index === -1 && !deniedApplicantArray.includes(currentUserEmail)) {
       try {
         const res = await fetch("/api/job/apply", {
           method: "POST",
@@ -36,6 +37,8 @@ const JobCard = ({ post, handleDelete }) => {
           body: JSON.stringify({
             postId: post._id,
             applicantEmail: session?.user?.email,
+            applicantName: session?.user?.name,
+            applicantPhoneNumber: session?.user?.phoneNumber,
           }),
         });
         await fetch("/api/job/email", {
@@ -54,8 +57,12 @@ const JobCard = ({ post, handleDelete }) => {
         } else {
           alert("Could not apply to " + post.title);
         }
-      } catch (error) {}
-    } else alert("You have already applied to " + post.title);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      alert("You have already applied to " + post.title);
+    }
   };
 
   return (
