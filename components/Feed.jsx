@@ -19,7 +19,7 @@ const Feed = () => {
 
   //Pagination
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(5);
+  const [postPerPage] = useState(10);
 
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
@@ -35,6 +35,7 @@ const Feed = () => {
           {currentPosts.map((post) => (
             <JobCard key={post._id} post={post} />
           ))}
+          {/* {posts == "" ? <>sdf</> : <>aa</>} */}
         </div>
         <Pagination
           postPerPage={postPerPage}

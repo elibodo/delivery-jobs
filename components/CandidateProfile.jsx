@@ -22,14 +22,13 @@ const CandidateProfile = ({
   const eduDate = new Date(account.educationDate).toLocaleDateString("en-US", {
     timeZone: "UTC",
   });
-
   const certs = account.certificates;
   const work = account.experienceArray;
+
   return (
-    <div className="absolute overscroll-none overflow-auto inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-      <div className="md:w-[750px] h-full">
-        <div className="bg-gray-100 p-2">
-          {/* test */}
+    <>
+      <div className="fixed top-0 right-0 bottom-0 left-0 z-30 bg-black bg-opacity-25 backdrop-blur-sm flex overflow-y-auto justify-center items-center">
+        <div className="m-auto w-full md:w-[700px] flex flex-col gap-6 [&>*]:mx-auto p-6 bg-gray-100">
           <div className="flex flex-col w-full p-5">
             {/* Top of resume */}
 
@@ -228,7 +227,7 @@ const CandidateProfile = ({
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

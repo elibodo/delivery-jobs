@@ -9,13 +9,15 @@ export const POST = async (req, { params }) => {
     const { candidate } = await req.json();
     const deletedCandidate = candidate;
     const job = await Job.findById(params.id);
-    const candidates = job.applicants;
+    let candidates = job.applicants;
 
-    const filtered = candidates.filter(function (e) {
-      return e !== deletedCandidate;
-    });
+    let index = candidates.findIndex((obj) => obj.email === deletedCandidate);
 
-    job.applicants = filtered;
+    if (index !== -1) {
+      candidates.splice(index, 1);
+    }
+
+    job.applicants = candidates;
     job.deniedApplicants.push(deletedCandidate);
     await job.save();
 
