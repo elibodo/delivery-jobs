@@ -1,16 +1,19 @@
+"use client";
+
 import React from "react";
 import { useState, useEffect } from "react";
 import CandidateProfile from "./CandidateProfile";
 
 const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
-  const name = data;
-  const email = data;
+  const name = data.name;
+  const email = data.email;
   const job = jobTitle;
+
   //Click to copy email address
   const [copied, setCopied] = useState("");
   const handleCopy = () => {
-    setCopied(data);
-    navigator.clipboard.writeText(data);
+    setCopied(data.email);
+    navigator.clipboard.writeText(data.email);
     setTimeout(() => setCopied(false), 3000);
   };
 
@@ -104,34 +107,80 @@ const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
 const MyCandidates = ({ post, handleDelete }) => {
   const jobApplicants = post.applicants;
 
+  const handleContacted = async (e, applicant) => {
+    e.preventDefault();
+    const { value } = e.target;
+    try {
+      await fetch("/api/candidate/contactedUpdate", {
+        method: "PATCH",
+        body: JSON.stringify({
+          option: value,
+          applicantEmail: applicant,
+          jobId: post._id,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleStatus = async (e, applicant) => {
+    e.preventDefault();
+    const { value } = e.target;
+    try {
+      await fetch("/api/candidate/statusUpdate", {
+        method: "PATCH",
+        body: JSON.stringify({
+          option: value,
+          applicantEmail: applicant,
+          jobId: post._id,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
-      {jobApplicants.map((element) => (
-        <tr key={element}>
-          <td className="text-left py-1.5 px-4 border-b">{element}</td>
-          <td className="text-left py-1.5 px-4 border-b">{post.title}</td>
+      {jobApplicants.map((applicant) => (
+        <tr key={applicant._id}>
           <td className="text-left py-1.5 px-4 border-b">
-            <select>
-              <option value={""} selected></option>
-              <option>Yes</option>
-              <option>No</option>
+            <p className="font-semibold text-nowrap">{applicant.name}</p>
+            <p className="text-nowrap">{applicant.email}</p>
+          </td>
+          <td className="text-left py-1.5 px-4 border-b">
+            <p className="font-semibold text-nowrap">{post.title}</p>
+            <p>Applied {applicant.dateOfApply}</p>
+          </td>
+          <td className="text-left py-1.5 px-4 border-b">
+            <select
+              defaultValue={applicant.contacted}
+              onChange={(e) => handleContacted(e, applicant.email)}
+            >
+              <option value={""}></option>
+              <option value={"Yes"}>Yes</option>
+              <option value={"No"}>No</option>
             </select>
           </td>
           <td className="text-left py-1.5 px-4 border-b">
-            <select>
-              <option value={""} selected></option>
-              <option>Keep</option>
-              <option>Maybe</option>
-              <option>Remove</option>
+            <select
+              defaultValue={applicant.status}
+              onChange={(e) => handleStatus(e, applicant.email)}
+            >
+              <option value={""}></option>
+              <option value={"Keep"}>Keep</option>
+              <option value={"Maybe"}>Maybe</option>
+              <option value={"Remove"}>Remove</option>
             </select>
           </td>
           <td className="py-1.5 px-4 border-b">
             <ApplicantInformation
-              key={element}
-              data={element}
+              key={applicant._id}
+              data={applicant}
               jobTitle={post.title}
               handleDelete={() =>
-                handleDelete && handleDelete(element, post._id)
+                handleDelete && handleDelete(applicant.email, post._id)
               }
             />
           </td>

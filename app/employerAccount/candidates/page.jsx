@@ -10,6 +10,7 @@ const ECandidates = ({ accountData, jobData }) => {
   const handleDelete = async (app, id) => {
     const jobID = id;
     const candidate = app;
+
     const hasConfirmed = confirm(
       "Are you sure you want to permanently delete this candidate"
     );
@@ -23,9 +24,15 @@ const ECandidates = ({ accountData, jobData }) => {
         });
         if (res.ok) {
           jobData.forEach((element) => {
-            if (element._id === id) {
-              const a = element.applicants.filter((item) => item !== app);
-              element.applicants = a;
+            if (element._id === jobID) {
+              let candidates = element.applicants;
+              let index = candidates.findIndex(
+                (obj) => obj.email === candidate
+              );
+              if (index !== -1) {
+                candidates.splice(index, 1);
+              }
+              element.applicants = candidates;
             }
             setData([jobData]);
           });
