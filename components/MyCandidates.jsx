@@ -1,17 +1,19 @@
+"use client";
+
 import React from "react";
 import { useState, useEffect } from "react";
 import CandidateProfile from "./CandidateProfile";
-import Pagination from "./Pagination";
 
 const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
-  const name = data;
-  const email = data;
+  const name = data.name;
+  const email = data.email;
   const job = jobTitle;
+
   //Click to copy email address
   const [copied, setCopied] = useState("");
   const handleCopy = () => {
-    setCopied(data);
-    navigator.clipboard.writeText(data);
+    setCopied(data.email);
+    navigator.clipboard.writeText(data.email);
     setTimeout(() => setCopied(false), 3000);
   };
 
@@ -28,26 +30,9 @@ const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
   }, []);
 
   return (
-    <div className="flex flex-row justify-between items-center mx-3 my-1 p-1 border-b-2 border-gray-200">
-      <p className="text-left w-3/12">{data}</p>
-      <p className="text-left w-3/12">{jobTitle}</p>
-      <select className="text-left w-1/12">
-        <option value={""} selected></option>
-        <option>Yes</option>
-        <option>No</option>
-      </select>
-      <select className="text-left w-1/12">
-        <option value={""} selected></option>
-        <option>Keep</option>
-        <option>Maybe</option>
-        <option>Remove</option>
-      </select>
-      <div className="text-right w-2/12 space-x-3">
-        {/* View profile */}
-        <button className="has-tooltip" onClick={() => setViewCandidate(true)}>
-          <span className="tooltip rounded shadow-lg p-1 bg-gray-500 text-black -mt-8">
-            View candidate resume
-          </span>
+    <>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 justify-items-center">
+        <button onClick={() => setViewCandidate(true)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -61,11 +46,7 @@ const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
             />
           </svg>
         </button>
-        {/* Message */}
-        <button className="has-tooltip">
-          <span className="tooltip rounded shadow-lg p-1 bg-gray-500 text-black -mt-8">
-            Message Candidate
-          </span>
+        <button>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -79,11 +60,7 @@ const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
             />
           </svg>
         </button>
-        {/* Copy email */}
-        <button className="has-tooltip" onClick={handleCopy}>
-          <span className="tooltip rounded shadow-lg p-1 bg-gray-500 text-black -mt-8">
-            Copy Candidates Email
-          </span>
+        <button onClick={handleCopy}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -97,11 +74,7 @@ const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
             />
           </svg>
         </button>
-        {/* Delete candidate */}
-        <button onClick={handleDelete} className="has-tooltip">
-          <span className="tooltip rounded shadow-lg p-1 bg-gray-500 text-black -mt-8">
-            Delete Candidate
-          </span>
+        <button onClick={handleDelete}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -127,24 +100,93 @@ const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
           account={account}
         />
       ))}
-    </div>
+    </>
   );
 };
 
 const MyCandidates = ({ post, handleDelete }) => {
   const jobApplicants = post.applicants;
+
+  const handleContacted = async (e, applicant) => {
+    e.preventDefault();
+    const { value } = e.target;
+    try {
+      await fetch("/api/candidate/contactedUpdate", {
+        method: "PATCH",
+        body: JSON.stringify({
+          option: value,
+          applicantEmail: applicant,
+          jobId: post._id,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleStatus = async (e, applicant) => {
+    e.preventDefault();
+    const { value } = e.target;
+    try {
+      await fetch("/api/candidate/statusUpdate", {
+        method: "PATCH",
+        body: JSON.stringify({
+          option: value,
+          applicantEmail: applicant,
+          jobId: post._id,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div>
-      <div>
-        {jobApplicants.map((element) => (
-          <ApplicantInformation
-            data={element}
-            jobTitle={post.title}
-            handleDelete={() => handleDelete && handleDelete(element, post._id)}
-          />
-        ))}
-      </div>
-    </div>
+    <>
+      {jobApplicants.map((applicant) => (
+        <tr key={applicant._id}>
+          <td className="text-left py-1.5 px-4 border-b">
+            <p className="font-semibold text-nowrap">{applicant.name}</p>
+            <p className="text-nowrap">{applicant.email}</p>
+          </td>
+          <td className="text-left py-1.5 px-4 border-b">
+            <p className="font-semibold text-nowrap">{post.title}</p>
+            <p>Applied {applicant.dateOfApply}</p>
+          </td>
+          <td className="text-left py-1.5 px-4 border-b">
+            <select
+              defaultValue={applicant.contacted}
+              onChange={(e) => handleContacted(e, applicant.email)}
+            >
+              <option value={""}></option>
+              <option value={"Yes"}>Yes</option>
+              <option value={"No"}>No</option>
+            </select>
+          </td>
+          <td className="text-left py-1.5 px-4 border-b">
+            <select
+              defaultValue={applicant.status}
+              onChange={(e) => handleStatus(e, applicant.email)}
+            >
+              <option value={""}></option>
+              <option value={"Keep"}>Keep</option>
+              <option value={"Maybe"}>Maybe</option>
+              <option value={"Remove"}>Remove</option>
+            </select>
+          </td>
+          <td className="py-1.5 px-4 border-b">
+            <ApplicantInformation
+              key={applicant._id}
+              data={applicant}
+              jobTitle={post.title}
+              handleDelete={() =>
+                handleDelete && handleDelete(applicant.email, post._id)
+              }
+            />
+          </td>
+        </tr>
+      ))}
+    </>
   );
 };
 

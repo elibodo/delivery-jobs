@@ -10,6 +10,7 @@ const ECandidates = ({ accountData, jobData }) => {
   const handleDelete = async (app, id) => {
     const jobID = id;
     const candidate = app;
+
     const hasConfirmed = confirm(
       "Are you sure you want to permanently delete this candidate"
     );
@@ -23,9 +24,15 @@ const ECandidates = ({ accountData, jobData }) => {
         });
         if (res.ok) {
           jobData.forEach((element) => {
-            if (element._id === id) {
-              const a = element.applicants.filter((item) => item !== app);
-              element.applicants = a;
+            if (element._id === jobID) {
+              let candidates = element.applicants;
+              let index = candidates.findIndex(
+                (obj) => obj.email === candidate
+              );
+              if (index !== -1) {
+                candidates.splice(index, 1);
+              }
+              element.applicants = candidates;
             }
             setData([jobData]);
           });
@@ -54,6 +61,8 @@ const Candidates = () => {
   const { data: session } = useSession();
 
   const [accountInfo, setAccountInfo] = useState([]);
+  const [accountJobs, setAccountJobs] = useState([]);
+
   useEffect(() => {
     const fetchAccount = async () => {
       const response = await fetch(
@@ -62,17 +71,15 @@ const Candidates = () => {
       const data = await response.json();
       setAccountInfo(data);
     };
-    if (session?.user.email) fetchAccount();
-  }, []);
-
-  const [accountJobs, setAccountJobs] = useState([]);
-  useEffect(() => {
     const fetchJobs = async () => {
       const response = await fetch(`/api/users/${session?.user.id}/jobs`);
       const data = await response.json();
       setAccountJobs(data);
     };
-    if (session?.user.id) fetchJobs();
+    if (session?.user.email) {
+      fetchAccount();
+      fetchJobs();
+    }
   }, []);
 
   return <ECandidates accountData={accountInfo} jobData={accountJobs} />;

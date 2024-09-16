@@ -35,6 +35,7 @@ const Feed = () => {
           {currentPosts.map((post) => (
             <JobCard key={post._id} post={post} />
           ))}
+          {/* {posts == "" ? <>sdf</> : <>aa</>} */}
         </div>
         <Pagination
           postPerPage={postPerPage}
