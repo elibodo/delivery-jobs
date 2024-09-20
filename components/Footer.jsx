@@ -7,6 +7,9 @@ const Footer = () => {
       <a href="/termsAndConditions" className="hover:underline">
         Terms and Conditions
       </a>
+      <a href="/contactPage" className="hover:underline">
+        Contact Us
+      </a>
     </footer>
   );
 };

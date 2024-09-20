@@ -3,11 +3,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import CandidateProfile from "./CandidateProfile";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
-const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
+const ApplicantInformation = ({ data, jobTitle, handleDelete, jobId }) => {
   const name = data.name;
   const email = data.email;
   const job = jobTitle;
+
+  const router = useRouter();
+  const { data: session } = useSession();
+  const currentUser = session.user.id;
 
   //Click to copy email address
   const [copied, setCopied] = useState("");
@@ -29,6 +35,22 @@ const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
     if (!viewCandidate) fetchAccount();
   }, []);
 
+  const createChat = async () => {
+    const res = await fetch("/api/chats", {
+      method: "POST",
+      body: JSON.stringify({
+        currentUserId: currentUser,
+        member: email,
+        jobId: jobId,
+      }),
+    });
+    const chat = await res.json();
+
+    if (res.ok) {
+      router.push(`/employerAccount/employerMessaging/${chat._id}`);
+    }
+  };
+
   return (
     <>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-2 justify-items-center">
@@ -46,7 +68,7 @@ const ApplicantInformation = ({ data, jobTitle, handleDelete }) => {
             />
           </svg>
         </button>
-        <button>
+        <button onClick={createChat}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
@@ -179,6 +201,7 @@ const MyCandidates = ({ post, handleDelete }) => {
               key={applicant._id}
               data={applicant}
               jobTitle={post.title}
+              jobId={post._id}
               handleDelete={() =>
                 handleDelete && handleDelete(applicant.email, post._id)
               }

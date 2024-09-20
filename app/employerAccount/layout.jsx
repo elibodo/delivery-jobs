@@ -21,7 +21,7 @@ const EmployerNavLayout = ({ children }) => {
               </li>
               <li>
                 <ProfileNavLink href={"/employerAccount/employerMessaging"}>
-                  Messages
+                  Messaging
                 </ProfileNavLink>
               </li>
               <li>

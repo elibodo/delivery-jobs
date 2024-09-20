@@ -14,7 +14,9 @@ const Header = () => {
   return (
     <nav className="flex justify-between items-center w-full mb-4 md:mb-12 pt-5 px-6">
       <Link href="/" className="flex gap-2 flex_center">
-        <p className="logo_text">Delivery Jobs</p>
+        <p className="logo_text">
+          <span className="text-orange-600">Delivery</span> Jobs
+        </p>
       </Link>
 
       <div className="md:flex hidden">

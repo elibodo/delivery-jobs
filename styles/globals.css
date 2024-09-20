@@ -37,6 +37,7 @@
     padding: 0;
   }
 }
+
 .app {
   @apply min-h-screen flex items-center flex-col max-w-7xl mx-auto md:px-16 p-2 pt-4;
 }

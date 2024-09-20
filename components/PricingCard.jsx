@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { redirect } from "next/navigation";
 import { useSession } from "next-auth/react";
 
 const PricingCard = ({ price }) => {
