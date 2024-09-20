@@ -77,15 +77,31 @@ const ChatList = ({ currentChatId }) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <div className="flex-1 flex flex-col pr-2 overflow-y-scroll custom-scrollbar">
-        {chats?.map((chat, index) => (
+      <div className="flex-1 flex flex-col overflow-y-scroll custom-scrollbar">
+        {/* {chats?.map((chat, index) => (
           <ChatBox
             chat={chat}
             key={index}
             currentUser={currentUser}
             currentChatId={currentChatId}
           />
-        ))}
+        ))} */}
+        {chats?.length > 0 ? (
+          chats?.map((chat, index) => (
+            <ChatBox
+              chat={chat}
+              key={index}
+              currentUser={currentUser}
+              currentChatId={currentChatId}
+            />
+          ))
+        ) : (
+          <div className="text-center">
+            <p className="text-gray-500 text-lg font-semibold">
+              No chats available
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

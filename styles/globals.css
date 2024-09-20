@@ -51,7 +51,7 @@
 }
 
 .logo_text {
-  @apply font-extrabold text-2xl sm:text-3xl md:text-4xl text-black tracking-wide;
+  @apply font-extrabold text-3xl md:text-4xl text-black tracking-wide;
 }
 
 .black_button {
