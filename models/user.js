@@ -1,4 +1,4 @@
-import mongoose, { Schema, model, models } from "mongoose";
+import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema(
   {
@@ -18,6 +18,10 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: [true, "Username is required!"],
+    },
+    chats: {
+      type: [{ type: Schema.Types.ObjectId, ref: "Chat" }],
+      default: [],
     },
   },
   { timestamps: true }
