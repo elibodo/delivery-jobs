@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 const ProfileNavLink = ({ href, children }) => {
   const pathname = usePathname();
-  const active = href === pathname;
+  const active = pathname.startsWith(href);
   return (
     <Link
       href={href}

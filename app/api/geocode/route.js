@@ -20,7 +20,6 @@ export async function POST(req, res) {
       throw new error("Failed to fetch data");
     }
     const data = await response.json();
-    console.log(data.results[0].geometry.location);
 
     return new Response(JSON.stringify(data.results[0].geometry.location));
   } catch (error) {

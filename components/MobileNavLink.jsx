@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 const MobileNavLink = ({ href, children }) => {
   const pathname = usePathname();
-  const active = href === pathname;
+  const active = pathname.startsWith(href);
   return (
     <Link
       href={href}
