@@ -30,7 +30,7 @@ const LogIn = () => {
 
       router.replace("/");
     } catch (error) {
-      console.log("asdf", error);
+      console.log(error);
     }
   };
 

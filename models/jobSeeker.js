@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import { Schema, model, models } from "mongoose";
 
 const JobSeekerAccount = new Schema(
