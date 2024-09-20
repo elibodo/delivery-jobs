@@ -37,7 +37,7 @@ const ChatPage = () => {
       <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
         <h1 className="font-bold text-2xl">Messaging</h1>
         <Link
-          href="/employerAccount/employerMessaging"
+          href="/jobSeekerAccount/jobSeekerMessaging"
           className="md:hidden flex black_button"
         >
           View Chats
