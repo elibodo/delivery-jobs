@@ -8,7 +8,7 @@ const jobSeekerMessaging = () => {
         <h1 className="font-bold text-2xl">Messaging</h1>
       </div>
       <div className="flex justify-between gap-5 px-5 py-3">
-        <div className="md:w-1/3">
+        <div className="md:w-1/3 w-full">
           <ChatList />
         </div>
         <div className="w-2/3 blur-sm hidden md:flex">
