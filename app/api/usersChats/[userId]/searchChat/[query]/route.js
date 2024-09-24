@@ -32,7 +32,7 @@ export const GET = async (req, { params }) => {
       .exec();
 
     const searchedChat = chats.filter((chat) =>
-      chat.members.some((member) => new RegExp(query, "i").test(member.name))
+      chat.members.some((member) => new RegExp(query, "i").test(member.name)),
     );
 
     return new Response(JSON.stringify(searchedChat), { status: 200 });

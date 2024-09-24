@@ -14,12 +14,12 @@ const EmployerCandidates = ({ account, jobs, handleDelete }) => {
         <div className="overflow-x-auto">
           <table className="min-w-full text-left">
             <thead>
-              <tr className=" text-lg">
-                <th className="py-2 px-4 border-b-2 border-black">Candidate</th>
-                <th className="py-2 px-4 border-b-2 border-black">Job</th>
-                <th className="py-2 px-4 border-b-2 border-black">Contacted</th>
-                <th className="py-2 px-4 border-b-2 border-black">Status</th>
-                <th className="py-2 px-4 border-b-2 border-black">Options</th>
+              <tr className="text-lg">
+                <th className="border-b-2 border-black px-4 py-2">Candidate</th>
+                <th className="border-b-2 border-black px-4 py-2">Job</th>
+                <th className="border-b-2 border-black px-4 py-2">Contacted</th>
+                <th className="border-b-2 border-black px-4 py-2">Status</th>
+                <th className="border-b-2 border-black px-4 py-2">Options</th>
               </tr>
             </thead>
             <tbody>

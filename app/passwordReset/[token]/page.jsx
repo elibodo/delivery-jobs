@@ -25,17 +25,17 @@ const PasswordReset = (params) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center content-center items-center bg-gray-100  border-1 p-4 rounded-xl mt-4"
+      className="border-1 mt-4 flex flex-col content-center items-center justify-center rounded-xl bg-gray-100 p-4"
     >
-      <h1 className="text-2xl font-bold p-5">Reset your password</h1>
+      <h1 className="p-5 text-2xl font-bold">Reset your password</h1>
       <div className="flex flex-row">
-        <div className=" flex flex-col items-center ">
+        <div className="flex flex-col items-center">
           <input
             onChange={(e) => setNewPassword(e.target.value)}
             type="password"
             placeholder="Enter your new password"
             required
-            className="form_input p-2 m-2"
+            className="form_input m-2 p-2"
           />
           <button className="black_button m-2">Save new password</button>
           {message && <p>{message}</p>}

@@ -64,7 +64,7 @@ export async function POST(req) {
     } else {
       return NextResponse.json(
         { message: "User already exists." },
-        { status: 500 }
+        { status: 500 },
       );
     }
     const newAccountType = accountType;
@@ -113,7 +113,7 @@ export async function POST(req) {
   } catch (error) {
     return NextResponse.json(
       { message: "An error occurred while registering the user." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

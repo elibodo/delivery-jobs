@@ -37,27 +37,27 @@ const LogIn = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center content-center items-center bg-gray-100  border-1 p-4 rounded-xl mt-4"
+      className="border-1 mt-4 flex flex-col content-center items-center justify-center rounded-xl bg-gray-100 p-4"
     >
-      <h1 className="text-2xl font-semibold p-5">Sign In</h1>
+      <h1 className="p-5 text-2xl font-semibold">Sign In</h1>
       <div className="flex flex-row">
-        <div className="flex flex-col items-center ">
+        <div className="flex flex-col items-center">
           <input
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="Email"
-            className="form_input p-2 m-2"
+            className="form_input m-2 p-2"
           />
           <input
             onChange={(e) => setPassword(e.target.value)}
             type="password"
             placeholder="Password"
-            className="form_input p-2 m-2"
+            className="form_input m-2 p-2"
           />
           <button className="black_button m-2">Sign In</button>
         </div>
       </div>
-      <div className="flex flex-col items-center m-3">
+      <div className="m-3 flex flex-col items-center">
         <Link href={"/signUp"}>
           Dont have an account?{" "}
           <span className="font-semibold underline">Register</span>
@@ -67,7 +67,7 @@ const LogIn = () => {
           <span className="font-semibold underline">Click Here</span>
         </Link>
         {error && (
-          <div className="bg-red-500 text-white w-fit py-1 px-3 rounded-md text-sm mt-2">
+          <div className="mt-2 w-fit rounded-md bg-red-500 px-3 py-1 text-sm text-white">
             {error}
           </div>
         )}

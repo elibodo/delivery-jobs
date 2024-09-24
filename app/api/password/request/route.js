@@ -112,7 +112,7 @@ export async function POST(req, res) {
         reject(error);
         return NextResponse.json(
           { message: "Failed to send email" },
-          { status: 500 }
+          { status: 500 },
         );
       } else {
         resolve(info);

@@ -35,7 +35,7 @@ export const POST = async (req) => {
           {
             $addToSet: { chats: chat._id },
           },
-          { new: true }
+          { new: true },
         );
       });
       Promise.all(updateAllMembers);

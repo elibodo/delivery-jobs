@@ -31,7 +31,7 @@ const Feed = () => {
     <section className="feed">
       <SearchJobs getSearchResults={(results) => setPosts(results)} />
       <div className="feed">
-        <div className="space-y-4 mt-4 py-4 columns-1">
+        <div className="mt-4 columns-1 space-y-4 py-4">
           {currentPosts.map((post) => (
             <JobCard key={post._id} post={post} />
           ))}

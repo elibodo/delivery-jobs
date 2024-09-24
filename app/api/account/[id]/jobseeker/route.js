@@ -8,7 +8,7 @@ export const GET = async (request, { params }) => {
   try {
     await connectToDB();
     const account = await JobSeeker.find({ email: params.id }).populate(
-      "email"
+      "email",
     );
     return new Response(JSON.stringify(account), { status: 200 });
   } catch (error) {

@@ -2,8 +2,8 @@ import React from "react";
 
 const TermsAndConditions = () => {
   return (
-    <div className="p-5 bg-gray-100 rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-4">Terms and Conditions</h1>
+    <div className="rounded-lg bg-gray-100 p-5 shadow-lg">
+      <h1 className="mb-4 text-2xl font-bold">Terms and Conditions</h1>
       <p className="mb-4">Effective Date: September 20, 2024</p>
       <p className="mb-4">
         Welcome to Delivery Jobs LLC, a company registered in Florida, providing
@@ -11,8 +11,8 @@ const TermsAndConditions = () => {
         to comply with these Terms and Conditions. Please read them carefully.
       </p>
 
-      <h2 className="text-xl font-semibold mb-2">1. User Obligations</h2>
-      <ul className="list-disc list-inside mb-4">
+      <h2 className="mb-2 text-xl font-semibold">1. User Obligations</h2>
+      <ul className="mb-4 list-inside list-disc">
         <li>
           Discrimination based on race, gender, age, religion, disability, or
           any other protected class.
@@ -28,7 +28,7 @@ const TermsAndConditions = () => {
         termination.
       </p>
 
-      <h2 className="text-xl font-semibold mb-2">2. Account Information</h2>
+      <h2 className="mb-2 text-xl font-semibold">2. Account Information</h2>
       <p className="mb-4">
         To create an account, users must provide a full name, phone number,
         email address, and password. Employers are also required to input their
@@ -36,7 +36,7 @@ const TermsAndConditions = () => {
         street address, city, state, and zip code. Job seekers must provide the
         following additional information:
       </p>
-      <ul className="list-disc list-inside mb-4">
+      <ul className="mb-4 list-inside list-disc">
         <li>
           <strong>Personal Information</strong>: Full name, phone number, email
           address, password
@@ -73,14 +73,14 @@ const TermsAndConditions = () => {
         violations of these Terms and Conditions.
       </p>
 
-      <h2 className="text-xl font-semibold mb-2">
+      <h2 className="mb-2 text-xl font-semibold">
         3. Payment and Subscription
       </h2>
       <p className="mb-4">
         Employers must pay a monthly fee to post jobs. There are three
         subscription options based on the number of job posts allowed:
       </p>
-      <ul className="list-disc list-inside mb-4">
+      <ul className="mb-4 list-inside list-disc">
         <li>2 jobs</li>
         <li>5 jobs</li>
         <li>Unlimited jobs</li>
@@ -92,7 +92,7 @@ const TermsAndConditions = () => {
         by Delivery Jobs LLC.
       </p>
 
-      <h2 className="text-xl font-semibold mb-2">4. Messaging System</h2>
+      <h2 className="mb-2 text-xl font-semibold">4. Messaging System</h2>
       <p className="mb-4">
         Messaging between employers and job seekers is only enabled after a job
         seeker applies to a job, and the employer initiates contact. All past
@@ -100,7 +100,7 @@ const TermsAndConditions = () => {
         should not share sensitive information through the messaging system.
       </p>
 
-      <h2 className="text-xl font-semibold mb-2">5. User-Generated Content</h2>
+      <h2 className="mb-2 text-xl font-semibold">5. User-Generated Content</h2>
       <p className="mb-4">
         Users retain full ownership of the content they create. Employers own
         their job postings, and job seekers own their resumes. Job seekers’
@@ -109,7 +109,7 @@ const TermsAndConditions = () => {
         does not claim any ownership rights over user-generated content.
       </p>
 
-      <h2 className="text-xl font-semibold mb-2">6. Privacy Policy</h2>
+      <h2 className="mb-2 text-xl font-semibold">6. Privacy Policy</h2>
       <p className="mb-4">Effective Date: September 20, 2024</p>
       <p className="mb-4">
         Delivery Jobs LLC ("we," "us," or "our") is committed to protecting your
@@ -118,8 +118,8 @@ const TermsAndConditions = () => {
         deliveryjobs.com.
       </p>
 
-      <h3 className="text-lg font-semibold mb-2">1. Information We Collect</h3>
-      <ul className="list-disc list-inside mb-4">
+      <h3 className="mb-2 text-lg font-semibold">1. Information We Collect</h3>
+      <ul className="mb-4 list-inside list-disc">
         <li>
           <strong>Account Information</strong>: When you sign up for an employer
           or job seeker account, we collect your full name, phone number, email
@@ -152,10 +152,10 @@ const TermsAndConditions = () => {
         </li>
       </ul>
 
-      <h3 className="text-lg font-semibold mb-2">
+      <h3 className="mb-2 text-lg font-semibold">
         2. How We Use Your Information
       </h3>
-      <ul className="list-disc list-inside mb-4">
+      <ul className="mb-4 list-inside list-disc">
         <li>To create and manage your account.</li>
         <li>To process payments for job postings.</li>
         <li>To provide, operate, and improve our platform.</li>
@@ -165,10 +165,10 @@ const TermsAndConditions = () => {
         </li>
       </ul>
 
-      <h3 className="text-lg font-semibold mb-2">
+      <h3 className="mb-2 text-lg font-semibold">
         3. How We Share Your Information
       </h3>
-      <ul className="list-disc list-inside mb-4">
+      <ul className="mb-4 list-inside list-disc">
         <li>
           <strong>Service Providers</strong>: We share payment details with
           Stripe to process payments.
@@ -180,7 +180,7 @@ const TermsAndConditions = () => {
         </li>
       </ul>
 
-      <h3 className="text-lg font-semibold mb-2">
+      <h3 className="mb-2 text-lg font-semibold">
         4. Security of Your Information
       </h3>
       <p className="mb-4">
@@ -192,8 +192,8 @@ const TermsAndConditions = () => {
         100% secure.
       </p>
 
-      <h3 className="text-lg font-semibold mb-2">5. Your Rights</h3>
-      <ul className="list-disc list-inside mb-4">
+      <h3 className="mb-2 text-lg font-semibold">5. Your Rights</h3>
+      <ul className="mb-4 list-inside list-disc">
         <li>Access the information we hold about you.</li>
         <li>Request that we correct any inaccuracies.</li>
         <li>Update or modify your profile information at any time.</li>
@@ -203,14 +203,14 @@ const TermsAndConditions = () => {
         </li>
       </ul>
 
-      <h3 className="text-lg font-semibold mb-2">6. Cookies</h3>
+      <h3 className="mb-2 text-lg font-semibold">6. Cookies</h3>
       <p className="mb-4">
         Our website uses cookies to enhance your experience and track usage. You
         can modify your browser settings to block cookies, but this may affect
         your ability to use certain features of the platform.
       </p>
 
-      <h3 className="text-lg font-semibold mb-2">
+      <h3 className="mb-2 text-lg font-semibold">
         7. Changes to This Privacy Policy
       </h3>
       <p className="mb-4">
@@ -218,7 +218,7 @@ const TermsAndConditions = () => {
         posted on this page with the updated date.
       </p>
 
-      <h3 className="text-lg font-semibold mb-2">8. Contact Us</h3>
+      <h3 className="mb-2 text-lg font-semibold">8. Contact Us</h3>
       <p className="mb-4">
         If you have any questions or concerns about this Privacy Policy, please
         contact us via the Contact Us page on our website.

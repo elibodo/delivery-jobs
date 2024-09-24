@@ -4,7 +4,6 @@ import React, { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { signOut } from "next-auth/react";
-import SeekerSettings from "@app/jobSeekerAccount/jobSeekerSettings/page";
 
 const JobSeekerSettings = ({ account }) => {
   const { data: session } = useSession();
@@ -13,7 +12,7 @@ const JobSeekerSettings = ({ account }) => {
 
   const handleDelete = async () => {
     const hasConfirmed = confirm(
-      "Are you sure you want to permanently delete you profile?"
+      "Are you sure you want to permanently delete you profile?",
     );
     if (hasConfirmed) {
       await fetch(`/api/account/${session?.user?.email}/jobseeker`, {
@@ -89,12 +88,12 @@ const JobSeekerSettings = ({ account }) => {
   }, [setData]);
 
   return (
-    <div className="flex flex-col md:flex-row justify-center mb-5">
-      <div className="md:w-1/3 mx-8">
+    <div className="mb-5 flex flex-col justify-center md:flex-row">
+      <div className="mx-8 md:w-1/3">
         <p className="description text-center">Edit Profile</p>
-        <form onSubmit={handleProfileInfo} className="flex flex-col mb-5">
+        <form onSubmit={handleProfileInfo} className="mb-5 flex flex-col">
           <div className="mt-4 flex flex-col items-start">
-            <label className="text-gray-900 font-semibold">Name</label>
+            <label className="font-semibold text-gray-900">Name</label>
             <input
               type="text"
               defaultValue={session.user.name}
@@ -109,7 +108,7 @@ const JobSeekerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-start">
-            <label className=" text-gray-900 font-semibold">Email</label>
+            <label className="font-semibold text-gray-900">Email</label>
             <input
               type="text"
               defaultValue={session.user.email}
@@ -124,7 +123,7 @@ const JobSeekerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-start">
-            <label className=" text-gray-900 font-semibold">Phone Number</label>
+            <label className="font-semibold text-gray-900">Phone Number</label>
             <input
               type="text"
               defaultValue={session.user.phoneNumber}
@@ -139,7 +138,7 @@ const JobSeekerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-center">
-            <p className="text-gray-600 text-base mt-4">
+            <p className="mt-4 text-base text-gray-600">
               Updating the profile options will automatically sign you out. You
               will be redirected to the Sign In page, from there you can sign in
               to view the changes.
@@ -151,14 +150,14 @@ const JobSeekerSettings = ({ account }) => {
               <p className="mt-4 font-bold text-orange-600">{profileMessage}</p>
             )}
           </div>
-          <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
+          <div className="mt-5 border-b-2 border-gray-300 md:hidden"></div>
         </form>
       </div>
-      <div className="md:w-1/3 mx-8">
+      <div className="mx-8 md:w-1/3">
         <p className="description text-center">Profile Options</p>
         <div className="mt-4 flex flex-row items-start justify-between gap-3">
           <div className="1/3">
-            <label className=" text-gray-900 font-semibold">City</label>
+            <label className="font-semibold text-gray-900">City</label>
             <input
               defaultValue={account.city}
               type="text"
@@ -168,7 +167,7 @@ const JobSeekerSettings = ({ account }) => {
             />
           </div>
           <div className="1/3">
-            <label className="text-gray-900 font-semibold">State:</label>
+            <label className="font-semibold text-gray-900">State:</label>
             <select
               onChange={(e) => setData({ ...data, state: e.target.value })}
               defaultValue={account.state}
@@ -228,7 +227,7 @@ const JobSeekerSettings = ({ account }) => {
             </select>
           </div>
           <div className="1/3">
-            <label className=" text-gray-900 font-semibold">Zip Code</label>
+            <label className="font-semibold text-gray-900">Zip Code</label>
             <input
               onChange={(e) => setData({ ...data, zipCode: e.target.value })}
               defaultValue={account.zipCode}
@@ -238,31 +237,31 @@ const JobSeekerSettings = ({ account }) => {
             />
           </div>
         </div>
-        <p className="text-gray-600 text-base mt-4">
+        <p className="mt-4 text-base text-gray-600">
           Select Update Information to update your city, state, and zip code.
         </p>
         <div className="my-4 flex flex-col items-center border-b-2 border-gray-300">
-          <button onClick={handleAccountInfo} className="mb-4 outline_button">
+          <button onClick={handleAccountInfo} className="outline_button mb-4">
             Update Information
           </button>
           {message && (
             <p className="mb-4 font-bold text-orange-600">{message}</p>
           )}
         </div>
-        <p className="text-gray-600 text-base mt-4">
+        <p className="mt-4 text-base text-gray-600">
           To change password please sign out and navigate to the "Sign In / Sign
           Up" page. From there you can select "Forgot Password".
         </p>
-        <p className="mt-4 underline font-bold">
+        <p className="mt-4 font-bold underline">
           <a href="/termsAndConditions">View Terms and Conditions</a>
         </p>
-        <p className="text-gray-600 text-base mt-4">
+        <p className="mt-4 text-base text-gray-600">
           To perminently delete your account select the option below. This
           action can not be undone and all information related to the account
           including all Jobs and Candidates will be removed and can not be
           recovered.
         </p>
-        <div className="mt-4 flex flex-col items-center mb-5">
+        <div className="mb-5 mt-4 flex flex-col items-center">
           <button onClick={handleDelete} className="outline_button">
             Delete Account
           </button>

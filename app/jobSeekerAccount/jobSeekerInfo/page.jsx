@@ -5,16 +5,6 @@ import JobSeekerInformation from "@components/JobSeekerInformation";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 
-const JSInformation = ({ accountData }) => {
-  return (
-    <div>
-      {accountData.map((account) => (
-        <JobSeekerInformation key={account._id} account={account} />
-      ))}
-    </div>
-  );
-};
-
 const JobSeekerInfo = () => {
   const { data: session } = useSession();
 
@@ -23,7 +13,7 @@ const JobSeekerInfo = () => {
     const fetchAccount = async () => {
       const response = await fetch(
         `/api/account/${session?.user?.email}/jobseeker`,
-        { method: "GET" }
+        { method: "GET" },
       );
       const data = await response.json();
       setAccountInfo(data);
@@ -32,10 +22,12 @@ const JobSeekerInfo = () => {
   }, []);
   return (
     <div>
-      <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
-        <h1 className="font-bold text-2xl">Resume Information</h1>
+      <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
+        <h1 className="text-2xl font-bold">Resume Information</h1>
       </div>
-      <JSInformation accountData={accountInfo} />
+      {accountInfo.map((account) => (
+        <JobSeekerInformation key={account._id} account={account} />
+      ))}
     </div>
   );
 };

@@ -10,8 +10,8 @@ const MobileNavLink = ({ href, children }) => {
   return (
     <Link
       href={href}
-      className={`py-1 px-2 rounded block text-xs ${
-        active ? "text-black bg-gray-100" : "text-gray-500"
+      className={`block rounded px-2 py-1 text-xs ${
+        active ? "bg-gray-100 text-black" : "text-gray-500"
       }`}
     >
       {children}

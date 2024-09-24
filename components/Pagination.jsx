@@ -20,14 +20,14 @@ const Pagination = ({ postPerPage, totalPosts, paginate }) => {
   return (
     <div>
       <nav>
-        <ul className="gap-3 flex flex-row">
+        <ul className="flex flex-row gap-3">
           {pageNumbers.map((number) => (
             <li key={number}>
               <a
                 className={
                   activePage === number
-                    ? "active: cursor-pointer rounded-lg border-2 border-orange-600 bg-orange-600 p-2 text-white transition-all text-center text-md font-normal flex items-center justify-center"
-                    : "cursor-pointer rounded-lg border-2 border-black bg-transparent p-2 text-black transition-all hover:bg-orange-600 hover:border-orange-600 hover:text-white text-center text-md font-normal flex items-center justify-center"
+                    ? "active: text-md flex cursor-pointer items-center justify-center rounded-lg border-2 border-orange-600 bg-orange-600 p-2 text-center font-normal text-white transition-all"
+                    : "text-md flex cursor-pointer items-center justify-center rounded-lg border-2 border-black bg-transparent p-2 text-center font-normal text-black transition-all hover:border-orange-600 hover:bg-orange-600 hover:text-white"
                 }
                 onClick={() => {
                   router.push(`/?page=${number}&per_page=${postPerPage}`);
