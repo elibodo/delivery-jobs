@@ -20,7 +20,7 @@ const ChatList = ({ currentChatId }) => {
       const response = await fetch(
         search !== ""
           ? `/api/usersChats/${currentUser.id}/searchChat/${search}`
-          : `/api/usersChats/${currentUser.id}`
+          : `/api/usersChats/${currentUser.id}`,
       );
       const data = await response.json();
       setChats(data);
@@ -48,7 +48,7 @@ const ChatList = ({ currentChatId }) => {
             } else {
               return chat;
             }
-          })
+          }),
         );
       };
 
@@ -70,14 +70,14 @@ const ChatList = ({ currentChatId }) => {
   return loading ? (
     <LoadingSpinner />
   ) : (
-    <div className="h-[600px] flex flex-col gap-5">
+    <div className="flex h-[600px] flex-col gap-5">
       <input
-        className="px-5 py-2.5 rounded-md border border-gray-200 bg-white text-sm font-medium"
+        className="rounded-md border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium"
         placeholder="Search for a chat..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <div className="flex-1 flex flex-col overflow-y-scroll custom-scrollbar">
+      <div className="custom-scrollbar flex flex-1 flex-col overflow-y-scroll">
         {/* {chats?.map((chat, index) => (
           <ChatBox
             chat={chat}
@@ -97,7 +97,7 @@ const ChatList = ({ currentChatId }) => {
           ))
         ) : (
           <div className="text-center">
-            <p className="text-gray-500 text-lg font-semibold">
+            <p className="text-lg font-semibold text-gray-500">
               No chats available
             </p>
           </div>

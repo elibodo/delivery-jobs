@@ -39,7 +39,7 @@ const EmployerAccount = new Schema(
       type: Number,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const Employer = models.Employer || model("Employer", EmployerAccount);

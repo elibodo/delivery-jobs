@@ -19,7 +19,7 @@ export async function POST(req) {
   } catch (error) {
     return NextResponse.json(
       { message: "Invalid or expired token" },
-      { status: 400 }
+      { status: 400 },
     );
   }
   try {
@@ -31,14 +31,14 @@ export async function POST(req) {
     const hashedpassword = await bcrypt.hash(newPassword, 10);
     await User.updateOne(
       { _id: userID },
-      { $set: { password: hashedpassword } }
+      { $set: { password: hashedpassword } },
     );
     return NextResponse.json({ message: "Password has been reset" });
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       { message: "Password reset unsucessfull" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 }

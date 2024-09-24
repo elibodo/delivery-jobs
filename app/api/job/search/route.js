@@ -20,7 +20,7 @@ export async function GET(request) {
     // get user coordinates from google api
     const apiKey = process.env.GOOGLE_GEOCODE_KEY;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-      userLocation
+      userLocation,
     )}&key=${apiKey}`;
 
     let userCoordinates;
@@ -35,7 +35,7 @@ export async function GET(request) {
     } catch (error) {
       return NextResponse.json(
         { error: "Failed to fetch data" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 

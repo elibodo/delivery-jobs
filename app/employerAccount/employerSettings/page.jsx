@@ -25,13 +25,12 @@ const EmployerAccountSettings = () => {
 
   return (
     <div>
-      <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
-        <h1 className="font-bold text-2xl">Settings</h1>
+      <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
+        <h1 className="text-2xl font-bold">Settings</h1>
       </div>
-      {accountInfo &&
-        accountInfo.map((account) => (
-          <EmployerSettings key={account._id} account={account} />
-        ))}
+      {accountInfo.map((account) => (
+        <EmployerSettings key={account._id} account={account} />
+      ))}
     </div>
   );
 };

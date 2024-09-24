@@ -33,7 +33,7 @@ export const POST = async (request) => {
 
   const apiKey = process.env.GOOGLE_GEOCODE_KEY;
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-    dispatchlocation
+    dispatchlocation,
   )}&key=${apiKey}`;
 
   let latitude;
@@ -50,7 +50,7 @@ export const POST = async (request) => {
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch data" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
