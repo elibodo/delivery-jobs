@@ -53,7 +53,7 @@ const ApplicantInformation = ({ data, jobTitle, handleDelete, jobId }) => {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 justify-items-center">
+      <div className="grid grid-cols-2 justify-items-center gap-2 md:grid-cols-4">
         <button onClick={() => setViewCandidate(true)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -167,15 +167,15 @@ const MyCandidates = ({ post, handleDelete }) => {
     <>
       {jobApplicants.map((applicant) => (
         <tr key={applicant._id}>
-          <td className="text-left py-1.5 px-4 border-b">
-            <p className="font-semibold text-nowrap">{applicant.name}</p>
+          <td className="border-b px-4 py-1.5 text-left">
+            <p className="text-nowrap font-semibold">{applicant.name}</p>
             <p className="text-nowrap">{applicant.email}</p>
           </td>
-          <td className="text-left py-1.5 px-4 border-b">
-            <p className="font-semibold text-nowrap">{post.title}</p>
+          <td className="border-b px-4 py-1.5 text-left">
+            <p className="text-nowrap font-semibold">{post.title}</p>
             <p>Applied {applicant.dateOfApply}</p>
           </td>
-          <td className="text-left py-1.5 px-4 border-b">
+          <td className="border-b px-4 py-1.5 text-left">
             <select
               defaultValue={applicant.contacted}
               onChange={(e) => handleContacted(e, applicant.email)}
@@ -185,7 +185,7 @@ const MyCandidates = ({ post, handleDelete }) => {
               <option value={"No"}>No</option>
             </select>
           </td>
-          <td className="text-left py-1.5 px-4 border-b">
+          <td className="border-b px-4 py-1.5 text-left">
             <select
               defaultValue={applicant.status}
               onChange={(e) => handleStatus(e, applicant.email)}
@@ -196,7 +196,7 @@ const MyCandidates = ({ post, handleDelete }) => {
               <option value={"Remove"}>Remove</option>
             </select>
           </td>
-          <td className="py-1.5 px-4 border-b">
+          <td className="border-b px-4 py-1.5">
             <ApplicantInformation
               key={applicant._id}
               data={applicant}

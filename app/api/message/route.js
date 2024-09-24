@@ -26,7 +26,7 @@ export const POST = async (req) => {
         $push: { messages: newMessage._id },
         $set: { lastMessageAt: newMessage.createdAt },
       },
-      { new: true }
+      { new: true },
     )
       .populate({
         path: "messages",

@@ -6,7 +6,7 @@ import React from "react";
 
 export const metadata = {
   title: "Delivery Jobs",
-  description: "A way to find driving jobs",
+  description: "A way to find delivery and driving related jobs.",
   keywords: [
     "Delivery Jobs",
     "Driving Jobs",

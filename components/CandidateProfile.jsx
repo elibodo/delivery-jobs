@@ -14,7 +14,7 @@ const CandidateProfile = ({
 
   const lisenseDate = new Date(account.licenseExpire).toLocaleDateString(
     "en-US",
-    { timeZone: "UTC" }
+    { timeZone: "UTC" },
   );
   const dotDate = new Date(account.DOTExpire).toLocaleDateString("en-US", {
     timeZone: "UTC",
@@ -27,12 +27,12 @@ const CandidateProfile = ({
 
   return (
     <>
-      <div className="fixed top-0 right-0 bottom-0 left-0 z-30 bg-black bg-opacity-25 backdrop-blur-sm flex overflow-y-auto justify-center items-center">
-        <div className="m-auto w-full md:w-[700px] flex flex-col gap-6 [&>*]:mx-auto p-6 bg-gray-100">
-          <div className="flex flex-col w-full p-5">
+      <div className="fixed bottom-0 left-0 right-0 top-0 z-30 flex items-center justify-center overflow-y-auto bg-black bg-opacity-25 backdrop-blur-sm">
+        <div className="m-auto flex w-full flex-col gap-6 bg-gray-100 p-6 md:w-[700px] [&>*]:mx-auto">
+          <div className="flex w-full flex-col p-5">
             {/* Top of resume */}
 
-            <div className="flex flex-col md:flex-row justify-between items-center mt-3 pb-3 border-b-2 border-gray-500">
+            <div className="mt-3 flex flex-col items-center justify-between border-b-2 border-gray-500 pb-3 md:flex-row">
               <h1 className="text-2xl font-semibold md:ml-5">
                 {account.email}
               </h1>
@@ -45,42 +45,42 @@ const CandidateProfile = ({
             {/* liscense and dot section */}
             <div className="flex flex-col">
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/3 mx-4">
+                <div className="mx-4 md:w-1/3">
                   <p className="mt-5 text-xl text-gray-600">
                     License Information
                   </p>
                   <div className="ml-2">
-                    <p className="text-gray-800 mt-3">
+                    <p className="mt-3 text-gray-800">
                       License Class:{" "}
-                      <span className=" font-semibold">
+                      <span className="font-semibold">
                         {account.licenseClass}
                       </span>
                     </p>
-                    <p className="text-gray-800 mt-1">
+                    <p className="mt-1 text-gray-800">
                       License Expire:{" "}
-                      <span className=" font-semibold">{lisenseDate}</span>
+                      <span className="font-semibold">{lisenseDate}</span>
                     </p>
-                    <p className="text-gray-800 mt-1">
+                    <p className="mt-1 text-gray-800">
                       Issuing State:{" "}
-                      <span className=" font-semibold">
+                      <span className="font-semibold">
                         {account.licenseState}
                       </span>
                     </p>
                   </div>
                 </div>
                 {account.DOT === "Yes" ? (
-                  <div className="md:w-1/3 mx-4">
+                  <div className="mx-4 md:w-1/3">
                     <p className="mt-5 text-xl text-gray-600">
                       DOT Information
                     </p>
                     <div className="ml-2">
-                      <p className="text-gray-800 mt-3">
+                      <p className="mt-3 text-gray-800">
                         DOT Medical Card:{" "}
-                        <span className=" font-semibold">{account.DOT}</span>
+                        <span className="font-semibold">{account.DOT}</span>
                       </p>
-                      <p className="text-gray-800 mt-1">
+                      <p className="mt-1 text-gray-800">
                         DOT Expire:{" "}
-                        <span className=" font-semibold">{dotDate}</span>
+                        <span className="font-semibold">{dotDate}</span>
                       </p>
                     </div>
                   </div>
@@ -89,24 +89,24 @@ const CandidateProfile = ({
                 )}
                 {/* cdl */}
                 {account.CDL === "Yes" ? (
-                  <div className="md:w-1/3 mx-4">
+                  <div className="mx-4 md:w-1/3">
                     <p className="mt-5 text-xl text-gray-600">
                       CDL Information
                     </p>
                     <div className="ml-2">
-                      <p className="text-gray-800 mt-3">
+                      <p className="mt-3 text-gray-800">
                         CDL:{" "}
-                        <span className=" font-semibold">{account.CDL}</span>
+                        <span className="font-semibold">{account.CDL}</span>
                       </p>
-                      <p className="text-gray-800 mt-1">
+                      <p className="mt-1 text-gray-800">
                         Twik Card:{" "}
-                        <span className=" font-semibold">
+                        <span className="font-semibold">
                           {account.twikCard}
                         </span>
                       </p>
-                      <p className="text-gray-800 mt-1">
+                      <p className="mt-1 text-gray-800">
                         Options:{" "}
-                        <span className=" font-semibold">
+                        <span className="font-semibold">
                           {account.CDLOption1} {account.CDLOption2}
                         </span>
                       </p>
@@ -120,13 +120,13 @@ const CandidateProfile = ({
                 <div className="mx-4 md:w-1/3">
                   <p className="mt-5 text-xl text-gray-600">Education</p>
                   <div className="ml-2 mt-1">
-                    <p className="text-gray-800 mt-3">
+                    <p className="mt-3 text-gray-800">
                       Highest Level:{" "}
                       <span className="font-semibold">
                         {account.educationLevel}
                       </span>
                     </p>
-                    <p className="text-gray-800 mt-1">
+                    <p className="mt-1 text-gray-800">
                       Date Completed:{" "}
                       <span className="font-semibold">{eduDate}</span>
                     </p>
@@ -135,7 +135,7 @@ const CandidateProfile = ({
 
                 {certs != "" ? (
                   <div className="mx-4 md:w-1/3">
-                    <p className="mt-5 text-xl text-gray-600 mb-3">
+                    <p className="mb-3 mt-5 text-xl text-gray-600">
                       Certifications{" "}
                     </p>
                     <div className="ml-2 mt-1">
@@ -155,7 +155,7 @@ const CandidateProfile = ({
                   <div className="mx-4 md:w-1/3">
                     <p className="mt-5 text-xl text-gray-600">Endorsements</p>
                     <div className="ml-2">
-                      <p className="font-semibold mt-3">{theEndorsements}</p>
+                      <p className="mt-3 font-semibold">{theEndorsements}</p>
                     </div>
                   </div>
                 )}
@@ -163,16 +163,16 @@ const CandidateProfile = ({
               {work != "" ? (
                 <div className="flex flex-row">
                   <div className="mx-4">
-                    <p className="mt-5 text-xl text-gray-600 mb-3">
+                    <p className="mb-3 mt-5 text-xl text-gray-600">
                       Work History
                     </p>
                     <div className="ml-2 mt-3">
                       {work.map((work) => (
                         <div
                           key={work._id}
-                          className="mt-3 pb-3 border-b-2 border-gray-300"
+                          className="mt-3 border-b-2 border-gray-300 pb-3"
                         >
-                          <p className="font-semibold text-lg">{work.title}</p>
+                          <p className="text-lg font-semibold">{work.title}</p>
                           <p className="mx-2 mt-1 text-gray-800">
                             <span className="font-semibold">
                               {work.company}
@@ -200,17 +200,17 @@ const CandidateProfile = ({
                     Additional Information
                   </p>
                   <div className="ml-2 mt-1">
-                    <p className="text-gray-800 mt-3">
+                    <p className="mt-3 text-gray-800">
                       Recent Car Accident:{" "}
                       <span className="font-semibold">
                         {account.carAccident}
                       </span>
                     </p>
-                    <p className="text-gray-800 mt-1">
+                    <p className="mt-1 text-gray-800">
                       Recent DUI:{" "}
                       <span className="font-semibold">{account.DUI}</span>
                     </p>
-                    <p className="text-gray-800 mt-1">
+                    <p className="mt-1 text-gray-800">
                       Age Range:{" "}
                       <span className="font-semibold">{account.ageRange}</span>
                     </p>

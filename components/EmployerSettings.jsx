@@ -12,7 +12,7 @@ const EmployerSettings = ({ account }) => {
 
   const handleDelete = async () => {
     const hasConfirmed = confirm(
-      "Are you sure you want to permanently delete you profile?"
+      "Are you sure you want to permanently delete you profile?",
     );
     if (hasConfirmed) {
       await fetch(`/api/account/${session?.user?.email}/employer`, {
@@ -98,12 +98,12 @@ const EmployerSettings = ({ account }) => {
   }, [setData]);
 
   return (
-    <div className="flex flex-col md:flex-row justify-center mb-5">
-      <div className="md:w-1/3 mx-8">
+    <div className="mb-5 flex flex-col justify-center md:flex-row">
+      <div className="mx-8 md:w-1/3">
         <p className="description text-center">Profile Options</p>
-        <form onSubmit={handleProfileInfo} className="flex flex-col mb-5">
+        <form onSubmit={handleProfileInfo} className="mb-5 flex flex-col">
           <div className="mt-4 flex flex-col items-start">
-            <label className="text-gray-900 font-semibold">Name</label>
+            <label className="font-semibold text-gray-900">Name</label>
             <input
               type="text"
               defaultValue={session.user.name}
@@ -118,7 +118,7 @@ const EmployerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-start">
-            <label className=" text-gray-900 font-semibold">Email</label>
+            <label className="font-semibold text-gray-900">Email</label>
             <input
               type="text"
               defaultValue={session.user.email}
@@ -133,7 +133,7 @@ const EmployerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-start">
-            <label className=" text-gray-900 font-semibold">Phone Number</label>
+            <label className="font-semibold text-gray-900">Phone Number</label>
             <input
               type="text"
               defaultValue={session.user.phoneNumber}
@@ -148,7 +148,7 @@ const EmployerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-center">
-            <p className="text-gray-600 text-base mt-4">
+            <p className="mt-4 text-base text-gray-600">
               Updating the profile options will automatically sign you out. You
               will be redirected to the Sign In page, from there you can sign in
               to view the changes.
@@ -160,16 +160,16 @@ const EmployerSettings = ({ account }) => {
               <p className="mt-4 font-bold text-orange-600">{profileMessage}</p>
             )}
           </div>
-          <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
+          <div className="mt-5 border-b-2 border-gray-300 md:hidden"></div>
         </form>
-        <p className="text-gray-600 text-base">
+        <p className="text-base text-gray-600">
           To change password please sign out and navigate to the "Sign In / Sign
           Up" page. From there you can select "Forgot Password".
         </p>
-        <p className="mt-4 underline font-bold">
+        <p className="mt-4 font-bold underline">
           <a href="/termsAndConditions">View Terms and Conditions</a>
         </p>
-        <p className="text-gray-600 text-base mt-4">
+        <p className="mt-4 text-base text-gray-600">
           To perminently delete your account select the option below. This
           action can not be undone and all information related to the account
           including all Jobs and Candidates will be removed and can not be
@@ -180,13 +180,13 @@ const EmployerSettings = ({ account }) => {
             Delete Account
           </button>
         </div>
-        <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
+        <div className="mt-5 border-b-2 border-gray-300 md:hidden"></div>
       </div>
-      <div className="md:w-1/3 mx-8">
+      <div className="mx-8 md:w-1/3">
         <p className="description text-center">Company Information</p>
-        <form onSubmit={handleAccountInfo} className="flex flex-col mb-5">
+        <form onSubmit={handleAccountInfo} className="mb-5 flex flex-col">
           <div className="mt-4 flex flex-col items-start">
-            <label className=" text-gray-900 font-semibold">Company Name</label>
+            <label className="font-semibold text-gray-900">Company Name</label>
             <input
               type="text"
               defaultValue={account.companyName}
@@ -201,7 +201,7 @@ const EmployerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-start">
-            <label className="text-gray-900 font-semibold">
+            <label className="font-semibold text-gray-900">
               Company Website
             </label>
             <input
@@ -217,7 +217,7 @@ const EmployerSettings = ({ account }) => {
             />
           </div>
           <div className="mt-4 flex flex-col items-start">
-            <label className=" text-gray-900 font-semibold">
+            <label className="font-semibold text-gray-900">
               Street Address
             </label>
             <input
@@ -235,7 +235,7 @@ const EmployerSettings = ({ account }) => {
           </div>
           <div className="mt-4 flex flex-row items-start justify-between gap-3">
             <div className="1/3">
-              <label className=" text-gray-900 font-semibold">City</label>
+              <label className="font-semibold text-gray-900">City</label>
               <input
                 type="text"
                 defaultValue={account.City}
@@ -250,7 +250,7 @@ const EmployerSettings = ({ account }) => {
               />
             </div>
             <div className="1/3">
-              <label className="text-gray-900 font-semibold">State:</label>
+              <label className="font-semibold text-gray-900">State:</label>
               <select
                 className="form_input mt-1"
                 onChange={(e) =>
@@ -315,7 +315,7 @@ const EmployerSettings = ({ account }) => {
               </select>
             </div>
             <div className="1/3">
-              <label className=" text-gray-900 font-semibold">Zip Code</label>
+              <label className="font-semibold text-gray-900">Zip Code</label>
               <input
                 type="text"
                 defaultValue={account.ZipCode}

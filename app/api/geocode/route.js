@@ -5,13 +5,13 @@ export async function POST(req, res) {
   if (!location) {
     return NextResponse.json(
       { error: "Location is required" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
   const apiKey = process.env.GOOGLE_GEOCODE_KEY;
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-    location
+    location,
   )}&key=${apiKey}`;
 
   try {
@@ -25,7 +25,7 @@ export async function POST(req, res) {
   } catch (error) {
     return NextResponse.json(
       { error: "Failed to fetch data" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

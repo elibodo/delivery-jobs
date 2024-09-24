@@ -26,9 +26,7 @@ const JobSeekerApplications = ({ accountData }) => {
           {account.applications != "" ? (
             <div>
               {account.applications.map((apps) => (
-                <div>
-                  <JobsAppliedTo JobID={apps} />
-                </div>
+                <JobsAppliedTo JobID={apps} />
               ))}
             </div>
           ) : (
@@ -49,7 +47,7 @@ const JobSeekerJobs = () => {
   useEffect(() => {
     const fetchAccount = async () => {
       const response = await fetch(
-        `/api/account/${session?.user?.email}/jobseeker`
+        `/api/account/${session?.user?.email}/jobseeker`,
       );
       const data = await response.json();
       setAccountInfo(data);
@@ -59,8 +57,8 @@ const JobSeekerJobs = () => {
 
   return (
     <div>
-      <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
-        <h1 className="font-bold text-2xl">Jobs Applied To</h1>
+      <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
+        <h1 className="text-2xl font-bold">Jobs Applied To</h1>
       </div>
       <JobSeekerApplications accountData={accountInfo} />
     </div>

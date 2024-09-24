@@ -72,7 +72,7 @@ const JobSeekerAccount = new Schema(
       type: Array,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 const JobSeeker = models.JobSeeker || model("JobSeeker", JobSeekerAccount);

@@ -34,17 +34,17 @@ const ChatPage = () => {
 
   return (
     <div>
-      <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
-        <h1 className="font-bold text-2xl">Messaging</h1>
+      <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
+        <h1 className="text-2xl font-bold">Messaging</h1>
         <Link
           href="/jobSeekerAccount/jobSeekerMessaging"
-          className="md:hidden flex black_button"
+          className="black_button flex md:hidden"
         >
           View Chats
         </Link>
       </div>
-      <div className="flex justify-center md:justify-center gap-5 px-2 md:px-5 py-3">
-        <div className="hidden md:w-1/3 md:flex">
+      <div className="flex justify-center gap-5 px-2 py-3 md:justify-center md:px-5">
+        <div className="hidden md:flex md:w-1/3">
           <ChatList currentChatId={chatId} />
         </div>
         <div className="md:w-2/3">

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,600&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,600&display=swap"); */
 
 @tailwind base;
 @tailwind components;
@@ -39,7 +39,7 @@
 }
 
 .app {
-  @apply min-h-screen flex items-center flex-col max-w-7xl mx-auto md:px-16 p-2 pt-4;
+  @apply mx-auto flex min-h-screen max-w-7xl flex-col items-center p-2 pt-4 md:px-16;
 }
 
 .description {
@@ -47,55 +47,55 @@
 }
 
 .flex_center {
-  @apply flex justify-center items-center;
+  @apply flex items-center justify-center;
 }
 
 .logo_text {
-  @apply font-extrabold text-3xl md:text-4xl text-black tracking-wide;
+  @apply text-3xl font-extrabold tracking-wide text-black md:text-4xl;
 }
 
 .black_button {
-  @apply rounded-full border-2 border-orange-600 bg-orange-600 py-1.5 px-5 text-white transition-all hover:border-black hover:bg-white hover:text-black text-center text-sm font-medium flex items-center justify-center;
+  @apply flex items-center justify-center rounded-full border-2 border-orange-600 bg-orange-600 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg transition-all hover:border-black hover:bg-white hover:text-black;
 }
 
 .black_button_disabled {
-  @apply rounded-full border-2 border-orange-600 bg-orange-600 py-1.5 px-5 text-white  text-center text-sm font-medium flex items-center justify-center opacity-50;
+  @apply flex items-center justify-center rounded-full border-2 border-orange-600 bg-orange-600 px-5 py-1.5 text-center text-sm font-medium text-white opacity-50 shadow-lg;
 }
 
 .outline_button {
-  @apply rounded-full border-2 border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-orange-600 hover:border-orange-600 hover:text-white text-center text-sm font-medium flex items-center justify-center;
+  @apply flex items-center justify-center rounded-full border-2 border-black bg-transparent px-5 py-1.5 text-center text-sm font-medium text-black shadow-lg transition-all hover:border-orange-600 hover:bg-orange-600 hover:text-white;
 }
 
 .label_input_text {
-  @apply flex justify-between content-center items-center p-1;
+  @apply flex content-center items-center justify-between p-1;
 }
 
 .input_style {
-  @apply p-1 border border-black rounded-lg bg-gray-50;
+  @apply rounded-lg border border-black bg-gray-50 p-1;
 }
 
 .form_input {
-  @apply w-full flex rounded-lg p-3 text-sm text-gray-700 outline-0;
+  @apply flex w-full rounded-lg p-3 text-sm text-gray-700 outline-0;
 }
 
 .feed {
-  @apply mx-auto w-full max-w-xl flex justify-center items-center flex-col gap-1;
+  @apply mx-auto flex w-full max-w-xl flex-col items-center justify-center gap-1;
 }
 
 .prompt_card {
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-4 md:p-6 pb-2 md:pb-4 backdrop-blur-lg backdrop-filter md:w-[750px] h-fit;
+  @apply h-fit flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-4 pb-2 backdrop-blur-lg backdrop-filter md:w-[750px] md:p-6 md:pb-4;
 }
 
 .search_input {
-  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-5 pr-5 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-5 pr-5 text-sm font-medium shadow-lg focus:border-black focus:outline-none focus:ring-0;
 }
 
 .search_input_select {
-  @apply block rounded-md border border-gray-200 bg-white py-2.5 px-3 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
+  @apply block rounded-md border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium shadow-lg focus:border-black focus:outline-none focus:ring-0;
 }
 
 .search_input_button {
-  @apply block rounded-md border border-gray-200 bg-white py-2.5 px-3 text-sm shadow-lg font-medium hover:border-black hover:outline-none hover:ring-0;
+  @apply block rounded-md border border-orange-600 bg-orange-600 px-3 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:border-black hover:bg-white hover:text-black;
 }
 
 .tooltip {
