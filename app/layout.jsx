@@ -6,7 +6,21 @@ import React from "react";
 
 export const metadata = {
   title: "Delivery Jobs",
-  description: "A way to find delivery related jobs",
+  description: "A way to find driving jobs",
+  keywords: [
+    "Delivery Jobs",
+    "Driving Jobs",
+    "Fedex",
+    "UPS",
+    "USPS",
+    "Amazon",
+    "Delivery",
+    "Driving jobs near me",
+    "Delivery driver",
+    "CDL jobs",
+    "Trucking jobs",
+    "Non-CDL jobs",
+  ],
 };
 
 const RootLayout = ({ children }) => {
