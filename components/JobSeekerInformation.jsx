@@ -10,7 +10,7 @@ const JobSeekerInformation = ({ account }) => {
     "en-CA",
     {
       timeZone: "UTC",
-    }
+    },
   );
   const dotDate = new Date(account.DOTExpire).toLocaleDateString("en-CA", {
     timeZone: "UTC",
@@ -40,8 +40,8 @@ const JobSeekerInformation = ({ account }) => {
     } else {
       setEndorse((nameOfEndorsement) =>
         nameOfEndorsement.filter(
-          (specificEndorsement) => specificEndorsement !== value
-        )
+          (specificEndorsement) => specificEndorsement !== value,
+        ),
       );
     }
   };
@@ -73,7 +73,7 @@ const JobSeekerInformation = ({ account }) => {
             CDLOption2: licenseData.CDLOption2,
             endorsements: licenseData.endorsements,
           }),
-        }
+        },
       );
       setFirstMessage("Information Updated");
     } catch (error) {
@@ -129,7 +129,7 @@ const JobSeekerInformation = ({ account }) => {
             educationDate: eduCertData.educationDate,
             certificates: eduCertData.certificates,
           }),
-        }
+        },
       );
       setSecondMessage("Information Updated");
     } catch (error) {
@@ -182,7 +182,7 @@ const JobSeekerInformation = ({ account }) => {
           body: JSON.stringify({
             workHistory: workHistoryData.experienceArray,
           }),
-        }
+        },
       );
       setThirdMessage("Information Updated");
     } catch (error) {
@@ -223,13 +223,13 @@ const JobSeekerInformation = ({ account }) => {
   return (
     <div>
       {/* License, dot, cdl, additional, endorsements */}
-      <form className="flex flex-col md:flex-row justify-center">
-        <div className="md:w-1/3 mx-8">
-          <div className="flex flex-col mb-4">
+      <form className="flex flex-col justify-center md:flex-row">
+        <div className="mx-8 md:w-1/3">
+          <div className="mb-4 flex flex-col">
             {/* drivers license */}
             <p className="description text-center">Drivers License</p>
             <div className="mt-2 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 License Class
               </label>
               <input
@@ -246,7 +246,7 @@ const JobSeekerInformation = ({ account }) => {
               />
             </div>
             <div className="mt-4 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 Issuing State
               </label>
               <select
@@ -315,13 +315,13 @@ const JobSeekerInformation = ({ account }) => {
               </select>
             </div>
             <div className="mt-4 flex flex-col items-start border-b-2 border-gray-300">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 License Expiration Date
               </label>
               <input
                 defaultValue={licenseDate}
                 type="date"
-                className="form_input mt-1 mb-3"
+                className="form_input mb-3 mt-1"
                 required
                 onChange={(e) =>
                   setLicenseData({
@@ -334,7 +334,7 @@ const JobSeekerInformation = ({ account }) => {
             {/* additional info */}
             <p className="description text-center">Additional Information</p>
             <div className="mt-4 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 Car accident in the past 3 years?
               </label>
               <select
@@ -353,7 +353,7 @@ const JobSeekerInformation = ({ account }) => {
               </select>
             </div>
             <div className="mt-4 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 Convicted of a DUI in the past 10 years?
               </label>
               <select
@@ -372,7 +372,7 @@ const JobSeekerInformation = ({ account }) => {
               </select>
             </div>
             <div className="mt-4 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">Age range</label>
+              <label className="font-semibold text-gray-900">Age range</label>
               <select
                 defaultValue={account.ageRange}
                 className="form_input mt-1"
@@ -389,23 +389,23 @@ const JobSeekerInformation = ({ account }) => {
                 <option>Over 21</option>
               </select>
             </div>
-            <p className="text-gray-600 text-base mt-4 hidden md:flex">
+            <p className="mt-4 hidden text-base text-gray-600 md:flex">
               Updating all of these settings can be done with the button below.
               Please Ensure that all information from each section is correct.{" "}
               {
                 "(Drivers License, DOT Information, Additional Information, CDL Information, Endorsements)"
               }
             </p>
-            <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
+            <div className="mt-5 border-b-2 border-gray-300 md:hidden"></div>
           </div>
         </div>
 
-        <div className="md:w-1/3 mx-8">
-          <div className="flex flex-col mb-4">
+        <div className="mx-8 md:w-1/3">
+          <div className="mb-4 flex flex-col">
             {/* dot information */}
             <p className="description text-center">DOT Information</p>
             <div className="mt-2 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 DOT Medical Card
               </label>
               <select
@@ -424,14 +424,14 @@ const JobSeekerInformation = ({ account }) => {
                 <option>No</option>
               </select>
             </div>
-            <div className="mt-4 flex flex-col items-start  border-b-2 border-gray-300">
-              <label className="text-gray-900 font-semibold">
+            <div className="mt-4 flex flex-col items-start border-b-2 border-gray-300">
+              <label className="font-semibold text-gray-900">
                 DOT Expiration Date
               </label>
               <input
                 defaultValue={dotDate}
                 type="date"
-                className="form_input mt-1 mb-3"
+                className="form_input mb-3 mt-1"
                 required
                 onChange={(e) =>
                   setLicenseData({
@@ -444,7 +444,7 @@ const JobSeekerInformation = ({ account }) => {
             {/* cdl information */}
             <p className="description text-center">CDL Information</p>
             <div className="mt-4 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 Commercial Drivers License
               </label>
               <select
@@ -464,7 +464,7 @@ const JobSeekerInformation = ({ account }) => {
               </select>
             </div>
             <div className="mt-4 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">Twik Card</label>
+              <label className="font-semibold text-gray-900">Twik Card</label>
               <select
                 defaultValue={account.twikCard}
                 type="text"
@@ -482,12 +482,12 @@ const JobSeekerInformation = ({ account }) => {
               </select>
             </div>
             <div className="mt-4 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">CDL Options</label>
-              <div className="flex flex-row w-full gap-2 border-b-2 border-gray-300">
+              <label className="font-semibold text-gray-900">CDL Options</label>
+              <div className="flex w-full flex-row gap-2 border-b-2 border-gray-300">
                 <select
                   defaultValue={account.CDLOption1}
                   type="text"
-                  className="form_input mt-1 mb-3"
+                  className="form_input mb-3 mt-1"
                   required
                   onChange={(e) =>
                     setLicenseData({
@@ -502,7 +502,7 @@ const JobSeekerInformation = ({ account }) => {
                 <select
                   defaultValue={account.CDLOption2}
                   type="text"
-                  className="form_input mt-1 mb-3"
+                  className="form_input mb-3 mt-1"
                   required
                   onChange={(e) =>
                     setLicenseData({
@@ -615,7 +615,7 @@ const JobSeekerInformation = ({ account }) => {
                 X-HM+Tanker
               </label>
             </div>
-            <p className="text-gray-600 text-base mt-4 md:hidden">
+            <p className="mt-4 text-base text-gray-600 md:hidden">
               Updating all of these settings can be done with the button below.
               Please Ensure that all information from each section is correct.{" "}
               {
@@ -625,7 +625,7 @@ const JobSeekerInformation = ({ account }) => {
           </div>
         </div>
       </form>
-      <div className="flex flex-col items-center border-b-2 border-gray-300 mx-8">
+      <div className="mx-8 flex flex-col items-center border-b-2 border-gray-300">
         <button onClick={handleFirstSection} className="outline_button mb-4">
           Save Information
         </button>
@@ -633,13 +633,13 @@ const JobSeekerInformation = ({ account }) => {
           <p className="mb-4 font-bold text-orange-600">{firstMessage}</p>
         )}
       </div>
-      <div className="flex flex-col md:flex-row justify-center">
-        <div className="md:w-1/3 mx-8">
-          <div className="flex flex-col mb-4">
+      <div className="flex flex-col justify-center md:flex-row">
+        <div className="mx-8 md:w-1/3">
+          <div className="mb-4 flex flex-col">
             {/* Education */}
             <p className="description text-center">Education</p>
             <div className="mt-2 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 Education Level
               </label>
               <select
@@ -662,7 +662,7 @@ const JobSeekerInformation = ({ account }) => {
               </select>
             </div>
             <div className="mt-4 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 Date of Completion
               </label>
               <input
@@ -678,29 +678,29 @@ const JobSeekerInformation = ({ account }) => {
                 required
               />
             </div>
-            <p className="text-gray-600 text-base mt-4 hidden md:flex">
+            <p className="mt-4 hidden text-base text-gray-600 md:flex">
               Please click the button below to update the education and
               certifications portion of the resume. Please ensure that all
               information from each section is correct. (Education,
               Certifications)
             </p>
-            <div className="border-b-2 border-gray-300 mt-5 md:hidden"></div>
+            <div className="mt-5 border-b-2 border-gray-300 md:hidden"></div>
           </div>
         </div>
 
-        <div className="md:w-1/3 mx-8">
-          <div className="flex flex-col mb-4">
+        <div className="mx-8 md:w-1/3">
+          <div className="mb-4 flex flex-col">
             {/* Certificates */}
             <p className="description text-center">Certifications</p>
             <div className="mt-2 flex flex-col items-start">
-              <label className="text-gray-900 font-semibold">
+              <label className="font-semibold text-gray-900">
                 Certificate Name
               </label>
               {certs.map((cert, index) => (
                 <div className="w-full">
                   <div
                     key={index}
-                    className="flex flex-row items-center w-full gap-5"
+                    className="flex w-full flex-row items-center gap-5"
                   >
                     <input
                       name="certification"
@@ -737,7 +737,7 @@ const JobSeekerInformation = ({ account }) => {
               ))}
             </div>
           </div>
-          <p className="text-gray-600 text-base mt-4 md:hidden mb-3">
+          <p className="mb-3 mt-4 text-base text-gray-600 md:hidden">
             Please click the button below to update the education and
             certifications portion of the resume. Please ensure that all
             information from each section is correct. (Education,
@@ -745,7 +745,7 @@ const JobSeekerInformation = ({ account }) => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col items-center border-b-2 border-gray-300 mx-8">
+      <div className="mx-8 flex flex-col items-center border-b-2 border-gray-300">
         <button onClick={handleSecondSection} className="outline_button mb-4">
           Save Information
         </button>
@@ -753,18 +753,18 @@ const JobSeekerInformation = ({ account }) => {
           <p className="mb-4 font-bold text-orange-600">{secondMessage}</p>
         )}
       </div>
-      <div className="flex flex-col items-center mx-8">
+      <div className="mx-8 flex flex-col items-center">
         <p className="description text-center">Work History</p>
       </div>
 
       {workHistory.map((workdata, index) => (
         <div>
-          <div key={index} className="flex flex-col md:flex-row justify-center">
-            <div className="md:w-1/3 mx-8">
-              <div className="flex flex-col mb-4">
+          <div key={index} className="flex flex-col justify-center md:flex-row">
+            <div className="mx-8 md:w-1/3">
+              <div className="mb-4 flex flex-col">
                 {/* Work Experience */}
                 <div className="mt-2 flex flex-col items-start">
-                  <label className="text-gray-900 font-semibold">Title</label>
+                  <label className="font-semibold text-gray-900">Title</label>
                   <input
                     onChange={(e) => handleWorkHistoryChange(e, index)}
                     name="title"
@@ -775,7 +775,7 @@ const JobSeekerInformation = ({ account }) => {
                   />
                 </div>
                 <div className="mt-1 flex flex-col items-start">
-                  <label className="text-gray-900 font-semibold">
+                  <label className="font-semibold text-gray-900">
                     Company Name
                   </label>
                   <input
@@ -789,7 +789,7 @@ const JobSeekerInformation = ({ account }) => {
                   />
                 </div>
                 <div className="mt-1 flex flex-col items-start">
-                  <label className="text-gray-900 font-semibold">
+                  <label className="font-semibold text-gray-900">
                     Length (Years)
                   </label>
                   <input
@@ -804,11 +804,11 @@ const JobSeekerInformation = ({ account }) => {
                 </div>
               </div>
             </div>
-            <div className="md:w-1/3 mx-8">
-              <div className="flex flex-col mb-4">
+            <div className="mx-8 md:w-1/3">
+              <div className="mb-4 flex flex-col">
                 {/* Work Experience */}
                 <div className="mt-2 flex flex-col items-start">
-                  <label className="text-gray-900 font-semibold">
+                  <label className="font-semibold text-gray-900">
                     Job Duties
                   </label>
                   <textarea
@@ -816,11 +816,11 @@ const JobSeekerInformation = ({ account }) => {
                     name="duties"
                     id="duties"
                     defaultValue={workdata.duties}
-                    className="resize-y min-h-[150px] form_input mt-1 h-[150px]"
+                    className="form_input mt-1 h-[150px] min-h-[150px] resize-y"
                     required
                   />
                 </div>
-                <div className="flex flex-row mt-3 justify-center gap-3">
+                <div className="mt-3 flex flex-row justify-center gap-3">
                   {workHistory.length - 1 === index &&
                     workHistory.length < 5 && (
                       <button
@@ -842,10 +842,10 @@ const JobSeekerInformation = ({ account }) => {
               </div>
             </div>
           </div>
-          <div className="border-b-2 border-gray-300 mx-16 mb-4"></div>
+          <div className="mx-16 mb-4 border-b-2 border-gray-300"></div>
         </div>
       ))}
-      <div className="flex flex-col items-center mx-8">
+      <div className="mx-8 flex flex-col items-center">
         <button onClick={handleThirdSection} className="outline_button mb-4">
           Save Information
         </button>

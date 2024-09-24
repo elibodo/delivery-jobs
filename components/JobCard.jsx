@@ -25,7 +25,7 @@ const JobCard = ({ post, handleDelete }) => {
     const currentUserEmail = session?.user?.email;
 
     let index = applicantArray.findIndex(
-      (obj) => obj.email === currentUserEmail
+      (obj) => obj.email === currentUserEmail,
     );
     if (index === -1 && !deniedApplicantArray.includes(currentUserEmail)) {
       try {
@@ -66,28 +66,28 @@ const JobCard = ({ post, handleDelete }) => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-4">
-      <div className="prompt_card overflow-hidden relative">
+    <div className="flex flex-col gap-4 md:flex-row">
+      <div className="prompt_card relative overflow-hidden">
         <button
           onClick={() => {
             setAccordionOpen(!accordionOpen);
           }}
-          className="flex justify-between w-full text-left md:gap-5 items-center"
+          className="flex w-full items-center justify-between text-left md:gap-5"
         >
           {/* Desktop layout */}
           <div className="hidden md:flex md:flex-col">
-            <h1 className="font-bold text-lg">{post.title}</h1>
+            <h1 className="text-lg font-bold">{post.title}</h1>
             <p className="text-sm text-gray-900">{post.companyName}</p>
           </div>
           <div className="hidden md:flex md:flex-row md:gap-2 md:text-center">
-            <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
+            <p className="m-1 rounded bg-slate-200 p-1 text-sm text-gray-900">
               {post.jobtype}
             </p>
-            <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
+            <p className="m-1 rounded bg-slate-200 p-1 text-sm text-gray-900">
               From ${post.payrange[0]} - ${post.payrange[1]} a{" "}
               {post.payrange[2]}
             </p>
-            <p className="text-sm text-gray-900 bg-slate-200 p-1 rounded m-1">
+            <p className="m-1 rounded bg-slate-200 p-1 text-sm text-gray-900">
               {post.dispatchlocation}
             </p>
           </div>
@@ -99,15 +99,15 @@ const JobCard = ({ post, handleDelete }) => {
             </div>
             <div className="mt-2 text-sm">
               <div className="flex gap-5">
-                <p className="text-gray-900 bg-slate-200 p-1 rounded">
+                <p className="rounded bg-slate-200 p-1 text-gray-900">
                   {post.jobtype}
                 </p>
-                <p className="text-gray-900 bg-slate-200 p-1 rounded">
+                <p className="rounded bg-slate-200 p-1 text-gray-900">
                   {post.dispatchlocation}
                 </p>
               </div>
-              <div className="flex mt-2">
-                <p className="font-semibold text-gray-900 bg-slate-200 p-1 rounded">
+              <div className="mt-2 flex">
+                <p className="rounded bg-slate-200 p-1 font-semibold text-gray-900">
                   From ${post.payrange[0]} - ${post.payrange[1]} a{" "}
                   {post.payrange[2]}
                 </p>
@@ -116,7 +116,7 @@ const JobCard = ({ post, handleDelete }) => {
           </div>
           {/* pay from database template */}
           <svg
-            className=" fill-gray-700 shrink-0 md:ml-5"
+            className="shrink-0 fill-gray-700 md:ml-5"
             width="16"
             height="16"
             xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +126,7 @@ const JobCard = ({ post, handleDelete }) => {
               width="16"
               height="2"
               rx="1"
-              className={`transform origin-center transition duration-200 ease-out ${
+              className={`origin-center transform transition duration-200 ease-out ${
                 accordionOpen && "!rotate-180"
               }`}
             />
@@ -135,38 +135,38 @@ const JobCard = ({ post, handleDelete }) => {
               width="16"
               height="2"
               rx="1"
-              className={`transform origin-center rotate-90 transition duration-200 ease-out ${
+              className={`origin-center rotate-90 transform transition duration-200 ease-out ${
                 accordionOpen && "!rotate-180"
               }`}
             />
           </svg>
         </button>
         <div
-          className={`grid overflow-hidden transition-all duration-300 ease-in-out text-slate-600 text-sm ${
+          className={`grid overflow-hidden text-sm text-slate-600 transition-all duration-300 ease-in-out ${
             accordionOpen
               ? "grid-rows-[1fr] opacity-100"
               : "grid-rows-[0fr] opacity-0"
           }`}
         >
-          <div className="space-y-2 text-sm text-gray-900 overflow-hidden whitespace-pre-wrap mt-2 border-t-2 border-slate-300">
+          <div className="mt-2 space-y-2 overflow-hidden whitespace-pre-wrap border-t-2 border-slate-300 text-sm text-gray-900">
             {/* apply button */}
             <div className="flex justify-center md:justify-start">
               {session?.user?.accountType === "Job Seeker" ? (
                 <button
                   onClick={handleApply}
-                  className="black_button w-32 mt-2"
+                  className="black_button mt-2 w-32"
                 >
                   Apply
                 </button>
               ) : session === null ? (
-                <Link href={"/logIn"} className="black_button w-40 mt-3">
+                <Link href={"/logIn"} className="black_button mt-3 w-40">
                   Sign In To Apply!
                 </Link>
               ) : (
                 <></>
               )}
             </div>
-            <p className="mt-3 mb-5">{post.description}</p>
+            <p className="mb-5 mt-3">{post.description}</p>
             <p className="font-bold">Additional Information</p>
             {/* <p>Number of hires: {post.numOfHires}</p> */}
             <p>Delivery Location: {post.deliverylocation}</p>
@@ -177,11 +177,11 @@ const JobCard = ({ post, handleDelete }) => {
             </p>
             <p>{/* This shift is{"  "} {post.shifttype} */}</p>
             <p>
-              Days of the week this job operates:{"  "}
+              Operating Days:{"  "}
               {operationdays}
             </p>
             <div className="flex flex-row">
-              <p>Benefits this company offers:{"  "} </p>
+              <p>Company Benefits:{"  "} </p>
               <span>{jobbenefits}</span>
             </div>
             {/* <p>
@@ -189,30 +189,27 @@ const JobCard = ({ post, handleDelete }) => {
             {post.resume}
           </p> */}
             <p>
-              Contract or W2?{"  "} {post.jobformat}
+              Position Type:{"  "} {post.jobformat}
+            </p>
+            <p>United States Work Authorization: {post.workauthorization}</p>
+            <p>
+              Drug Test:{"  "} {post.drugtest}
             </p>
             <p>
-              Authorization to work in the United States:{" "}
-              {post.workauthorization}
+              Background Check:{"  "} {post.backgroundcheck}
             </p>
             <p>
-              Is a drug test required?{"  "} {post.drugtest}
-            </p>
-            <p>
-              Is a background check required?{"  "} {post.backgroundcheck}
-            </p>
-            <p>
-              Is a DOT medical card required?{"  "} {post.dotcard}
+              DOT Medical Card:{"  "} {post.dotcard}
             </p>
           </div>
         </div>
       </div>
       {session?.user.id === post.creator._id &&
         pathName === "/employerAccount/employerAccountHome" && (
-          <div className="flex flex-row gap-3 justify-center md:justify-normal mb-5">
-            <div className="flex flex-row md:flex-col md:mt-2 gap-3">
+          <div className="mb-5 flex flex-row justify-center gap-3 md:justify-normal">
+            <div className="flex flex-row gap-3 md:mt-2 md:flex-col">
               <button onClick={handleDelete} className="has-tooltip">
-                <span className="tooltip rounded shadow-lg p-1 bg-gray-500 text-black -mt-8">
+                <span className="tooltip -mt-8 rounded bg-gray-500 p-1 text-black shadow-lg">
                   Delete Job
                 </span>
                 <svg
@@ -230,7 +227,7 @@ const JobCard = ({ post, handleDelete }) => {
               </button>
               {/* edit job */}
               <button className="has-tooltip">
-                <span className="tooltip rounded shadow-lg p-1 bg-gray-500 text-black -mt-8">
+                <span className="tooltip -mt-8 rounded bg-gray-500 p-1 text-black shadow-lg">
                   Edit Job
                 </span>
                 <svg
@@ -245,7 +242,7 @@ const JobCard = ({ post, handleDelete }) => {
               </button>
               {/* copy job */}
               <button className="has-tooltip">
-                <span className="tooltip rounded shadow-lg p-1 bg-gray-500 text-black -mt-8">
+                <span className="tooltip -mt-8 rounded bg-gray-500 p-1 text-black shadow-lg">
                   Copy Job
                 </span>
                 <svg
@@ -267,7 +264,7 @@ const JobCard = ({ post, handleDelete }) => {
                 </svg>
               </button>
             </div>
-            <div className="rounded-lg border border-gray-300 bg-white/20 w-[175px] h-fit p-3 gap-3">
+            <div className="h-fit w-[175px] gap-3 rounded-lg border border-gray-300 bg-white/20 p-3">
               <div className="flex flex-row justify-between">
                 <h1 className="font-bold">Applicants: </h1>
                 <span className="font-semibold">{post.applicants.length}</span>

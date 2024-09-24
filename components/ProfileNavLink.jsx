@@ -10,8 +10,8 @@ const ProfileNavLink = ({ href, children }) => {
   return (
     <Link
       href={href}
-      className={`hover:bg-gray-100 p-2 rounded block text-sm ${
-        active ? "text-black font-semibold" : "text-gray-500"
+      className={`block rounded p-2 text-sm hover:bg-gray-100 ${
+        active ? "font-semibold text-black" : "text-gray-500"
       }`}
     >
       {children}

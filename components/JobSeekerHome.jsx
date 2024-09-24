@@ -11,7 +11,7 @@ const JobSeekerHome = ({ account }) => {
 
   const lisenseDate = new Date(account.licenseExpire).toLocaleDateString(
     "en-US",
-    { timeZone: "UTC" }
+    { timeZone: "UTC" },
   );
   const dotDate = new Date(account.DOTExpire).toLocaleDateString("en-US", {
     timeZone: "UTC",
@@ -24,15 +24,15 @@ const JobSeekerHome = ({ account }) => {
   const work = account.experienceArray;
 
   return (
-    <div className="flex flex-col w-full p-5">
+    <div className="flex w-full flex-col p-5">
       {/* Top of resume */}
-      <h1 className="text-3xl font-semibold ml-5">{session.user.name}</h1>
-      <div className="flex flex-row justify-between mt-3 pb-3 border-b-2 border-gray-500">
-        <div className="flex flex-col ml-5">
+      <h1 className="ml-5 text-3xl font-semibold">{session.user.name}</h1>
+      <div className="mt-3 flex flex-row justify-between border-b-2 border-gray-500 pb-3">
+        <div className="ml-5 flex flex-col">
           <h2 className="text-base font-medium">{account.email}</h2>
           <h2 className="text-base font-medium">{session.user.phoneNumber}</h2>
         </div>
-        <div className="flex flex-col mr-5">
+        <div className="mr-5 flex flex-col">
           <h2 className="text-base font-medium">
             {account.city}, {account.state}
           </h2>
@@ -43,33 +43,33 @@ const JobSeekerHome = ({ account }) => {
       {/* liscense and dot section */}
       <div className="flex flex-col">
         <div className="flex flex-col md:flex-row">
-          <div className="md:w-1/3 mx-4">
+          <div className="mx-4 md:w-1/3">
             <p className="mt-5 text-xl text-gray-600">License Information</p>
             <div className="ml-2">
-              <p className="text-gray-800 mt-3">
+              <p className="mt-3 text-gray-800">
                 License Class:{" "}
-                <span className=" font-semibold">{account.licenseClass}</span>
+                <span className="font-semibold">{account.licenseClass}</span>
               </p>
-              <p className="text-gray-800 mt-1">
+              <p className="mt-1 text-gray-800">
                 License Expire:{" "}
-                <span className=" font-semibold">{lisenseDate}</span>
+                <span className="font-semibold">{lisenseDate}</span>
               </p>
-              <p className="text-gray-800 mt-1">
+              <p className="mt-1 text-gray-800">
                 Issuing State:{" "}
-                <span className=" font-semibold">{account.licenseState}</span>
+                <span className="font-semibold">{account.licenseState}</span>
               </p>
             </div>
           </div>
           {account.DOT === "Yes" ? (
-            <div className="md:w-1/3 mx-4">
+            <div className="mx-4 md:w-1/3">
               <p className="mt-5 text-xl text-gray-600">DOT Information</p>
               <div className="ml-2">
-                <p className="text-gray-800 mt-3">
+                <p className="mt-3 text-gray-800">
                   DOT Medical Card:{" "}
-                  <span className=" font-semibold">{account.DOT}</span>
+                  <span className="font-semibold">{account.DOT}</span>
                 </p>
-                <p className="text-gray-800 mt-1">
-                  DOT Expire: <span className=" font-semibold">{dotDate}</span>
+                <p className="mt-1 text-gray-800">
+                  DOT Expire: <span className="font-semibold">{dotDate}</span>
                 </p>
               </div>
             </div>
@@ -78,19 +78,19 @@ const JobSeekerHome = ({ account }) => {
           )}
           {/* cdl */}
           {account.CDL === "Yes" ? (
-            <div className="md:w-1/3 mx-4">
+            <div className="mx-4 md:w-1/3">
               <p className="mt-5 text-xl text-gray-600">CDL Information</p>
               <div className="ml-2">
-                <p className="text-gray-800 mt-3">
-                  CDL: <span className=" font-semibold">{account.CDL}</span>
+                <p className="mt-3 text-gray-800">
+                  CDL: <span className="font-semibold">{account.CDL}</span>
                 </p>
-                <p className="text-gray-800 mt-1">
+                <p className="mt-1 text-gray-800">
                   Twik Card:{" "}
-                  <span className=" font-semibold">{account.twikCard}</span>
+                  <span className="font-semibold">{account.twikCard}</span>
                 </p>
-                <p className="text-gray-800 mt-1">
+                <p className="mt-1 text-gray-800">
                   Options:{" "}
-                  <span className=" font-semibold">
+                  <span className="font-semibold">
                     {account.CDLOption1} {account.CDLOption2}
                   </span>
                 </p>
@@ -105,18 +105,18 @@ const JobSeekerHome = ({ account }) => {
           <div className="mx-4 md:w-1/3">
             <p className="mt-10 text-xl text-gray-600">Education</p>
             <div className="ml-2 mt-1">
-              <p className="text-gray-800 mt-3">
+              <p className="mt-3 text-gray-800">
                 Highest Level:{" "}
                 <span className="font-semibold">{account.educationLevel}</span>
               </p>
-              <p className="text-gray-800 mt-1">
+              <p className="mt-1 text-gray-800">
                 Date Completed: <span className="font-semibold">{eduDate}</span>
               </p>
             </div>
           </div>
           {certs != "" ? (
             <div className="mx-4 md:w-1/3">
-              <p className="mt-10 text-xl text-gray-600 mb-3">
+              <p className="mb-3 mt-10 text-xl text-gray-600">
                 Certifications:{" "}
               </p>
               <div className="ml-2 mt-1">
@@ -136,7 +136,7 @@ const JobSeekerHome = ({ account }) => {
             <div className="mx-4 md:w-1/3">
               <p className="mt-10 text-xl text-gray-600">Endorsements</p>
               <div className="ml-2">
-                <p className="font-semibold mt-3">{theEndorsements}</p>
+                <p className="mt-3 font-semibold">{theEndorsements}</p>
               </div>
             </div>
           )}
@@ -145,14 +145,14 @@ const JobSeekerHome = ({ account }) => {
         {work != "" ? (
           <div className="flex flex-row">
             <div className="mx-4">
-              <p className="mt-10 text-xl text-gray-600 mb-3">Work History</p>
+              <p className="mb-3 mt-10 text-xl text-gray-600">Work History</p>
               <div className="ml-2 mt-3">
                 {work.map((work) => (
                   <div
                     key={work._id}
-                    className="mt-3 pb-3 border-b-2 border-gray-300"
+                    className="mt-3 border-b-2 border-gray-300 pb-3"
                   >
-                    <p className="font-semibold text-lg">{work.title}</p>
+                    <p className="text-lg font-semibold">{work.title}</p>
                     <p className="mx-2 mt-1 text-gray-800">
                       <span className="font-semibold">
                         {work.company}
@@ -179,14 +179,14 @@ const JobSeekerHome = ({ account }) => {
               Additional Information
             </p>
             <div className="ml-2 mt-1">
-              <p className="text-gray-800 mt-3">
+              <p className="mt-3 text-gray-800">
                 Recent Car Accident:{" "}
                 <span className="font-semibold">{account.carAccident}</span>
               </p>
-              <p className="text-gray-800 mt-1">
+              <p className="mt-1 text-gray-800">
                 Recent DUI: <span className="font-semibold">{account.DUI}</span>
               </p>
-              <p className="text-gray-800 mt-1">
+              <p className="mt-1 text-gray-800">
                 Age Range:{" "}
                 <span className="font-semibold">{account.ageRange}</span>
               </p>

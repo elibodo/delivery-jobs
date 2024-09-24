@@ -8,7 +8,7 @@ const SearchJobs = ({ getSearchResults }) => {
   const handleSearch = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      `/api/job/search?query=${query}&distance=${distance}&location=${location}`
+      `/api/job/search?query=${query}&distance=${distance}&location=${location}`,
     );
     const jobs = await response.json();
     getSearchResults(jobs);
@@ -16,7 +16,7 @@ const SearchJobs = ({ getSearchResults }) => {
 
   return (
     <form onSubmit={handleSearch}>
-      <div className="flex justify-items-start w-full gap-2">
+      <div className="flex w-full justify-items-start gap-2">
         <input
           type="text"
           value={query}
@@ -25,7 +25,7 @@ const SearchJobs = ({ getSearchResults }) => {
           placeholder="Search for a job"
         />
       </div>
-      <div className="flex flex-row gap-2 mt-2">
+      <div className="mt-2 flex flex-row gap-2">
         <select
           value={distance}
           onChange={(e) => setDistance(e.target.value)}

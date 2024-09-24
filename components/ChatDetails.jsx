@@ -28,7 +28,7 @@ const ChatDetails = ({ chatId }) => {
       const data = await response.json();
       setChat(data);
       setOtherMember(
-        data?.members?.filter((member) => member._id !== currentUser.id)
+        data?.members?.filter((member) => member._id !== currentUser.id),
       );
       setLoading(false);
     } catch (error) {
@@ -93,14 +93,14 @@ const ChatDetails = ({ chatId }) => {
   return loading ? (
     <LoadingSpinner />
   ) : (
-    <div className="h-[600px] flex flex-col bg-white rounded-lg">
+    <div className="flex h-[600px] flex-col rounded-lg bg-white">
       {session?.user?.accountType === "Job Seeker" ? (
-        <div className="flex items-center px-5 py-2 text-body-bold">
-          <div className="h-10 w-10 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold">
+        <div className="text-body-bold flex items-center px-5 py-2">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-600 font-bold text-white">
             {chat.jobAppliedTo[0].companyName.charAt(0)}
           </div>
           <div className="ml-5">
-            <p className="font-semibold text-lg">
+            <p className="text-lg font-semibold">
               {chat.jobAppliedTo[0].companyName}&#160; &#183; &#160;
               <span className="text-base font-medium">
                 {otherMember[0].name}
@@ -112,30 +112,30 @@ const ChatDetails = ({ chatId }) => {
           </div>
         </div>
       ) : (
-        <div className="flex items-center px-5 py-2 text-body-bold">
-          <div className="h-10 w-10 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold">
+        <div className="text-body-bold flex items-center px-5 py-2">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-600 font-bold text-white">
             {otherMember[0].name.charAt(0)}
           </div>
           <div className="ml-5">
-            <p className="font-semibold text-lg">{otherMember[0].name}</p>
+            <p className="text-lg font-semibold">{otherMember[0].name}</p>
             <p className="text-sm text-gray-600">
               {chat.jobAppliedTo[0].title}
             </p>
           </div>
         </div>
       )}
-      <div className="flex-1 flex flex-col gap-5 p-4 overflow-y-scroll bg-gray-100">
+      <div className="flex flex-1 flex-col gap-5 overflow-y-scroll bg-gray-100 p-4">
         {chat?.messages?.map((message, index) => (
           <MessageBox key={index} message={message} currentUser={currentUser} />
         ))}
         <div ref={bottomRef} />
       </div>
-      <div className="w-full flex items-center justify-between px-7 py-2 rounded-3xl cursor-pointer">
-        <div className="flex items-center gap-4 w-full">
+      <div className="flex w-full cursor-pointer items-center justify-between rounded-3xl px-7 py-2">
+        <div className="flex w-full items-center gap-4">
           <input
             type="text"
             placeholder="Write a message..."
-            className="text-sm font-medium w-full mr-7 p-2 outline-none"
+            className="mr-7 w-full p-2 text-sm font-medium outline-none"
             value={text}
             onChange={(e) => setText(e.target.value)}
             required
@@ -143,7 +143,7 @@ const ChatDetails = ({ chatId }) => {
         </div>
         <div
           onClick={sendText}
-          className="bg-orange-600 text-white hover:bg-white hover:text-orange-600 transition-all duration-200 rounded-full h-10 w-10 flex items-center justify-center"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-orange-600 text-white transition-all duration-200 hover:bg-white hover:text-orange-600"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

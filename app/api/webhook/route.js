@@ -14,7 +14,7 @@ export async function POST(req) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET
+      process.env.STRIPE_WEBHOOK_SECRET,
     );
   } catch (error) {
     return new NextResponse("Invalid Signature", { status: 400 });
@@ -25,7 +25,7 @@ export async function POST(req) {
     switch (event.type) {
       case "checkout.session.completed":
         const subscription = await stripe.subscriptions.retrieve(
-          session.subscription
+          session.subscription,
         );
 
         try {

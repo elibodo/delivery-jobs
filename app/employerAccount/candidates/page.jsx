@@ -12,7 +12,7 @@ const ECandidates = ({ accountData, jobData }) => {
     const candidate = app;
 
     const hasConfirmed = confirm(
-      "Are you sure you want to permanently delete this candidate"
+      "Are you sure you want to permanently delete this candidate",
     );
     if (hasConfirmed) {
       try {
@@ -27,7 +27,7 @@ const ECandidates = ({ accountData, jobData }) => {
             if (element._id === jobID) {
               let candidates = element.applicants;
               let index = candidates.findIndex(
-                (obj) => obj.email === candidate
+                (obj) => obj.email === candidate,
               );
               if (index !== -1) {
                 candidates.splice(index, 1);
@@ -66,7 +66,7 @@ const Candidates = () => {
   useEffect(() => {
     const fetchAccount = async () => {
       const response = await fetch(
-        `/api/account/${session?.user?.email}/employer`
+        `/api/account/${session?.user?.email}/employer`,
       );
       const data = await response.json();
       setAccountInfo(data);

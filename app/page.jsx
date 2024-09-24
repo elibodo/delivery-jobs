@@ -6,7 +6,7 @@ import Feed from "@components/Feed";
 
 const Home = () => {
   return (
-    <section className="w-full flex_center flex-col">
+    <section className="flex_center w-full flex-col">
       {/* took out "app" classname from section.
       Everything was centering vertically so the search bar
       and jobs would never look the same on multiple pages */}

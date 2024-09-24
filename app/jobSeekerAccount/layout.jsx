@@ -4,9 +4,9 @@ import React from "react";
 
 const JobSeekerNavLayout = ({ children }) => {
   return (
-    <div className="justify-center w-full overflow-x-auto">
-      <div className="hidden md:flex justify-center w-full overflow-x-auto">
-        <aside className="flex-1 mr-5">
+    <div className="w-full justify-center overflow-x-auto">
+      <div className="hidden w-full justify-center overflow-x-auto md:flex">
+        <aside className="mr-5 flex-1">
           <nav>
             <ul className="relative grid gap-3">
               <li>
@@ -37,11 +37,11 @@ const JobSeekerNavLayout = ({ children }) => {
             </ul>
           </nav>
         </aside>
-        <div className="w-11/12 bg-gray-100 rounded">{children}</div>
+        <div className="w-11/12 rounded bg-gray-100">{children}</div>
       </div>
       <div className="md:hidden">
         <nav>
-          <ul className="grid grid-flow-col justify-stretch h-[32px]">
+          <ul className="grid h-[32px] grid-flow-col justify-stretch">
             <li>
               <MobileNavLink href={"/jobSeekerAccount/jobSeekerResume"}>
                 <div className="flex flex-col items-center">
@@ -135,7 +135,7 @@ const JobSeekerNavLayout = ({ children }) => {
             </li>
           </ul>
         </nav>
-        <div className="bg-gray-100 rounded">{children}</div>
+        <div className="rounded bg-gray-100">{children}</div>
       </div>
     </div>
   );

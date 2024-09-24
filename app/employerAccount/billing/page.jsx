@@ -19,7 +19,7 @@ const Billing = () => {
 
   const fetchAccount = async () => {
     const response = await fetch(
-      `/api/account/${session?.user?.email}/employer`
+      `/api/account/${session?.user?.email}/employer`,
     );
     const data = await response.json();
     setUserInfo(data);
@@ -33,8 +33,8 @@ const Billing = () => {
 
   return (
     <div>
-      <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
-        <h1 className="font-bold text-2xl">Billing</h1>
+      <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
+        <h1 className="text-2xl font-bold">Billing</h1>
       </div>
       {userInfo &&
         userInfo.map((data) => (
@@ -42,7 +42,7 @@ const Billing = () => {
             {data.Access === true ? (
               <SubscriptionActive user={data} />
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 mb-10 mt-5">
+              <div className="mb-10 mt-5 grid grid-cols-1 md:grid-cols-3">
                 {prices &&
                   prices.map((price) => (
                     <PricingCard price={price} key={price.product} />

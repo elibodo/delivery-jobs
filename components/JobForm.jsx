@@ -17,7 +17,7 @@ const JobForm = ({
       setdays((nameofday) => [...nameofday, value]);
     } else {
       setdays((nameofday) =>
-        nameofday.filter((specificday) => specificday !== value)
+        nameofday.filter((specificday) => specificday !== value),
       );
     }
   };
@@ -33,7 +33,7 @@ const JobForm = ({
       setbenefits((benefitname) => [...benefitname, value]);
     } else {
       setbenefits((benefitname) =>
-        benefitname.filter((specificbenefit) => specificbenefit !== value)
+        benefitname.filter((specificbenefit) => specificbenefit !== value),
       );
     }
   };
@@ -86,11 +86,11 @@ const JobForm = ({
       setMessage("");
     } else if (account.JobLimit === 0) {
       setMessage(
-        "You do not currently have a subscription to be able to post a job. Navigate to the billing page and purchase a subscription."
+        "You do not currently have a subscription to be able to post a job. Navigate to the billing page and purchase a subscription.",
       );
     } else {
       setMessage(
-        "You do not currently have a subscription that can handle the amount of jobs that you want to post. Navigate to the billing page to purchase a higher tier subscription."
+        "You do not currently have a subscription that can handle the amount of jobs that you want to post. Navigate to the billing page to purchase a higher tier subscription.",
       );
     }
   }, []);
@@ -147,7 +147,7 @@ const JobForm = ({
         Follow the prompts to create and post a new job
       </p>
       {message && (
-        <p className="bg-red-500 text-white py-2 px-3 rounded-md text-sm mt-2 mx-2 md:mx-16">
+        <p className="mx-2 mt-2 rounded-md bg-red-500 px-3 py-2 text-sm text-white md:mx-16">
           {message}
         </p>
       )}
@@ -157,7 +157,7 @@ const JobForm = ({
         <div className="border-b-2 border-gray-300 pb-4">
           <p className="description">Basic information</p>
           {/* Title */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             Title
             <input
               type="text"
@@ -167,15 +167,15 @@ const JobForm = ({
               }}
               placeholder="Delivery Job"
               required
-              className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
+              className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
             ></input>
           </label>
           {/* Number of hires */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             How many hires for this role?
-            <div className="mt-1 flex flex-col md:flex-row md:items-center mx-5">
+            <div className="mx-5 mt-1 flex flex-col md:flex-row md:items-center">
               <select
-                className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
+                className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
                 id="numOfHiresdropdown"
                 name="numOfHires"
                 onChange={clearhirestext}
@@ -194,7 +194,7 @@ const JobForm = ({
               <input
                 name="numOfHires"
                 id="hire_id"
-                className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
+                className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
                 type="number"
                 min={1}
                 placeholder="Specific number"
@@ -204,9 +204,9 @@ const JobForm = ({
             </div>
           </label>
           {/* Dispatch location */}
-          <label className="has-tooltip mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="has-tooltip mt-4 flex flex-col items-start font-semibold text-gray-900">
             Dispatch Location
-            <span className="tooltip opacity-90 rounded shadow-lg p-1 bg-gray-400 text-black -mt-28 md:-mt-14 mx-3">
+            <span className="tooltip mx-3 -mt-28 rounded bg-gray-400 p-1 text-black opacity-90 shadow-lg md:-mt-14">
               The dispatch location will be used to determine distance for the
               candidates. Please enter a full address, a city and state, or a
               zip code.
@@ -219,14 +219,14 @@ const JobForm = ({
               }}
               placeholder="City, State"
               required
-              className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
+              className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
             ></input>
           </label>
           {/* Delivery Location */}
-          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col items-start font-semibold text-gray-900">
             Delivery Location(s)
             <input
-              className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
+              className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
               type="text"
               placeholder="City, State"
               value={post.deliverylocation}
@@ -237,7 +237,7 @@ const JobForm = ({
             ></input>
           </label>
           {/* Work authorization */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             Does this person require authorization to work in the US?
             <div className="font-semibold text-gray-700">
               <label htmlFor="yes_auth">
@@ -277,7 +277,7 @@ const JobForm = ({
         <div className="border-b-2 border-gray-300 pb-4">
           <p className="description">Scheduling Information</p>
           {/* Job type */}
-          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col items-start font-semibold text-gray-900">
             What type of job is this?
             <div className="font-semibold text-gray-700">
               <label htmlFor="full_time">
@@ -326,7 +326,7 @@ const JobForm = ({
           </label>
 
           {/* Contract or W2 */}
-          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col items-start font-semibold text-gray-900">
             Is this job contract or W2?
             <div className="font-semibold text-gray-700">
               <label htmlFor="w2">
@@ -335,7 +335,7 @@ const JobForm = ({
                   type="radio"
                   name="w2_contract_radio"
                   id="w2"
-                  className=" mr-1"
+                  className="mr-1"
                   value={"W2"}
                   onClick={(e) => {
                     setPost({ ...post, jobformat: e.target.value });
@@ -361,12 +361,12 @@ const JobForm = ({
           </label>
 
           {/* Experience required */}
-          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col items-start font-semibold text-gray-900">
             How much experience is required?
             <div className="mt-1 flex flex-row items-center">
               <select
                 required
-                className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
+                className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
                 onClick={(e) => {
                   setPost({ ...post, experiencerequired: e.target.value });
                 }}
@@ -383,7 +383,7 @@ const JobForm = ({
           </label>
 
           {/* Type of shift */}
-          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col items-start font-semibold text-gray-900">
             What type of shift is this?
             <div className="font-semibold text-gray-700">
               <label htmlFor="local">
@@ -392,7 +392,7 @@ const JobForm = ({
                   type="radio"
                   name="type_of_shift_radio"
                   id="local"
-                  className=" mr-1"
+                  className="mr-1"
                   value={"Local"}
                   onClick={(e) => {
                     setPost({ ...post, shifttype: e.target.value });
@@ -418,9 +418,9 @@ const JobForm = ({
           </label>
 
           {/* Days the job operates */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             What days does this job operate? (Select all that apply)
-            <div className="flex flex-col items-left text-gray-700">
+            <div className="items-left flex flex-col text-gray-700">
               <label htmlFor="sunday">
                 <input
                   name="daysofoperation"
@@ -508,12 +508,12 @@ const JobForm = ({
           <p className="description">Compensation and Benefits</p>
           {/* Pay range */}
           <div className="flex flex-row">
-            <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+            <label className="mt-4 flex flex-col font-semibold text-gray-900">
               What is the pay range?
-              <div className="mt-1 flex flex-col md:flex-row md:items-center mx-5">
+              <div className="mx-5 mt-1 flex flex-col md:flex-row md:items-center">
                 <input
                   required
-                  className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
+                  className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
                   type="number"
                   placeholder="Minimum"
                   min={0}
@@ -523,7 +523,7 @@ const JobForm = ({
                 <span className="mx-2">to</span>
                 <input
                   required
-                  className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
+                  className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
                   type="number"
                   placeholder="Maximum"
                   min={0}
@@ -533,7 +533,7 @@ const JobForm = ({
                 <span className="mx-2">per</span>
                 <select
                   required
-                  className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0 mt-1"
+                  className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
                   value={payrange[2]}
                   onChange={(e) => rangeofpay(2, e)}
                 >
@@ -551,11 +551,11 @@ const JobForm = ({
           </div>
 
           {/* Additional miles pay */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             Is there additional pay for miles driven?
             <div className="mt-1 flex flex-row items-center">
               <input
-                className="rounded-lg p-2 md:p-3 text-sm text-gray-700 outline-0"
+                className="rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
                 type="number"
                 min={0}
                 value={post.additionalpay}
@@ -563,14 +563,14 @@ const JobForm = ({
                   setPost({ ...post, additionalpay: e.target.value });
                 }}
               ></input>
-              <p className="text-gray-900 font-semibold ml-2">Cents Per Mile</p>
+              <p className="ml-2 font-semibold text-gray-900">Cents Per Mile</p>
             </div>
           </label>
 
           {/* Benefits for the employee */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             What benefits does your company offer? (Select all that apply)
-            <div className="flex flex-col items-left text-gray-700">
+            <div className="items-left flex flex-col text-gray-700">
               <label htmlFor="401k_check" className="">
                 <input
                   type="checkbox"
@@ -640,7 +640,7 @@ const JobForm = ({
         <div className="border-b-2 border-gray-300 pb-4">
           <p className="description">Description</p>
           {/* description */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             Add a description to your job listing
             <textarea
               required
@@ -649,7 +649,7 @@ const JobForm = ({
                 setPost({ ...post, description: e.target.value })
               }
               placeholder="Write your description here..."
-              className="resize-y rounded-lg min-h-[150px] max-h-[350px] min-w-[250px] mt-1 p-2 md:p-3 text-sm text-gray-700 outline-0"
+              className="mt-1 max-h-[350px] min-h-[150px] min-w-[250px] resize-y rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
             ></textarea>
           </label>
         </div>
@@ -701,9 +701,9 @@ const JobForm = ({
             </div>
           </label> */}
           {/* drug test */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             Will applicants be required take a drug test?
-            <div className="font-semibold text-gray-700 mt-1 flex flex-col md:flex-row md:gap-5 md:items-center">
+            <div className="mt-1 flex flex-col font-semibold text-gray-700 md:flex-row md:items-center md:gap-5">
               <label htmlFor="yes_marijuana_drugtest">
                 <input
                   required
@@ -750,7 +750,7 @@ const JobForm = ({
           </label>
 
           {/* background check question */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             Will applicants be required to do a background check?
             <div className="font-semibold text-gray-700">
               <label htmlFor="yes_background">
@@ -785,9 +785,9 @@ const JobForm = ({
           </label>
 
           {/* dot/med card question */}
-          <label className="mt-4 flex flex-col text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col font-semibold text-gray-900">
             Will applicants be required to have a DOT medical card?
-            <div className="font-semibold text-gray-700 mt-1 flex flex-col md:flex-row md:gap-5">
+            <div className="mt-1 flex flex-col font-semibold text-gray-700 md:flex-row md:gap-5">
               <label htmlFor="yes_dot_radio">
                 <input
                   required
@@ -834,11 +834,11 @@ const JobForm = ({
           </label>
 
           {/* email updates */}
-          <label className="mt-4 flex flex-col items-start text-gray-900 font-semibold">
+          <label className="mt-4 flex flex-col items-start font-semibold text-gray-900">
             What email would you like to recieve updates about the job
             <input
               required
-              className="mt-1 form_input"
+              className="form_input mt-1"
               type="email"
               placeholder="Email address..."
               value={post.emailupdates}

@@ -15,7 +15,7 @@ const CreateJob = () => {
   useEffect(() => {
     const fetchAccount = async () => {
       const response = await fetch(
-        `/api/account/${session?.user?.email}/employer`
+        `/api/account/${session?.user?.email}/employer`,
       );
       const data = await response.json();
       setAccountInfo(data);
@@ -102,8 +102,8 @@ const CreateJob = () => {
 
   return (
     <div>
-      <div className="flex flex-row items-center justify-between p-2 mx-3 border-b-2 border-gray-500">
-        <h1 className="font-bold text-2xl">Create Job</h1>
+      <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
+        <h1 className="text-2xl font-bold">Create Job</h1>
       </div>
       {accountInfo.map((accountInfo) => (
         <JobForm
