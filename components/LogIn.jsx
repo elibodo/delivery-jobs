@@ -15,7 +15,6 @@ const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const res = await signIn("credentials", {
         email,
@@ -43,7 +42,7 @@ const LogIn = () => {
       <div className="flex flex-row">
         <div className="flex flex-col items-center">
           <input
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.toLowerCase())}
             type="email"
             placeholder="Email"
             className="form_input m-2 p-2"

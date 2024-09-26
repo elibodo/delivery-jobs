@@ -225,7 +225,7 @@ const JobSeekerInformation = ({ account }) => {
       {/* License, dot, cdl, additional, endorsements */}
       <form className="flex flex-col justify-center md:flex-row">
         <div className="mx-8 md:w-1/3">
-          <div className="mb-4 flex flex-col">
+          <div className="mb-0 flex flex-col md:mb-4">
             {/* drivers license */}
             <p className="description text-center">Drivers License</p>
             <div className="mt-2 flex flex-col items-start">
@@ -635,7 +635,7 @@ const JobSeekerInformation = ({ account }) => {
       </div>
       <div className="flex flex-col justify-center md:flex-row">
         <div className="mx-8 md:w-1/3">
-          <div className="mb-4 flex flex-col">
+          <div className="mb-0 flex flex-col md:mb-4">
             {/* Education */}
             <p className="description text-center">Education</p>
             <div className="mt-2 flex flex-col items-start">

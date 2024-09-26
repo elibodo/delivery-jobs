@@ -97,9 +97,7 @@ const ChatList = ({ currentChatId }) => {
           ))
         ) : (
           <div className="text-center">
-            <p className="text-lg font-semibold text-gray-500">
-              No chats available
-            </p>
+            <p className="text-lg font-semibold text-gray-500">No Messages</p>
           </div>
         )}
       </div>

@@ -5,10 +5,13 @@ import JobForm from "@components/JobForm";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import LoadingSpinner from "@components/LoadingSpinner";
 
 const CreateJob = () => {
   const router = useRouter();
   const { data: session } = useSession();
+  const currentUser = session?.user;
+  const [loading, setLoading] = useState(true);
 
   //Getting user information
   const [accountInfo, setAccountInfo] = useState([]);
@@ -19,9 +22,10 @@ const CreateJob = () => {
       );
       const data = await response.json();
       setAccountInfo(data);
+      setLoading(false);
     };
     if (session?.user.email) fetchAccount();
-  }, []);
+  }, [currentUser]);
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
@@ -44,7 +48,7 @@ const CreateJob = () => {
     drugtest: "",
     backgroundcheck: "",
     dotcard: "",
-    emailupdates: "",
+    emailupdates: session?.user.email,
     companyName: "",
   });
 
@@ -105,17 +109,25 @@ const CreateJob = () => {
       <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
         <h1 className="text-2xl font-bold">Create Job</h1>
       </div>
-      {accountInfo.map((accountInfo) => (
-        <JobForm
-          key={accountInfo._id}
-          account={accountInfo}
-          type="Create"
-          post={post}
-          setPost={setPost}
-          submitting={submitting}
-          handlesubmit={createJob}
-        />
-      ))}
+      {loading ? (
+        <div className="mt-20">
+          <LoadingSpinner />
+        </div>
+      ) : (
+        <>
+          {accountInfo.map((accountInfo) => (
+            <JobForm
+              key={accountInfo._id}
+              account={accountInfo}
+              type="Create"
+              post={post}
+              setPost={setPost}
+              submitting={submitting}
+              handlesubmit={createJob}
+            />
+          ))}
+        </>
+      )}
     </div>
   );
 };

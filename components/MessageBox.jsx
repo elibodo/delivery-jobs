@@ -6,9 +6,15 @@ const MessageBox = ({ message, currentUser }) => {
       <div className="flex flex-col gap-1">
         <p className="text-sm font-semibold">
           {message?.sender?.name} &#160; &#183; &#160;
-          {new Date(message?.createdAt).toLocaleTimeString([], {
-            hour: "2-digit",
+          {new Date(message?.createdAt).toLocaleTimeString("en-US", {
+            hour: "numeric",
             minute: "2-digit",
+          })}
+          &#160; &#183; &#160;
+          {new Date(message?.createdAt).toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+            year: "2-digit",
           })}
         </p>
         <p className="w-fit rounded-xl bg-gray-200 p-2 text-base font-medium">
@@ -20,9 +26,15 @@ const MessageBox = ({ message, currentUser }) => {
     <div className="flex items-start justify-end gap-2">
       <div className="flex flex-col items-end gap-1">
         <p className="text-sm font-medium">
-          {new Date(message?.createdAt).toLocaleTimeString([], {
-            hour: "2-digit",
+          {new Date(message?.createdAt).toLocaleTimeString("en-US", {
+            hour: "numeric",
             minute: "2-digit",
+          })}
+          &#160; &#183; &#160;
+          {new Date(message?.createdAt).toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+            year: "2-digit",
           })}
         </p>
         <p className="w-fit rounded-xl bg-orange-600 p-2 text-base font-medium text-white">

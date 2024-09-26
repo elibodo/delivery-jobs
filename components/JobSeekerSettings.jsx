@@ -91,7 +91,10 @@ const JobSeekerSettings = ({ account }) => {
     <div className="mb-5 flex flex-col justify-center md:flex-row">
       <div className="mx-8 md:w-1/3">
         <p className="description text-center">Edit Profile</p>
-        <form onSubmit={handleProfileInfo} className="mb-5 flex flex-col">
+        <form
+          onSubmit={handleProfileInfo}
+          className="md-0 flex flex-col md:mb-4"
+        >
           <div className="mt-4 flex flex-col items-start">
             <label className="font-semibold text-gray-900">Name</label>
             <input
@@ -117,7 +120,7 @@ const JobSeekerSettings = ({ account }) => {
               onChange={(e) =>
                 setProfileData({
                   ...profileData,
-                  email: e.target.value,
+                  email: e.target.value.toLowerCase(),
                 })
               }
             />
