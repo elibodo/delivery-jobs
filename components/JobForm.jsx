@@ -200,7 +200,7 @@ const JobForm = ({
                 placeholder="Specific number"
                 onChange={clearhireslist}
                 value={hiresinput}
-              ></input>
+              />
             </div>
           </label>
           {/* Dispatch location */}
@@ -570,67 +570,212 @@ const JobForm = ({
           {/* Benefits for the employee */}
           <label className="mt-4 flex flex-col font-semibold text-gray-900">
             What benefits does your company offer? (Select all that apply)
-            <div className="items-left flex flex-col text-gray-700">
-              <label htmlFor="401k_check" className="">
-                <input
-                  type="checkbox"
-                  id="401k_check"
-                  className="mr-2"
-                  value={"401K Matching"}
-                  onChange={companybenefits}
-                />
-                401K Matching
-              </label>
-              <label htmlFor="medical_check" className="">
-                <input
-                  type="checkbox"
-                  id="medical_check"
-                  className="mr-2"
-                  value={"Medical Insurance"}
-                  onChange={companybenefits}
-                />
-                Medical Insurance
-              </label>
-              <label htmlFor="dental_check" className="">
-                <input
-                  type="checkbox"
-                  id="dental_check"
-                  className="mr-2"
-                  value={"Dental Insurance"}
-                  onChange={companybenefits}
-                />
-                Dental Insurance
-              </label>
-              <label htmlFor="vision_check" className="">
-                <input
-                  type="checkbox"
-                  id="vision_check"
-                  className="mr-2"
-                  value={"Vision Insurance"}
-                  onChange={companybenefits}
-                />
-                Vision Insurance
-              </label>
-              <label htmlFor="life_check" className="">
-                <input
-                  type="checkbox"
-                  id="life_check"
-                  className="mr-2"
-                  value={"Life Insurance"}
-                  onChange={companybenefits}
-                />
-                Life Insurance
-              </label>
-              <label htmlFor="none_check" className="">
-                <input
-                  type="checkbox"
-                  id="none_check"
-                  className="mr-2"
-                  value={"None"}
-                  onChange={companybenefits}
-                />
-                None
-              </label>
+            <div className="mt-1 flex flex-col md:flex-row md:gap-20">
+              <div className="items-left flex flex-col text-gray-700">
+                <label htmlFor="health_insurance">
+                  <input
+                    type="checkbox"
+                    id="health_insurance"
+                    className="mr-2"
+                    value={"Health Insurance"}
+                    onChange={companybenefits}
+                  />
+                  Health Insurance
+                </label>
+                <label htmlFor="dental_insurance">
+                  <input
+                    type="checkbox"
+                    id="dental_insurance"
+                    className="mr-2"
+                    value={"Dental Insurance"}
+                    onChange={companybenefits}
+                  />
+                  Dental Insurance
+                </label>
+                <label htmlFor="vision_insurance">
+                  <input
+                    type="checkbox"
+                    id="vision_insurance"
+                    className="mr-2"
+                    value={"Vision Insurance"}
+                    onChange={companybenefits}
+                  />
+                  Vision Insurance
+                </label>
+                <label htmlFor="paid_time_off">
+                  <input
+                    type="checkbox"
+                    id="paid_time_off"
+                    className="mr-2"
+                    value={"Paid Time Off"}
+                    onChange={companybenefits}
+                  />
+                  Paid Time Off
+                </label>
+                <label htmlFor="paid_training">
+                  <input
+                    type="checkbox"
+                    id="paid_training"
+                    className="mr-2"
+                    value={"Paid Training"}
+                    onChange={companybenefits}
+                  />
+                  Paid Training
+                </label>
+                <label htmlFor="paid_sick_time">
+                  <input
+                    type="checkbox"
+                    id="paid_sick_time"
+                    className="mr-2"
+                    value={"Paid Sick Time"}
+                    onChange={companybenefits}
+                  />
+                  Paid Sick Time
+                </label>
+                <label htmlFor="fuel_discount">
+                  <input
+                    type="checkbox"
+                    id="fuel_discount"
+                    className="mr-2"
+                    value={"Fuel Discount"}
+                    onChange={companybenefits}
+                  />
+                  Fuel Discount
+                </label>
+                <label htmlFor="pet_insurance">
+                  <input
+                    type="checkbox"
+                    id="pet_insurance"
+                    className="mr-2"
+                    value={"Pet Insurance"}
+                    onChange={companybenefits}
+                  />
+                  Pet Insurance
+                </label>
+                <label htmlFor="company_vehicle">
+                  <input
+                    type="checkbox"
+                    id="company_vehicle"
+                    className="mr-2"
+                    value={"Company Vehicle"}
+                    onChange={companybenefits}
+                  />
+                  Company Vehicle
+                </label>
+                <label htmlFor="profit_sharing">
+                  <input
+                    type="checkbox"
+                    id="profit_sharing"
+                    className="mr-2"
+                    value={"Profit Sharing"}
+                    onChange={companybenefits}
+                  />
+                  Profit Sharing
+                </label>
+              </div>
+              <div className="items-left flex flex-col text-gray-700">
+                <label htmlFor="parental_leave">
+                  <input
+                    type="checkbox"
+                    id="parental_leave"
+                    className="mr-2"
+                    value={"Parental Leave"}
+                    onChange={companybenefits}
+                  />
+                  Parental Leave
+                </label>
+                <label htmlFor="401k">
+                  <input
+                    type="checkbox"
+                    id="401k"
+                    className="mr-2"
+                    value={"401K"}
+                    onChange={companybenefits}
+                  />
+                  401K
+                </label>
+                <label htmlFor="401k_matching">
+                  <input
+                    type="checkbox"
+                    id="401k_matching"
+                    className="mr-2"
+                    value={"401K Matching"}
+                    onChange={companybenefits}
+                  />
+                  401K Matching
+                </label>
+                <label htmlFor="life_insurance">
+                  <input
+                    type="checkbox"
+                    id="life_insurance"
+                    className="mr-2"
+                    value={"Life Insurance"}
+                    onChange={companybenefits}
+                  />
+                  Life Insurance
+                </label>
+                <label htmlFor="referral_program">
+                  <input
+                    type="checkbox"
+                    id="referral_program"
+                    className="mr-2"
+                    value={"Referral Program"}
+                    onChange={companybenefits}
+                  />
+                  Referral Program
+                </label>
+                <label htmlFor="relocation_assistance">
+                  <input
+                    type="checkbox"
+                    id="relocation_assistance"
+                    className="mr-2"
+                    value={"Relocation Assistance"}
+                    onChange={companybenefits}
+                  />
+                  Relocation Assistance
+                </label>
+                <label htmlFor="tuition_reimbursement">
+                  <input
+                    type="checkbox"
+                    id="tuition_reimbursement"
+                    className="mr-2"
+                    value={"Tuition Reimbursement"}
+                    onChange={companybenefits}
+                  />
+                  Tuition Reimbursement
+                </label>
+                <label htmlFor="mileage_reimbursement">
+                  <input
+                    type="checkbox"
+                    id="mileage_reimbursement"
+                    className="mr-2"
+                    value={"Mileage Reimbursement"}
+                    onChange={companybenefits}
+                  />
+                  Mileage Reimbursement
+                </label>
+
+                <label htmlFor="other">
+                  <input
+                    type="checkbox"
+                    id="other"
+                    className="mr-2"
+                    value={"Other"}
+                    onChange={companybenefits}
+                  />
+                  Other
+                </label>
+                <label htmlFor="none">
+                  <input
+                    type="checkbox"
+                    id="none"
+                    className="mr-2"
+                    value={"None"}
+                    onChange={companybenefits}
+                  />
+                  None
+                </label>
+              </div>
             </div>
           </label>
         </div>

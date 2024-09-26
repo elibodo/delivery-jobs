@@ -4,6 +4,7 @@ import EmployerCandidates from "@components/EmployerCandidates";
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import LoadingSpinner from "@components/LoadingSpinner";
 
 const ECandidates = ({ accountData, jobData }) => {
   const [data, setData] = useState([]);
@@ -59,6 +60,8 @@ const ECandidates = ({ accountData, jobData }) => {
 
 const Candidates = () => {
   const { data: session } = useSession();
+  const currentUser = session?.user;
+  const [loading, setLoading] = useState(true);
 
   const [accountInfo, setAccountInfo] = useState([]);
   const [accountJobs, setAccountJobs] = useState([]);
@@ -75,14 +78,19 @@ const Candidates = () => {
       const response = await fetch(`/api/users/${session?.user.id}/jobs`);
       const data = await response.json();
       setAccountJobs(data);
+      setLoading(false);
     };
     if (session?.user.email) {
       fetchAccount();
       fetchJobs();
     }
-  }, []);
+  }, [currentUser]);
 
-  return <ECandidates accountData={accountInfo} jobData={accountJobs} />;
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
+    <ECandidates accountData={accountInfo} jobData={accountJobs} />
+  );
 };
 
 export default Candidates;
