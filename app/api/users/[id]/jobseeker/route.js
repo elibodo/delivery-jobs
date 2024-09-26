@@ -12,6 +12,11 @@ export const PATCH = async (req, { params }) => {
       return new Response("Failed to fetch account", { status: 500 });
     }
     //need to check if new email is in use
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return new Response("Email is already in use", { status: 400 });
+    }
 
     // Update information
     user.name = name;
