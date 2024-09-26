@@ -5,9 +5,12 @@ import PricingCard from "@components/PricingCard";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import SubscriptionActive from "@components/SubscriptionActive";
+import LoadingSpinner from "@components/LoadingSpinner";
 
 const Billing = () => {
   const { data: session } = useSession();
+  const currentUser = session?.user;
+  const [loading, setLoading] = useState(true);
 
   const [prices, setPrices] = useState([]);
   const [userInfo, setUserInfo] = useState([]);
@@ -15,7 +18,7 @@ const Billing = () => {
   useEffect(() => {
     fetchPrices();
     fetchAccount();
-  }, []);
+  }, [currentUser]);
 
   const fetchAccount = async () => {
     const response = await fetch(
@@ -23,6 +26,7 @@ const Billing = () => {
     );
     const data = await response.json();
     setUserInfo(data);
+    setLoading(false);
   };
 
   const fetchPrices = async () => {
@@ -31,7 +35,9 @@ const Billing = () => {
     setPrices(data);
   };
 
-  return (
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
     <div>
       <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
         <h1 className="text-2xl font-bold">Billing</h1>

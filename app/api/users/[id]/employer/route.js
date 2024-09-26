@@ -13,7 +13,11 @@ export const PATCH = async (req, { params }) => {
     }
 
     //need to check if email is already in use
+    const existingUser = await User.findOne({ email });
 
+    if (existingUser) {
+      return new Response("Email is already in use", { status: 400 });
+    }
     // Update information
     user.name = name;
     user.email = email;

@@ -19,6 +19,7 @@ const handler = NextAuth({
         const { email, password } = credentials;
         try {
           await connectToDB();
+
           const user = await User.findOne({ email });
           if (!user) {
             return null;

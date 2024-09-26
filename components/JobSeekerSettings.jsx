@@ -29,16 +29,30 @@ const JobSeekerSettings = ({ account }) => {
     e.preventDefault();
     if (!session.user.email) return "User Invalid";
     try {
-      await fetch(`/api/users/${session?.user?.email}/jobseeker`, {
-        method: "PATCH",
-        body: JSON.stringify({
-          name: profileData.name,
-          email: profileData.email,
-          phoneNumber: profileData.phoneNumber,
-        }),
-      });
-      setProfileMessage("Profile Information Updated");
-      signOut({ callbackUrl: "/logIn", redirect: true });
+      const response = await fetch(
+        `/api/users/${session?.user?.email}/jobseeker`,
+        {
+          method: "PATCH",
+          body: JSON.stringify({
+            name: profileData.name,
+            email: profileData.email,
+            phoneNumber: profileData.phoneNumber,
+          }),
+        },
+      );
+      if (response.status === 200) {
+        setProfileMessage("Profile Information Updated Successfully");
+        // Optionally sign the user out after a successful update
+        signOut({ callbackUrl: "/logIn", redirect: true });
+      } else if (response.status === 400) {
+        // Email already in use
+        setProfileMessage(
+          "The email address is already associated with another account. Please use a different email.",
+        );
+      } else if (response.status === 500) {
+        // Server error (account not found or other issues)
+        setProfileMessage("Failed to update account. Please try again later.");
+      }
     } catch (error) {
       setProfileMessage("Error Updating Profile Information");
     }
@@ -91,7 +105,10 @@ const JobSeekerSettings = ({ account }) => {
     <div className="mb-5 flex flex-col justify-center md:flex-row">
       <div className="mx-8 md:w-1/3">
         <p className="description text-center">Edit Profile</p>
-        <form onSubmit={handleProfileInfo} className="mb-5 flex flex-col">
+        <form
+          onSubmit={handleProfileInfo}
+          className="md-0 flex flex-col md:mb-4"
+        >
           <div className="mt-4 flex flex-col items-start">
             <label className="font-semibold text-gray-900">Name</label>
             <input
@@ -117,7 +134,7 @@ const JobSeekerSettings = ({ account }) => {
               onChange={(e) =>
                 setProfileData({
                   ...profileData,
-                  email: e.target.value,
+                  email: e.target.value.toLowerCase(),
                 })
               }
             />

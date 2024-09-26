@@ -3,15 +3,17 @@ import { useState, useEffect } from "react";
 import JobCard from "./JobCard";
 import Pagination from "./Pagination";
 import SearchJobs from "./SearchJobs";
+import JobLoading from "./JobLoading";
 
 const Feed = () => {
-  //Get posts
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchPosts = async () => {
     const response = await fetch("/api/job");
     const data = await response.json();
     setPosts(data);
+    setLoading(false);
   };
   useEffect(() => {
     fetchPosts();
@@ -32,10 +34,27 @@ const Feed = () => {
       <SearchJobs getSearchResults={(results) => setPosts(results)} />
       <div className="feed">
         <div className="mt-4 columns-1 space-y-4 py-4">
-          {currentPosts.map((post) => (
-            <JobCard key={post._id} post={post} />
-          ))}
-          {/* {posts == "" ? <>sdf</> : <>aa</>} */}
+          {loading ? (
+            <JobLoading />
+          ) : (
+            <>
+              {currentPosts.length > 0 ? (
+                <>
+                  {currentPosts.map((post) => (
+                    <JobCard key={post._id} post={post} />
+                  ))}
+                </>
+              ) : (
+                <div className="description text-center">
+                  <p className="font-semibold">No Jobs Available</p>
+                  <p className="mt-2">
+                    Please increase the distance, use a different search term,
+                    or remove the search term to see all of the jobs near you.
+                  </p>
+                </div>
+              )}
+            </>
+          )}
         </div>
         <Pagination
           postPerPage={postPerPage}

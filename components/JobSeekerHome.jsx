@@ -27,12 +27,12 @@ const JobSeekerHome = ({ account }) => {
     <div className="flex w-full flex-col p-5">
       {/* Top of resume */}
       <h1 className="ml-5 text-3xl font-semibold">{session.user.name}</h1>
-      <div className="mt-3 flex flex-row justify-between border-b-2 border-gray-500 pb-3">
+      <div className="mt-3 flex flex-col justify-between border-b-2 border-gray-500 pb-3 md:flex-row">
         <div className="ml-5 flex flex-col">
           <h2 className="text-base font-medium">{account.email}</h2>
           <h2 className="text-base font-medium">{session.user.phoneNumber}</h2>
         </div>
-        <div className="mr-5 flex flex-col">
+        <div className="ml-5 mt-2 flex flex-col md:ml-0 md:mr-5 md:mt-0">
           <h2 className="text-base font-medium">
             {account.city}, {account.state}
           </h2>
@@ -103,7 +103,7 @@ const JobSeekerHome = ({ account }) => {
         {/* Education, endorsements, and certificates */}
         <div className="flex flex-col md:flex-row">
           <div className="mx-4 md:w-1/3">
-            <p className="mt-10 text-xl text-gray-600">Education</p>
+            <p className="mt-5 text-xl text-gray-600 md:mt-10">Education</p>
             <div className="ml-2 mt-1">
               <p className="mt-3 text-gray-800">
                 Highest Level:{" "}
@@ -116,7 +116,7 @@ const JobSeekerHome = ({ account }) => {
           </div>
           {certs != "" ? (
             <div className="mx-4 md:w-1/3">
-              <p className="mb-3 mt-10 text-xl text-gray-600">
+              <p className="mb-3 mt-5 text-xl text-gray-600 md:mt-10">
                 Certifications:{" "}
               </p>
               <div className="ml-2 mt-1">
@@ -134,7 +134,9 @@ const JobSeekerHome = ({ account }) => {
             <div className="mx-4 md:w-1/3"></div>
           ) : (
             <div className="mx-4 md:w-1/3">
-              <p className="mt-10 text-xl text-gray-600">Endorsements</p>
+              <p className="mt-5 text-xl text-gray-600 md:mt-10">
+                Endorsements
+              </p>
               <div className="ml-2">
                 <p className="mt-3 font-semibold">{theEndorsements}</p>
               </div>
@@ -145,7 +147,9 @@ const JobSeekerHome = ({ account }) => {
         {work != "" ? (
           <div className="flex flex-row">
             <div className="mx-4">
-              <p className="mb-3 mt-10 text-xl text-gray-600">Work History</p>
+              <p className="mb-3 mt-5 text-xl text-gray-600 md:mt-10">
+                Work History
+              </p>
               <div className="ml-2 mt-3">
                 {work.map((work) => (
                   <div
@@ -175,7 +179,7 @@ const JobSeekerHome = ({ account }) => {
         {/* additional information */}
         <div className="flex flex-row">
           <div className="mx-4 md:w-1/3">
-            <p className="mt-10 text-xl text-gray-600">
+            <p className="mt-5 text-xl text-gray-600 md:mt-10">
               Additional Information
             </p>
             <div className="ml-2 mt-1">
