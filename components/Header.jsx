@@ -13,8 +13,12 @@ const Header = () => {
 
   return (
     <nav className="mb-4 flex w-full items-center justify-between px-6 pt-2 md:mb-12 md:pt-5">
-      <Link href="/" className="flex_center flex gap-2">
-        <p className="logo_text">
+      <Link
+        href="/"
+        onClick={() => setToggleDropdown(false)}
+        className="flex items-center justify-center gap-2"
+      >
+        <p className="text-3xl font-extrabold tracking-wide text-black md:text-4xl">
           <span className="text-orange-600">Delivery</span> Jobs
         </p>
       </Link>
@@ -92,7 +96,7 @@ const Header = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="size-6"
+                  className="size-7"
                   onClick={() => setToggleDropdown(!toggleDropdown)}
                 >
                   <path
@@ -102,17 +106,17 @@ const Header = () => {
                   />
                 </svg>
                 {toggleDropdown && (
-                  <div className="items-end; absolute right-0 top-full z-10 mt-3 flex w-full min-w-[150px] flex-col justify-end gap-3 rounded-lg bg-gray-200 p-3">
+                  <div className="absolute right-0 z-10 mt-2 flex w-full min-w-[150px] flex-col items-end rounded-lg border-2 border-orange-600 bg-gray-200 drop-shadow-2xl">
                     <Link
                       href={"/employerAccount/employerAccountHome"}
-                      className="text-base font-medium text-gray-700 hover:text-gray-500"
+                      className="w-full border-b-2 border-orange-600 p-2 text-center text-lg font-bold text-gray-900"
                       onClick={() => setToggleDropdown(false)}
                     >
                       View Profile
                     </Link>
                     <Link
                       href={"/"}
-                      className="text-base font-medium text-gray-700 hover:text-gray-500"
+                      className="w-full p-2 text-center text-lg font-bold text-gray-900"
                       onClick={() => {
                         setToggleDropdown(false);
                         signOut({ callbackUrl: "/", redirect: true });
@@ -130,7 +134,7 @@ const Header = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="size-6"
+                  className="size-7"
                   onClick={() => setToggleDropdown(!toggleDropdown)}
                 >
                   <path
@@ -140,17 +144,17 @@ const Header = () => {
                   />
                 </svg>
                 {toggleDropdown && (
-                  <div className="items-end; absolute right-0 top-full z-10 mt-3 flex w-full min-w-[150px] flex-col justify-end gap-3 rounded-lg bg-gray-200 p-3">
+                  <div className="absolute right-0 z-10 mt-2 flex w-full min-w-[150px] flex-col items-end rounded-lg border-2 border-orange-600 bg-gray-200 drop-shadow-2xl">
                     <Link
                       href={"/jobSeekerAccount/jobSeekerResume"}
-                      className="text-base font-medium text-gray-700 hover:text-gray-500"
+                      className="w-full border-b-2 border-orange-600 p-2 text-center text-lg font-bold text-gray-900"
                       onClick={() => setToggleDropdown(false)}
                     >
                       View Profile
                     </Link>
                     <Link
                       href={"/"}
-                      className="text-base font-medium text-gray-700 hover:text-gray-500"
+                      className="w-full p-2 text-center text-lg font-bold text-gray-900"
                       onClick={() => {
                         setToggleDropdown(false);
                         signOut({ callbackUrl: "/", redirect: true });
@@ -168,7 +172,7 @@ const Header = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="size-6"
+                  className="size-7"
                   onClick={() => setToggleDropdown(!toggleDropdown)}
                 >
                   <path
@@ -178,10 +182,10 @@ const Header = () => {
                   />
                 </svg>
                 {toggleDropdown && (
-                  <div className="items-end; absolute right-0 top-full z-10 mt-3 flex w-full min-w-[150px] flex-col justify-end gap-3 rounded-lg bg-gray-200 p-3">
+                  <div className="absolute right-0 z-10 mt-2 flex w-full min-w-[150px] flex-col items-end rounded-lg border-2 border-orange-600 bg-gray-200 drop-shadow-2xl">
                     <Link
                       href={"/"}
-                      className="text-base font-medium text-gray-700 hover:text-gray-500"
+                      className="w-full border-b-2 border-orange-600 p-2 text-center text-lg font-bold text-gray-900"
                       onClick={() => {
                         setToggleDropdown(false);
                         signOut({ callbackUrl: "/", redirect: true });
@@ -200,7 +204,7 @@ const Header = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className="size-6"
+              className="size-7"
               onClick={() => setToggleDropdown(!toggleDropdown)}
             >
               <path
@@ -210,17 +214,17 @@ const Header = () => {
               />
             </svg>
             {toggleDropdown && (
-              <div className="items-end; absolute right-0 top-full z-10 mt-3 flex w-full min-w-[150px] flex-col justify-end gap-3 rounded-lg bg-gray-200 p-3">
+              <div className="absolute right-0 z-10 mt-2 flex w-full min-w-[150px] flex-col items-end rounded-lg border-2 border-orange-600 bg-gray-200 drop-shadow-2xl">
                 <Link
                   href={"/logIn"}
-                  className="text-base font-medium text-gray-700 hover:text-gray-500"
+                  className="w-full border-b-2 border-orange-600 p-2 text-center text-lg font-bold text-gray-900"
                   onClick={() => setToggleDropdown(false)}
                 >
                   Sign In
                 </Link>
                 <Link
                   href={"/signUp"}
-                  className="text-base font-medium text-gray-700 hover:text-gray-500"
+                  className="w-full p-2 text-center text-lg font-bold text-gray-900"
                   onClick={() => setToggleDropdown(false)}
                 >
                   Register

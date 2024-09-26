@@ -82,6 +82,7 @@ export const POST = async (request) => {
       companyName,
       latitude,
       longitude,
+      createdAt: new Date(),
     });
 
     await newJob.save();

@@ -99,6 +99,9 @@ const JobSchema = new Schema({
   longitude: {
     type: Number,
   },
+  createdAt: {
+    type: Date,
+  },
 });
 
 const Job = models.Job || model("Job", JobSchema);

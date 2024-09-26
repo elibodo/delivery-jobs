@@ -4,9 +4,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import EmployerHome from "@components/EmployerHome";
+import LoadingSpinner from "@components/LoadingSpinner";
 
 const EmployerAccountHome = () => {
   const { data: session } = useSession();
+  const [loading, setLoading] = useState(true);
+  const currentUser = session?.user;
 
   const [accountInfo, setAccountInfo] = useState([]);
   useEffect(() => {
@@ -18,7 +21,7 @@ const EmployerAccountHome = () => {
       setAccountInfo(data);
     };
     if (session?.user.email) fetchAccount();
-  }, []);
+  }, [currentUser]);
 
   const [accountJobs, setAccountJobs] = useState([]);
   useEffect(() => {
@@ -26,9 +29,10 @@ const EmployerAccountHome = () => {
       const response = await fetch(`/api/users/${session?.user.id}/jobs`);
       const data = await response.json();
       setAccountJobs(data);
+      setLoading(false);
     };
     if (session?.user.id) fetchJobs();
-  }, []);
+  }, [currentUser]);
 
   const handleDelete = async (job) => {
     const jobID = job._id;
@@ -51,7 +55,9 @@ const EmployerAccountHome = () => {
     }
   };
 
-  return (
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
     <div>
       {accountInfo.map((account) => (
         <EmployerHome

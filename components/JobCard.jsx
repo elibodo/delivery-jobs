@@ -11,12 +11,22 @@ const JobCard = ({ post, handleDelete }) => {
   const { data: session } = useSession();
   const pathName = usePathname();
 
+  // Formats the creation date
+  const createdDate = (() => {
+    const date = new Date(post.createdAt);
+    return !isNaN(date) // Check if the date is valid
+      ? date.toLocaleDateString("en-US", {
+          timeZone: "UTC",
+        })
+      : ""; // Return an empty string if the date is invalid
+  })();
+
   // Creates a string of days that the job operates
   const days = post.workdays;
-  let operationdays = days.join(" ,  ");
+  let operationdays = days.join(",  ");
 
   const companybenefits = post.benefits;
-  let jobbenefits = companybenefits.join(" ,  ");
+  let jobbenefits = companybenefits.join(",  ");
 
   const handleApply = async (e) => {
     e.preventDefault();
@@ -166,41 +176,64 @@ const JobCard = ({ post, handleDelete }) => {
                 <></>
               )}
             </div>
-            <p className="mb-5 mt-3">{post.description}</p>
-            <p className="font-bold">Additional Information</p>
-            {/* <p>Number of hires: {post.numOfHires}</p> */}
-            <p>Delivery Location: {post.deliverylocation}</p>
-
-            <p>
-              Experience Required: {"  "}
-              {post.experiencerequired}
-            </p>
-            <p>{/* This shift is{"  "} {post.shifttype} */}</p>
-            <p>
-              Operating Days:{"  "}
-              {operationdays}
-            </p>
+            <p className="mt-8 pb-5">{post.description}</p>
+            <p className="text-base font-bold">Additional Information</p>
             <div className="flex flex-row">
-              <p>Company Benefits:{"  "} </p>
-              <span>{jobbenefits}</span>
+              <p className="mr-2 whitespace-nowrap font-semibold">
+                Delivery Location:
+              </p>
+              <p>{post.deliverylocation}</p>
             </div>
-            {/* <p>
-            Is a resume required? {"  "}
-            {post.resume}
-          </p> */}
-            <p>
-              Position Type:{"  "} {post.jobformat}
-            </p>
-            <p>United States Work Authorization: {post.workauthorization}</p>
-            <p>
-              Drug Test:{"  "} {post.drugtest}
-            </p>
-            <p>
-              Background Check:{"  "} {post.backgroundcheck}
-            </p>
-            <p>
-              DOT Medical Card:{"  "} {post.dotcard}
-            </p>
+            <div className="flex flex-row">
+              <p className="mr-2 whitespace-nowrap font-semibold">
+                Experience Required:
+              </p>
+              <p>{post.experiencerequired}</p>
+            </div>
+            <div className="flex flex-row">
+              <p className="mr-2 whitespace-nowrap font-semibold">
+                Operating Days:
+              </p>
+              <p>{operationdays}</p>
+            </div>
+            <div className="flex flex-row">
+              <p className="mr-2 whitespace-nowrap font-semibold">
+                Company Benefits:
+              </p>
+              <p>{jobbenefits}</p>
+            </div>
+            <div className="flex flex-row">
+              <p className="mr-2 whitespace-nowrap font-semibold">
+                Position Type:
+              </p>
+              <p>{post.jobformat}</p>
+            </div>
+            <div className="flex flex-row">
+              <p className="mr-2 whitespace-nowrap font-semibold">
+                United States Work Authorization:
+              </p>
+              <p>{post.workauthorization}</p>
+            </div>
+            <div className="flex flex-row">
+              <p className="mr-2 whitespace-nowrap font-semibold">Drug Test:</p>
+              <p>{post.drugtest}</p>
+            </div>
+            <div className="flex flex-row">
+              <p className="mr-2 whitespace-nowrap font-semibold">
+                Background Check:
+              </p>
+              <p>{post.backgroundcheck}</p>
+            </div>
+            <div className="flex flex-row">
+              <p className="mr-2 whitespace-nowrap font-semibold">
+                DOT Medical Card:
+              </p>
+              <p>{post.dotcard}</p>
+            </div>
+            <div className="flex flex-row">
+              <p className="mr-2 whitespace-nowrap font-semibold">Posted On:</p>
+              <p>{createdDate}</p>
+            </div>
           </div>
         </div>
       </div>

@@ -4,9 +4,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import JobSeekerJobPage from "@components/JobSeekerJobPage";
+import LoadingSpinner from "@components/LoadingSpinner";
 
 const JobsAppliedTo = ({ JobID }) => {
   const [jobData, setJobData] = useState([]);
+
   useEffect(() => {
     const fetchJob = async () => {
       const response = await fetch(`/api/job/${JobID}/`, { method: "GET" });
@@ -15,6 +17,7 @@ const JobsAppliedTo = ({ JobID }) => {
     };
     fetchJob();
   }, []);
+
   return <JobSeekerJobPage jobs={jobData} />;
 };
 
@@ -42,6 +45,8 @@ const JobSeekerApplications = ({ accountData }) => {
 
 const JobSeekerJobs = () => {
   const { data: session } = useSession();
+  const currentUser = session?.user;
+  const [loading, setLoading] = useState(true);
 
   const [accountInfo, setAccountInfo] = useState([]);
   useEffect(() => {
@@ -51,11 +56,14 @@ const JobSeekerJobs = () => {
       );
       const data = await response.json();
       setAccountInfo(data);
+      setLoading(false);
     };
     if (session?.user.email) fetchAccount();
-  }, []);
+  }, [currentUser]);
 
-  return (
+  return loading ? (
+    <LoadingSpinner />
+  ) : (
     <div>
       <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
         <h1 className="text-2xl font-bold">Jobs Applied To</h1>
