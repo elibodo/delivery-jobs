@@ -102,6 +102,9 @@ const JobSchema = new Schema({
   createdAt: {
     type: Date,
   },
+  active: {
+    type: Boolean,
+  },
 });
 
 const Job = models.Job || model("Job", JobSchema);
