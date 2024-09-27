@@ -9,9 +9,8 @@ module.exports = {
     extend: {
       fontFamily: {
         openSans: ["Open Sans", "sans-serif"],
-        sarabun: ["Sarabun", "sans-serif"],
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

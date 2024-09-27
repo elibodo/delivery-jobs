@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import RichTextEditor from "./RichTextEditor";
 
 const JobForm = ({
   account,
@@ -139,6 +142,12 @@ const JobForm = ({
         </button>
       );
     }
+  };
+
+  //description things
+  const handleEditorChange = (html) => {
+    setPost({ ...post, description: html });
+    console.log("Editor content updated:", html);
   };
 
   return (
@@ -783,68 +792,17 @@ const JobForm = ({
         {/* section 4 // // // // // // // // // // // // // // // // // // // // //*/}
 
         <div className="border-b-2 border-gray-300 pb-4">
-          <p className="description">Description</p>
+          <p className="description mb-4">Description</p>
           {/* description */}
-          <label className="mt-4 flex flex-col font-semibold text-gray-900">
-            Add a description to your job listing
-            <textarea
-              required
-              value={post.description}
-              onChange={(e) =>
-                setPost({ ...post, description: e.target.value })
-              }
-              placeholder="Write your description here..."
-              className="mt-1 max-h-[350px] min-h-[150px] min-w-[250px] resize-y rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
-            ></textarea>
-          </label>
+
+          <RichTextEditor onChange={handleEditorChange} />
         </div>
 
         {/* section 5 // // // // // // // // // // // // // // // // // // // // //*/}
 
         <div className="border-b-2 border-gray-300 pb-4">
           <p className="description">Additional Information</p>
-          {/* resume preference */}
-          {/* <label className="mt-4 flex flex-col text-gray-900 font-semibold">
-            Will applicants be required to include a resume?
-            <div className="font-semibold text-gray-700">
-              <label htmlFor="yes_resume">
-                <input
-                  required
-                  type="radio"
-                  name="resume_radio"
-                  id="yes_resume"
-                  className="  mr-1"
-                  value={"Yes"}
-                  onChange={(e) => setPost({ ...post, resume: e.target.value })}
-                />
-                Yes
-              </label>
-              <label htmlFor="no_resume">
-                <input
-                  required
-                  type="radio"
-                  name="resume_radio"
-                  id="no_resume"
-                  className="ml-10 mr-1"
-                  value={"No"}
-                  onChange={(e) => setPost({ ...post, resume: e.target.value })}
-                />
-                No
-              </label>
-              <label htmlFor="optional_resume">
-                <input
-                  required
-                  type="radio"
-                  name="resume_radio"
-                  id="optional_resume"
-                  className="ml-10 mr-1"
-                  value={"Optional"}
-                  onChange={(e) => setPost({ ...post, resume: e.target.value })}
-                />
-                Optional
-              </label>
-            </div>
-          </label> */}
+
           {/* drug test */}
           <label className="mt-4 flex flex-col font-semibold text-gray-900">
             Will applicants be required take a drug test?
