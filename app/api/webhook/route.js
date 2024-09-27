@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { connectToDB } from "@utils/database";
 import Employer from "@models/employer";
+import Job from "@models/job";
 
 export async function POST(req) {
   const body = await req.text();
@@ -88,10 +89,15 @@ export async function POST(req) {
           const account = await Employer.findOne({
             CustomerId: session.customer,
           });
-          console.log(account);
+          console.log("asdf");
+
+          await Job.updateMany(
+            { creator: account._id },
+            { $set: { active: false } },
+          );
 
           account.Subscription = "";
-          account.CustomerId = "";
+          //account.CustomerId = "";
           account.Access = false;
           account.JobLimit = 0;
           await account.save();
