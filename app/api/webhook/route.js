@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 import { connectToDB } from "@utils/database";
 import Employer from "@models/employer";
 import Job from "@models/job";
+import User from "@models/user";
 
 export async function POST(req) {
   const body = await req.text();
@@ -89,10 +90,11 @@ export async function POST(req) {
           const account = await Employer.findOne({
             CustomerId: session.customer,
           });
-          console.log("asdf");
+
+          const user = await User.findOne({ email: account.email });
 
           await Job.updateMany(
-            { creator: account._id },
+            { creator: user._id },
             { $set: { active: false } },
           );
 
