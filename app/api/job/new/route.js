@@ -54,6 +54,9 @@ export const POST = async (request) => {
     );
   }
 
+  const currentDate = new Date();
+  const formattedDate = currentDate.toLocaleDateString();
+
   try {
     await connectToDB();
     const newJob = new Job({
@@ -82,7 +85,8 @@ export const POST = async (request) => {
       companyName,
       latitude,
       longitude,
-      createdAt: new Date(),
+      createdAt: formattedDate,
+      active: true,
     });
 
     await newJob.save();

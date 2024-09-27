@@ -11,16 +11,6 @@ const JobCard = ({ post, handleDelete }) => {
   const { data: session } = useSession();
   const pathName = usePathname();
 
-  // Formats the creation date
-  const createdDate = (() => {
-    const date = new Date(post.createdAt);
-    return !isNaN(date) // Check if the date is valid
-      ? date.toLocaleDateString("en-US", {
-          timeZone: "UTC",
-        })
-      : ""; // Return an empty string if the date is invalid
-  })();
-
   // Creates a string of days that the job operates
   const days = post.workdays;
   let operationdays = days.join(",  ");
@@ -178,7 +168,7 @@ const JobCard = ({ post, handleDelete }) => {
             </div>
             {/* <p className="mt-8 pb-5">{post.description}</p> */}
             <div
-              className="prose prose-sm prose-h1:text-base prose-h1:font-semibold prose-p:text-sm prose-h1:pb-1 prose-h1:pt-2 prose-p:my-0 prose-p:py-0 prose-li:py-0 prose-li:my-0 mt-6 whitespace-pre-line break-words pb-4 text-sm md:ml-14"
+              className="prose prose-sm mt-6 whitespace-pre-line break-words pb-4 text-sm prose-h1:pb-1 prose-h1:pt-2 prose-h1:text-base prose-h1:font-semibold prose-p:my-0 prose-p:py-0 prose-p:text-sm prose-li:my-0 prose-li:py-0 md:ml-14"
               dangerouslySetInnerHTML={{ __html: post.description }}
             />
             <p className="text-base font-bold">Additional Information</p>
@@ -236,7 +226,7 @@ const JobCard = ({ post, handleDelete }) => {
             </div>
             <div className="flex flex-row">
               <p className="mr-2 whitespace-nowrap font-semibold">Posted On:</p>
-              <p>{createdDate}</p>
+              <p>{post.createdAt}</p>
             </div>
           </div>
         </div>
