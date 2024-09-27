@@ -176,7 +176,11 @@ const JobCard = ({ post, handleDelete }) => {
                 <></>
               )}
             </div>
-            <p className="mt-8 pb-5">{post.description}</p>
+            {/* <p className="mt-8 pb-5">{post.description}</p> */}
+            <div
+              className="prose prose-sm prose-h1:text-base prose-h1:font-semibold prose-p:text-sm prose-h1:pb-1 prose-h1:pt-2 prose-p:my-0 prose-p:py-0 prose-li:py-0 prose-li:my-0 mt-6 whitespace-pre-line break-words pb-4 text-sm md:ml-14"
+              dangerouslySetInnerHTML={{ __html: post.description }}
+            />
             <p className="text-base font-bold">Additional Information</p>
             <div className="flex flex-row">
               <p className="mr-2 whitespace-nowrap font-semibold">
