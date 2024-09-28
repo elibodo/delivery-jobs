@@ -7,8 +7,8 @@ import JobLoading from "./JobLoading";
 const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(10);
-  const [postPerPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage] = useState(10);
 
   const fetchPosts = async () => {
     const response = await fetch("/api/job");
