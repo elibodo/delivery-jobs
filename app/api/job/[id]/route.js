@@ -37,3 +37,50 @@ export const GET = async (request, { params }) => {
     return NextResponse.json("Failed to retrieve job", { status: 500 });
   }
 };
+
+export const PATCH = async (request, { params }) => {
+  try {
+    await connectToDB();
+    const { status } = await request.json();
+    const job = await Job.findById({ _id: params.id });
+    const user = await User.findById({ _id: job.creator });
+    const account = await Employer.findOne({ email: user.email });
+
+    if (status === "true") {
+      let updatedJobs = account.MyJobs + 1;
+      if (account.MyJobs < account.JobLimit) {
+        await Job.findOneAndUpdate(
+          { _id: params.id },
+          { $set: { active: true } },
+        );
+        await Employer.findOneAndUpdate(
+          { email: user.email },
+          { $set: { MyJobs: updatedJobs } },
+        );
+        return new Response("Updated Successfully", { status: 200 });
+      } else {
+        return new Response(
+          "Purchase or upgrade subscription to set more jobs to active",
+          { status: 400 },
+        );
+      }
+    } else if (status === "false") {
+      let updatedJobs = account.MyJobs - 1;
+      await Job.findOneAndUpdate(
+        { _id: params.id },
+        { $set: { active: false } },
+      );
+      await Employer.findOneAndUpdate(
+        { email: user.email },
+        { $set: { MyJobs: updatedJobs } },
+      );
+      return new Response("Updated Successfully", { status: 200 });
+    } else {
+      return new Response("Failed to update Job active setting", {
+        status: 500,
+      });
+    }
+  } catch (error) {
+    return new Response("Failed to update Job active setting", { status: 500 });
+  }
+};
