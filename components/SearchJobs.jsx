@@ -11,7 +11,7 @@ const SearchJobs = ({ getSearchResults }) => {
       `/api/job/search?query=${query}&distance=${distance}&location=${location}`,
     );
     const jobs = await response.json();
-    getSearchResults(jobs);
+    getSearchResults(jobs); // Pass new search results to the parent component
   };
 
   return (

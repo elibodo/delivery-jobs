@@ -65,6 +65,43 @@ const JobCard = ({ post, handleDelete }) => {
     }
   };
 
+  const [statusMessage, setStatusMessage] = useState("");
+  const [status, setStatus] = useState(post.active ? "true" : "false");
+
+  const handleStatus = async (e) => {
+    const previousStatus = status; // Save the previous status
+    const { value } = e.target;
+
+    setStatus(value); // Optimistically update the UI to the new status
+
+    try {
+      const response = await fetch(`/api/job/${post._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: value }),
+      });
+
+      if (response.status === 200) {
+        setStatusMessage("Status updated");
+      } else if (response.status === 400) {
+        setStatusMessage("No spots available. Upgrade subscription.");
+        setStatus(previousStatus); // Revert to previous status
+      } else if (response.status === 500) {
+        setStatusMessage("Internal server error. Please try again.");
+        setStatus(previousStatus); // Revert to previous status
+      }
+
+      // Clear message after 2 seconds
+      setTimeout(() => setStatusMessage(""), 2500);
+    } catch (error) {
+      setStatusMessage("Failed to update status.");
+      setStatus(previousStatus); // Revert to previous status in case of error
+      setTimeout(() => setStatusMessage(""), 2500);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-4 md:flex-row">
       <div className="prompt_card relative overflow-hidden">
@@ -291,15 +328,28 @@ const JobCard = ({ post, handleDelete }) => {
                 </svg>
               </button>
             </div>
-            <div className="h-fit w-[175px] gap-3 rounded-lg border border-gray-300 bg-white/20 p-3">
-              <div className="flex flex-row justify-between">
+            <div className="h-fit w-[175px] rounded-lg border border-gray-300 bg-white/20 p-3">
+              <div className="mb-2 flex flex-row justify-between text-center">
                 <h1 className="font-bold">Applicants: </h1>
                 <span className="font-semibold">{post.applicants.length}</span>
               </div>
-              {/* <div className="flex flex-row justify-between mt-2">
-                <h1 className="font-bold">Clicks: </h1>
-                <span className="font-semibold">{post.clicks}</span>
-              </div> */}
+              <div className="flex flex-row justify-between text-center">
+                <h1 className="font-bold">Status: </h1>
+                <select
+                  className="rounded-lg p-1 text-sm text-gray-700 outline-0"
+                  value={status} // Use the state to control the select value
+                  onChange={handleStatus}
+                >
+                  <option value={"true"}>Active</option>
+                  <option value={"false"}>Inactive</option>
+                </select>
+              </div>
+
+              {statusMessage && (
+                <p className="mt-2 text-sm font-semibold text-orange-600">
+                  {statusMessage}
+                </p>
+              )}
             </div>
           </div>
         )}
