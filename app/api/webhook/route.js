@@ -75,6 +75,14 @@ export async function POST(req) {
             totalJobs = 0;
           }
 
+          if (account.MyJobs > totalJobs) {
+            const user = await User.findOne({ email: account.email });
+            await Job.updateMany(
+              { creator: user._id },
+              { $set: { active: false } },
+            );
+          }
+
           account.Subscription = session.plan.product;
           account.JobLimit = totalJobs;
           await account.save();

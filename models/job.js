@@ -100,7 +100,7 @@ const JobSchema = new Schema({
     type: Number,
   },
   createdAt: {
-    type: Date,
+    type: String,
   },
   active: {
     type: Boolean,
