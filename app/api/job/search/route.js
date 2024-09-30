@@ -9,8 +9,8 @@ export async function GET(request) {
   await connectToDB();
   try {
     // find all jobs
-    //const jobs = await Job.find({ active: true }).populate("creator");
-    const jobs = await Job.find({}).populate("creator");
+    const jobs = await Job.find({ active: true }).populate("creator");
+    //const jobs = await Job.find({}).populate("creator");
 
     // get all params
     const { searchParams } = new URL(request.url);
