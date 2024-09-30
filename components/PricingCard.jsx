@@ -47,7 +47,7 @@ const PricingCard = ({ price }) => {
   };
 
   return (
-    <div className="mx-10 mt-5 rounded-xl border-4 bg-gray-200 text-center shadow-2xl">
+    <div className="mx-10 my-5 rounded-xl border-4 bg-gray-200 text-center shadow-2xl">
       <div>
         <div className="items-center p-2 text-center">
           <h4 className="text-2xl font-bold">{price.nickname}</h4>
