@@ -47,15 +47,16 @@
 }
 
 .black_button {
-  @apply flex items-center justify-center rounded-full border-2 border-orange-600 bg-orange-600 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg transition-all hover:border-black hover:bg-white hover:text-black;
+  @apply flex items-center justify-center rounded-lg border-2 border-orange-600 bg-orange-600 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg transition-all hover:border-black hover:bg-white hover:text-black;
 }
+/* block rounded p-2 text-center text-sm transition-all hover:bg-orange-600 hover:text-white */
 
 .black_button_disabled {
-  @apply flex items-center justify-center rounded-full border-2 border-orange-600 bg-orange-600 px-5 py-1.5 text-center text-sm font-medium text-white opacity-50 shadow-lg;
+  @apply flex items-center justify-center rounded-lg border-2 border-orange-600 bg-orange-600 px-5 py-1.5 text-center text-sm font-medium text-white opacity-50 shadow-lg;
 }
 
 .outline_button {
-  @apply flex items-center justify-center rounded-full border-2 border-black bg-transparent px-5 py-1.5 text-center text-sm font-medium text-black shadow-lg transition-all hover:border-orange-600 hover:bg-orange-600 hover:text-white;
+  @apply flex items-center justify-center rounded-lg border-2 border-black bg-transparent px-5 py-1.5 text-center text-sm font-medium text-black shadow-lg transition-all hover:border-orange-600 hover:bg-orange-600 hover:text-white;
 }
 
 .label_input_text {
@@ -75,15 +76,15 @@
 }
 
 .search_input {
-  @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-5 pr-5 text-sm font-medium shadow-lg focus:border-black focus:outline-none focus:ring-0;
+  @apply block w-full rounded-lg border border-gray-200 bg-white py-2.5 pl-5 pr-5 text-sm font-medium shadow-lg focus:border-black focus:outline-none focus:ring-0;
 }
 
 .search_input_select {
-  @apply block rounded-md border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium shadow-lg focus:border-black focus:outline-none focus:ring-0;
+  @apply block rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm font-medium shadow-lg focus:border-black focus:outline-none focus:ring-0;
 }
 
 .search_input_button {
-  @apply block rounded-md border border-orange-600 bg-orange-600 px-3 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:border-black hover:bg-white hover:text-black;
+  @apply block rounded-lg border border-orange-600 bg-orange-600 px-3 py-2.5 text-sm font-semibold text-white shadow-lg transition-all hover:border-black hover:bg-white hover:text-black;
 }
 
 .tooltip {
