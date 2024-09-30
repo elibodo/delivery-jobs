@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        customBlue: "#0C9EEA",
+      },
       fontFamily: {
         openSans: ["Open Sans", "sans-serif"],
       },
