@@ -27,7 +27,7 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <Provider>
-        <body>
+        <body className="to-customBlue/5 bg-gradient-to-r from-orange-600/5">
           <main className="app">
             <Header />
             {children}
