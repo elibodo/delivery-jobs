@@ -328,7 +328,7 @@ const JobCard = ({ post, handleDelete }) => {
                 </svg>
               </button>
             </div>
-            <div className="h-fit w-[175px] rounded-lg border border-gray-300 bg-white/20 p-3">
+            <div className="h-fit w-[175px] rounded-lg border border-gray-300 bg-white/20 p-3 shadow-lg">
               <div className="mb-2 flex flex-row justify-between text-center">
                 <h1 className="font-bold">Applicants: </h1>
                 <span className="font-semibold">{post.applicants.length}</span>
