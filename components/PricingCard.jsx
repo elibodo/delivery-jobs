@@ -17,10 +17,10 @@ const PricingCard = ({ price }) => {
           Have access to five job posts.
         </p>
       );
-    } else if (price.nickname === "Unlimited Jobs") {
+    } else if (price.nickname === "Up To Ten Jobs") {
       return (
         <p className="mt-4 text-sm font-medium text-orange-600">
-          Have access to unlimited job posts.
+          Have access to ten job posts.
         </p>
       );
     }
