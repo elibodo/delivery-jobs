@@ -147,7 +147,6 @@ const JobForm = ({
   //description things
   const handleEditorChange = (html) => {
     setPost({ ...post, description: html });
-    console.log("Editor content updated:", html);
   };
 
   return (
