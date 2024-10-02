@@ -9,7 +9,7 @@ export async function POST(req) {
   let userEmail = data.user;
   let userId = data.id;
 
-  const couponEligiblePriceId = "price_1Q5DRaHuZoEiKSCiiqXbyaRN";
+  const couponEligiblePriceId = "price_1Q5DdSHuZoEiKSCiCMJZcUwV";
 
   let discounts = [];
 
