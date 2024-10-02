@@ -37,5 +37,5 @@ next-env.d.ts
 
 .vercel
 
-# environment variables
+# environment variable
 .env
