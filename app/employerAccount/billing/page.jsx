@@ -48,13 +48,21 @@ const Billing = () => {
             {data.Access === true ? (
               <SubscriptionActive user={data} />
             ) : (
-              <div className="mb-10 mt-5 grid grid-cols-1 md:grid-cols-3">
-                {prices &&
-                  prices.map((price) => (
-                    <PricingCard price={price} key={price.product} />
-                  ))}
+              <div>
+                <div className="mb-8 mt-5 grid grid-cols-1 md:grid-cols-3">
+                  {prices &&
+                    prices.map((price) => (
+                      <PricingCard price={price} key={price.product} />
+                    ))}
+                </div>
+                <p className="description mx-3 flex items-center justify-center pb-8 text-center md:mx-20">
+                  '100% OFF' is a coupon that will be available for a limited
+                  time only. This is redeamable for the subscription called 'Up
+                  To Two Jobs' until 12/31/2024.
+                </p>
               </div>
             )}
+            {/* need a customer portal link for people who have had a subscription but are not current customers */}
           </div>
         ))}
     </div>
