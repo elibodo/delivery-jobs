@@ -6,9 +6,9 @@ import React from "react";
 import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
-  title: "Delivery Jobs | Find Local and Over The Road Delivery & Driver Jobs",
+  title: "Delivery Jobs | Find Local & OTR Delivery Driver Jobs",
   description:
-    "A platform to find delivery and driving-related jobs, including CDL, non-CDL, and logistics positions with top companies like FedEx, UPS, Amazon, and so many more.",
+    "Find delivery and driving jobs, including CDL and non-CDL positions with top companies. Post jobs and recruit delivery drivers easily.",
   keywords: [
     "Delivery jobs",
     "Driving jobs",
@@ -51,11 +51,18 @@ export const metadata = {
     "DOT medical card jobs",
     "Post driving jobs",
   ],
+  author: "Delivery Jobs LLC",
 };
 
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
+      <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="keywords" content={metadata.keywords.join(", ")} />
+        <meta name="author" content={metadata.author} />
+      </head>
       <Provider>
         <body className="bg-gradient-to-r from-orange-600/5 to-customBlue/5">
           <main className="app">
