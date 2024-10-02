@@ -9,6 +9,18 @@ export async function POST(req) {
   let userEmail = data.user;
   let userId = data.id;
 
+  const couponEligiblePriceId = "price_1Q5DRaHuZoEiKSCiiqXbyaRN";
+
+  let discounts = [];
+
+  if (priceId === couponEligiblePriceId) {
+    discounts = [
+      {
+        coupon: "nc2qFWME",
+      },
+    ];
+  }
+
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -24,6 +36,7 @@ export async function POST(req) {
       userId: userId,
       userEmail: userEmail,
     },
+    discounts: discounts.length > 0 ? discounts : undefined,
   });
 
   return NextResponse.json(session.url);
