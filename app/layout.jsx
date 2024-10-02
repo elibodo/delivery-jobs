@@ -4,6 +4,7 @@ import Footer from "@components/Footer";
 import Provider from "@components/Provider";
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "Delivery Jobs | Find Local & OTR Delivery Driver Jobs",
@@ -69,6 +70,7 @@ const RootLayout = ({ children }) => {
             <Header />
             {children}
             <Analytics />
+            <SpeedInsights />
             <Footer />
           </main>
         </body>
