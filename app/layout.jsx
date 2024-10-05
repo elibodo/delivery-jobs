@@ -65,7 +65,7 @@ const RootLayout = ({ children }) => {
         <meta name="author" content={metadata.author} />
       </head>
       <Provider>
-        <body className="bg-gradient-to-r from-orange-600/5 to-customBlue/5">
+        <body className="bg-gradient-to-r from-slate-200 to-orange-600/10">
           <main className="app">
             <Header />
             {children}

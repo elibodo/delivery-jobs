@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import "@styles/globals.css";
+import Image from "next/image";
 
 const Header = () => {
   const { data: session } = useSession();
@@ -18,9 +19,10 @@ const Header = () => {
         onClick={() => setToggleDropdown(false)}
         className="flex items-center justify-center gap-2"
       >
-        <p className="text-3xl font-extrabold tracking-wide text-black md:text-4xl">
+        <Image src={"/asdf1.webp"} width={300} height={600} />
+        {/* <p className="text-3xl font-extrabold tracking-wide text-black md:text-4xl">
           <span className="text-orange-600">Delivery</span> Jobs
-        </p>
+        </p> */}
       </Link>
 
       <div className="hidden md:flex">
