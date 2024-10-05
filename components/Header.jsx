@@ -13,13 +13,13 @@ const Header = () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   return (
-    <nav className="mb-4 flex w-full items-center justify-between px-6 pt-2 md:mb-12 md:pt-5">
+    <nav className="mb-4 flex w-full items-center justify-between gap-8 px-6 pt-2 md:mb-10 md:pt-4">
       <Link
         href="/"
         onClick={() => setToggleDropdown(false)}
         className="flex items-center justify-center gap-2"
       >
-        <Image src={"/asdf1.webp"} width={300} height={600} />
+        <Image width={300} height={200} src="/asdf.webp" alt="Delivery Jobs" />
         {/* <p className="text-3xl font-extrabold tracking-wide text-black md:text-4xl">
           <span className="text-orange-600">Delivery</span> Jobs
         </p> */}
