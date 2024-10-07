@@ -13,6 +13,15 @@ const LogIn = () => {
 
   const router = useRouter();
 
+  useEffect(() => {
+    // Trigger the Google Ads page view conversion event
+    window.gtag("event", "conversion", {
+      send_to: "AW-16725198778/xZppCKTMjdkZELqPmac-",
+      value: 1.0,
+      currency: "USD",
+    });
+  }, []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
