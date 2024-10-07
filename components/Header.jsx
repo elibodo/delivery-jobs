@@ -19,7 +19,12 @@ const Header = () => {
         onClick={() => setToggleDropdown(false)}
         className="flex items-center justify-center gap-2"
       >
-        <Image width={300} height={200} src="/asdf.webp" alt="Delivery Jobs" />
+        <Image
+          width={300}
+          height={200}
+          src="/deliveryJobsLogo.webp"
+          alt="Delivery Jobs"
+        />
         {/* <p className="text-3xl font-extrabold tracking-wide text-black md:text-4xl">
           <span className="text-orange-600">Delivery</span> Jobs
         </p> */}

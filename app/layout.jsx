@@ -63,6 +63,7 @@ const RootLayout = ({ children }) => {
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords.join(", ")} />
         <meta name="author" content={metadata.author} />
+        <link rel="icon" href="/faviconNoBG.png" />
       </head>
       <Provider>
         <body className="bg-gradient-to-r from-slate-200 to-orange-600/5">
