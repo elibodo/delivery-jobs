@@ -64,6 +64,20 @@ const RootLayout = ({ children }) => {
         <meta name="keywords" content={metadata.keywords.join(", ")} />
         <meta name="author" content={metadata.author} />
         <link rel="icon" href="/faviconNoBG.png" />
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-16725198778"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'AW-16725198778');
+        `,
+          }}
+        />
       </head>
       <Provider>
         <body className="bg-gradient-to-r from-slate-200 to-orange-600/5">
