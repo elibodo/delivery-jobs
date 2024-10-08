@@ -27,7 +27,7 @@ const EmployerHome = ({ account, jobs, handleDelete }) => {
             ))}
           </>
         ) : (
-          <p className="description">
+          <p className="description mx-4 mb-4">
             Navigate to the Create Job page to create a Job.
           </p>
         )}
