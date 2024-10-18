@@ -10,7 +10,7 @@ export const GET = async () => {
   try {
     //const jobs = await Job.find({}).populate("creator");
     const jobs = await Job.find({ active: true }).populate("creator");
-    return new Response(JSON.stringify(jobs), { status: 200 });
+    return new Response(JSON.stringify(jobs.reverse()), { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response("Failed to fetch all jobs", { status: 500 });

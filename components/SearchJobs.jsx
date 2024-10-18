@@ -7,11 +7,24 @@ const SearchJobs = ({ getSearchResults }) => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    const response = await fetch(
-      `/api/job/search?query=${query}&distance=${distance}&location=${location}`,
-    );
-    const jobs = await response.json();
-    getSearchResults(jobs); // Pass new search results to the parent component
+
+    try {
+      const response = await fetch(
+        `/api/job/search?query=${query}&distance=${distance}&location=${location}`,
+      );
+
+      if (!response.ok) {
+        throw new Error("Search request failed");
+      }
+
+      const jobs = await response.json();
+      getSearchResults(jobs); // Pass new search results to the parent component
+    } catch (error) {
+      console.error("Search failed:", error);
+      alert(
+        "There was a problem fetching search results. Please check the information you provided.",
+      );
+    }
   };
 
   return (

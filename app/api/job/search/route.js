@@ -89,7 +89,9 @@ export async function GET(request) {
       }
     });
 
-    return new Response(JSON.stringify(filteredJobs), { status: 200 });
+    return new Response(JSON.stringify(filteredJobs.reverse()), {
+      status: 200,
+    });
   } catch (error) {
     console.log(error);
     return new Response("Failed to fetch all jobs", { status: 500 });
