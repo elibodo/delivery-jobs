@@ -56,7 +56,7 @@ const JobSchema = new Schema({
     type: Array,
   },
   additionalpay: {
-    type: Number,
+    type: Array,
     //required: [true, "Additional pay is required"],
   },
   benefits: {

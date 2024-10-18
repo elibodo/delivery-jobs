@@ -77,12 +77,25 @@ const JobForm = ({
     myarray[index] = payvalue.target.value;
     setpayrange(myarray);
   };
+
   useEffect(() => {
     setPost({ ...post, payrange: payrange });
   }, [payrange]);
 
-  const [message, setMessage] = useState("");
+  // Array for additional pay
+  const [additionalpay, setAdditionalPay] = useState(["", ""]);
+  const additionPayOptions = (index, payvalue) => {
+    const array = [...additionalpay];
+    array[index] = payvalue.target.value;
+    setAdditionalPay(array);
+  };
 
+  useEffect(() => {
+    setPost({ ...post, additionalpay: additionalpay });
+  }, [additionalpay]);
+
+  // Message for if user needs a subscription
+  const [message, setMessage] = useState("");
   useEffect(() => {
     let totalJobs = account.MyJobs + 1;
     if (totalJobs <= account.JobLimit && account.JobLimit !== 0) {
@@ -526,6 +539,7 @@ const JobForm = ({
                   min={0}
                   value={payrange[0]}
                   onChange={(e) => rangeofpay(0, e)}
+                  step={0.01}
                 ></input>
                 <span className="mx-2">to</span>
                 <input
@@ -536,6 +550,7 @@ const JobForm = ({
                   min={0}
                   value={payrange[1]}
                   onChange={(e) => rangeofpay(1, e)}
+                  step={0.01}
                 ></input>
                 <span className="mx-2">per</span>
                 <select
@@ -557,8 +572,42 @@ const JobForm = ({
             </label>
           </div>
 
+          {/* additional/structure pay */}
+          <div className="flex flex-row">
+            <label className="mt-4 flex flex-col font-semibold text-gray-900">
+              Additional Pay / Pay Structure
+              <div className="mx-5 mt-1 flex flex-col md:flex-row md:items-center">
+                <input
+                  className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
+                  type="number"
+                  placeholder="Amount in Dollars"
+                  min={0}
+                  step={0.01}
+                  value={additionalpay[0]}
+                  onChange={(e) => additionPayOptions(0, e)}
+                ></input>
+                <span className="mx-2">per</span>
+                <select
+                  className="mt-1 rounded-lg p-2 text-sm text-gray-700 outline-0 md:p-3"
+                  value={additionalpay[2]}
+                  onChange={(e) => additionPayOptions(1, e)}
+                >
+                  <option value={""} disabled selected hidden>
+                    Choose an Option
+                  </option>
+
+                  <option>Load</option>
+                  <option>Mile</option>
+                  <option>Package</option>
+                  <option>Stop</option>
+                  <option>Unit</option>
+                </select>
+              </div>
+            </label>
+          </div>
+
           {/* Additional miles pay */}
-          <label className="mt-4 flex flex-col font-semibold text-gray-900">
+          {/* <label className="mt-4 flex flex-col font-semibold text-gray-900">
             Is there additional pay for miles driven?
             <div className="mt-1 flex flex-row items-center">
               <input
@@ -572,7 +621,7 @@ const JobForm = ({
               ></input>
               <p className="ml-2 font-semibold text-gray-900">Cents Per Mile</p>
             </div>
-          </label>
+          </label> */}
 
           {/* Benefits for the employee */}
           <label className="mt-4 flex flex-col font-semibold text-gray-900">
@@ -772,7 +821,7 @@ const JobForm = ({
                   />
                   Other
                 </label>
-                <label htmlFor="none">
+                {/* <label htmlFor="none">
                   <input
                     type="checkbox"
                     id="none"
@@ -781,7 +830,7 @@ const JobForm = ({
                     onChange={companybenefits}
                   />
                   None
-                </label>
+                </label> */}
               </div>
             </div>
           </label>

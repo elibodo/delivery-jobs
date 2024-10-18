@@ -44,22 +44,29 @@ const LogIn = () => {
 
   return (
     <div>
-      <p className="mx-auto max-w-[600px] text-center">
-        <span className="font-bold">Take advantage</span> of our limited-time
-        promotion! From now until
-        <span className="font-bold text-orange-600"> December 31st</span>,
-        employers can post up to{" "}
-        <span className="font-bold text-orange-600">two jobs </span>
-        completely <span className="font-bold">free</span>. Don't miss this
-        opportunity to find the right candidates at{" "}
-        <span className="font-bold">no cost</span>!
+      <p className="mx-auto max-w-[550px] text-center">
+        <span className="font-bold">Job Seekers,</span> get started now!
+        Register for free and{" "}
+        <span className="font-bold text-orange-600">immediately</span> start
+        applying to jobs across the nation. You'll always be able to find the
+        right opportunity <span className="font-bold">at no cost</span>!
+      </p>
+      <p className="mx-auto mt-5 max-w-[550px] text-center">
+        <span className="font-bold">Employers,</span> take advantage of our
+        limited-time promotion! From now until{" "}
+        <span className="font-bold text-orange-600">December 31st</span>,
+        employers can post{" "}
+        <span className="font-bold text-orange-600">jobs</span> completely{" "}
+        <span className="font-bold">free</span>. Don't miss this opportunity to
+        find the right candidates at <span className="font-bold">no cost</span>!
       </p>
 
       <form
         onSubmit={handleSubmit}
-        className="border-1 mx-auto mt-4 flex max-w-[350px] flex-col content-center items-center justify-center rounded-xl bg-gray-100 p-4"
+        className="border-1 mx-auto mt-5 flex max-w-[350px] flex-col content-center items-center justify-center rounded-xl bg-gray-100 p-4"
       >
-        <h1 className="p-5 text-2xl font-semibold">Sign In</h1>
+        <h1 className="p-3 text-2xl font-semibold">Job Seeker and Employer</h1>
+        <h1 className="pb-5 text-2xl font-semibold">Sign In</h1>
         <div className="flex flex-row">
           <div className="flex flex-col items-center">
             <input

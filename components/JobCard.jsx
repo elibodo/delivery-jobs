@@ -209,6 +209,19 @@ const JobCard = ({ post, handleDelete }) => {
               dangerouslySetInnerHTML={{ __html: post.description }}
             />
             <p className="text-base font-bold">Additional Information</p>
+            {post.additionalpay != "" ? (
+              <div className="flex flex-row">
+                <p className="mr-2 whitespace-nowrap font-semibold">
+                  Additional Pay:
+                </p>
+                <p>
+                  ${post.additionalpay[0]} per {post.additionalpay[1]}
+                </p>
+              </div>
+            ) : (
+              <></>
+            )}
+
             <div className="flex flex-row">
               <p className="mr-2 whitespace-nowrap font-semibold">
                 Delivery Location:

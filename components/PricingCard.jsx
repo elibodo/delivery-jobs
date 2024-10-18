@@ -60,22 +60,10 @@ const PricingCard = ({ price }) => {
             anytime.
           </p>
         </div>
-        {price.unit_amount === 14999 ? (
-          <div>
-            <div className="mt-4 flex flex-row items-center justify-center gap-1">
-              <h1 className="space-x-2 text-3xl font-bold line-through">
-                {(price.unit_amount / 100).toLocaleString("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                })}
-              </h1>
-              <span className="text-xs">a month</span>
-            </div>
-            <p className="font-semibold text-orange-600">100% OFF</p>
-          </div>
-        ) : (
-          <div className="my-4 flex flex-row items-center justify-center gap-1">
-            <h1 className="text-3xl font-bold">
+        <div>
+          {/* Crossed-out original price */}
+          <div className="mt-4 flex flex-row items-center justify-center gap-1">
+            <h1 className="space-x-2 text-3xl font-bold line-through">
               {(price.unit_amount / 100).toLocaleString("en-US", {
                 style: "currency",
                 currency: "USD",
@@ -83,7 +71,9 @@ const PricingCard = ({ price }) => {
             </h1>
             <span className="text-xs">a month</span>
           </div>
-        )}
+          {/* 100% OFF Message */}
+          <p className="font-semibold text-orange-600">100% OFF</p>
+        </div>
         <div className="my-4 flex justify-center">
           <button onClick={handleSubscription} className="black_button">
             Subscribe

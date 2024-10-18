@@ -57,8 +57,8 @@ const Billing = () => {
                 </div>
                 <p className="description mx-3 flex items-center justify-center pb-8 text-center md:mx-20">
                   '100% OFF' is a coupon that will be available for a limited
-                  time only. This is redeamable for the subscription called 'Up
-                  To Two Jobs' until 12/31/2024.
+                  time only. This is redeamable one time for any subscription
+                  until 12/31/2024. This coupon lasts two months.
                 </p>
               </div>
             )}
