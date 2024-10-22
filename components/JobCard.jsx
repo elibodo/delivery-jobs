@@ -194,23 +194,6 @@ const JobCard = ({ post, handleDelete }) => {
           }`}
         >
           <div className="mt-2 space-y-2 overflow-hidden whitespace-pre-wrap border-t-2 border-slate-300 text-sm text-gray-900">
-            {/* apply button */}
-            {/* <div className="flex justify-center md:justify-start">
-              {session?.user?.accountType === "Job Seeker" ? (
-                <button
-                  onClick={handleApply}
-                  className="black_button mt-2 w-32"
-                >
-                  Apply
-                </button>
-              ) : session === null ? (
-                <Link href={"/logIn"} className="black_button mt-3 w-40">
-                  Sign In To Apply!
-                </Link>
-              ) : (
-                <></>
-              )}
-            </div> */}
             <div className="flex justify-center md:justify-start">
               {session?.user?.accountType === "Job Seeker" ? (
                 <>
@@ -241,7 +224,7 @@ const JobCard = ({ post, handleDelete }) => {
               )}
             </div>
             <div
-              className="prose prose-sm mt-6 whitespace-pre-line break-words pb-4 text-sm prose-h1:pb-1 prose-h1:pt-2 prose-h1:text-base prose-h1:font-semibold prose-p:my-0 prose-p:py-0 prose-p:text-sm prose-li:my-0 prose-li:py-0 md:ml-14"
+              className="prose prose-sm mt-6 whitespace-pre-line break-words pb-4 text-sm prose-h1:pb-1 prose-h1:pt-2 prose-h1:text-base prose-h1:font-semibold prose-p:my-0 prose-p:py-0 prose-p:text-sm prose-li:my-0 prose-li:py-0 md:ml-6"
               dangerouslySetInnerHTML={{ __html: post.description }}
             />
             <p className="text-base font-bold">Additional Information</p>

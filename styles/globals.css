@@ -72,7 +72,7 @@
 }
 
 .prompt_card {
-  @apply h-fit w-full max-w-[750px] flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-4 pb-2 shadow-md backdrop-filter md:p-6 md:pb-4;
+  @apply h-fit flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-4 pb-2 shadow-md backdrop-filter md:w-[750px] md:p-6 md:pb-4;
 }
 
 .search_input {
