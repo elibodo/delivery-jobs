@@ -30,7 +30,6 @@ const Header = () => {
         <div className="hidden md:flex">
           {session?.user ? (
             <div className="flex gap-3">
-              {/* Employer account links */}
               {session?.user?.accountType === "Employer" ? (
                 <div className="flex gap-3">
                   <Link
@@ -50,7 +49,6 @@ const Header = () => {
                   </button>
                 </div>
               ) : session?.user?.accountType === "Job Seeker" ? (
-                // Job seeker account links
                 <div className="flex gap-3">
                   <Link
                     href={"/jobSeekerAccount/jobSeekerResume"}
@@ -119,8 +117,9 @@ const Header = () => {
       <div
         id="dropdown-menu"
         className={`flex w-full flex-col items-center rounded-lg bg-slate-200 drop-shadow-2xl transition-all duration-300 ease-in-out ${
-          toggleDropdown ? "mb-4 max-h-screen opacity-100" : "max-h-0 opacity-0"
-        } overflow-hidden`}
+          toggleDropdown ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+        }`}
+        style={{ overflow: "hidden" }} // Prevent overflow while transitioning
       >
         {session?.user ? (
           <>
