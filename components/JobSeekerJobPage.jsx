@@ -23,7 +23,7 @@ const JobSeekerJobPage = ({ jobs }) => {
     >
       {/* Job Title and Company Name */}
       <div className="flex flex-row items-center justify-between">
-        <p className="text-xl font-semibold text-orange-600">{jobs.title}</p>
+        <p className="text-xl font-semibold">{jobs.title}</p>
         <p className="ml-8 text-base text-gray-800">{jobs.companyName}</p>
       </div>
 
@@ -32,7 +32,7 @@ const JobSeekerJobPage = ({ jobs }) => {
       <p className="ml-3 mt-2 text-sm text-gray-600">
         From <span className="font-semibold">${payrange[0]}</span> -{" "}
         <span className="font-semibold">${payrange[1]}</span> a{" "}
-        <span className="text-orange-600">{payrange[2]}</span>
+        <span className="">{payrange[2]}</span>
       </p>
       <p className="ml-3 mt-2 text-sm text-gray-600">
         Dispatch Location:{" "}
@@ -43,11 +43,14 @@ const JobSeekerJobPage = ({ jobs }) => {
       <div
         ref={contentRef}
         className={`transition-max-height ml-3 mt-3 overflow-hidden whitespace-pre-wrap text-sm text-gray-700 duration-500 ease-in-out ${
-          isExpanded ? "max-h-[1000px]" : "max-h-6"
+          isExpanded ? "max-h-[1000px]" : "max-h-5"
         }`}
       >
-        {jobs.description}
-
+        <div
+          className="prose prose-sm whitespace-pre-line break-words pb-4 text-sm prose-h1:pb-1 prose-h1:pt-2 prose-h1:text-base prose-h1:font-semibold prose-p:my-0 prose-p:py-0 prose-p:text-sm prose-li:my-0 prose-li:py-0 md:ml-6"
+          dangerouslySetInnerHTML={{ __html: jobs.description }}
+        />
+        {/* {jobs.description} */}
         {/* Additional Information */}
         {isExpanded && (
           <div className="ml-3 mt-4">
