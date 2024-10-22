@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import ApplyModal from "./applyModal";
 
 const JobCard = ({ post, handleDelete }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
@@ -18,50 +19,57 @@ const JobCard = ({ post, handleDelete }) => {
   const companybenefits = post.benefits;
   let jobbenefits = companybenefits.join(",  ");
 
-  const handleApply = async (e) => {
-    e.preventDefault();
-    const applicantArray = post.applicants;
-    const deniedApplicantArray = post.deniedApplicants;
-    const currentUserEmail = session?.user?.email;
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [hasApplied, setHasApplied] = useState(false); // Track whether user has applied
 
-    let index = applicantArray.findIndex(
-      (obj) => obj.email === currentUserEmail,
-    );
-    if (index === -1 && !deniedApplicantArray.includes(currentUserEmail)) {
+  const currentUserEmail = session?.user?.email;
+
+  // Check if user has applied or been denied when component mounts
+  useEffect(() => {
+    const hasAlreadyAppliedOrDenied =
+      post.applicants.some(({ email }) => email === currentUserEmail) ||
+      post.deniedApplicants.includes(currentUserEmail);
+
+    setHasApplied(hasAlreadyAppliedOrDenied);
+  }, [post.applicants, post.deniedApplicants, currentUserEmail]);
+
+  const handleApply = async () => {
+    if (!hasApplied) {
       try {
-        const res = await fetch("/api/job/apply", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            postId: post._id,
-            applicantEmail: session?.user?.email,
-            applicantName: session?.user?.name,
-            applicantPhoneNumber: session?.user?.phoneNumber,
+        const [applyResponse, emailResponse] = await Promise.all([
+          fetch("/api/job/apply", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              postId: post._id,
+              applicantEmail: currentUserEmail,
+              applicantName: session?.user?.name,
+              applicantPhoneNumber: session?.user?.phoneNumber,
+            }),
           }),
-        });
-        await fetch("/api/job/email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            appEmail: session?.user?.email,
-            postId: post._id,
+          fetch("/api/job/email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              appEmail: currentUserEmail,
+              postId: post._id,
+            }),
           }),
-        });
-        if (res.ok) {
-          alert("Successfully applied to " + post.title);
-          window.location.reload();
+        ]);
+
+        if (applyResponse.ok && emailResponse.ok) {
+          setHasApplied(true); // Mark as applied after successful application
+          return true;
         } else {
-          alert("Could not apply to " + post.title);
+          return false;
         }
       } catch (error) {
-        console.log(error);
+        console.error("Error applying for the job:", error);
+        return false;
       }
     } else {
-      alert("You have already applied to " + post.title);
+      alert(`You have already applied to ${post.title}`);
+      return false;
     }
   };
 
@@ -187,7 +195,7 @@ const JobCard = ({ post, handleDelete }) => {
         >
           <div className="mt-2 space-y-2 overflow-hidden whitespace-pre-wrap border-t-2 border-slate-300 text-sm text-gray-900">
             {/* apply button */}
-            <div className="flex justify-center md:justify-start">
+            {/* <div className="flex justify-center md:justify-start">
               {session?.user?.accountType === "Job Seeker" ? (
                 <button
                   onClick={handleApply}
@@ -202,8 +210,36 @@ const JobCard = ({ post, handleDelete }) => {
               ) : (
                 <></>
               )}
+            </div> */}
+            <div className="flex justify-center md:justify-start">
+              {session?.user?.accountType === "Job Seeker" ? (
+                <>
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="black_button mt-2 w-40"
+                    disabled={hasApplied}
+                  >
+                    {hasApplied ? "Already Applied" : "Apply"}
+                  </button>
+
+                  <ApplyModal
+                    isOpen={isModalOpen}
+                    onClose={() => setModalOpen(false)}
+                    onConfirm={async () => {
+                      const success = await handleApply();
+                      return success;
+                    }}
+                    job={post}
+                  />
+                </>
+              ) : session === null ? (
+                <Link href={"/logIn"} className="black_button mt-3 w-40">
+                  Sign In To Apply!
+                </Link>
+              ) : (
+                <></>
+              )}
             </div>
-            {/* <p className="mt-8 pb-5">{post.description}</p> */}
             <div
               className="prose prose-sm mt-6 whitespace-pre-line break-words pb-4 text-sm prose-h1:pb-1 prose-h1:pt-2 prose-h1:text-base prose-h1:font-semibold prose-p:my-0 prose-p:py-0 prose-p:text-sm prose-li:my-0 prose-li:py-0 md:ml-14"
               dangerouslySetInnerHTML={{ __html: post.description }}
