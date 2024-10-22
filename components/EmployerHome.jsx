@@ -4,7 +4,7 @@ import JobCard from "./JobCard";
 const EmployerHome = ({ account, jobs, handleDelete }) => {
   return (
     <section>
-      <div className="mx-3 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
+      <div className="mx-2 flex flex-row items-center justify-between border-b-2 border-gray-500 p-2">
         <h1 className="text-xl font-bold md:text-2xl">{account.companyName}</h1>
         <div className="flex flex-col">
           <p className="hidden md:flex">{account.streetAddress}</p>
@@ -17,7 +17,7 @@ const EmployerHome = ({ account, jobs, handleDelete }) => {
         {jobs.length !== 0 ? (
           <>
             {jobs.map((jobs) => (
-              <div key={jobs._id} className="flex flex-row gap-5">
+              <div key={jobs._id} className="mx-2 flex flex-row gap-5">
                 <JobCard
                   key={jobs._id}
                   post={jobs}

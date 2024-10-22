@@ -1,18 +1,14 @@
 import React from "react";
 
-const JobLoading = () => {
+const JobLoading = ({ count = 10 }) => {
   return (
     <>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
-      <div className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"></div>
+      {Array.from({ length: count }).map((_, index) => (
+        <div
+          key={index}
+          className="flex h-[155.2px] w-[345px] animate-pulse rounded-lg bg-gray-100 shadow-lg md:h-[99.2px] md:w-[750px]"
+        ></div>
+      ))}
     </>
   );
 };

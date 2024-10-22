@@ -10,6 +10,108 @@ const Header = () => {
   const { data: session } = useSession();
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
+  const handleSignOut = () => {
+    setToggleDropdown(false);
+    signOut({ callbackUrl: "/", redirect: true });
+  };
+
+  const toggleMenu = () => {
+    setToggleDropdown((prev) => !prev);
+  };
+
+  const renderMobileMenu = () => (
+    <div
+      id="dropdown-menu"
+      className={`flex w-full flex-col items-center rounded-lg bg-slate-200 drop-shadow-2xl transition-all duration-300 ease-in-out ${
+        toggleDropdown ? "mb-4 max-h-screen opacity-100" : "max-h-0 opacity-0"
+      } overflow-hidden`}
+    >
+      {session?.user ? (
+        <>
+          {session.user.accountType === "Employer" ? (
+            <MobileMenuLink
+              href="/employerAccount/employerAccountHome"
+              label="View Profile"
+            />
+          ) : (
+            <MobileMenuLink
+              href="/jobSeekerAccount/jobSeekerResume"
+              label="View Profile"
+            />
+          )}
+          <Link
+            href="/"
+            className="w-full p-2 text-center text-lg font-bold text-gray-900 transition duration-200 hover:bg-gray-400"
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </Link>
+        </>
+      ) : (
+        <>
+          <MobileMenuLink href="/logIn" label="Sign In" />
+          <MobileMenuLink href="/signUp" label="Register" hasBorder={false} />
+        </>
+      )}
+    </div>
+  );
+
+  const MobileMenuLink = ({ href, label, hasBorder = true }) => (
+    <Link
+      href={href}
+      className={`w-full p-2 text-center text-lg font-bold text-gray-900 transition duration-200 hover:bg-gray-400 ${hasBorder ? "border-b-2 border-gray-400" : ""}`}
+      onClick={() => setToggleDropdown(false)}
+    >
+      {label}
+    </Link>
+  );
+
+  const renderDesktopMenu = () => (
+    <div className="hidden md:ml-auto md:flex md:gap-3">
+      {session?.user ? (
+        <>
+          {session.user.accountType === "Employer" ? (
+            <>
+              <Link
+                href="/employerAccount/employerAccountHome"
+                className="outline_button"
+              >
+                View Profile
+              </Link>
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="black_button"
+              >
+                Sign Out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                href="/jobSeekerAccount/jobSeekerResume"
+                className="outline_button"
+              >
+                View Profile
+              </Link>
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="black_button"
+              >
+                Sign Out
+              </button>
+            </>
+          )}
+        </>
+      ) : (
+        <Link href="/logIn" className="black_button">
+          Sign In / Sign Up
+        </Link>
+      )}
+    </div>
+  );
+
   return (
     <>
       <nav className="mb-4 flex w-full items-center justify-between gap-8 px-6 pt-2 md:mb-10 md:pt-4">
@@ -23,74 +125,17 @@ const Header = () => {
             height={200}
             src="/deliveryJobsLogo.webp"
             alt="Delivery Jobs"
+            priority={true}
           />
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex">
-          {session?.user ? (
-            <div className="flex gap-3">
-              {session?.user?.accountType === "Employer" ? (
-                <div className="flex gap-3">
-                  <Link
-                    href={"/employerAccount/employerAccountHome"}
-                    className="outline_button"
-                  >
-                    View Profile
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      signOut({ callbackUrl: "/", redirect: true })
-                    }
-                    className="black_button"
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              ) : session?.user?.accountType === "Job Seeker" ? (
-                <div className="flex gap-3">
-                  <Link
-                    href={"/jobSeekerAccount/jobSeekerResume"}
-                    className="outline_button"
-                  >
-                    View Profile
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      signOut({ callbackUrl: "/", redirect: true })
-                    }
-                    className="black_button"
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              ) : (
-                <div className="flex gap-3">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      signOut({ callbackUrl: "/", redirect: true })
-                    }
-                    className="black_button"
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <Link href={"/logIn"} className="black_button">
-              Sign In / Sign Up
-            </Link>
-          )}
-        </div>
+        {/* Desktop navigation buttons */}
+        {renderDesktopMenu()}
 
         {/* Mobile navigation icon */}
         <div className="relative flex md:hidden">
           <div
-            onClick={() => setToggleDropdown(!toggleDropdown)}
+            onClick={toggleMenu}
             aria-expanded={toggleDropdown}
             aria-controls="dropdown-menu"
             className="cursor-pointer"
@@ -99,9 +144,7 @@ const Header = () => {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              className={`size-7 transition-transform duration-300 ease-in-out ${
-                toggleDropdown ? "-rotate-90" : ""
-              }`}
+              className={`size-7 transition-transform duration-300 ease-in-out ${toggleDropdown ? "-rotate-90" : ""}`}
             >
               <path
                 fillRule="evenodd"
@@ -113,77 +156,7 @@ const Header = () => {
         </div>
       </nav>
 
-      {/* Dropdown Menu for Mobile */}
-      <div
-        id="dropdown-menu"
-        className={`flex w-full flex-col items-center rounded-lg bg-slate-200 drop-shadow-2xl transition-all duration-300 ease-in-out ${
-          toggleDropdown ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-        }`}
-        style={{ overflow: "hidden" }} // Prevent overflow while transitioning
-      >
-        {session?.user ? (
-          <>
-            {session?.user?.accountType === "Employer" ? (
-              <>
-                <Link
-                  href={"/employerAccount/employerAccountHome"}
-                  className="w-full border-b-2 border-gray-400 p-2 text-center text-lg font-bold text-gray-900 transition duration-200 hover:bg-gray-400"
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  View Profile
-                </Link>
-                <Link
-                  href={"/"}
-                  className="w-full p-2 text-center text-lg font-bold text-gray-900 transition duration-200 hover:bg-gray-400"
-                  onClick={() => {
-                    setToggleDropdown(false);
-                    signOut({ callbackUrl: "/", redirect: true });
-                  }}
-                >
-                  Sign Out
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link
-                  href={"/jobSeekerAccount/jobSeekerResume"}
-                  className="w-full border-b-2 border-gray-400 p-2 text-center text-lg font-bold text-gray-900 transition duration-200 hover:bg-gray-400"
-                  onClick={() => setToggleDropdown(false)}
-                >
-                  View Profile
-                </Link>
-                <Link
-                  href={"/"}
-                  className="w-full p-2 text-center text-lg font-bold text-gray-900 transition duration-200 hover:bg-gray-400"
-                  onClick={() => {
-                    setToggleDropdown(false);
-                    signOut({ callbackUrl: "/", redirect: true });
-                  }}
-                >
-                  Sign Out
-                </Link>
-              </>
-            )}
-          </>
-        ) : (
-          <>
-            <Link
-              href={"/logIn"}
-              className="w-full border-b-2 border-gray-400 p-2 text-center text-lg font-bold text-gray-900 transition duration-200 hover:bg-gray-400"
-              onClick={() => setToggleDropdown(false)}
-            >
-              Sign In
-            </Link>
-            <Link
-              href={"/signUp"}
-              className="w-full p-2 text-center text-lg font-bold text-gray-900 transition duration-200 hover:bg-gray-400"
-              onClick={() => setToggleDropdown(false)}
-            >
-              Register
-            </Link>
-          </>
-        )}
-      </div>
+      {renderMobileMenu()}
     </>
   );
 };

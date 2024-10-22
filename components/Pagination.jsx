@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 const Pagination = ({ postPerPage, totalPosts, paginate, currentPage }) => {
-  const pageNumbers = [];
   const totalPages = Math.ceil(totalPosts / postPerPage);
 
   // Generate all page numbers
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = useMemo(
+    () => Array.from({ length: totalPages }, (_, i) => i + 1),
+    [totalPages],
+  );
 
   // Calculate the range of pages to display
   const maxPageLinks = 5;
@@ -29,13 +29,11 @@ const Pagination = ({ postPerPage, totalPosts, paginate, currentPage }) => {
         {pageNumbers.slice(startPage - 1, endPage).map((number) => (
           <li key={number}>
             <button
-              onClick={() => {
-                paginate(number);
-              }}
-              className={`${
+              onClick={() => paginate(number)}
+              className={`text-md flex cursor-pointer items-center justify-center rounded-lg border-2 p-2 text-center font-normal transition-all ${
                 currentPage === number
-                  ? "active: text-md flex cursor-pointer items-center justify-center rounded-lg border-2 border-orange-600 bg-orange-600 p-2 text-center font-normal text-white transition-all"
-                  : "text-md flex cursor-pointer items-center justify-center rounded-lg border-2 border-black bg-transparent p-2 text-center font-normal text-black transition-all hover:border-orange-600 hover:bg-orange-600 hover:text-white"
+                  ? "border-orange-600 bg-orange-600 text-white"
+                  : "border-black bg-transparent text-black hover:border-orange-600 hover:bg-orange-600 hover:text-white"
               }`}
             >
               {number}

@@ -177,6 +177,7 @@ const MyCandidates = ({ post, handleDelete }) => {
           </td>
           <td className="border-b px-4 py-1.5 text-left">
             <select
+              className="rounded-md p-1 text-sm text-gray-700 outline-0"
               defaultValue={applicant.contacted}
               onChange={(e) => handleContacted(e, applicant.email)}
             >
@@ -187,6 +188,7 @@ const MyCandidates = ({ post, handleDelete }) => {
           </td>
           <td className="border-b px-4 py-1.5 text-left">
             <select
+              className="rounded-md p-1 text-sm text-gray-700 outline-0"
               defaultValue={applicant.status}
               onChange={(e) => handleStatus(e, applicant.email)}
             >

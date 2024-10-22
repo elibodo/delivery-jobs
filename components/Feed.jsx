@@ -11,10 +11,15 @@ const Feed = () => {
   const [postPerPage] = useState(10);
 
   const fetchPosts = async () => {
-    const response = await fetch("/api/job");
-    const data = await response.json();
-    setPosts(data);
-    setLoading(false);
+    try {
+      const response = await fetch("/api/job");
+      const data = await response.json();
+      setPosts(data);
+    } catch (error) {
+      console.error("Failed to fetch jobs:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -40,22 +45,16 @@ const Feed = () => {
         <div className="mt-4 columns-1 space-y-4 py-4">
           {loading ? (
             <JobLoading />
+          ) : currentPosts.length > 0 ? (
+            currentPosts.map((post) => <JobCard key={post._id} post={post} />)
           ) : (
-            <>
-              {currentPosts.length > 0 ? (
-                currentPosts.map((post) => (
-                  <JobCard key={post._id} post={post} />
-                ))
-              ) : (
-                <div className="description text-center">
-                  <p className="font-semibold">No Jobs Available</p>
-                  <p className="mt-2">
-                    Please increase the distance, use a different search term,
-                    or remove the search term to see all of the jobs near you.
-                  </p>
-                </div>
-              )}
-            </>
+            <div className="description text-center">
+              <p className="font-semibold">No Jobs Available</p>
+              <p className="mt-2">
+                Please increase the distance, use a different search term, or
+                remove the search term to see all of the jobs near you.
+              </p>
+            </div>
           )}
         </div>
         <Pagination

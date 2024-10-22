@@ -377,15 +377,15 @@ const JobCard = ({ post, handleDelete }) => {
                 </svg>
               </button>
             </div>
-            <div className="h-fit w-[175px] rounded-lg border border-gray-300 bg-white/20 p-3 shadow-lg">
+            <div className="h-fit max-w-[175px] rounded-lg border border-gray-300 bg-white/20 p-2 shadow-lg">
               <div className="mb-2 flex flex-row justify-between text-center">
                 <h1 className="font-bold">Applicants: </h1>
                 <span className="font-semibold">{post.applicants.length}</span>
               </div>
-              <div className="flex flex-row justify-between text-center">
+              <div className="flex flex-row justify-between gap-1 text-center">
                 <h1 className="font-bold">Status: </h1>
                 <select
-                  className="rounded-lg p-1 text-sm text-gray-700 outline-0"
+                  className="rounded-md p-1 text-sm text-gray-700 outline-0"
                   value={status} // Use the state to control the select value
                   onChange={handleStatus}
                 >
