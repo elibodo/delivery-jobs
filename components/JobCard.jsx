@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import ApplyModal from "./applyModal";
+import ApplyModal from "./ApplyModal";
 
 const JobCard = ({ post, handleDelete }) => {
   const [accordionOpen, setAccordionOpen] = useState(false);
