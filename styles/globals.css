@@ -39,7 +39,7 @@
 }
 
 .app {
-  @apply mx-auto flex min-h-screen max-w-7xl flex-col items-center p-2 pt-4 md:px-16;
+  @apply mx-auto flex min-h-screen max-w-[1350px] flex-col items-center p-2 pt-4 md:px-16;
 }
 
 .description {
