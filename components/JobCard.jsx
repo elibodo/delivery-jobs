@@ -228,7 +228,11 @@ const JobCard = ({ post, handleDelete }) => {
               dangerouslySetInnerHTML={{ __html: post.description }}
             />
             <p className="text-base font-bold">Additional Information</p>
-            {post.additionalpay != "" ? (
+            {post.additionalpay &&
+            post.additionalpay.length === 2 &&
+            !isNaN(post.additionalpay[0]) &&
+            Number(post.additionalpay[0]) > 0 && // Check if it's a positive number
+            post.additionalpay[1] !== "" ? (
               <div className="flex flex-row">
                 <p className="mr-2 whitespace-nowrap font-semibold">
                   Additional Pay:
