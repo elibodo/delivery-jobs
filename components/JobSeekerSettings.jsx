@@ -10,6 +10,7 @@ const JobSeekerSettings = ({ account }) => {
   const [profileMessage, setProfileMessage] = useState("");
   const [message, setMessage] = useState("");
 
+  // DELETE
   const handleDelete = async () => {
     const hasConfirmed = confirm(
       "Are you sure you want to permanently delete you profile?",
@@ -25,6 +26,7 @@ const JobSeekerSettings = ({ account }) => {
     }
   };
 
+  // PROFILE DATA
   const handleProfileInfo = async (e) => {
     e.preventDefault();
     if (!session.user.email) return "User Invalid";
@@ -70,6 +72,7 @@ const JobSeekerSettings = ({ account }) => {
     });
   }, [setProfileData]);
 
+  // PROFILE OPTIONS
   const handleAccountInfo = async (e) => {
     e.preventDefault();
     if (!session.user.email) return "User Invalid";

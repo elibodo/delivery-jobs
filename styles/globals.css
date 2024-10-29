@@ -49,6 +49,14 @@
 .black_button {
   @apply flex items-center justify-center rounded-lg border-2 border-orange-600 bg-orange-600 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg transition-all hover:border-black hover:bg-white hover:text-black;
 }
+
+.gray_button {
+  @apply flex items-center justify-center rounded-lg border-2 border-gray-700 bg-gray-700 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg transition-all hover:border-gray-900 hover:bg-gray-900 hover:text-white;
+}
+
+.orange_button {
+  @apply flex items-center justify-center rounded-lg border-2 border-orange-600 bg-orange-600 px-5 py-1.5 text-center text-sm font-medium text-white shadow-lg transition-all hover:border-orange-700 hover:bg-orange-700 hover:text-white;
+}
 /* block rounded p-2 text-center text-sm transition-all hover:bg-orange-600 hover:text-white */
 
 .black_button_disabled {
