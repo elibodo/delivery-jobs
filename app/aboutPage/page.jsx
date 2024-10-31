@@ -1,9 +1,25 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import PreviewPricingCard from "@components/PreviewPricingCard";
 
 const AboutPage = () => {
+  const [prices, setPrices] = useState([]);
+
+  useEffect(() => {
+    fetchPrices();
+  }, []);
+
+  const fetchPrices = async () => {
+    const response = await fetch("/api/getproducts");
+    const data = await response.json();
+    setPrices(data);
+  };
+
   return (
-    <section className="relative bg-gray-200 px-4 py-16 text-center md:px-8 lg:py-24">
+    <section className="relative bg-gray-200 px-4 py-8 text-center md:px-8 lg:py-12">
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <Image
@@ -11,7 +27,7 @@ const AboutPage = () => {
           alt="Semi Truck on the Road"
           layout="fill"
           objectFit="cover"
-          className="opacity-30"
+          className="rounded-lg opacity-30"
         />
       </div>
 
@@ -26,28 +42,38 @@ const AboutPage = () => {
           looking for top talent, DeliveryJobs.com makes it easy to connect and
           succeed.
         </p>
-        <p className="mb-8 px-4 text-base text-gray-800 md:text-lg">
-          For job seekers, our signup process is tailored specifically for
-          driving jobs, with options to include information like license class,
-          endorsements, and other critical qualifications. This ensures that
-          employers have access to the details they need, and drivers can
-          highlight their skills to find roles that match their expertise.
-        </p>
         <p className="mb-4 px-4 text-base text-gray-800 md:text-lg">
-          Our goal is to keep hiring affordable for employers and make it easier
-          for them to find the right candidates with minimal hassle. By focusing
-          exclusively on driving-related positions, we streamline the hiring
-          process so employers can quickly connect with qualified drivers.
+          For <strong>Job Seekers</strong>, our signup process is tailored
+          specifically for driving jobs, with options to include information
+          like license class, endorsements, and other critical qualifications.
+          This ensures that employers have access to the details they need, and
+          drivers can highlight their skills to find roles that match their
+          expertise.
         </p>
-
-        {/* CTA Buttons */}
         <div className="mb-8 flex flex-col justify-center gap-4 md:flex-row md:gap-6">
           <a href="/" className="orange_button">
             Find Jobs
           </a>
-          <a href="/signUp" className="gray_button">
+        </div>
+        <p className="mb-4 px-4 text-base text-gray-800 md:text-lg">
+          For <strong>Employers</strong>, our goal is to keep hiring affordable
+          and make it easier for them to find the right candidates with minimal
+          hassle. By focusing exclusively on driving-related positions, we
+          streamline the hiring process so employers can quickly connect with
+          qualified drivers.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="mb-8 flex flex-col justify-center gap-4 md:flex-row md:gap-6">
+          <a href="/logIn" className="gray_button">
             Post a Job
           </a>
+        </div>
+        <div className="mt-5 grid grid-cols-1 md:grid-cols-3">
+          {prices &&
+            prices.map((price) => (
+              <PreviewPricingCard price={price} key={price.product} />
+            ))}
         </div>
       </div>
     </section>
